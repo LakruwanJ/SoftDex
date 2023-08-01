@@ -6,31 +6,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-require '../Classes/Select.php';
+require '../Classes/SchRes.php';
 
-use Classes\Selecrsw;
+use Classes\SchRes;
 
-$rs = new Classes\Select();
+$schR = new Classes\SchRes();
 
-$rss = $rs->selectSw("sw0001");
-
-foreach ($rss as $sw) {
-    $name = $sw->name;
-    $version = $sw->version;
-    $shortdescription = $sw->shortdescription;
-    $platform = $sw->platform;
-    $developer = $sw->developer;
-    $license = $sw->license;
-    $amount = $sw->amount;
-    $date = $sw->date;
-    $size = $sw->size;
-    $language = $sw->language;
-    $maincategory = $sw->maincategory;
-    $category = $sw->category;
-    $tags = $sw->tags;
-    $systemreq = $sw->systemreq;
-    $description = $sw->description;
+if (isset($_COOKIE['schWord'])) {
+    $sword = $_COOKIE['schWord'];
 }
+
+$rs = $schR->sch($sword);
 
 $star = [254, 20, 6, 15, 63, 150];
 ?>
@@ -75,7 +61,7 @@ $star = [254, 20, 6, 15, 63, 150];
                 <div class="col-md-10">
                     <div class="card" style="border: 0px;">
                         <div class="card-body">
-                            <form class="d-flex align-items-center">
+                            <form class="d-flex align-items-center" action="Process_search.php" method="POST">
                                 <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-2xl" style="color: #001f8d;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" style="font-size: 17.5px" type="search" placeholder="Search Software or category" name="searchbar" />&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button class="btn btn-lg" style="background-color: #001f8d; color: white" type="submit">Search</button>
@@ -246,41 +232,36 @@ $star = [254, 20, 6, 15, 63, 150];
                         <div class="card align-items-lg-center flex-column flex-lg-row p-3">
                             <div class="card-body order-2 order-lg-1">
 
+                                <?php
+                                foreach ($rs as $sw) {
+                                    $sid = $sw->Sid;
+                                    $name = $sw->name;
+                                    $shortdescription = $sw->shortdescription;
+                                    $platform = $sw->platform;
+                                    $developer = $sw->developer;
+                                    $license = $sw->license;
+                                    $amount = $sw->amount;
+                                    $language = $sw->language;
+                                    ?>
+                                    <table width=100%>
+                                        <tr>
+                                            <td class="me-1" width="180"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
 
-                                <table width=100%>
-                                    <tr>
-                                        <td class="me-1"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
-
-                                        <td class="ms-1">
-                                            <h2  class="mb-0"><?php echo $name; ?></h2><i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
+                                            <td class="ms-1">
+                                                <h2  class="mb-0"><?php echo $name; ?></h2>
+                                                <i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
                                                 <?php echo " by " . $developer ?></i>
-                                            <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
+                                                <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
 
-                                        </td>
-                                        <td align="right"></td>
-                                    </tr><br><hr><br>
+                                            </td>
+                                            <td align="right"></td>
 
+                                        </tr><br><hr><br>
+                                    </table>
+                                    <?php
+                                }
+                                ?>
 
-
-                                </table>
-
-
-                                <table width=100%>
-                                    <tr>
-                                        <td class="me-1"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
-
-                                        <td class="ms-1">
-                                            <h2  class="mb-0"><?php echo $name; ?></h2><i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
-                                                <?php echo " by " . $developer ?></i>
-                                            <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
-
-                                        </td>
-                                        <td align="right"></td>
-                                    </tr><br><hr><br>
-
-
-
-                                </table>
                             </div>
                         </div><br><br>
 

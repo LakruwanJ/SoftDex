@@ -76,7 +76,7 @@ if ($conn->connect_error) {
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link active " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
-                            
+
                         </li>
                     </ul>
                 </div>
@@ -91,75 +91,75 @@ if ($conn->connect_error) {
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="bg-light border rounded border-light pulse animated hero-technology carousel-hero jumbotron py-5 px-4">
-                            
-                            
+
+
                             <div class="container">
                                 <div class="row">
-                                <div class="col-md-1"></div>
-                            <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4);">
-<h1 class="hero-title">SoftDex</h1><br>
-                                <div class="row hero-subtitle ">
-                                    <div class="col-sm-6 ">
-                                        <table width=100%>
-                                            <tr align = "center" class="p-0">
-                                                <td width=50% class="p-1">
-                                                    <i class="fa-solid fa-user fa-2xl mb-4"></i>
-                                                    <h5><a href="#" class="link-underline-light">Users</a></h5>
-                                                    <hr style="width: 25%; height: 5px">
-                                                    <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="526" data-purecounter-duration="1.5">526</p>                                            
-                                                </td>
-                                                <td width=50% class="p-1">
-                                                    <i class="fa-solid fa-laptop-code fa-2xl mb-4"></i>
-                                                    <h5><a href="#" class="link-underline-light">Developers</a></h5>
-                                                    <hr style="width: 25%; height: 5px">
-                                                    <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="238" data-purecounter-duration="1">238</p>    
-                                                </td>
-                                            </tr>
-                                        </table>
+                                    <div class="col-md-1"></div>
+                                    <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4);">
+                                        <h1 class="hero-title">SoftDex</h1><br>
+                                        <div class="row hero-subtitle ">
+                                            <div class="col-sm-6 ">
+                                                <table width=100%>
+                                                    <tr align = "center" class="p-0">
+                                                        <td width=50% class="p-1">
+                                                            <i class="fa-solid fa-user fa-2xl mb-4"></i>
+                                                            <h5><a href="#" class="link-underline-light">Users</a></h5>
+                                                            <hr style="width: 25%; height: 5px">
+                                                            <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="526" data-purecounter-duration="1.5">526</p>                                            
+                                                        </td>
+                                                        <td width=50% class="p-1">
+                                                            <i class="fa-solid fa-laptop-code fa-2xl mb-4"></i>
+                                                            <h5><a href="#" class="link-underline-light">Developers</a></h5>
+                                                            <hr style="width: 25%; height: 5px">
+                                                            <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="238" data-purecounter-duration="1">238</p>    
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <table width=100%>
+                                                    <tr align = "center" class="p-0">
+                                                        <td width=50% class="p-1">
+                                                            <i class="fa-solid fa-file-code fa-2xl mb-4"></i>
+                                                            <h5><a href="#" class="link-underline-light">Softwares</a></h5>
+                                                            <hr style="width: 25%; height: 5px">
+                                                            <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="1158" data-purecounter-duration="1.5">1158</p>                                            
+                                                        </td>
+                                                        <td width=50% class="p-1">
+                                                            <i class="fa-solid fa-download fa-2xl mb-4"></i>
+                                                            <h5><a href="#" class="link-underline-light">Downloads</a></h5>
+                                                            <hr style="width: 25%; height: 5px">
+                                                            <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="14657" data-purecounter-duration="1.5">14657</p>   
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <script src="Incrementing-Animation-Counter.js"></script>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <table width=100%>
-                                            <tr align = "center" class="p-0">
-                                                <td width=50% class="p-1">
-                                                    <i class="fa-solid fa-file-code fa-2xl mb-4"></i>
-                                                    <h5><a href="#" class="link-underline-light">Softwares</a></h5>
-                                                    <hr style="width: 25%; height: 5px">
-                                                    <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="1158" data-purecounter-duration="1.5">1158</p>                                            
-                                                </td>
-                                                <td width=50% class="p-1">
-                                                    <i class="fa-solid fa-download fa-2xl mb-4"></i>
-                                                    <h5><a href="#" class="link-underline-light">Downloads</a></h5>
-                                                    <hr style="width: 25%; height: 5px">
-                                                    <p class="text-dark purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="14657" data-purecounter-duration="1.5">14657</p>   
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <script src="Incrementing-Animation-Counter.js"></script>
+                                    <div class="col-md-1"></div>
                                 </div>
                             </div>
-                                <div class="col-md-1"></div>
-                            </div>
-                            </div>
-                            
-                            
-                            
-                            
+
+
+
+
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="bg-light border rounded border-light pulse animated hero-nature carousel-hero jumbotron py-5 px-4">
                             <div class="container">
                                 <div class="row">
-                                <div class="col-md-1"></div>
-                            <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4);">
+                                    <div class="col-md-1"></div>
+                                    <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4);">
 
-                                <h1 class="hero-title">Unleash the Ultimate Downloading Experience</h1>
-                                <p class="hero-subtitle">Find, Download, and Enjoy Top Software with SoftDex.</p>
-                                <p><a class="btn btn-primary hero-button plat" role="button" href="#">Search Now</a></p>
-                            </div>
-                                <div class="col-md-1"></div>
-                            </div>
+                                        <h1 class="hero-title">Unleash the Ultimate Downloading Experience</h1>
+                                        <p class="hero-subtitle">Find, Download, and Enjoy Top Software with SoftDex.</p>
+                                        <p><a class="btn btn-primary hero-button plat" role="button" href="#">Search Now</a></p>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,15 +167,15 @@ if ($conn->connect_error) {
                         <div class="bg-light border rounded border-light pulse animated hero-nature carousel-hero jumbotron py-5 px-4">
                             <div class="container">
                                 <div class="row">
-                                <div class="col-md-1"></div>
-                            <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4);">
+                                    <div class="col-md-1"></div>
+                                    <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4);">
 
-                                <h1 class="hero-title">Elevate Your Development Journey</h1>
-                                <p class="hero-subtitle">Upload and Share Software Projects with SoftDex!</p>
-                                <p><a class="btn btn-primary hero-button plat" role="button" href="#">Upload Now</a></p>
-                            </div>
-                                <div class="col-md-1"></div>
-                            </div>
+                                        <h1 class="hero-title">Elevate Your Development Journey</h1>
+                                        <p class="hero-subtitle">Upload and Share Software Projects with SoftDex!</p>
+                                        <p><a class="btn btn-primary hero-button plat" role="button" href="#">Upload Now</a></p>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -183,15 +183,15 @@ if ($conn->connect_error) {
                         <div class="bg-light border rounded border-light pulse animated hero-photography carousel-hero jumbotron py-5 px-4">
                             <div class="container">
                                 <div class="row">
-                                <div class="col-md-1"></div>
-                            <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4)">
+                                    <div class="col-md-1"></div>
+                                    <div class="px-5 py-4 col-md-10 rounded" style="background-color: rgba(0, 0, 0, .4)">
 
-                                <h1 class="hero-title">Your Vision, Customized</h1>
-                                <p class="hero-subtitle">Empower Your Software Dreams with SoftDex's Developer Services!</p>
-                                <p><a class="btn btn-primary hero-button plat" role="button" href="#">Comming soon</a></p>
-                            </div>
-                                <div class="col-md-1"></div>
-                            </div>
+                                        <h1 class="hero-title">Your Vision, Customized</h1>
+                                        <p class="hero-subtitle">Empower Your Software Dreams with SoftDex's Developer Services!</p>
+                                        <p><a class="btn btn-primary hero-button plat" role="button" href="#">Comming soon</a></p>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,7 +219,7 @@ if ($conn->connect_error) {
                     <div class="col-md-10">
                         <div class="card" style="border: 0px;">
                             <div class="card-body">
-                                <form class="d-flex align-items-center">
+                                <form class="d-flex align-items-center" action="Process_search.php" method="POST">
                                     <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-2xl" style="color: #001f8d;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" style="font-size: 17.5px" type="search" placeholder="Search Software or category" name="searchbar" />&nbsp;&nbsp;&nbsp;&nbsp;
                                     <button class="btn btn-lg" style="background-color: #001f8d; color: white" type="submit">Search</button>
@@ -308,7 +308,7 @@ if ($conn->connect_error) {
                                 </div>
                                 <br><div class="text-center mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div>
                             </div>
-                                                
+
 
                             <!------------------------------------------------------------- software area end ------------------------------------------------------------->
 
@@ -347,7 +347,7 @@ if ($conn->connect_error) {
                             echo '</table><div class="text-center mt-4 mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div></div>';
                         }
                         ?>
-                        
+
                     </div><br>
                 </section>
                 <!----------------------------------------------------------- software Tables end ----------------------------------------------------------->
@@ -355,79 +355,79 @@ if ($conn->connect_error) {
 
 
             <section>
-                
+
                 <div class="container">
                     <h2 class="text-center">What is SoftDex?</h2>
                     <p class="text-center titlee m-4 px-5">Your Ultimate Software Hub! Discover, upload, download diverse range of applications and create customized software. Empowering developers and fostering a vibrant tech community. Join us today for innovative software experiences!</p>
                 </div>
-                
+
                 <div class="photo-card">
                     <div class="container">
 
-<!--                        <div class="row align-items-center">
-                            <div class="col-md-6 p-0">
-                                <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');">
-                                    
-                                    <div class="hover hover-2 text-white photo-background-l"><img src="img/product-aeon-feature.jpg" alt="">
-          <div class="hover-overlay"></div>
-          <div class="hover-2-content px-5 py-4">
-            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
-            <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
-          </div>
-        </div>
-                                    
+                        <!--                        <div class="row align-items-center">
+                                                    <div class="col-md-6 p-0">
+                                                        <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');">
+                                                            
+                                                            <div class="hover hover-2 text-white photo-background-l"><img src="img/product-aeon-feature.jpg" alt="">
+                                  <div class="hover-overlay"></div>
+                                  <div class="hover-2-content px-5 py-4">
+                                    <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
+                                    <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
+                                  </div>
                                 </div>
-                                    
-                            </div>
-                            <div class="col-md-6 photo-details">
-                                <h1>User</h1><br>
-                                <p>Our platform offers user registration for personalized experiences and access to exclusive features. Users can manage profiles, preferences, and account settings.</p>
-                                <div class="photo-tags">
-                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#user">read more...</a></li></ul>
-                                </div></div>
-                        </div>
-
-                        <div class="row align-items-center">
-                            <div class="col-md-6 photo-details">
-                                <h1>Developer</h1><br>
-                                <p>On our Softdex website, developers can create a profile, which typically includes information about a software developer's background, skills, experience, and projects they have worked on.</p>
-                                <div class="photo-tags">
-                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#developer">read more...</a></li></ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6 p-0"><div class="photo-background-r" style="background-image: url('img/product-aeon-feature.jpg');"></div></div>
-                        </div>
-
-                        <div class="row align-items-center">
-                            <div class="col-md-6 p-0">
-                                <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');">
-                                    
-                                </div>
-                                    
-                            </div>
-                            <div class="col-md-6 photo-details">
-                                <h1>Software</h1><br>
-                                <p>Embark on a seamless journey of discovering, downloading, and utilizing premium and free software that elevates your digital experience.</p>
-                                <div class="photo-tags">
-                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#sw">read more...</a></li></ul>
-                                </div></div>
-                        </div>
-
-                        <div class="row align-items-center">
-                            <div class="col-md-6 photo-details  d-flex flex-column psd-right1">
-                                <h1>Customized Software</h1><br>
-                                <p>where we empower you with the unique ability to create fully customized software solutions that cater to your specific needs.</p>
-                                <div class="photo-tags">
-                                    <ul>
-                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#csw">read more...</a></li>
-                                    </ul>
-                                </div></div>
-                            <div class="col-md-6 p-0 d-flex flex-row intro-card-2"><div class="photo-background-r"><img class="howto-img photo-background-r" src="img/product-aeon-feature.jpg" width="100%" height="100%"></div></div>
-                        </div>
+                                                            
+                                                        </div>
+                                                            
+                                                    </div>
+                                                    <div class="col-md-6 photo-details">
+                                                        <h1>User</h1><br>
+                                                        <p>Our platform offers user registration for personalized experiences and access to exclusive features. Users can manage profiles, preferences, and account settings.</p>
+                                                        <div class="photo-tags">
+                                                            <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#user">read more...</a></li></ul>
+                                                        </div></div>
+                                                </div>
                         
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-6 photo-details">
+                                                        <h1>Developer</h1><br>
+                                                        <p>On our Softdex website, developers can create a profile, which typically includes information about a software developer's background, skills, experience, and projects they have worked on.</p>
+                                                        <div class="photo-tags">
+                                                            <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#developer">read more...</a></li></ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 p-0"><div class="photo-background-r" style="background-image: url('img/product-aeon-feature.jpg');"></div></div>
+                                                </div>
                         
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-6 p-0">
+                                                        <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');">
+                                                            
+                                                        </div>
+                                                            
+                                                    </div>
+                                                    <div class="col-md-6 photo-details">
+                                                        <h1>Software</h1><br>
+                                                        <p>Embark on a seamless journey of discovering, downloading, and utilizing premium and free software that elevates your digital experience.</p>
+                                                        <div class="photo-tags">
+                                                            <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#sw">read more...</a></li></ul>
+                                                        </div></div>
+                                                </div>
+                        
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-6 photo-details  d-flex flex-column psd-right1">
+                                                        <h1>Customized Software</h1><br>
+                                                        <p>where we empower you with the unique ability to create fully customized software solutions that cater to your specific needs.</p>
+                                                        <div class="photo-tags">
+                                                            <ul>
+                                                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#csw">read more...</a></li>
+                                                            </ul>
+                                                        </div></div>
+                                                    <div class="col-md-6 p-0 d-flex flex-row intro-card-2"><div class="photo-background-r"><img class="howto-img photo-background-r" src="img/product-aeon-feature.jpg" width="100%" height="100%"></div></div>
+                                                </div>
+                                                
+                                                
                         -->
-                        
+
                         <div class="row align-items-center">
                             <div class="hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
                                 <img class="photo-background-l" src="img/product-aeon-feature.jpg" width="100%" height="100%">
@@ -463,12 +463,12 @@ if ($conn->connect_error) {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row align-items-center">
                             <div class="hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
                                 <img class="photo-background-l" src="img/product-aeon-feature.jpg" width="100%" height="100%">
-                              <div class="hover-overlay"></div>
-                          <div class="hover-2-content px-5 py-4">
+                                <div class="hover-overlay"></div>
+                                <div class="hover-2-content px-5 py-4">
                                     <a class="hover-2-title text-uppercase font-weight-bold mb-0" href=""> <button type="button" class="btn btn-secondary" >Browse</button></a>
                                     <p class="hover-2-description text-uppercase mb-0">Click here to .</p>
                                 </div>
@@ -501,35 +501,35 @@ if ($conn->connect_error) {
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <br>    
                     </div></div>
 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <!-- Modal -->
                 <div class="modal fade" id="user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
@@ -610,33 +610,33 @@ if ($conn->connect_error) {
                 </div>
                 <!--model end-->            
 
-                
-                
-                
-                
-<!--                <div class="row">
-       DEMO 2 Item
-      <div class="col-lg-6 mb-3 mb-lg-0">
-        <div class="hover hover-2 text-white rounded"><img src="https://res.cloudinary.com/mhmd/image/upload/v1570786258/hoverSet-2_lt7geh.jpg" alt="">
-          <div class="hover-overlay"></div>
-          <div class="hover-2-content px-5 py-4">
-            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
-            <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
 
-       DEMO 2 Item
-      <div class="col-lg-6">
-        <div class="hover hover-2 text-white rounded"><img src="https://res.cloudinary.com/mhmd/image/upload/v1570786261/hoverSet-1_pha5qe.jpg" alt="">
-          <div class="hover-overlay"></div>
-          <div class="hover-2-content px-5 py-4">
-            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
-            <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
-          </div>
-        </div>
-      </div>
-    </div>-->
+
+
+
+                <!--                <div class="row">
+                       DEMO 2 Item
+                      <div class="col-lg-6 mb-3 mb-lg-0">
+                        <div class="hover hover-2 text-white rounded"><img src="https://res.cloudinary.com/mhmd/image/upload/v1570786258/hoverSet-2_lt7geh.jpg" alt="">
+                          <div class="hover-overlay"></div>
+                          <div class="hover-2-content px-5 py-4">
+                            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
+                            <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
+                          </div>
+                        </div>
+                      </div>
+                
+                       DEMO 2 Item
+                      <div class="col-lg-6">
+                        <div class="hover hover-2 text-white rounded"><img src="https://res.cloudinary.com/mhmd/image/upload/v1570786261/hoverSet-1_pha5qe.jpg" alt="">
+                          <div class="hover-overlay"></div>
+                          <div class="hover-2-content px-5 py-4">
+                            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
+                            <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>-->
 
 
 
@@ -692,16 +692,16 @@ if ($conn->connect_error) {
                     </div>
                 </div>
                 <div class="row footer-copyright" 
-                    <div class="col" style="background-color: #090b13;">
+                     <div class="col" style="background-color: #090b13;">
                         <p>© 2023 Copyright Text ~ Designed By Team SoftDex</p>
                     </div>
                 </div>
             </div>
         </footer>
 
-        
-        
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>
 </html>
