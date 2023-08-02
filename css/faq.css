@@ -4,7 +4,60 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Aug 1, 2023, 8:07:49 PM
+    Created on : Jul 14, 2023, 10:50:14 PM
     Author     : RPT
 */
+body {
+  background: #eee;
+  padding-top: 20px;
+  font-family: monospace;
+}
+
+.header {
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px 0px;
+  background: black; /* Updated color */
+  color: #fff;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.faq-item {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.faq-body {
+  display: none;
+  margin-top: 30px;
+}
+
+.faq-wrapper {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.faq-inner {
+  padding: 30px;
+  background: aliceblue;
+}
+
+.faq-plus {
+  float: right;
+  font-size: 1.4em;
+  line-height: 1em;
+  cursor: pointer;
+}
+
+hr {
+  background-color: #9b9b9b;
+}
+
+.container {
+  background-image: url('faq.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
