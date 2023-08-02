@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>FAQ</title>
-    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="../css/faq.css">
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="faq-wrapper">
-          <div class="header">
+          <div class="header"> 
             <h1>FAQs</h1>
           </div>
           <div class="faq-inner">

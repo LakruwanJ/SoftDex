@@ -56,7 +56,7 @@ hr {
 }
 
 .container {
-  background-image: url('faq.jpg');
+  background-image: url('../img/faq.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
