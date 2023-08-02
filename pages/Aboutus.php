@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>About Us</title>
-    <link rel="stylesheet" type="text/css" href="Aboutus.css">
+    <link rel="stylesheet" type="text/css" href="css/Aboutus.css">
 </head>
 <body>
     <div class="container">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="card">
-            <img src="img/img/upload.jpg" alt="Benefit 2">
+            <img src="img/upload.jpg" alt="Benefit 2">
             <h3>Software Uploading</h3>
             <p>we provide a reliable and user-friendly platform for uploading software applications.Are you a software developer, a software company, or a part of an open-source project looking to share your creations with the world? SoftDex provides you with a reliable and easy-to-use platform to upload your software applications. Simply create an account, submit your software, and reach a broader audience.Embrace innovation and creativity as we collaborate to shape a digital landscape that caters to your individual needs and aspirations.  We value innovation and are committed to supporting developers in showcasing their talents and creations.we build a more connected world through the power of software.</p>
         <button class="see-more-btn">See More</button>
