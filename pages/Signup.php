@@ -14,7 +14,7 @@
   <p class=" text-center fs-1">Sign Up</p>
   </div>
   <div class="text-center container ">
-  <img src="https://st.depositphotos.com/18722762/51522/v/450/depositphotos_515228796-stock-illustration-online-registration-sign-login-account.jpg" class="img-thumbnail text-center" alt="..." width="250" height="250">
+      <img src="/img/signup1.jpg" class="img-thumbnail text-center" alt="..." width="250" height="250">
   </div>
   <form class="container ">
     <p class="mt-3">Choose your account type here</p>
