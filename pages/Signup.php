@@ -14,7 +14,7 @@
   <p class=" text-center fs-1">Sign Up</p>
   </div>
   <div class="text-center container ">
-      <img src="/img/signup1.jpg" class="img-thumbnail text-center" alt="..." width="250" height="250">
+      <img src="..../img/signup1.jpg" class="img-thumbnail text-center" alt="..." width="250" height="250">
   </div>
   <form class="container ">
     <p class="mt-3">Choose your account type here</p>
