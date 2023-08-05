@@ -10,12 +10,12 @@
 
 </head>
 <body class="container border border-primary-subtle col-4  mt-3 p-0" >
-  <div class="A">
+  <div class="A"> 
     <div>
   <p class="text-center fs-1">Login</p>
   </div>
   <div class="text-center container">
-      <img src=".../img/login.jpg" class="img-thumbnail" alt="login" width="200px" heigth="200px">
+      <img src="../img/login.jpg" class="img-thumbnail" alt="login" width="200px" heigth="200px">
   </div>
   <form class="mb-5">
     <p class="m-3">Choose your account type here</p>
