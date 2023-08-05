@@ -10,13 +10,18 @@ require '../Classes/SchRes.php';
 
 use Classes\SchRes;
 
-$schR = new Classes\SchRes();
-
 if (isset($_COOKIE['schWord'])) {
     $sword = $_COOKIE['schWord'];
 }
+$srt = isset($_GET['srt']) ? $_GET['srt'] : 'date ASC';
+$opP = isset($_GET['opP']) ? $_GET['opP'] : NULL;
+$opL = isset($_GET['opL']) ? $_GET['opL'] : NULL;
+$opLA = isset($_GET['opLA']) ? $_GET['opLA'] : NULL;
+$rows = 10;
+$pageNum = isset($_GET['pagecount']) ? $_GET['pagecount'] : 1;
 
-$rs = $schR->sch($sword);
+$schR = new Classes\SchRes();
+$rs = $schR->sch($sword, $pageNum, $rows, $opP, $opL, $opLA, $srt);
 
 $star = [254, 20, 6, 15, 63, 150];
 ?>
@@ -61,7 +66,7 @@ $star = [254, 20, 6, 15, 63, 150];
                 <div class="col-md-10">
                     <div class="card" style="border: 0px;">
                         <div class="card-body">
-                            <form class="d-flex align-items-center" action="Process_search.php" method="POST">
+                            <form class="d-flex align-items-center" action="../Process_search.php" method="POST">
                                 <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-2xl" style="color: #001f8d;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" style="font-size: 17.5px" type="search" placeholder="Search Software or category" name="searchbar" />&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button class="btn btn-lg" style="background-color: #001f8d; color: white" type="submit">Search</button>
@@ -159,7 +164,6 @@ $star = [254, 20, 6, 15, 63, 150];
             </section><br>
             <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
 
-
             <!----------------------------------------------------------- software Tables start ----------------------------------------------------------->
             <section>
                 <div class="row">
@@ -193,38 +197,41 @@ $star = [254, 20, 6, 15, 63, 150];
             <!----------------------------------------------------------- software Tables end ----------------------------------------------------------->
 
 
+
             <!----------------------------------------------------------- Search result area start ----------------------------------------------------------->
 
             <section>
                 <br>
-                <h1>Search result ..................</h1><br>
+                <h1>Search result for <?php echo $sword; ?></h1><br>
                 <div class="row">
                     <div class="col-md-3">
+                        <?php
+                        $phpself = $_SERVER['PHP_SELF'];
+                        ?>
 
                         <h3>short by</h3>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Recenly added</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Rating</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Download</button>
+                        <a href="<?php echo $phpself; ?>?srt=date ASC"><button class="btn btn-outline-secondary round m-1" type="button">Recenly added</button></a>                        
+                        <a href="<?php echo $phpself; ?>?srt=date DESC"><button class="btn btn-outline-secondary round m-1" type="button">Older</button></a>
+                        <a href="<?php echo $phpself; ?>?srt=r"><button class="btn btn-outline-secondary round m-1" type="button">Rating</button></a>
+                        <a href="<?php echo $phpself; ?>?srt=d"><button class="btn btn-outline-secondary round m-1" type="button">Download</button></a>
 
-                        <br><br><h3>Platforms</h3>
-                        <button class="btn btn-outline-secondary round m-1" type="button">All</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Windows</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Linux</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Mac</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Android</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Iso</button>
+                        <br><br><h3>Platforms</h3> 
+                        <a href="<?php echo $phpself; ?>?opP="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                        <a href="<?php echo $phpself; ?>?opP=Windows"><button class="btn btn-outline-secondary round m-1" type="button">Windows</button></a>
+                        <a href="<?php echo $phpself; ?>?opP=Linux"><button class="btn btn-outline-secondary round m-1" type="button">Linux</button></a>
+                        <a href="<?php echo $phpself; ?>?opP=Mac"><button class="btn btn-outline-secondary round m-1" type="button">Mac</button></a>
+                        <a href="<?php echo $phpself; ?>?opP=Android"><button class="btn btn-outline-secondary round m-1" type="button">Android</button></a>
+                        <a href="<?php echo $phpself; ?>?opP=Iso"><button class="btn btn-outline-secondary round m-1" type="button">Iso</button></a>
 
                         <br><br><h3>License</h3>
-                        <button class="btn btn-outline-secondary round m-1" type="button">All</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Free</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Paid</button>
-
+                        <a href="<?php echo $phpself; ?>?opL="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                        <a href="<?php echo $phpself; ?>?opL=Free"><button class="btn btn-outline-secondary round m-1" type="button">Free</button></a>
+                        <a href="<?php echo $phpself; ?>?opL=Paid"><button class="btn btn-outline-secondary round m-1" type="button">Paid</button></a>
 
                         <br><br><h3>Languages</h3>
-                        <button class="btn btn-outline-secondary round m-1" type="button">All</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">English</button>
-                        <button class="btn btn-outline-secondary round m-1" type="button">Sinhala</button>
-
+                        <a href="<?php echo $phpself; ?>?opLA="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                        <a href="<?php echo $phpself; ?>?opLA=English"><button class="btn btn-outline-secondary round m-1" type="button">English</button></a>
+                        <a href="<?php echo $phpself; ?>?opLA=Sinhala"><button class="btn btn-outline-secondary round m-1" type="button">Sinhala</button></a>
 
 
                     </div>
@@ -238,7 +245,7 @@ $star = [254, 20, 6, 15, 63, 150];
                                     $name = $sw->name;
                                     $shortdescription = $sw->shortdescription;
                                     $platform = $sw->platform;
-                                    $developer = $sw->developer;
+                                    $developer = $sw->username;
                                     $license = $sw->license;
                                     $amount = $sw->amount;
                                     $language = $sw->language;
@@ -250,7 +257,7 @@ $star = [254, 20, 6, 15, 63, 150];
                                             <td class="ms-1">
                                                 <h2  class="mb-0"><?php echo $name; ?></h2>
                                                 <i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
-                                                <?php echo " by " . $developer ?></i>
+                                                    <?php echo " by " . $developer ?></i>
                                                 <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
 
                                             </td>
@@ -265,18 +272,51 @@ $star = [254, 20, 6, 15, 63, 150];
                             </div>
                         </div><br><br>
 
-
+                        <!--buttons for back and next-->
                         <div class="text-center">
 
-                            <button class="btn btn-secondary m-1" type="button">All</button>
+                            <?php
+                            $totalRows = $schR->getTotalRows($sword, $opP, $opL, $opLA); //total number of rows
+                            $lastPage = ceil($totalRows / $rows); //last page number
+                            $phpself = $_SERVER['PHP_SELF'];
+
+                            if ($totalRows == 0) {
+                                $pageNum = 0;
+                                $lastPage = 0;
+                                $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
+                                $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
+                                $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
+                                $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
+                            } else {
+                                // Generate pagination links
+                                if ($pageNum > 1) {
+                                    $page = $pageNum - 1;
+                                    $prev = ' <a href="' . $phpself . '?pagecount=' . $page . '" ><button class="btn btn-secondary m-1" type="button">Back</button></a> ';
+                                    $first = ' <a href="' . $phpself . '?pagecount=1" ><button class="btn btn-secondary m-1" type="button">First Page</button></a> ';
+                                } else {
+                                    $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
+                                    $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
+                                }
+
+                                if ($pageNum < $lastPage) {
+                                    $page = $pageNum + 1;
+                                    $next = ' <a href="' . $phpself . '?pagecount=' . $page . '"><button class="btn btn-secondary m-1" type="button">Next</button></a> ';
+                                    $last = ' <a href="' . $phpself . '?pagecount=' . $lastPage . '"><button class="btn btn-secondary m-1" type="button">Last Page</button></a> ';
+                                } else {
+                                    $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
+                                    $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
+                                }
+                                // Display pagination links
+                                echo $first . $prev . " Showing page <bold>$pageNum</bold> of <bold>$lastPage</bold> pages " . $next . $last;
+                            }
+                            ?>
 
                         </div>
                     </div>
 
                 </div>
             </section>
-
-
+            
             <br>
             <br>
             <br>
