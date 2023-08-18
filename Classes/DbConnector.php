@@ -8,8 +8,8 @@ class DbConnector {
 
     private $host = "localhost";
     private $dbname = "softdex";
-    private $dbuser = "root";
-    private $dbpw = "";
+    private $dbuser = "SoftDex";
+    private $dbpw = "#SoftDex23";
 
     public function getConnection() {
         $dsn = "mysql:host=$this->host;dbname=$this->dbname";
