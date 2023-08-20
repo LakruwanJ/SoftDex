@@ -13,47 +13,87 @@
 
 <body>
     <div class="card p-2">
-        <section class="horitzontalScroll">
-<div class="horitzontalScrollContent me-3 ms-2">
-                    <div class="row">
-                        <div class="col text-center" style="padding-right: 0px;padding-left: 0px;"><img class="border rounded shadow-down" src="assets/img/indoorPaint.jpg" width="170px">
-                            <p>Bengaluru</p>
-                        </div>
-                    </div>
-                </div>
-            </a><a class="custlnk" href="#">
-                <div class="horitzontalScrollContent me-3 ms-2">
-                    <div class="row">
-                        <div class="col text-center" style="padding-right: 0px;padding-left: 0px;"><img class="border rounded shadow-down" src="assets/img/outdoors.jpg" width="170px">
-                            <p>Bengaluru</p>
-                        </div>
-                    </div>
-                </div>
-            </a><a class="custlnk" href="#">
-                <div class="horitzontalScrollContent me-3 ms-2">
-                    <div class="row">
-                        <div class="col text-center" style="padding-right: 0px;padding-left: 0px;"><img class="border rounded shadow-down" src="assets/img/waterproof.jpg" width="170px">
-                            <p>Bengaluru</p>
-                        </div>
-                    </div>
-                </div>
-            </a><a class="custlnk" href="#">
-                <div class="horitzontalScrollContent me-3 ms-2">
-                    <div class="row">
-                        <div class="col text-center" style="padding-right: 0px;padding-left: 0px;"><img class="border rounded shadow-down" src="assets/img/waterproof.jpg" width="170px">
-                            <p>Bengaluru</p>
-                        </div>
-                    </div>
-                </div>
-            </a><a class="custlnk" href="#">
-                <div class="horitzontalScrollContent me-3 ms-2">
-                    <div class="row">
-                        <div class="col text-center" style="padding-right: 0px;padding-left: 0px;"><img class="border rounded shadow-down" src="assets/img/waterproof.jpg" width="170px">
-                            <p>Bengaluru</p>
-                        </div>
-                    </div>
-                </div>
-            </a></section>
+        <form class="was-validated" action="ControlAdmin?actionAd=add" method="POST">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label">Create UserName</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon3">UserName</span>
+                                            <input type="text" class="form-control" name="uName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label">Create Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon3">Password</span>
+                                            <input type="text" class="form-control" id="pWord" name="pWord" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p id="password-error" style="color: red;"></p>
+                                <script>
+                                    const passwordInput = document.getElementById("pWord");
+                                    const passwordError = document.getElementById("password-error");
+
+                                    passwordInput.addEventListener("input", function () {
+                                        const password = passwordInput.value;
+
+                                        const hasLowerCase = /[a-z]/.test(password);
+                                        const hasUpperCase = /[A-Z]/.test(password);
+                                        const hasDigit = /\d/.test(password);
+                                        const hasSpecialChar = /[!@#$%^&*()_+{}\[\]:;<>,.?~\-]/.test(password);
+                                        const isLengthValid = password.length >= 8 && password.length <= 20;
+
+                                        if (!isLengthValid) {
+                                            passwordError.textContent = "Password must be between 8 and 20 characters.";
+                                        } else if (!hasLowerCase) {
+                                            passwordError.textContent = "Password must contain at least one lowercase letter.";
+                                        } else if (!hasUpperCase) {
+                                            passwordError.textContent = "Password must contain at least one uppercase letter.";
+                                        } else if (!hasDigit) {
+                                            passwordError.textContent = "Password must contain at least one digit.";
+                                        } else if (!hasSpecialChar) {
+                                            passwordError.textContent = "Password must contain at least one special character.";
+                                        } else {
+                                            passwordError.textContent = "";
+                                        }
+                                    });</script>
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label">Add e-mail</label>
+                                        <div class="input-group">
+                                            <input type="email" class="form-control" name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" name="pnum" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="form-label">Select User</label>
+                                    <div class="input-group">
+                                        <select class="form-select  mb-3" required name="role">            
+                                            <option value="1">Supplier</option>
+                                            <option value="2">Store Keeper</option>
+                                            <option value="3">Marketing Team Member</option>
+                                            <option value="4">System Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                                <button type="submit" class="btn btn-primary">Add User</button>
+                            </div>
+                        </form>
      
     </div>
 </body>

@@ -66,10 +66,9 @@
             <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
-                        <h3>New here ?</h3>
+                        <h3>Are You New Here?</h3>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                            ex ratione. Aliquid!
+                           Unlock Limitless Possibilities: Join the Digital Revolution with SoftDex! Your Journey Starts Here.
                         </p>
                         <button class="btn transparent" id="sign-up-btn">
                             Sign up
@@ -79,10 +78,9 @@
                 </div>
                 <div class="panel right-panel">
                     <div class="content">
-                        <h3>One of us ?</h3>
+                        <h3>Are you Ready to connect?</h3>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                            laboriosam ad deleniti.
+                            Unlock Limitless Possibilities: embark on a extraordinary journey....
                         </p>
                         <button class="btn transparent" id="sign-in-btn">
                             Sign in
