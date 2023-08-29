@@ -26,7 +26,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a  href="#">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -35,7 +35,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a id="Usermanagementbutton" href="#">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
@@ -44,7 +44,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a id="SoftwareManagementbutton" href="#">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -110,8 +110,8 @@
                         <div class="cardName">Users</div>
                     </div>
 
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
+                    <div >
+                        <img src="../img/user.png" alt=""  width="50px" height="50px">
                     </div>
                 </div>
 
@@ -121,8 +121,8 @@
                         <div class="cardName">Devolpers</div>
                     </div>
 
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ion-icon>
+                    <div >
+                        <img src="../img/devoloper.png" alt=""  width="60px" height="60px">
                     </div>
                 </div>
 
@@ -132,8 +132,8 @@
                         <div class="cardName">Softwares</div>
                     </div>
 
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    <div>
+                        <img src="../img/software.png" alt=""  width="50px" height="50px">
                     </div>
                 </div>
 
@@ -143,15 +143,15 @@
                         <div class="cardName">Downlods</div>
                     </div>
 
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ion-icon>
+                    <div >
+                        <img src="../img/download (1).png" alt="" width="50px" height="50px">
                     </div>
                 </div>
             </div>
 
             <!-- ================ Order Details List ================= -->
-            <div class="details">
-                <div class="recentOrders">
+            <div class="details" >
+                <div class="recentOrders" id="Softwaretable1" style="display: none;">
                     <div class="cardHeader">
                         <h2>Softwares</h2>
                         
@@ -228,7 +228,7 @@
                 </div>
 
                 <!-- ================= New Customers ================ -->
-                <div class="recentCustomers">
+                <div class="recentCustomers" id="RecentCustomertable" style="display: none;">
                     <div class="cardHeader">
                         <h2>Recent Customers</h2>
                     </div>
@@ -303,7 +303,7 @@
                     </table>
                 </div>
                 <!-- ================= Downloads ================ -->
-                <div class="recentCustomers">
+                <div class="recentCustomers" id="Softwaretable2" style="display: none;">
                     <div class="cardHeader">
                         <h2>Downloads</h2>
                     </div>
@@ -387,6 +387,42 @@
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- ==== jQuery Script ==== -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- ==== Boostrap Script ==== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+      });
+
+      // Show the travelers table when the "User management" button is clicked
+      $("#Usermanagementbutton").click(function () {
+        $("#RecentCustomertable").show();
+        $("#Softwaretable1").hide();
+        $("#Softwaretable2").hide();
+
+      });
+
+      // Show the agencies table when the "Software mangement" button is clicked
+      $("#SoftwareManagementbutton").click(function () {
+        $("#Softwaretable1").show();
+        $("#Softwaretable2").show();
+        $("#RecentCustomertable").hide();
+        
+
+      });
+
+      
+    });
+   </script>
+
 </body>
 
 </html>
