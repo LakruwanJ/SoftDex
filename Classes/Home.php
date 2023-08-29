@@ -8,7 +8,10 @@
 
 namespace Classes;
 
+
 require 'DbConnector.php';
+//require './Classes/DbConnector.php';
+
 
 use Classes\DbConnector;
 use PDO;
@@ -54,6 +57,9 @@ class Home {
         $count = $pstmt->fetchColumn();
         echo $count;
     }
+$dbcon = new DbConnector();
+
+class Home {
 
     public function selectPlat() {
         $dbcon = new DbConnector();
@@ -77,6 +83,7 @@ class Home {
         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
         return $rs;
     }
+
 
     public function selectPlatSwM($plat) {
         $dbcon = new DbConnector();
