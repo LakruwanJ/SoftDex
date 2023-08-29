@@ -8,15 +8,19 @@ use Classes\SchRes;
 
 $dbcon = new DbConnector();
 $home = new Home();
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["searchbar"]) && !empty($_POST["searchbar"])) {
         $sword = $_POST["searchbar"];
     } else {
-        $sword = NULL;
+        $sword = null;
     }
+    $_SESSION["sword"] = $_POST["searchbar"];
+    echo $sword;
+    echo $_SESSION["sword"];
 } else {
-    header("Location: ../Softdex.php");
+    $sword = $_SESSION["sword"];
 }
 $srt = isset($_GET['srt']) ? $_GET['srt'] : 'date ASC';
 $opP = isset($_GET['opP']) ? $_GET['opP'] : NULL;
@@ -96,281 +100,127 @@ $star = [254, 20, 6, 15, 63, 150];
             </div><br>
             <!----------------------------------------------------------- search area end ----------------------------------------------------------->
 
-            <?php
-            if ($sword !== null) {
-                ?>
-                <!----------------------------------------------------------- Search result area start ----------------------------------------------------------->
-                <section>
-                    <br>
-                    <h1>Search result for <?php echo $sword; ?></h1><br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <?php
-                            $phpself = $_SERVER['PHP_SELF'];
-                            ?>
 
-                            <h3>short by</h3>
-                            <a href="<?php echo $phpself; ?>?srt=date ASC"><button class="btn btn-outline-secondary round m-1" type="button">Recenly added</button></a>                        
-                            <a href="<?php echo $phpself; ?>?srt=date DESC"><button class="btn btn-outline-secondary round m-1" type="button">Older</button></a>
-                            <a href="<?php echo $phpself; ?>?srt=r"><button class="btn btn-outline-secondary round m-1" type="button">Rating</button></a>
-                            <a href="<?php echo $phpself; ?>?srt=d"><button class="btn btn-outline-secondary round m-1" type="button">Download</button></a>
+            <!----------------------------------------------------------- Search result area start ----------------------------------------------------------->
+            <section>
+                <br>
+                <h1>Search result for <?php echo $sword; ?></h1><br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <?php
+                        $phpself1 = $_SERVER['PHP_SELF'];
+                        $queryString = $_SERVER['QUERY_STRING'];
+                        $phpself = $phpself1 . "?" . $queryString;
+                        ?>
 
-                            <br><br><h3>Platforms</h3> 
-                            <a href="<?php echo $phpself; ?>?opP="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
-                            <a href="<?php echo $phpself; ?>?opP=Windows"><button class="btn btn-outline-secondary round m-1" type="button">Windows</button></a>
-                            <a href="<?php echo $phpself; ?>?opP=Linux"><button class="btn btn-outline-secondary round m-1" type="button">Linux</button></a>
-                            <a href="<?php echo $phpself; ?>?opP=Mac"><button class="btn btn-outline-secondary round m-1" type="button">Mac</button></a>
-                            <a href="<?php echo $phpself; ?>?opP=Android"><button class="btn btn-outline-secondary round m-1" type="button">Android</button></a>
-                            <a href="<?php echo $phpself; ?>?opP=Iso"><button class="btn btn-outline-secondary round m-1" type="button">Iso</button></a>
+                        <h3>short by</h3>
+                        <a href="<?php echo $phpself; ?>&srt=date ASC"><button class="btn btn-outline-secondary round m-1" type="button">Recenly added</button></a>                        
+                        <a href="<?php echo $phpself; ?>&srt=date DESC"><button class="btn btn-outline-secondary round m-1" type="button">Older</button></a>
+                        <a href="<?php echo $phpself; ?>&srt=r"><button class="btn btn-outline-secondary round m-1" type="button">Rating</button></a>
+                        <a href="<?php echo $phpself; ?>&srt=d"><button class="btn btn-outline-secondary round m-1" type="button">Download</button></a>
 
-                            <br><br><h3>License</h3>
-                            <a href="<?php echo $phpself; ?>?opL="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
-                            <a href="<?php echo $phpself; ?>?opL=Free"><button class="btn btn-outline-secondary round m-1" type="button">Free</button></a>
-                            <a href="<?php echo $phpself; ?>?opL=Paid"><button class="btn btn-outline-secondary round m-1" type="button">Paid</button></a>
+                        <br><br><h3>Platforms</h3> 
+                        <a href="<?php echo $phpself; ?>&opP="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                        <a href="<?php echo $phpself; ?>&opP=Windows"><button class="btn btn-outline-secondary round m-1" type="button">Windows</button></a>
+                        <a href="<?php echo $phpself; ?>&opP=Linux"><button class="btn btn-outline-secondary round m-1" type="button">Linux</button></a>
+                        <a href="<?php echo $phpself; ?>&opP=Mac"><button class="btn btn-outline-secondary round m-1" type="button">Mac</button></a>
+                        <a href="<?php echo $phpself; ?>&opP=Android"><button class="btn btn-outline-secondary round m-1" type="button">Android</button></a>
+                        <a href="<?php echo $phpself; ?>&opP=Iso"><button class="btn btn-outline-secondary round m-1" type="button">Iso</button></a>
 
-                            <br><br><h3>Languages</h3>
-                            <a href="<?php echo $phpself; ?>?opLA="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
-                            <a href="<?php echo $phpself; ?>?opLA=English"><button class="btn btn-outline-secondary round m-1" type="button">English</button></a>
-                            <a href="<?php echo $phpself; ?>?opLA=Sinhala"><button class="btn btn-outline-secondary round m-1" type="button">Sinhala</button></a>
+                        <br><br><h3>License</h3>
+                        <a href="<?php echo $phpself; ?>&opL="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                        <a href="<?php echo $phpself; ?>&opL=Free"><button class="btn btn-outline-secondary round m-1" type="button">Free</button></a>
+                        <a href="<?php echo $phpself; ?>&opL=Paid"><button class="btn btn-outline-secondary round m-1" type="button">Paid</button></a>
+
+                        <br><br><h3>Languages</h3>
+                        <a href="<?php echo $phpself; ?>&opLA="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                        <a href="<?php echo $phpself; ?>&opLA=English"><button class="btn btn-outline-secondary round m-1" type="button">English</button></a>
+                        <a href="<?php echo $phpself; ?>&opLA=Sinhala"><button class="btn btn-outline-secondary round m-1" type="button">Sinhala</button></a>
 
 
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card align-items-lg-center flex-column flex-lg-row p-3">
-                                <div class="card-body order-2 order-lg-1">
-
-                                    <?php
-                                    foreach ($rs as $sw) {
-                                        $sid = $sw->Sid;
-                                        $name = $sw->name;
-                                        $shortdescription = $sw->shortdescription;
-                                        $platform = $sw->platform;
-                                        $developer = $sw->username;
-                                        $license = $sw->license;
-                                        $amount = $sw->amount;
-                                        $language = $sw->language;
-                                        ?>
-                                        <table width=100%>
-                                            <tr>
-                                                <td class="me-1" width="180"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
-
-                                                <td class="ms-1">
-                                                    <h2  class="mb-0"><?php echo $name; ?></h2>
-                                                    <i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
-                                                        <?php echo " by " . $developer ?></i>
-                                                    <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
-
-                                                </td>
-                                                <td align="right"></td>
-
-                                            </tr><br><hr><br>
-                                        </table>
-                                        <?php
-                                    }
-                                    ?>
-
-                                </div>
-                            </div><br><br>
-
-                            <!--buttons for back and next-->
-                            <div class="text-center">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card align-items-lg-center flex-column flex-lg-row p-3">
+                            <div class="card-body order-2 order-lg-1">
 
                                 <?php
-                                $totalRows = $schR->getTotalRows($sword, $opP, $opL, $opLA); //total number of rows
-                                $lastPage = ceil($totalRows / $rows); //last page number
-                                $phpself = $_SERVER['PHP_SELF'];
+                                foreach ($rs as $sw) {
+                                    $sid = $sw->Sid;
+                                    $name = $sw->name;
+                                    $shortdescription = $sw->shortdescription;
+                                    $platform = $sw->platform;
+                                    $developer = $sw->username;
+                                    $license = $sw->license;
+                                    $amount = $sw->amount;
+                                    $language = $sw->language;
+                                    ?>
+                                    <table width=100%>
+                                        <tr>
+                                            <td class="me-1" width="180"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
 
-                                if ($totalRows == 0) {
-                                    $pageNum = 0;
-                                    $lastPage = 0;
-                                    $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
-                                    $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
-                                    $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
-                                    $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
-                                } else {
-// Generate pagination links
-                                    if ($pageNum > 1) {
-                                        $page = $pageNum - 1;
-                                        $prev = ' <a href="' . $phpself . '?pagecount=' . $page . '" ><button class="btn btn-secondary m-1" type="button">Back</button></a> ';
-                                        $first = ' <a href="' . $phpself . '?pagecount=1" ><button class="btn btn-secondary m-1" type="button">First Page</button></a> ';
-                                    } else {
-                                        $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
-                                        $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
-                                    }
+                                            <td class="ms-1">
+                                                <h2  class="mb-0"><?php echo $name; ?></h2>
+                                                <i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
+                                                    <?php echo " by " . $developer ?></i>
+                                                <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
 
-                                    if ($pageNum < $lastPage) {
-                                        $page = $pageNum + 1;
-                                        $next = ' <a href="' . $phpself . '?pagecount=' . $page . '"><button class="btn btn-secondary m-1" type="button">Next</button></a> ';
-                                        $last = ' <a href="' . $phpself . '?pagecount=' . $lastPage . '"><button class="btn btn-secondary m-1" type="button">Last Page</button></a> ';
-                                    } else {
-                                        $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
-                                        $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
-                                    }
-// Display pagination links
-                                    echo $first . $prev . " Showing page <bold>$pageNum</bold> of <bold>$lastPage</bold> pages " . $next . $last;
+                                            </td>
+                                            <td align="right"></td>
+
+                                        </tr><br><hr><br>
+                                    </table>
+                                    <?php
                                 }
                                 ?>
 
                             </div>
+                        </div><br><br>
+
+                        <!--buttons for back and next-->
+                        <div class="text-center">
+
+                            <?php
+                            $totalRows = $schR->getTotalRows($sword, $opP, $opL, $opLA); //total number of rows
+                            $lastPage = ceil($totalRows / $rows); //last page number
+                            $phpself = $_SERVER['PHP_SELF'];
+
+                            if ($totalRows == 0) {
+                                $pageNum = 0;
+                                $lastPage = 0;
+                                $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
+                                $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
+                                $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
+                                $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
+                            } else {
+// Generate pagination links
+                                if ($pageNum > 1) {
+                                    $page = $pageNum - 1;
+                                    $prev = ' <a href="' . $phpself . '?pagecount=' . $page . '" ><button class="btn btn-secondary m-1" type="button">Back</button></a> ';
+                                    $first = ' <a href="' . $phpself . '?pagecount=1" ><button class="btn btn-secondary m-1" type="button">First Page</button></a> ';
+                                } else {
+                                    $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
+                                    $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
+                                }
+
+                                if ($pageNum < $lastPage) {
+                                    $page = $pageNum + 1;
+                                    $next = ' <a href="' . $phpself . '?pagecount=' . $page . '"><button class="btn btn-secondary m-1" type="button">Next</button></a> ';
+                                    $last = ' <a href="' . $phpself . '?pagecount=' . $lastPage . '"><button class="btn btn-secondary m-1" type="button">Last Page</button></a> ';
+                                } else {
+                                    $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
+                                    $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
+                                }
+// Display pagination links
+                                echo $first . $prev . " Showing page <bold>$pageNum</bold> of <bold>$lastPage</bold> pages " . $next . $last;
+                            }
+                            ?>
+
                         </div>
-
                     </div>
-                </section>
-                <!------------------------------------------------------------ Search result area end ------------------------------------------------------------>
-                <?php
-            } else {
-            ?>
-                
-                                <!---------------------------------------------- title & contenct area start ---------------------------------------------->
-                <section id="title area">
-                    <p class="small text-muted font-italic"></p>
 
-                    <?php
-                    $title = ["pop" => "Most Popular Softwares", "topdown" => "Top Downloads"];
-                    foreach ($title as $key => $value) {
-                        echo '<h4>&nbsp;' . $value . '</h4><p class="small text-muted font-italic"></p>';
-                        ?>
-                        <div class="card">
-
-                            <!---------------------------------------------- platform tabs start ---------------------------------------------->
-                            <div class="card-header">
-                                <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                                    <?php
-                                    $result1 = $home->selectPlat();
-                                    $x = 1;
-                                    foreach ($result1 as $plat) {
-                                        if ($x == 1) {
-                                            ?>
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#<?php echo $key . $plat->name; ?> " data-bs-toggle="tab"><?php echo $plat->name; ?> </a>
-                                            </li>
-                                        <?php } else { ?>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#<?php echo $key . $plat->name; ?>" data-bs-toggle="tab"><?php echo $plat->name; ?></a>
-                                            </li>
-                                            <?php
-                                        }
-                                        $x++;
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                            <!----------------------------------------------- platform tabs end ----------------------------------------------->
-
-                            <!------------------------------------------------------------ software area start ------------------------------------------------------------>
-                            <div class="card-body">
-                                <div id="nav-tabContent" class="tab-content">
-                                    <?php
-                                    $result2 = $home->selectPlat();
-                                    $x = 1;
-                                    foreach ($result1 as $plat) {
-                                        if ($key == "pop") {
-                                            $result3 = $home->selectPlatSwM($plat->name);
-                                        } else {
-                                            $result3 = $home->selectPlatSwT($plat->name);
-                                        }
-
-                                        //select first one as active
-                                        if ($x == 1) {
-                                            ?>
-                                            <div id="<?php echo $key . $plat->name; ?>" class="tab-pane fade show active">
-                                                <?php
-                                                $x++;
-                                            } else {
-                                                ?>
-                                                <div id="<?php echo $key . $plat->name; ?>" class="tab-pane fade show">     
-                                                <?php }
-                                                ?>                                                                                                       
-                                                <div class="row justify-content-center m-0 mt-3" >
-                                                    <?php
-                                                    //print software card
-                                                    foreach ($result3 as $sw) {
-                                                        ?>
-                                                        <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                                                            <div class="card rounded shadow-sm">
-                                                                <div class="card-body p-2 mt-1">
-                                                                    <img class="img-fluid d-block mx-auto mb-3" src="../img/tempicon.png" alt />
-                                                                    <hr>
-                                                                    <p class="extra-small"></p>
-                                                                    <table style="width: 100%">
-                                                                        <tr>
-                                                                            <td><?php echo $sw->license; ?></td>
-                                                                            <td style="text-align: right"><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
-                                                                        </tr>
-                                                                    </table><p></p>
-                                                                    <h5><a class="text-dark" href="Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
-                                                                    <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-                                                </div>
-                                                <br><div class="text-center mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div>
-                                            </div><!--Remove one Div need only 1-->
-
-                                        <?php } ?></div></div>
-                                <!------------------------------------------------------------- software area end ------------------------------------------------------------->
-
-                            </div><br>
-
-                            <!--------------------------------------------------------- title & contenct area end -------------------------------------------------------->   
-                        <?php } ?>
-                        </section><br>
-                <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
-
-
-                        <!----------------------------------------------------------- software Tables start ----------------------------------------------------------->
-                        <section>
-                            <div class="row">
-                                <div class="col-md-6 ps-5 pe-5">
-                                    <h4>&nbsp;Trending Softwares</h4>
-                                    <table class="table table-hover">
-                                        <?php
-                                        $result4 = $home->selectTrendS();
-                                        foreach ($result4 as $sw) {
-                                            ?>
-                                            <tr valign="middle">
-                                                <!--<a href="#"></a>-->
-                                                <td><button class="btn" style="margin-left: 5px;" type="submit">
-                                                        <img class="p-0" src="../img/tempicon.png" height="75px" alt /></button></td>
-                                                <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
-                                                <td><?php echo $sw->license; ?></td>
-                                                <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
-                                                <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </table>
-                                </div>
-
-                                <div class="col-md-6 ps-5 pe-5">                                    
-                                    <h4>&nbsp;Trending Games</h4>
-                                    <table class="table table-hover">
-                                        <?php
-                                        $result4 = $home->selectTrendG();
-                                        foreach ($result4 as $sw) {
-                                            ?>
-                                            <tr valign="middle">
-                                                <!--<a href="#"></a>-->
-                                                <td><button class="btn" style="margin-left: 5px;" type="submit">
-                                                        <img class="p-0" src="../img/tempicon.png" height="75px" alt /></button></td>
-                                                <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
-                                                <td><?php echo $sw->license; ?></td>
-                                                <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
-                                                <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </table>
-                                </div>
-                            </div><br>
-                        </section>
-                        <!----------------------------------------------------------- software Tables end ----------------------------------------------------------->
-
-                
-            <?php
-            
-                                        }
-            ?>
+                </div>
+            </section>
+            <!------------------------------------------------------------ Search result area end ------------------------------------------------------------>
 
             <br>
             <br>

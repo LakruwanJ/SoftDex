@@ -217,7 +217,7 @@ $rsCls = new Home();
                                         <a href="#">
                                             <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                1<?php // add here                         ?>n
+                                                1<?php // add here                         ?>
                                             </span>
                                         </a>                                            
                                     </span>
@@ -374,38 +374,6 @@ $rsCls = new Home();
                                         <?php } ?>
                                     </table>
                                 </div>
-<!--                                 <?php
-//                                 $title = ["ts" => "Trending Softwares", "tg" => "Trending Games"];
-//                                 $m = 1;
-//                                 foreach ($title as $key => $value) {
-//                                     if ($m == 1) {
-//                                         echo '<div class="col-md-6 ps-5 pe-5">';
-//                                         $m++;
-//                                     } else {
-//                                         echo '<div class="col-md-6 ps-5 pe-5">';
-//                                         $m++;
-//                                     }
-//                                     echo '<h4>&nbsp;' . $value . '</h4><p class="small text-muted font-italic"></p><table class="table table-hover">';
-//                                     for ($i = 0; $i < 5; $i++) {
-//                                         echo '<tr valign="middle">
-//                                         <td><button class="btn" style="margin-left: 5px;
-//                                 " type="submit">
-//                                         <img class="p-0" src="img/tempicon.png" height="75px" alt /></button></td>
-//                                         <td>name of the software<br><i class="small text-muted font-italic">by developer</i></td>
-//                                         <td>free</td>
-//                                         <td><i class="fa fa-star text-success"></i>&nbsp;5.0</td>
-//                                         <td align="right"><button class="btn" style="margin-left: 5px;
-//                                 " type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
-//                                     </tr>';
-//                                     }
-//                                     echo '</table><div class="text-center mt-4 mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div></div>';
-//                                 }
-//                                 ?>
-
-                            </div><br>
-                        </section>
-                        <!----------------------------------------------------------- software Tables end ----------------------------------------------------------->
-                    </div> -->
 
                                 <div class="col-md-6 ps-5 pe-5">                                    
                                     <h4>&nbsp;Trending Games</h4>
@@ -520,7 +488,7 @@ $rsCls = new Home();
                                                         
                                 -->
 
-                                <div class="row align-items-center">
+<!--                                <div class="row align-items-center">
                                     <div class="hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
                                         <img class="photo-background-l" src="img/product-aeon-feature.jpg" width="100%" height="100%"> -->
 
@@ -573,22 +541,7 @@ $rsCls = new Home();
                                         <div class = "photo-tags">
                                             <ul><li><a href = "#" data-bs-toggle = "modal" data-bs-target = "#sw">read more...</a></li></ul>
 
-<!--                                 </div>
-
-                                <div class="row align-items-center flex-column-reverse flex-sm-row">
-                                    <div class="col-12 col-sm-6 d-flex flex-column psd-right1 photo-details">
-                                        <h1>Developer</h1><br>
-                                        <p>On our Softdex website, developers can create a profile, which typically includes information about a software developer's background, skills, experience, and projects they have worked on.</p>
-                                        <div class = "photo-tags">
-                                            <ul><li><a href = "#" data-bs-toggle = "modal" data-bs-target = "#developer">read more...</a></li></ul>
-                                        </div>
-                                    </div>
-                                    <div class = "hovere hover-2 text-white col-12 col-sm-6 d-flex photo-background-r px-0">
-                                        <img class = "photo-background-r" src = "img/product-aeon-feature.jpg" width = "100%" height = "100%">
-                                        <div class = "hover-overlay"></div>
-                                        <div class = "hover-2-content px-5 py-4">
-                                            <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Become a developer</button></a>
-                                            <p class = "hover-2-description text-uppercase mb-0">Become a developer at SoftDex by joining our team</p> -->
+                                
 
                                         </div>
                                     </div>
@@ -632,26 +585,7 @@ $rsCls = new Home();
                                 </div>
 
 
-                                <div class = "row align-items-center flex-column-reverse flex-sm-row">
-                                    <div class = "col-12 col-sm-6 d-flex flex-column psd-right1 photo-details">
-                                        <h1>Customized Software</h1><br>
-                                        <p>where we empower you with the unique ability to create fully customized software solutions that cater to your specific needs.</p>
-                                        <div class = "photo-tags">
-                                            <ul>
-                                                <li><a href = "#" data-bs-toggle = "modal" data-bs-target = "#csw">read more...</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class = "hovere hover-2 text-white col-12 col-sm-6 d-flex photo-background-r px-0">
-                                        <img class = "photo-background-r" src = "img/product-aeon-feature.jpg" width = "100%" height = "100%">
-                                        <div class = "hover-overlay"></div>
-                                        <div class = "hover-2-content px-5 py-4">
-                                            <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Create Your own Software</button></a>
-                                            <p class = "hover-2-description text-uppercase mb-0">Craft tailored software solutions with the expertise of SoftDex</p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                
                                 <br>
                             </div></div>
 
