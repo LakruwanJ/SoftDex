@@ -4,8 +4,12 @@ require '../Classes/Select.php';
 use Classes\Selecrsw;
 
 $rs = new Classes\Select();
-$id = "sw0001";
-$rss = $rs->selectSw("sw0001");
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+} else {
+    header("Location: ../Softdex.php");
+}
+$rss = $rs->selectSw($id);
 
 foreach ($rss as $sw) {
     $name = $sw->name;
@@ -18,7 +22,6 @@ foreach ($rss as $sw) {
     $date = $sw->date;
     $size = $sw->size;
     $language = $sw->language;
-    $maincategory = $sw->maincategory;
     $category = $sw->category;
     $tags = $sw->tags;
     $systemreq = $sw->systemreq;
@@ -41,21 +44,6 @@ $star = [254, 20, 6, 15, 63, 150];
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-<!--        <style>
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            body::-webkit-scrollbar {
-                display: none;
-            }
-
-            /* Hide scrollbar for IE, Edge and Firefox */
-            body {
-                -ms-overflow-style: none;
-                /* IE and Edge */
-                scrollbar-width: none;
-                /* Firefox */
-            }
-                    </style>-->
 
     </head>
     <body>

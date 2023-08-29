@@ -12,16 +12,16 @@
             <div class="forms-container">
                 <div class="signin-signup">
 
-                    <form action="#" class="sign-in-form">
+                    <form action="Classes/reglog.php" class="sign-in-form" method="POST">
                         <img src="img/logo3.png" alt="logo" style="height:60px;"><br><br>
                         <h2 class="title">Sign in</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Username" class="form-outline"/>
+                            <input type="text" placeholder="Username" class="form-outline" name="username"/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Password" />
+                            <input type="password" placeholder="Password" name="password"/>
                         </div><br>
                         <table border="0" class="sign-in-form" width="80%">
                             <tbody>
@@ -38,8 +38,7 @@
                             </tbody>
                         </table>
 
-
-                        <input type="submit" value="Login" class="btn solid" />
+                        <input type="submit" value="Login" class="btn solid" name="signIn"/>
 
                     </form>
 
