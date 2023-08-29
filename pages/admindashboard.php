@@ -19,7 +19,7 @@
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name=""></ion-icon>
+                            <img src="../img/logo3.png" alt=""  width="50px" height="50px">
                         </span>
                         <span class="title">Softdex</span>
                     </a>
@@ -90,15 +90,10 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
 
-                <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
-                </div>
+               
 
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
+                    <img src="../img/user (2).png" alt="">
                 </div>
             </div>
 
@@ -162,8 +157,9 @@
                             <tr>
                                 <td>Name</td>
                                 <td>Price</td>
-                                <td>Payment</td>
-                                <td>Status</td>
+                                <td>Devolper Name</td>
+                                <td>license</td>
+                                <td>platform<td>
                             </tr>
                         </thead>
 
@@ -171,56 +167,72 @@
                             <tr>
                                 <td>Star Refrigerator</td>
                                 <td>$1200</td>
+                                <td></td>
                                 <td>Paid</td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
+                                <td></td>
+                                <td><button type="button" class="btn btn-primary">Remove</button></td>
                             </tr>
 
                             <tr>
                                 <td>Dell Laptop</td>
                                 <td>$110</td>
+                                <td></td>
                                 <td>Due</td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
                                 <td>Apple Watch</td>
                                 <td>$1200</td>
+                                <td></td>
                                 <td>Paid</td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
                                 <td>Addidas Shoes</td>
                                 <td>$620</td>
+                                <td></td>
                                 <td>Due</td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
                                 <td>Star Refrigerator</td>
                                 <td>$1200</td>
+                                <td></td>
                                 <td>Paid</td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
                                 <td>Dell Laptop</td>
                                 <td>$110</td>
+                                <td></td>
                                 <td>Due</td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
                                 <td>Apple Watch</td>
                                 <td>$1200</td>
+                                <td></td>
                                 <td>Paid</td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
                                 <td>Addidas Shoes</td>
                                 <td>$620</td>
+                                <td></td>
                                 <td>Due</td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
                         </tbody>
@@ -233,12 +245,13 @@
                         <h2>Recent Customers</h2>
                     </div>
 
-                    <table>
+                     <table>
                         <thead>
                             <tr>
                                 <td>Name</td>
                                 <td>Email</td>
                                 <td>Username</td>
+                                <td>Country</td>
                                
                             </tr>
                         </thead>
@@ -246,57 +259,65 @@
                         <tbody>
                             <tr>
                                 <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
                                 <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
+                                <td>Star Refrigerator</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
+                                <<td>Star Refrigerator</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
 
                             <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
+                                <td>Star Refrigerator</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><button type="button" class="btn btn-primary">edit</button></td>
+                            </tr>
+
+                            <tr>
+                                <td>Star Refrigerator</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><button type="button" class="btn btn-primary">edit</button></td>
+                            </tr>
+
+                            <tr>
+                                <td>Star Refrigerator</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><button type="button" class="btn btn-primary">edit</button></td>
+                            </tr>
+
+                            <tr>
+                                <td>Star Refrigerator</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td><button type="button" class="btn btn-primary">edit</button></td>
                             </tr>
                         </tbody>
