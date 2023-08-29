@@ -57,9 +57,7 @@ class Home {
         $count = $pstmt->fetchColumn();
         echo $count;
     }
-$dbcon = new DbConnector();
-
-class Home {
+//$dbcon = new DbConnector();
 
     public function selectPlat() {
         $dbcon = new DbConnector();

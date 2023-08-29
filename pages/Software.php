@@ -1,7 +1,7 @@
 <?php
 require '../Classes/Select.php';
 
-use Classes\Selecrsw;
+use Classes\Select;
 
 $rs = new Classes\Select();
 if (isset($_GET["id"])) {
@@ -9,9 +9,8 @@ if (isset($_GET["id"])) {
 } else {
     header("Location: ../Softdex.php");
 }
-$rss = $rs->selectSw($id);
-
-foreach ($rss as $sw) {
+$rs1 = $rs->selectSw($id);
+foreach ($rs1 as $sw) {
     $name = $sw->name;
     $version = $sw->version;
     $shortdescription = $sw->shortdescription;
@@ -26,7 +25,16 @@ foreach ($rss as $sw) {
     $tags = $sw->tags;
     $systemreq = $sw->systemreq;
     $description = $sw->description;
+    $rate = $sw->rate;
+    $DownCount = $sw->DownCount;
 }
+
+$rs2 = $rs->selectDev($developer);
+foreach ($rs2 as $dev) {
+    $dname = $dev->username;
+    $ddate = $dev->datesince;
+}
+
 
 $star = [254, 20, 6, 15, 63, 150];
 ?>
@@ -60,27 +68,55 @@ $star = [254, 20, 6, 15, 63, 150];
                                 </button></td>
                             <td>
                                 <h2  class="mb-0"><?php echo $name; ?></h2><i class="text-muted font-italic"><?php echo " for " . $platform; ?></i><br>
-                                <p class="mt-2 mb-0 p-0"><?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
+                                <p class="mt-2 mb-0 p-0"><?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;<?php echo $rate; ?></p>
                             </td>
                         </tr>
+                        <tr><td>&nbsp;</td></tr>
                         <tr valign="middle">
                             <td colspan="2" class="ms-3">
                                 <i class="text-muted font-italic">Developed by</i><br>
-                                <a href="#"><img class="rounded-circle" src="https://mdbootstrap.com/img/new/avatars/2.jpg" height="40" alt /></a>
-                                <?php echo $developer . "<b> &CenterDot; </b>"; ?> since 2022-2-22<br>
+                                <a href="#"><img class="rounded-circle mt-2" src="https://mdbootstrap.com/img/new/avatars/2.jpg" height="40" alt /></a>
+
+                                <?php echo $dname . "<b> &CenterDot; </b>"; ?> since <?php echo $ddate ?><br>
                             </td>
                         </tr>
                     </table>
                 </div>            
-                <div class="col-md-4 text-center"><br><br><br>
+                <div class="col-md-4 text-center"><br><br>
+                    <?php
+                    if ($license === "paid") {
+                        ?>
+                        <button type="button" class="btn btn-warning down">
+                            <table width=100%>
+                                <tr>
+                                    <td class="p-3 text-light" ><span><h3>Download</h3></span></td>
+                                    <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
+                                </tr>
+                            </table>
+                        </button>
+                        <?php
+                    } else {
+                        ?>  
                     <button type="button" class="btn btn-success down">
+                            <table width=100%>
+                                <tr>
+                                    <td class="p-3 text-light" ><span><h3>Download</h3></span></td>
+                                    <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
+                                </tr>
+                            </table>
+                        </button>
+                        <?php
+                    }
+                    ?>
+                    <button type="button" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
                         <table width=100%>
                             <tr>
-                                <td class="p-3 text-light" ><span><h3>Download</h3></span></td>
-                                <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
+                                <td class="p-1 text-light" ><span><h3>Add ro cart</h3></span></td>
+                                <td align="right" class="p-1"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
                             </tr>
                         </table>
-                    </button>
+                    </button> 
+
                 </div>
             </div>
 
@@ -111,7 +147,9 @@ $star = [254, 20, 6, 15, 63, 150];
 
                             </td>
                         </tr>
+
                     </table>
+                    
                 </div>
 
                 <div class="col-md-4 p-3">
@@ -125,9 +163,8 @@ $star = [254, 20, 6, 15, 63, 150];
                             <p>Latest update :<br><b><?php echo $date; ?></b></p><hr>
                             <p>Platform :<br><b><?php echo $platform; ?></b></p><hr>
                             <p>Language :<br><b><?php echo $language; ?></b></p><hr>
-                            <p>Downloads :<br><b><?php echo "1k+"; ?></b></p><hr>
-                            <p>watch :<br><b><?php echo "1k+"; ?></b></p><hr>
-                            <p>rates :<br><i class="fa fa-star text-success"></i>&nbsp;<b><?php echo "4"; ?></b></p>
+                            <p>Downloads :<br><b><?php echo $DownCount; ?></b></p><hr>
+                            <p>rates :<br><i class="fa fa-star text-success"></i>&nbsp;<b><?php echo $rate; ?></b></p>
                         </div>
                     </div><br>
 
