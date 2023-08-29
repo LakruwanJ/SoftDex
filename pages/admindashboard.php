@@ -1,3 +1,9 @@
+<?php
+require_once '../Classes/DbConnector.php'; // Adjust the path as needed
+use Classes\DbConnector;
+$dbConnector = new DbConnector();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -163,244 +169,158 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td></td>
-                                <td>Paid</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">Remove</button></td>
-                            </tr>
+                         <tbody>
+                                <?php
+                                try {
+                                $dbConnection = $dbConnector->getConnection();
+                                $softwareQuery = "SELECT * FROM software";
+                                $spstmt = $dbConnection->prepare($softwareQuery);
+                                $spstmt->execute();
+                                $rs = $spstmt->fetchAll(PDO::FETCH_OBJ);
+                                foreach ($rs as $software){
+                                ?>
+                                <tr>
+                                    <td><?php echo $software->name; ?></td>
+                                    <td><?php echo $software->amount; ?></td>
+                                    <td><?php echo $software->developer; ?></td>
+                                    <td><?php echo $software->license; ?></td>
+                                    <td><?php echo $software->platform; ?></td>
+                                     <td><button type="button" class="btn btn-primary">Remove</button></td>
+                                </tr>
+                                  <?php
+                                }
+                                } catch (PDOException $exc) {
+                                echo $exc->getMessege();
+                                }
+                                ?>
 
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td></td>
-                                <td>Due</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
 
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td></td>
-                                <td>Paid</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td></td>
-                                <td>Due</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td></td>
-                                <td>Paid</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td></td>
-                                <td>Due</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td></td>
-                                <td>Paid</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td></td>
-                                <td>Due</td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
 
                 <!-- ================= New Customers ================ -->
-                <div class="recentCustomers" id="RecentCustomertable" style="display: none;">
-                    <div class="cardHeader">
-                        <h2>Recent Customers</h2>
+                    <div class="recentCustomers" id="RecentCustomertable">
+                        <div class="cardHeader">
+                            <h2>Recent Customers</h2>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Email</td>
+                                    <td>Username</td>
+                                    <td>Country</td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                try {
+                                $dbConnection = $dbConnector->getConnection();
+                                $userQuery = "SELECT * FROM user";
+                                $upstmt = $dbConnection->prepare($userQuery);
+                                $upstmt->execute();
+                                $rs = $upstmt->fetchAll(PDO::FETCH_OBJ);
+                                foreach ($rs as $user){
+                                ?>
+                                <tr>
+                                    <td><?php echo $user->fname." ".$user->lname; ?></td>
+                                    <td><?php echo $user->email; ?></td>
+                                    <td><?php echo $user->username; ?></td>
+                                    <td><?php echo $user->country; ?></td>
+                                     <td><button type="button" class="btn btn-primary">edit</button></td>
+                                </tr>
+                                  <?php
+                                }
+                                } catch (PDOException $exc) {
+                                echo $exc->getMessege();
+                                }
+                                ?>
+
+
+                            </tbody>
+                        </table>
                     </div>
+                 <!-- ================= Downloads ================ -->
+                    <div class="recentCustomers" id="Softwaretable2" style="display: none;">
+                        <div class="cardHeader">
+                            <h2>Downloads</h2>
+                        </div>
 
-                     <table>
-                        <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td>Email</td>
-                                <td>Username</td>
-                                <td>Country</td>
-                               
-                            </tr>
-                        </thead>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Software name</td>
+                                    <td>Devolper Name</td>
+                                    <td>Free/Paid</td>
 
-                        <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
+                                </tr>
+                            </thead>
 
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td>Star Refrigerator</td>
+                                    <td>$1200</td>
+                                    <td>Paid</td>
 
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
+                                </tr>
 
-                            <tr>
-                                <<td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
+                                <tr>
+                                    <td>Dell Laptop</td>
+                                    <td>$110</td>
+                                    <td>Due</td>
 
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
+                                </tr>
 
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
+                                <tr>
+                                    <td>Apple Watch</td>
+                                    <td>$1200</td>
+                                    <td>Paid</td>
 
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
+                                </tr>
 
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button type="button" class="btn btn-primary">edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- ================= Downloads ================ -->
-                <div class="recentCustomers" id="Softwaretable2" style="display: none;">
-                    <div class="cardHeader">
-                        <h2>Downloads</h2>
+                                <tr>
+                                    <td>Addidas Shoes</td>
+                                    <td>$620</td>
+                                    <td>Due</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Star Refrigerator</td>
+                                    <td>$1200</td>
+                                    <td>Paid</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Dell Laptop</td>
+                                    <td>$110</td>
+                                    <td>Due</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Apple Watch</td>
+                                    <td>$1200</td>
+                                    <td>Paid</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Addidas Shoes</td>
+                                    <td>$620</td>
+                                    <td>Due</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Software name</td>
-                                <td>Devolper Name</td>
-                                <td>Free/Paid</td>
-                                
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                               
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                               
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                               
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                               
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                               
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- =========== Scripts =========  -->
     <script src="assets/js/main.js"></script>
