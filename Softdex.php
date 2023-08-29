@@ -11,9 +11,14 @@ use Classes\DbConnector;
 use Classes\Home;
 
 $dbcon = new DbConnector();
-$rsCls = new Home();
+$home = new Home();
 ?>
-
+<?php
+session_start();
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+}
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -83,16 +88,16 @@ $rsCls = new Home();
                                                             <i class="fa-solid fa-user fa-2xl mb-4"></i>
                                                             <h5>Users</h5>
                                                             <hr style="width: 25%; height: 5px; background: blue;">
-                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="526" data-purecounter-duration="1.5">
-                                                                526<?php // add here                  ?>
+                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="<?php $home->countUser(); ?>" data-purecounter-duration="2">
+                                                                <?php $home->countUser(); ?>
                                                             </p>                                            
                                                         </td>
                                                         <td width=50% class="p-1">
                                                             <i class="fa-solid fa-laptop-code fa-2xl mb-4"></i>
                                                             <h5>Developers</h5>
                                                             <hr style="width: 25%; height: 5px; background: blue;">
-                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="238" data-purecounter-duration="1">
-                                                                238<?php // add here                  ?>
+                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="<?php $home->countDev(); ?>" data-purecounter-duration="2">
+                                                                <?php $home->countDev(); ?>
                                                             </p>    
                                                         </td>
                                                     </tr>
@@ -105,22 +110,22 @@ $rsCls = new Home();
                                                             <i class="fa-solid fa-file-code fa-2xl mb-4"></i>
                                                             <h5>Softwares</h5>
                                                             <hr style="width: 25%; height: 5px; background: blue;">
-                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="1158" data-purecounter-duration="1.5">
-                                                                1158<?php // add here                  ?>
+                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="<?php $home->countSw(); ?>" data-purecounter-duration="2">
+                                                                <?php $home->countSw(); ?>
                                                             </p>                                            
                                                         </td>
                                                         <td width=50% class="p-1">
                                                             <i class="fa-solid fa-download fa-2xl mb-4"></i>
                                                             <h5>Downloads</h5>
                                                             <hr style="width: 25%; height: 5px; background: blue;">
-                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="14657" data-purecounter-duration="1.5">
-                                                                14657<?php // add here                  ?>
+                                                            <p class="purecounter" style="font-size: 22px;" data-purecounter-start="0" data-purecounter-end="<?php $home->countDown(); ?>" data-purecounter-duration="2">
+                                                                <?php $home->countDown(); ?>
                                                             </p>   
                                                         </td>
                                                     </tr>
                                                 </table>
                                             </div>
-                                            <script src="Incrementing-Animation-Counter.js"></script>
+                                            <script src="js/Counter.js"></script>
                                         </div>
                                     </div>
                                     <div class="col-md-1"></div>
@@ -200,7 +205,7 @@ $rsCls = new Home();
                     <div class="col-md-10">
                         <div class="card" style="border: 0px;">
                             <div class="card-body">
-                                <form class="d-flex align-items-center" action="Process_search.php" method="POST">
+                                <form class="d-flex align-items-center" action="pages/Search.php" method="POST">
                                     <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-2xl" style="color: #001f8d;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" style="font-size: 17.5px" type="search" placeholder="Search Software or category" name="searchbar" />&nbsp;&nbsp;&nbsp;&nbsp;
                                     <button class="btn btn-lg" style="background-color: #001f8d; color: white" type="submit">Search</button>
@@ -209,7 +214,7 @@ $rsCls = new Home();
                                         <a href="#">
                                             <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                1<?php // add here                  ?>
+                                                1<?php // add here                         ?>
                                             </span>
                                         </a>                                            
                                     </span>
@@ -226,11 +231,10 @@ $rsCls = new Home();
                 <!------------------------------------------------------ search area end ------------------------------------------------------>
 
 
-
+                <!---------------------------------------------- title & contenct area start ---------------------------------------------->
                 <section id="title area">
                     <p class="small text-muted font-italic"></p>
 
-                    <!---------------------------------------------- title & contenct area start ---------------------------------------------->
                     <?php
                     $title = ["pop" => "Most Popular Softwares", "topdown" => "Top Downloads"];
                     foreach ($title as $key => $value) {
@@ -242,7 +246,7 @@ $rsCls = new Home();
                             <div class="card-header">
                                 <ul class="nav nav-tabs card-header-tabs" role="tablist">
                                     <?php
-                                    $result1 = $rsCls->selectPlat();
+                                    $result1 = $home->selectPlat();
                                     $x = 1;
                                     foreach ($result1 as $plat) {
                                         if ($x == 1) {
@@ -267,10 +271,16 @@ $rsCls = new Home();
                             <div class="card-body">
                                 <div id="nav-tabContent" class="tab-content">
                                     <?php
-                                    $result2 = $rsCls->selectPlat();
-                                        $x = 1;
+                                    $result2 = $home->selectPlat();
+                                    $x = 1;
                                     foreach ($result1 as $plat) {
-                                        $result3 = $rsCls->selectPlatSw($plat->name);
+                                        if ($key == "pop") {
+                                            $result3 = $home->selectPlatSwM($plat->name);
+                                        } else {
+                                            $result3 = $home->selectPlatSwT($plat->name);
+                                        }
+
+                                        //select first one as active
                                         if ($x == 1) {
                                             ?>
                                             <div id="<?php echo $key . $plat->name; ?>" class="tab-pane fade show active">
@@ -283,6 +293,7 @@ $rsCls = new Home();
                                                 ?>                                                                                                       
                                                 <div class="row justify-content-center m-0 mt-3" >
                                                     <?php
+                                                    //print software card
                                                     foreach ($result3 as $sw) {
                                                         ?>
                                                         <div class="col-sm-6 col-md-4 col-lg-2 p-2">
@@ -297,8 +308,8 @@ $rsCls = new Home();
                                                                             <td style="text-align: right"><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
                                                                         </tr>
                                                                     </table><p></p>
-                                                                    <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
-                                                                    <p class="small text-muted font-italic"><?php echo $sw->username; ?></p>
+                                                                    <h5><a class="text-dark" href="pages/Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
+                                                                    <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -316,41 +327,51 @@ $rsCls = new Home();
                             <!--------------------------------------------------------- title & contenct area end -------------------------------------------------------->   
                         <?php } ?>
                         </section><br>
-
-                        <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
+                <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
 
 
                         <!----------------------------------------------------------- software Tables start ----------------------------------------------------------->
                         <section>
                             <div class="row">
-                                <?php
-                                $title = ["ts" => "Trending Softwares", "tg" => "Trending Games"];
-                                $m = 1;
-                                foreach ($title as $key => $value) {
-                                    if ($m == 1) {
-                                        echo '<div class="col-md-6 ps-5 pe-5">';
-                                        $m++;
-                                    } else {
-                                        echo '<div class="col-md-6 ps-5 pe-5">';
-                                        $m++;
-                                    }
-                                    echo '<h4>&nbsp;' . $value . '</h4><p class="small text-muted font-italic"></p><table class="table table-hover">';
-                                    for ($i = 0; $i < 5; $i++) {
-                                        echo '<tr valign="middle">
-                                        <td><button class="btn" style="margin-left: 5px;
-                                " type="submit">
-                                        <img class="p-0" src="img/tempicon.png" height="75px" alt /></button></td>
-                                        <td>name of the software<br><i class="small text-muted font-italic">by developer</i></td>
-                                        <td>free</td>
-                                        <td><i class="fa fa-star text-success"></i>&nbsp;5.0</td>
-                                        <td align="right"><button class="btn" style="margin-left: 5px;
-                                " type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
-                                    </tr>';
-                                    }
-                                    echo '</table><div class="text-center mt-4 mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div></div>';
-                                }
-                                ?>
+                                <div class="col-md-6 ps-5 pe-5">
+                                    <h4>&nbsp;Trending Softwares</h4>
+                                    <table class="table table-hover">
+                                        <?php
+                                        $result4 = $home->selectTrendS();
+                                        foreach ($result4 as $sw) {
+                                            ?>
+                                            <tr valign="middle">
+                                                <!--<a href="#"></a>-->
+                                                <td><button class="btn" style="margin-left: 5px;" type="submit">
+                                                        <img class="p-0" src="img/tempicon.png" height="75px" alt /></button></td>
+                                                <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
+                                                <td><?php echo $sw->license; ?></td>
+                                                <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
+                                                <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
+                                </div>
 
+                                <div class="col-md-6 ps-5 pe-5">                                    
+                                    <h4>&nbsp;Trending Games</h4>
+                                    <table class="table table-hover">
+                                        <?php
+                                        $result4 = $home->selectTrendG();
+                                        foreach ($result4 as $sw) {
+                                            ?>
+                                            <tr valign="middle">
+                                                <!--<a href="#"></a>-->
+                                                <td><button class="btn" style="margin-left: 5px;" type="submit">
+                                                        <img class="p-0" src="img/tempicon.png" height="75px" alt /></button></td>
+                                                <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
+                                                <td><?php echo $sw->license; ?></td>
+                                                <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
+                                                <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
+                                </div>
                             </div><br>
                         </section>
                         <!----------------------------------------------------------- software Tables end ----------------------------------------------------------->
@@ -358,83 +379,16 @@ $rsCls = new Home();
 
 
                     <section>
-
-                        <div class="container">
-                            <h2 class="text-center">What is SoftDex?</h2>
-                            <p class="text-center titlee m-4 px-5">Your Ultimate Software Hub! Discover, upload, download diverse range of applications and create customized software. Empowering developers and fostering a vibrant tech community. Join us today for innovative software experiences!</p>
-                        </div>
-
                         <div class="photo-card">
                             <div class="container">
 
-                                <!--                        <div class="row align-items-center">
-                                                            <div class="col-md-6 p-0">
-                                                                <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');
-                                        ">
-                                                                    
-                                                                    <div class="hover hover-2 text-white photo-background-l"><img src="img/product-aeon-feature.jpg" alt="">
-                                          <div class="hover-overlay"></div>
-                                          <div class="hover-2-content px-5 py-4">
-                                            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
-                                            <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
-                                          </div>
-                                        </div>
-                                                                    
-                                                                </div>
-                                                                    
-                                                            </div>
-                                                            <div class="col-md-6 photo-details">
-                                                                <h1>User</h1><br>
-                                                                <p>Our platform offers user registration for personalized experiences and access to exclusive features. Users can manage profiles, preferences, and account settings.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#user">read more...</a></li></ul>
-                                        </div></div>
-                                        </div>
-        
-                                        <div class = "row align-items-center">
-                                        <div class = "col-md-6 photo-details">
-                                        <h1>Developer</h1><br>
-                                        <p>On our Softdex website, developers can create a profile, which typically includes information about a software developer's background, skills, experience, and projects they have worked on.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#developer">read more...</a></li></ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6 p-0"><div class="photo-background-r" style="background-image: url('img/product-aeon-feature.jpg');"></div></div>
-                                                        </div>
-                                
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-6 p-0">
-                                                                <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');">
-                                                                    
-                                                                </div>
-                                                                    
-                                                            </div>
-                                                            <div class="col-md-6 photo-details">
-                                                                <h1>Software</h1><br>
-                                                                <p>Embark on a seamless journey of discovering, downloading, and utilizing premium and free software that elevates your digital experience.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#sw">read more...</a></li></ul>
-                                                                </div></div>
-                                                        </div>
-                                
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-6 photo-details  d-flex flex-column psd-right1">
-                                                                <h1>Customized Software</h1><br>
-                                                                <p>where we empower you with the unique ability to create fully customized software solutions that cater to your specific needs.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul>
-                                                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#csw">read more...</a></li>
-                                                                    </ul>
-                                                                </div></div>
-                                                            <div class="col-md-6 p-0 d-flex flex-row intro-card-2"><div class="photo-background-r"><img class="howto-img photo-background-r" src="img/product-aeon-feature.jpg" width="100%" height="100%"></div></div>
-                                                        </div>
-                                                        
-                                                        
-                                -->
+                                <br>
+                                <h2 class="text-center text-white">What is SoftDex?</h2>
+                                <p class="text-center titlee m-4 px-5 text-white">Your Ultimate Software Hub! Discover, upload, download diverse range of applications and create customized software. Empowering developers and fostering a vibrant tech community. Join us today for innovative software experiences!</p>
 
                                 <div class="row align-items-center">
                                     <div class="hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
-                                        <img class="photo-background-l" src="img/product-aeon-feature.jpg" width="100%" height="100%">
+                                        <img class="photo-background-l" src="img/home/user.webp" width="100%" height="100%">
                                         <div class="hover-overlay"></div>
                                         <div class="hover-2-content px-5 py-4">
                                             <a class="hover-2-title text-uppercase font-weight-bold mb-0" href="pages.php?page=Search.php"> <button type="button" class="btn btn-secondary" >Join Now</button></a>
@@ -459,7 +413,7 @@ $rsCls = new Home();
                                         </div>
                                     </div>
                                     <div class = "hovere hover-2 text-white col-12 col-sm-6 d-flex photo-background-r px-0">
-                                        <img class = "photo-background-r" src = "img/product-aeon-feature.jpg" width = "100%" height = "100%">
+                                        <img class = "photo-background-r" src = "img/home/dev.jpg" width = "100%" height = "100%">
                                         <div class = "hover-overlay"></div>
                                         <div class = "hover-2-content px-5 py-4">
                                             <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Become a developer</button></a>
@@ -470,7 +424,7 @@ $rsCls = new Home();
 
                                 <div class = "row align-items-center">
                                     <div class = "hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
-                                        <img class = "photo-background-l" src = "img/product-aeon-feature.jpg" width = "100%" height = "100%">
+                                        <img class = "photo-background-l" src = "img/home/sw.png" width = "100%" height = "100%">
                                         <div class = "hover-overlay"></div>
                                         <div class = "hover-2-content px-5 py-4">
                                             <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Browse</button></a>
@@ -497,7 +451,7 @@ $rsCls = new Home();
                                         </div>
                                     </div>
                                     <div class = "hovere hover-2 text-white col-12 col-sm-6 d-flex photo-background-r px-0">
-                                        <img class = "photo-background-r" src = "img/product-aeon-feature.jpg" width = "100%" height = "100%">
+                                        <img class = "photo-background-r" src = "img/home/csw.png" width = "100%" height = "100%">
                                         <div class = "hover-overlay"></div>
                                         <div class = "hover-2-content px-5 py-4">
                                             <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Create Your own Software</button></a>

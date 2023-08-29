@@ -1,17 +1,22 @@
 <?php
-// Establish a connection to the MySQL server
-$conn = new mysqli('localhost', 'root', '', 'softdex');
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 require '../Classes/SchRes.php';
+require '../Classes/Home.php';
 
+use Classes\DbConnector;
+use Classes\Home;
 use Classes\SchRes;
 
-if (isset($_COOKIE['schWord'])) {
-    $sword = $_COOKIE['schWord'];
+$dbcon = new DbConnector();
+$home = new Home();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["searchbar"]) && !empty($_POST["searchbar"])) {
+        $sword = $_POST["searchbar"];
+    } else {
+        $sword = NULL;
+    }
+} else {
+    header("Location: ../Softdex.php");
 }
 $srt = isset($_GET['srt']) ? $_GET['srt'] : 'date ASC';
 $opP = isset($_GET['opP']) ? $_GET['opP'] : NULL;
@@ -20,7 +25,7 @@ $opLA = isset($_GET['opLA']) ? $_GET['opLA'] : NULL;
 $rows = 10;
 $pageNum = isset($_GET['pagecount']) ? $_GET['pagecount'] : 1;
 
-$schR = new Classes\SchRes();
+$schR = new SchRes();
 $rs = $schR->sch($sword, $pageNum, $rows, $opP, $opL, $opLA, $srt);
 
 $star = [254, 20, 6, 15, 63, 150];
@@ -29,33 +34,46 @@ $star = [254, 20, 6, 15, 63, 150];
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <link rel="stylesheet" href="css/navbar.css">
-        <link rel="stylesheet" href="css/caro.css">
-        <link rel="stylesheet" href="css/Footer.css">
-        <link rel="stylesheet" href="css/CardImage.css">
-        <link rel="stylesheet" href="css/img-h.css">
-        <link rel="stylesheet" href="css/pages.css">
+        <link rel="stylesheet" href="../css/navbar.css">
+        <link rel="stylesheet" href="../css/Footer.css">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        <style>
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            body::-webkit-scrollbar {
-                display: none;
-            }
-
-            /* Hide scrollbar for IE, Edge and Firefox */
-            body {
-                -ms-overflow-style: none;
-                /* IE and Edge */
-                scrollbar-width: none;
-                /* Firefox */
-            }
-                    </style>
-
     </head>
     <body>
+        <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
+            <div class="container">
+                <a class="navbar-brand logog" href="#"><img src="../img/logo.png" alt="logo" style="height:50px;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link_ active" aria-current="page" href="#"><i
+                                    class="fa-solid fa-house  icoon"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link_  active" href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link_  active" href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav><br><br>
+        <!------------------------------------------------------------ nav bar end -----------------------------------------------------------><input type="submit" value="" />
+
         <div class="container">
 
             <br><br>
@@ -66,7 +84,7 @@ $star = [254, 20, 6, 15, 63, 150];
                 <div class="col-md-10">
                     <div class="card" style="border: 0px;">
                         <div class="card-body">
-                            <form class="d-flex align-items-center" action="../Process_search.php" method="POST">
+                            <form class="d-flex align-items-center" action="Search.php" method="POST">
                                 <i class="fa-solid fa-magnifying-glass fa-beat-fade fa-2xl" style="color: #001f8d;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" style="font-size: 17.5px" type="search" placeholder="Search Software or category" name="searchbar" />&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button class="btn btn-lg" style="background-color: #001f8d; color: white" type="submit">Search</button>
@@ -78,249 +96,337 @@ $star = [254, 20, 6, 15, 63, 150];
             </div><br>
             <!----------------------------------------------------------- search area end ----------------------------------------------------------->
 
+            <?php
+            if ($sword !== null) {
+                ?>
+                <!----------------------------------------------------------- Search result area start ----------------------------------------------------------->
+                <section>
+                    <br>
+                    <h1>Search result for <?php echo $sword; ?></h1><br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <?php
+                            $phpself = $_SERVER['PHP_SELF'];
+                            ?>
+
+                            <h3>short by</h3>
+                            <a href="<?php echo $phpself; ?>?srt=date ASC"><button class="btn btn-outline-secondary round m-1" type="button">Recenly added</button></a>                        
+                            <a href="<?php echo $phpself; ?>?srt=date DESC"><button class="btn btn-outline-secondary round m-1" type="button">Older</button></a>
+                            <a href="<?php echo $phpself; ?>?srt=r"><button class="btn btn-outline-secondary round m-1" type="button">Rating</button></a>
+                            <a href="<?php echo $phpself; ?>?srt=d"><button class="btn btn-outline-secondary round m-1" type="button">Download</button></a>
+
+                            <br><br><h3>Platforms</h3> 
+                            <a href="<?php echo $phpself; ?>?opP="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                            <a href="<?php echo $phpself; ?>?opP=Windows"><button class="btn btn-outline-secondary round m-1" type="button">Windows</button></a>
+                            <a href="<?php echo $phpself; ?>?opP=Linux"><button class="btn btn-outline-secondary round m-1" type="button">Linux</button></a>
+                            <a href="<?php echo $phpself; ?>?opP=Mac"><button class="btn btn-outline-secondary round m-1" type="button">Mac</button></a>
+                            <a href="<?php echo $phpself; ?>?opP=Android"><button class="btn btn-outline-secondary round m-1" type="button">Android</button></a>
+                            <a href="<?php echo $phpself; ?>?opP=Iso"><button class="btn btn-outline-secondary round m-1" type="button">Iso</button></a>
+
+                            <br><br><h3>License</h3>
+                            <a href="<?php echo $phpself; ?>?opL="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                            <a href="<?php echo $phpself; ?>?opL=Free"><button class="btn btn-outline-secondary round m-1" type="button">Free</button></a>
+                            <a href="<?php echo $phpself; ?>?opL=Paid"><button class="btn btn-outline-secondary round m-1" type="button">Paid</button></a>
+
+                            <br><br><h3>Languages</h3>
+                            <a href="<?php echo $phpself; ?>?opLA="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
+                            <a href="<?php echo $phpself; ?>?opLA=English"><button class="btn btn-outline-secondary round m-1" type="button">English</button></a>
+                            <a href="<?php echo $phpself; ?>?opLA=Sinhala"><button class="btn btn-outline-secondary round m-1" type="button">Sinhala</button></a>
 
 
-            <section id="title area">
-                <p class="small text-muted font-italic"></p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card align-items-lg-center flex-column flex-lg-row p-3">
+                                <div class="card-body order-2 order-lg-1">
 
-                <!-------------------------------------------------------- title & contenct area start ------------------------------------------------------->
-                <?php
-                $title = ["pop" => "Most Popular Softwares", "topdown" => "Top Downloads"];
-                foreach ($title as $key => $value) {
-                    echo '<h4>&nbsp;' . $value . '</h4><p class="small text-muted font-italic"></p>';
-                    ?>
-                    <div class="card">
+                                    <?php
+                                    foreach ($rs as $sw) {
+                                        $sid = $sw->Sid;
+                                        $name = $sw->name;
+                                        $shortdescription = $sw->shortdescription;
+                                        $platform = $sw->platform;
+                                        $developer = $sw->username;
+                                        $license = $sw->license;
+                                        $amount = $sw->amount;
+                                        $language = $sw->language;
+                                        ?>
+                                        <table width=100%>
+                                            <tr>
+                                                <td class="me-1" width="180"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
 
-                        <!--------------------------------------------------------- platform tabs area start --------------------------------------------------------->
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                                <td class="ms-1">
+                                                    <h2  class="mb-0"><?php echo $name; ?></h2>
+                                                    <i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
+                                                        <?php echo " by " . $developer ?></i>
+                                                    <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
+
+                                                </td>
+                                                <td align="right"></td>
+
+                                            </tr><br><hr><br>
+                                        </table>
+                                        <?php
+                                    }
+                                    ?>
+
+                                </div>
+                            </div><br><br>
+
+                            <!--buttons for back and next-->
+                            <div class="text-center">
+
                                 <?php
-                                $result1 = $conn->query("SELECT name FROM platforms ORDER BY priority");
-                                if ($result1->num_rows > 0) {
+                                $totalRows = $schR->getTotalRows($sword, $opP, $opL, $opLA); //total number of rows
+                                $lastPage = ceil($totalRows / $rows); //last page number
+                                $phpself = $_SERVER['PHP_SELF'];
+
+                                if ($totalRows == 0) {
+                                    $pageNum = 0;
+                                    $lastPage = 0;
+                                    $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
+                                    $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
+                                    $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
+                                    $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
+                                } else {
+// Generate pagination links
+                                    if ($pageNum > 1) {
+                                        $page = $pageNum - 1;
+                                        $prev = ' <a href="' . $phpself . '?pagecount=' . $page . '" ><button class="btn btn-secondary m-1" type="button">Back</button></a> ';
+                                        $first = ' <a href="' . $phpself . '?pagecount=1" ><button class="btn btn-secondary m-1" type="button">First Page</button></a> ';
+                                    } else {
+                                        $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
+                                        $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
+                                    }
+
+                                    if ($pageNum < $lastPage) {
+                                        $page = $pageNum + 1;
+                                        $next = ' <a href="' . $phpself . '?pagecount=' . $page . '"><button class="btn btn-secondary m-1" type="button">Next</button></a> ';
+                                        $last = ' <a href="' . $phpself . '?pagecount=' . $lastPage . '"><button class="btn btn-secondary m-1" type="button">Last Page</button></a> ';
+                                    } else {
+                                        $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
+                                        $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
+                                    }
+// Display pagination links
+                                    echo $first . $prev . " Showing page <bold>$pageNum</bold> of <bold>$lastPage</bold> pages " . $next . $last;
+                                }
+                                ?>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+                <!------------------------------------------------------------ Search result area end ------------------------------------------------------------>
+                <?php
+            } else {
+            ?>
+                
+                                <!---------------------------------------------- title & contenct area start ---------------------------------------------->
+                <section id="title area">
+                    <p class="small text-muted font-italic"></p>
+
+                    <?php
+                    $title = ["pop" => "Most Popular Softwares", "topdown" => "Top Downloads"];
+                    foreach ($title as $key => $value) {
+                        echo '<h4>&nbsp;' . $value . '</h4><p class="small text-muted font-italic"></p>';
+                        ?>
+                        <div class="card">
+
+                            <!---------------------------------------------- platform tabs start ---------------------------------------------->
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                    <?php
+                                    $result1 = $home->selectPlat();
                                     $x = 1;
-                                    while ($row = $result1->fetch_assoc()) {
-                                        $val[] = $row["name"];
+                                    foreach ($result1 as $plat) {
                                         if ($x == 1) {
-                                            echo '<li class="nav-item"><a class="nav-link active" href="#' . $key . $row["name"] . '" data-bs-toggle="tab">' . $row["name"] . '</a></li>';
-                                        } else {
-                                            echo '<li class="nav-item"><a class="nav-link" href="#' . $key . $row["name"] . '" data-bs-toggle="tab">' . $row["name"] . '</a></li>';
+                                            ?>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#<?php echo $key . $plat->name; ?> " data-bs-toggle="tab"><?php echo $plat->name; ?> </a>
+                                            </li>
+                                        <?php } else { ?>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#<?php echo $key . $plat->name; ?>" data-bs-toggle="tab"><?php echo $plat->name; ?></a>
+                                            </li>
+                                            <?php
                                         }
                                         $x++;
                                     }
-                                }
-                                ?>
-                            </ul>
-                        </div>
-                        <!---------------------------------------------------------- platform tabs area end ---------------------------------------------------------->
-
-
-                        <!------------------------------------------------------------ software area start ------------------------------------------------------------>
-                        <div class="card-body">
-                            <div id="nav-tabContent" class="tab-content">
-
-                                <?php
-                                $y = 1;
-                                foreach ($val as $value2) {
-                                    if ($y == 1) {
-                                        echo '<div id="' . $key . $value2 . '" class="tab-pane fade show active">';
-                                        $y++;
-                                    } else {
-                                        echo '<div id="' . $key . $value2 . '" class="tab-pane fade show">';
-                                    }
-                                    echo '<div class="row justify-content-center" style="margin-top: 10px;margin-right: 0px;margin-left: 0px;">';
-
-                                    for ($i = 0; $i < 6; $i++) {
-                                        echo '<div class="col-sm-6 col-md-4 col-lg-2 col-6 p-2">
-                                                <div class="card rounded shadow-sm">
-                                                    <div class="card-body p-2 mt-1">
-                                                        <img class="img-fluid d-block mx-auto mb-3" src="../img/tempicon.png" alt />
-                                                        <hr>
-                                                        <p class="extra-small"></p>
-                                                        <table style="width: 100%">
-                                                            <tr>
-                                                                <td>Free</td>
-                                                                <td style="text-align: right"><i class="fa fa-star text-success"></i>&nbsp;5.0</td>
-                                                            </tr>
-                                                        </table><p></p>
-                                                        <h5><a class="text-dark" href="#">SW Name</a></h5>
-                                                        <p class="small text-muted font-italic">by developer</p>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>';
-                                    }
-                                    echo '</div></div>';
-                                }
-                                ?>
-                            </div>
-                            <br><div class="text-center mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div>
-
-                        </div>
-                        <!------------------------------------------------------------- software area end ------------------------------------------------------------->
-
-                    </div><br><?php } ?>
-                <!--------------------------------------------------------- title & contenct area end -------------------------------------------------------->   
-
-            </section><br>
-            <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
-
-            <!----------------------------------------------------------- software Tables start ----------------------------------------------------------->
-            <section>
-                <div class="row">
-                    <?php
-                    $title = ["ts" => "Trending Softwares", "tg" => "Trending Games"];
-                    $m = 1;
-                    foreach ($title as $key => $value) {
-                        if ($m == 1) {
-                            echo '<div class="col-md-6 ps-5 pe-5">';
-                            $m++;
-                        } else {
-                            echo '<div class="col-md-6 ps-5 pe-5">';
-                            $m++;
-                        }
-                        echo '<h4>&nbsp;' . $value . '</h4><p class="small text-muted font-italic"></p><table class="table table-hover">';
-                        for ($i = 0; $i < 5; $i++) {
-                            echo '<tr valign="middle">
-                                        <td><button class="btn" style="margin-left: 5px;" type="submit">
-                                        <img class="p-0" src="../img/tempicon.png" height="75px" alt /></button></td>
-                                        <td>name of the software<br><i class="small text-muted font-italic">by developer</i></td>
-                                        <td>free</td>
-                                        <td><i class="fa fa-star text-success"></i>&nbsp;5.0</td>
-                                        <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
-                                    </tr>';
-                        }
-                        echo '</table><div class="text-center mt-4 mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div></div>';
-                    }
-                    ?>
-                </div><br>
-            </section>
-            <!----------------------------------------------------------- software Tables end ----------------------------------------------------------->
-
-
-
-            <!----------------------------------------------------------- Search result area start ----------------------------------------------------------->
-
-            <section>
-                <br>
-                <h1>Search result for <?php echo $sword; ?></h1><br>
-                <div class="row">
-                    <div class="col-md-3">
-                        <?php
-                        $phpself = $_SERVER['PHP_SELF'];
-                        ?>
-
-                        <h3>short by</h3>
-                        <a href="<?php echo $phpself; ?>?srt=date ASC"><button class="btn btn-outline-secondary round m-1" type="button">Recenly added</button></a>                        
-                        <a href="<?php echo $phpself; ?>?srt=date DESC"><button class="btn btn-outline-secondary round m-1" type="button">Older</button></a>
-                        <a href="<?php echo $phpself; ?>?srt=r"><button class="btn btn-outline-secondary round m-1" type="button">Rating</button></a>
-                        <a href="<?php echo $phpself; ?>?srt=d"><button class="btn btn-outline-secondary round m-1" type="button">Download</button></a>
-
-                        <br><br><h3>Platforms</h3> 
-                        <a href="<?php echo $phpself; ?>?opP="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
-                        <a href="<?php echo $phpself; ?>?opP=Windows"><button class="btn btn-outline-secondary round m-1" type="button">Windows</button></a>
-                        <a href="<?php echo $phpself; ?>?opP=Linux"><button class="btn btn-outline-secondary round m-1" type="button">Linux</button></a>
-                        <a href="<?php echo $phpself; ?>?opP=Mac"><button class="btn btn-outline-secondary round m-1" type="button">Mac</button></a>
-                        <a href="<?php echo $phpself; ?>?opP=Android"><button class="btn btn-outline-secondary round m-1" type="button">Android</button></a>
-                        <a href="<?php echo $phpself; ?>?opP=Iso"><button class="btn btn-outline-secondary round m-1" type="button">Iso</button></a>
-
-                        <br><br><h3>License</h3>
-                        <a href="<?php echo $phpself; ?>?opL="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
-                        <a href="<?php echo $phpself; ?>?opL=Free"><button class="btn btn-outline-secondary round m-1" type="button">Free</button></a>
-                        <a href="<?php echo $phpself; ?>?opL=Paid"><button class="btn btn-outline-secondary round m-1" type="button">Paid</button></a>
-
-                        <br><br><h3>Languages</h3>
-                        <a href="<?php echo $phpself; ?>?opLA="><button class="btn btn-outline-secondary round m-1" type="button">All</button></a>
-                        <a href="<?php echo $phpself; ?>?opLA=English"><button class="btn btn-outline-secondary round m-1" type="button">English</button></a>
-                        <a href="<?php echo $phpself; ?>?opLA=Sinhala"><button class="btn btn-outline-secondary round m-1" type="button">Sinhala</button></a>
-
-
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card align-items-lg-center flex-column flex-lg-row p-3">
-                            <div class="card-body order-2 order-lg-1">
-
-                                <?php
-                                foreach ($rs as $sw) {
-                                    $sid = $sw->Sid;
-                                    $name = $sw->name;
-                                    $shortdescription = $sw->shortdescription;
-                                    $platform = $sw->platform;
-                                    $developer = $sw->username;
-                                    $license = $sw->license;
-                                    $amount = $sw->amount;
-                                    $language = $sw->language;
                                     ?>
-                                    <table width=100%>
-                                        <tr>
-                                            <td class="me-1" width="180"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
-
-                                            <td class="ms-1">
-                                                <h2  class="mb-0"><?php echo $name; ?></h2>
-                                                <i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
-                                                    <?php echo " by " . $developer ?></i>
-                                                <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
-
-                                            </td>
-                                            <td align="right"></td>
-
-                                        </tr><br><hr><br>
-                                    </table>
-                                    <?php
-                                }
-                                ?>
-
+                                </ul>
                             </div>
-                        </div><br><br>
+                            <!----------------------------------------------- platform tabs end ----------------------------------------------->
 
-                        <!--buttons for back and next-->
-                        <div class="text-center">
+                            <!------------------------------------------------------------ software area start ------------------------------------------------------------>
+                            <div class="card-body">
+                                <div id="nav-tabContent" class="tab-content">
+                                    <?php
+                                    $result2 = $home->selectPlat();
+                                    $x = 1;
+                                    foreach ($result1 as $plat) {
+                                        if ($key == "pop") {
+                                            $result3 = $home->selectPlatSwM($plat->name);
+                                        } else {
+                                            $result3 = $home->selectPlatSwT($plat->name);
+                                        }
 
-                            <?php
-                            $totalRows = $schR->getTotalRows($sword, $opP, $opL, $opLA); //total number of rows
-                            $lastPage = ceil($totalRows / $rows); //last page number
-                            $phpself = $_SERVER['PHP_SELF'];
+                                        //select first one as active
+                                        if ($x == 1) {
+                                            ?>
+                                            <div id="<?php echo $key . $plat->name; ?>" class="tab-pane fade show active">
+                                                <?php
+                                                $x++;
+                                            } else {
+                                                ?>
+                                                <div id="<?php echo $key . $plat->name; ?>" class="tab-pane fade show">     
+                                                <?php }
+                                                ?>                                                                                                       
+                                                <div class="row justify-content-center m-0 mt-3" >
+                                                    <?php
+                                                    //print software card
+                                                    foreach ($result3 as $sw) {
+                                                        ?>
+                                                        <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                                                            <div class="card rounded shadow-sm">
+                                                                <div class="card-body p-2 mt-1">
+                                                                    <img class="img-fluid d-block mx-auto mb-3" src="../img/tempicon.png" alt />
+                                                                    <hr>
+                                                                    <p class="extra-small"></p>
+                                                                    <table style="width: 100%">
+                                                                        <tr>
+                                                                            <td><?php echo $sw->license; ?></td>
+                                                                            <td style="text-align: right"><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
+                                                                        </tr>
+                                                                    </table><p></p>
+                                                                    <h5><a class="text-dark" href="Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
+                                                                    <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php } ?>
+                                                </div>
+                                                <br><div class="text-center mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div>
+                                            </div><!--Remove one Div need only 1-->
 
-                            if ($totalRows == 0) {
-                                $pageNum = 0;
-                                $lastPage = 0;
-                                $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
-                                $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
-                                $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
-                                $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
-                            } else {
-                                // Generate pagination links
-                                if ($pageNum > 1) {
-                                    $page = $pageNum - 1;
-                                    $prev = ' <a href="' . $phpself . '?pagecount=' . $page . '" ><button class="btn btn-secondary m-1" type="button">Back</button></a> ';
-                                    $first = ' <a href="' . $phpself . '?pagecount=1" ><button class="btn btn-secondary m-1" type="button">First Page</button></a> ';
-                                } else {
-                                    $prev = ' <button class="btn btn-secondary m-1" type="button" disabled>Back</button> ';
-                                    $first = ' <button class="btn btn-secondary m-1" type="button" disabled>First Page</button> ';
-                                }
+                                        <?php } ?></div></div>
+                                <!------------------------------------------------------------- software area end ------------------------------------------------------------->
 
-                                if ($pageNum < $lastPage) {
-                                    $page = $pageNum + 1;
-                                    $next = ' <a href="' . $phpself . '?pagecount=' . $page . '"><button class="btn btn-secondary m-1" type="button">Next</button></a> ';
-                                    $last = ' <a href="' . $phpself . '?pagecount=' . $lastPage . '"><button class="btn btn-secondary m-1" type="button">Last Page</button></a> ';
-                                } else {
-                                    $next = ' <button class="btn btn-secondary m-1" type="button" disabled>Next</button> ';
-                                    $last = ' <button class="btn btn-secondary m-1" type="button" disabled>Last Page</button> ';
-                                }
-                                // Display pagination links
-                                echo $first . $prev . " Showing page <bold>$pageNum</bold> of <bold>$lastPage</bold> pages " . $next . $last;
-                            }
-                            ?>
+                            </div><br>
 
-                        </div>
-                    </div>
+                            <!--------------------------------------------------------- title & contenct area end -------------------------------------------------------->   
+                        <?php } ?>
+                        </section><br>
+                <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
 
-                </div>
-            </section>
+
+                        <!----------------------------------------------------------- software Tables start ----------------------------------------------------------->
+                        <section>
+                            <div class="row">
+                                <div class="col-md-6 ps-5 pe-5">
+                                    <h4>&nbsp;Trending Softwares</h4>
+                                    <table class="table table-hover">
+                                        <?php
+                                        $result4 = $home->selectTrendS();
+                                        foreach ($result4 as $sw) {
+                                            ?>
+                                            <tr valign="middle">
+                                                <!--<a href="#"></a>-->
+                                                <td><button class="btn" style="margin-left: 5px;" type="submit">
+                                                        <img class="p-0" src="../img/tempicon.png" height="75px" alt /></button></td>
+                                                <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
+                                                <td><?php echo $sw->license; ?></td>
+                                                <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
+                                                <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-6 ps-5 pe-5">                                    
+                                    <h4>&nbsp;Trending Games</h4>
+                                    <table class="table table-hover">
+                                        <?php
+                                        $result4 = $home->selectTrendG();
+                                        foreach ($result4 as $sw) {
+                                            ?>
+                                            <tr valign="middle">
+                                                <!--<a href="#"></a>-->
+                                                <td><button class="btn" style="margin-left: 5px;" type="submit">
+                                                        <img class="p-0" src="../img/tempicon.png" height="75px" alt /></button></td>
+                                                <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
+                                                <td><?php echo $sw->license; ?></td>
+                                                <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
+                                                <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </table>
+                                </div>
+                            </div><br>
+                        </section>
+                        <!----------------------------------------------------------- software Tables end ----------------------------------------------------------->
+
+                
+            <?php
             
+                                        }
+            ?>
+
             <br>
             <br>
             <br>
             <br>
         </div>
+
+        <footer id = "myFooter">
+            <div class = "container-fluid">
+                <div class = "row text-center">
+                    <div class = "col-12 col-sm-6 col-md-3">
+                        <a href = "#"> <img src = "../img/logo2.png" alt = "logo" style = "height:150px;"> </a>
+                        <h5>Software Solution</h5>
+                    </div>
+                    <div class = "col-12 col-sm-6 col-md-2">
+                        <h5>Get started</h5>
+                        <ul>
+                            <li><a href = "#">Home</a></li>
+                            <li><a href = "#">Downloads<br /></a></li>
+                            <li><a href = "#">Sign Up</a></li>
+                            <li><a href = "#">Other Links</a></li>
+                        </ul>
+                    </div>
+                    <div class = "col-12 col-sm-6 col-md-2">
+                        <h5>Our Company</h5>
+                        <ul>
+                            <li><a href = "#">About Us</a></li>
+                            <li><a href = "#">Company Information<br /></a></li>
+                            <li><a href = "#">Reviews</a></li>
+                            <li><a href = "#">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div class = "col-sm-6 col-md-2">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href = "#">FAQ</a></li>
+                            <li><a href = "#">Help Desk<br /></a></li>
+                            <li><a href = "#">Forums</a></li>
+                            <li><a href = "#">External Links</a></li>
+                        </ul>
+                    </div>
+                    <div class = "col-md-3 social-networks">
+                        <div></div><a class = "facebook" href = "#"><i class = "fa-brands fa-facebook-f fa-sm"></i></a>
+                        <a class = "twitter" href = "#"><i class = "fa-brands fa-twitter fa-sm"></i></a>
+                        <a class = "google" href = "#"><i class = "fa-brands fa-google-plus-g fa-sm"></i></a>
+                        <a class = "linkedin" href = "#"><i class = "fa-brands fa-linkedin-in fa-sm"></i></a>
+                        <button class = "btn btn-primary" style = "margin-top: 20px;" type = "button">Contact us</button>
+                    </div>
+                </div>
+                <div class = "row footer-copyright"
+                     <div class = "col" style = "background-color: #090b13;">
+                        <p>© 2023 Copyright Text ~ Designed By Team SoftDex</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </body>
 </html>
