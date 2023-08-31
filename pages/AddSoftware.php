@@ -26,20 +26,40 @@
 
 
     <body>
-
+        
+        
         <div class="header">
-            <h1>  Upload your Software Here! </h1>
+            <h2> Unleash the Brilliance of Your Software to the World! </h2>
         </div>
+        
+                <!-- Display error message based on error code -->
+            
+        <?php
+if(isset($_GET['error'])){
+    if($_GET['error'] == 1){
+        echo  "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
+    } 
+}
+?>
+        
+        
         <div class="container">
-            <div class="row">
+            
+    
+         
+            
+        <form action="AddSoftwareProcess.php" method="post">
+            
+                <div class="row">
 
-                <div class="col-md-4">
-                    <!--  upload sections -->
+                    <div class="col-md-4">
+                        <!--  upload sections -->
 
-                    <br>
-                    <img src="https://bootstrapious.com/i/snippets/sn-registeration/illustration.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                    <br>
-                    <form action="#" method="post">
+                        <br>
+                        <img src="../img/addsoftwareimg.avif" alt="" class="img-fluid mb-3 d-none d-md-block">
+                        <br>
+
+
 
                         <!-- Software Logo -->
                         <div class="form-group">
@@ -50,9 +70,10 @@
                         <br>
                         <!--upload images-->
                         <div class="form-group">
-                            <label for="images">Upload Images</label>
-                            <input type="file" id="images" name="images" class="form-control-file">
+                            <label for="softwareImage">Upload Images</label>
+                            <input type="file" name="softwareImage[]" multiple class="form-control-file">
                         </div>
+
                         <br>
 
                         <!--upload videos-->
@@ -62,29 +83,22 @@
                         </div>
                         <br>
 
-                        <!--upload tutorials-->
-                        <div class="form-group">
-                            <label for="tutorials">Upload Tutorials</label>
-                            <input type="file" id="tutorials" name="tutorials" class="form-control-file">
-                        </div>
-                        <br>
+
                         <!--upload software-->
                         <div class="form-group">
                             <label for="software">Upload Software</label>
                             <input type="file" id="software" name="software" class="form-control-file">
                         </div>
-                        <button type="submit" class="btn btn-primary">Upload </button>
-                    </form>
-                </div>
+
+
+                    </div>
 
 
 
 
-                <div class="col-md-8">
+                    <div class="col-md-8">
 
 
-                    <!--  form fields -->
-                    <form action="#" method="post">
 
                         <!--software name-->
                         <div class="form-group">
@@ -129,10 +143,17 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                                <i class="fa fa-windows text-muted"></i>
+                                                <i class="fa fa-laptop-code text-muted"></i>
                                             </span>
                                         </div>
-                                        <input id="platform" type="text" name="platform" placeholder="Platform" class="form-control bg-white border-left-0 border-md">
+                                        <select id="platform" name="platform" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                                            <option value="">Windows</option>
+                                            <option value="paid">Linux</option>
+                                            <option value="">Android</option>
+                                            <option value="paid">Ubuntu</option>
+                                            <option value="paid">MacOS</option>
+                                            >
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -171,13 +192,13 @@
                             </div>
                         </div>
 
-                       
+
 
                         <!--category-->
                         <div class="form-group">
                             <div class="row">
 
-                                <div class="col-lg-12 mb-4">
+                                <div class="col-lg-6 mb-4">
                                     <label for="category">Category</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -205,8 +226,31 @@
                                             <option value="">File Sharing and Cloud Storage</option>
                                             <option value="">Entertainment and Content Creation</option>
                                         </select>
-                                    </div> 
+                                    </div>  
                                 </div>
+
+                                <div class="col-lg-6 mb-4">
+                                    <label for="language">Language</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                                <i class="fa fa-language text-muted"></i>
+                                            </span>
+                                        </div>
+                                        <select id="language" name="language" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                                            <option value="">English</option>
+                                            <option value="paid">Russian</option>
+                                            <option value="">Japanese</option>
+                                            <option value="paid">Arabic</option>
+                                            <option value="">Spanish</option>
+                                            <option value="paid">German</option>
+                                            <option value="">French</option>
+                                            <option value="paid">Hindi</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
 
@@ -217,14 +261,14 @@
                             <div class="row">
 
                                 <div class="col-lg-12 mb-4">
-                                    <label for="tags">Tags</label>
+                                    <label for="tags">Tags  (Type and Press enter or add a comma after each tag) </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                                 <i class="fa fa-tag text-muted"></i>
                                             </span>
                                         </div>
-                                        <input name="tags" id="tags" placeholder="Type and Press enter or add a comma after each tag"  class="form-control" >
+                                        <input name="tags" id="tags" placeholder="Tags"  class="form-control" >
                                     </div>
 
                                 </div>
@@ -234,7 +278,8 @@
                         <!--system requirements-->
                         <div class="form-group">
                             <label for="systemreq">System Requirements</label>
-                            <div id="editor-container"></div>
+                            <div id="editor-container" ></div>
+                            <input type="hidden" name="systemreq" id="hiddenSystemReq">
 
                         </div>
 
@@ -247,39 +292,60 @@
                         <!--long description-->
                         <div class="form-group">
                             <label for="longDescription">Long Description</label>
-                            <div id="editor-container1"></div>
+                            <div id="editor-container1" ></div>
+                            <input type="hidden" name="longDescription" id="hiddenLongDescription">
 
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit </button>
+                        
+      
+                        <!--Submit button-->
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary w-50" >Submit</button>
+                        </div>
 
-                    </form>
+
+                    </div>
+
                 </div>
 
-            </div>
+       
+    </form>
+</div>
+
+<br>
+<br>
 
 
-            <script>
-                var quill = new Quill('#editor-container', {
-                    theme: 'snow'
-                });
-            </script>
 
-            <script>
-                var quill = new Quill('#editor-container1', {
-                    theme: 'snow'
-                });
-            </script>
+<script>
+    var quill = new Quill('#editor-container', {
+        theme: 'snow'
+    });
+</script>
 
-            <script>
-                // Initialize Tagify
-                new Tagify(document.querySelector('input[name=tags]'), {
-                    // Options, if needed
-                });
-            </script>
+<script>
+    var quill = new Quill('#editor-container1', {
+        theme: 'snow'
+    });
+</script>
+
+<script>
+    new Tagify(document.querySelector('input[name=tags]'), {
+    });
+</script>
+
+<script>
+   var systemReqContent = quillSystemReq.root.innerHTML;
+var longDescriptionContent = quillLongDescription.root.innerHTML;
+
+document.getElementById("hiddenSystemReq").value = systemReqContent;
+document.getElementById("hiddenLongDescription").value = longDescriptionContent;
+
+</script>
 
 
-    
 
-    </body>
+
+</body>
 </html>
