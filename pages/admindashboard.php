@@ -1,7 +1,18 @@
 <?php
-require_once '../Classes/DbConnector.php'; // Adjust the path as needed
-use Classes\DbConnector;
-$dbConnector = new DbConnector();
+
+use Classes\admin;
+
+require_once '../Classes/DbConnector.php';
+require_once '../Classes/admin.php';
+
+use Classes\DbConnector as MyDbConnector;
+
+$dbConnector = new MyDbConnector();
+$connection = $dbConnector->getConnection();
+
+
+$users = admin::viewuserdetails($connection);
+$softwares= admin::viewallsoftware($connection);
 
 ?>
 <!DOCTYPE html>
@@ -151,53 +162,45 @@ $dbConnector = new DbConnector();
             </div>
 
             <!-- ================ Order Details List ================= -->
-            <div class="details" >
-                <div class="recentOrders" id="Softwaretable1" style="display: none;">
-                    <div class="cardHeader">
-                        <h2>Softwares</h2>
-                        
-                    </div>
+                <div class="details" >
+                    <div class="recentOrders" id="Softwaretable1" style="display: none;">
+                        <div class="cardHeader">
+                            <h2>Softwares</h2>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td>Price</td>
-                                <td>Devolper Name</td>
-                                <td>license</td>
-                                <td>platform<td>
-                            </tr>
-                        </thead>
+                        </div>
 
-                         <tbody>
-                                <?php
-                                try {
-                                $dbConnection = $dbConnector->getConnection();
-                                $softwareQuery = "SELECT * FROM software";
-                                $spstmt = $dbConnection->prepare($softwareQuery);
-                                $spstmt->execute();
-                                $rs = $spstmt->fetchAll(PDO::FETCH_OBJ);
-                                foreach ($rs as $software){
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Price</td>
+                                    <td>Devolper Name</td>
+                                    <td>license</td>
+                                    <td>platform<td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php 
+                                foreach ($softwares as $software){
                                 ?>
                                 <tr>
-                                    <td><?php echo $software->name; ?></td>
-                                    <td><?php echo $software->amount; ?></td>
-                                    <td><?php echo $software->developer; ?></td>
-                                    <td><?php echo $software->license; ?></td>
-                                    <td><?php echo $software->platform; ?></td>
-                                     <td><button type="button" class="btn btn-primary">Remove</button></td>
+                                    <td><?=$software->getName()?></td>
+                                    <td><?=$software->getAmount()?></td>
+                                    <td><?=$software->getDeveloper()?></td>
+                                    <td><?=$software->getLicense()?></td>
+                                    <td><?=$software->getPlatform()?></td>
+                                    
+                                    
+                                    <td><button type="button" class="btn btn-primary">Remove</button></td>
                                 </tr>
-                                  <?php
-                                }
-                                } catch (PDOException $exc) {
-                                echo $exc->getMessege();
+                                 <?php
                                 }
                                 ?>
-
-
+                               
                             </tbody>
-                    </table>
-                </div>
+                        </table>
+                    </div>
 
                 <!-- ================= New Customers ================ -->
                     <div class="recentCustomers" id="RecentCustomertable">
@@ -217,25 +220,15 @@ $dbConnector = new DbConnector();
 
                             <tbody>
                                 <?php
-                                try {
-                                $dbConnection = $dbConnector->getConnection();
-                                $userQuery = "SELECT * FROM user";
-                                $upstmt = $dbConnection->prepare($userQuery);
-                                $upstmt->execute();
-                                $rs = $upstmt->fetchAll(PDO::FETCH_OBJ);
-                                foreach ($rs as $user){
-                                ?>
-                                <tr>
-                                    <td><?php echo $user->fname." ".$user->lname; ?></td>
-                                    <td><?php echo $user->email; ?></td>
-                                    <td><?php echo $user->username; ?></td>
-                                    <td><?php echo $user->country; ?></td>
-                                     <td><button type="button" class="btn btn-primary">edit</button></td>
-                                </tr>
-                                  <?php
-                                }
-                                } catch (PDOException $exc) {
-                                echo $exc->getMessege();
+                                foreach ($users as $user) {
+                                    ?>
+                                    <tr>
+                                        <td><?= $user->getFname() . " " . $user->getLname() ?></td>
+                                        <td><?= $user->getEmail() ?></td>
+                                        <td><?= $user->getUsername() ?></td>
+                                        <td><?= $user->getCountry() ?></td>
+                                    </tr>
+                                    <?php
                                 }
                                 ?>
 
