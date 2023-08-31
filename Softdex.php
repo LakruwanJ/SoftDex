@@ -70,7 +70,7 @@ $rsCls = new Home();
                                 <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu">
-                                <center><li>UserName</li></center>
+                                <center><li><?php echo $user;?></li></center>
                                 <hr class="p-0 m-0 mt-1">
                                 <li><a class="dropdown-item " href="#"><i class="fas fa-user mr-2 icoon"></i>Account</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
