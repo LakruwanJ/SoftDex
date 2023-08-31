@@ -16,11 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $sword = null;
     }
-    $_SESSION["sword"] = $_POST["searchbar"];
-    echo $sword;
-    echo $_SESSION["sword"];
-} else {
+    $_SESSION["sword"] = $sword;
+} else if (isset($_SESSION["sword"])) {
     $sword = $_SESSION["sword"];
+} else {
+    $sword = null;
+    $_SESSION["sword"] = $sword;
 }
 $srt = isset($_GET['srt']) ? $_GET['srt'] : 'date ASC';
 $opP = isset($_GET['opP']) ? $_GET['opP'] : NULL;
@@ -156,7 +157,21 @@ $star = [254, 20, 6, 15, 63, 150];
                                     ?>
                                     <table width=100%>
                                         <tr>
-                                            <td class="me-1" width="180"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
+                                            <td class="me-1" width="180">
+                                                <?php
+                                                $imageFormats = ['png', 'jpg']; // List of possible image formats
+                                                $imagePath = '../img/sw/' . $sw->Sid . '/logo'; // Base path without extension
+
+                                                foreach ($imageFormats as $format) {
+                                                    $imageUrl = $imagePath . '.' . $format;
+
+                                                    if (file_exists($imageUrl)) {
+                                                        echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="150px" alt="Logo Image" />';
+                                                        break; // Stop when the first valid image format is found
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
 
                                             <td class="ms-1">
                                                 <h2  class="mb-0"><?php echo $name; ?></h2>

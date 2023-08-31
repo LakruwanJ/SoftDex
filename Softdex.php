@@ -12,8 +12,7 @@ use Classes\Home;
 
 $dbcon = new DbConnector();
 $home = new Home();
-?>
-<?php
+
 session_start();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
@@ -52,16 +51,32 @@ $rsCls = new Home();
                                     class="fa-solid fa-house  icoon"></i>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-link_  active" href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
+                            <a class="nav-link nav-link_  " href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-link_  active" href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
+                            <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
+                        </li>
+                        <!--without login-->
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
+                            <a class="nav-link " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
+
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link active " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
+                        <!--with login-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <center><li>UserName</li></center>
+                                <hr class="p-0 m-0 mt-1">
+                                <li><a class="dropdown-item " href="#"><i class="fas fa-user mr-2 icoon"></i>Account</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
+                                <hr class="p-0 m-0 mt-1">
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
+                            </ul>
 
                         </li>
                     </ul>
@@ -217,7 +232,7 @@ $rsCls = new Home();
                                         <a href="#">
                                             <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                1<?php // add here                         ?>
+                                                1<?php // add here                             ?>
                                             </span>
                                         </a>                                            
                                     </span>
@@ -250,7 +265,6 @@ $rsCls = new Home();
                             <div class="card-header">
                                 <ul class="nav nav-tabs card-header-tabs" role="tablist">
                                     <?php
-
                                     $result1 = $home->selectPlat();
 
                                     //$result1 = $rsCls->selectPlat();
@@ -279,7 +293,6 @@ $rsCls = new Home();
                             <div class="card-body">
                                 <div id="nav-tabContent" class="tab-content">
                                     <?php
-
                                     $result2 = $home->selectPlat();
                                     $x = 1;
                                     foreach ($result1 as $plat) {
@@ -312,7 +325,19 @@ $rsCls = new Home();
                                                         <div class="col-sm-6 col-md-4 col-lg-2 p-2">
                                                             <div class="card rounded shadow-sm">
                                                                 <div class="card-body p-2 mt-1">
-                                                                    <img class="img-fluid d-block mx-auto mb-3" src="img/tempicon.png" alt />
+                                                                    <?php
+                                                                    $imageFormats = ['png', 'jpg'];
+                                                                    $imagePath = 'img/sw/'.$sw->Sid.'/logo'; 
+
+                                                                    foreach ($imageFormats as $format) {
+                                                                        $imageUrl = $imagePath . '.' . $format;
+
+                                                                        if (file_exists($imageUrl)) {
+                                                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="120px" alt="Logo Image" />';
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    ?>
                                                                     <hr>
                                                                     <p class="extra-small"></p>
                                                                     <table style="width: 100%">
@@ -324,31 +349,25 @@ $rsCls = new Home();
                                                                     <h5><a class="text-dark" href="pages/Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
                                                                     <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
 
-<!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
-                                                                    <p class="small text-muted font-italic"><?php echo $sw->username; ?></p> -->
+                                                <!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
+                                                                                                                    <p class="small text-muted font-italic"><?php echo $sw->username; ?></p> -->
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <?php } ?>
+        <?php } ?>
                                                 </div>
                                                 <br><div class="text-center mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div>
                                             </div><!--Remove one Div need only 1-->
 
-                                        <?php } ?></div></div>
+    <?php } ?></div></div>
                                 <!------------------------------------------------------------- software area end ------------------------------------------------------------->
 
                             </div><br>
 
                             <!--------------------------------------------------------- title & contenct area end -------------------------------------------------------->   
-                        <?php } ?>
-                        </section><br>
-
-                <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
-
-
-                        <!-------------------------------------------------------- title & contenct area end -------------------------------------------------------->                  
-
+<?php } ?>
+                        </section><br>             
 
 
                         <!----------------------------------------------------------- software Tables start ----------------------------------------------------------->
@@ -364,14 +383,27 @@ $rsCls = new Home();
                                             ?>
                                             <tr valign="middle">
                                                 <!--<a href="#"></a>-->
-                                                <td><button class="btn" style="margin-left: 5px;" type="submit">
-                                                        <img class="p-0" src="img/tempicon.png" height="75px" alt /></button></td>
+                                                <td><button class="btn" style="margin-left: 5px;" type="submit"> 
+                                                        <?php
+                                                                    $imageFormats = ['png', 'jpg'];
+                                                                    $imagePath = 'img/sw/'.$sw->Sid.'/logo'; 
+
+                                                                    foreach ($imageFormats as $format) {
+                                                                        $imageUrl = $imagePath . '.' . $format;
+
+                                                                        if (file_exists($imageUrl)) {
+                                                                            echo '<img class="d-block mx-auto mb-1 mt-1" src="' . $imageUrl . '" height="75px" alt="Logo Image" />';
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                    </button></td>
                                                 <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
                                                 <td><?php echo $sw->license; ?></td>
                                                 <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
                                                 <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
                                             </tr>
-                                        <?php } ?>
+<?php } ?>
                                     </table>
                                 </div>
 
@@ -385,13 +417,26 @@ $rsCls = new Home();
                                             <tr valign="middle">
                                                 <!--<a href="#"></a>-->
                                                 <td><button class="btn" style="margin-left: 5px;" type="submit">
-                                                        <img class="p-0" src="img/tempicon.png" height="75px" alt /></button></td>
+                                                        <?php
+                                                                    $imageFormats = ['png', 'jpg'];
+                                                                    $imagePath = 'img/sw/'.$sw->Sid.'/logo'; 
+
+                                                                    foreach ($imageFormats as $format) {
+                                                                        $imageUrl = $imagePath . '.' . $format;
+
+                                                                        if (file_exists($imageUrl)) {
+                                                                            echo '<img class="d-block mx-auto mb-1 mt-1" src="' . $imageUrl . '" height="75px" alt="Logo Image" />';
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                    </button></td>
                                                 <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
                                                 <td><?php echo $sw->license; ?></td>
                                                 <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
                                                 <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
                                             </tr>
-                                        <?php } ?>
+<?php } ?>
                                     </table>
                                 </div>
                             </div><br>
@@ -423,78 +468,78 @@ $rsCls = new Home();
                         <div class="photo-card">
                             <div class="container">
 
-                                <!--                        <div class="row align-items-center">
-                                                            <div class="col-md-6 p-0">
-                                                                <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');
-                                        ">
-                                                                    
-                                                                    <div class="hover hover-2 text-white photo-background-l"><img src="img/product-aeon-feature.jpg" alt="">
-                                          <div class="hover-overlay"></div>
-                                          <div class="hover-2-content px-5 py-4">
-                                            <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
-                                            <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
-                                          </div>
-                                        </div>
-                                                                    
+                                        <!--                        <div class="row align-items-center">
+                                                                    <div class="col-md-6 p-0">
+                                                                        <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');
+                                                ">
+                                                                            
+                                                                            <div class="hover hover-2 text-white photo-background-l"><img src="img/product-aeon-feature.jpg" alt="">
+                                                  <div class="hover-overlay"></div>
+                                                  <div class="hover-2-content px-5 py-4">
+                                                    <h3 class="hover-2-title text-uppercase font-weight-bold mb-0"> <span class="font-weight-light">Image </span>Caption</h3>
+                                                    <p class="hover-2-description text-uppercase mb-0">Lorem ipsum dolor sit amet, consectetur <br>adipisicing elit.</p>
+                                                  </div>
+                                                </div>
+                                                                            
+                                                                        </div>
+                                                                            
+                                                                    </div>
+                                                                    <div class="col-md-6 photo-details">
+                                                                        <h1>User</h1><br>
+                                                                        <p>Our platform offers user registration for personalized experiences and access to exclusive features. Users can manage profiles, preferences, and account settings.</p>
+                                                                        <div class="photo-tags">
+                                                                            <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#user">read more...</a></li></ul>
+                                                </div></div>
+                                                </div>
+                
+                                                <div class = "row align-items-center">
+                                                <div class = "col-md-6 photo-details">
+                                                <h1>Developer</h1><br>
+                                                <p>On our Softdex website, developers can create a profile, which typically includes information about a software developer's background, skills, experience, and projects they have worked on.</p>
+                                                                        <div class="photo-tags">
+                                                                            <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#developer">read more...</a></li></ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6 p-0"><div class="photo-background-r" style="background-image: url('img/product-aeon-feature.jpg');"></div></div>
                                                                 </div>
-                                                                    
-                                                            </div>
-                                                            <div class="col-md-6 photo-details">
-                                                                <h1>User</h1><br>
-                                                                <p>Our platform offers user registration for personalized experiences and access to exclusive features. Users can manage profiles, preferences, and account settings.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#user">read more...</a></li></ul>
-                                        </div></div>
-                                        </div>
-        
-                                        <div class = "row align-items-center">
-                                        <div class = "col-md-6 photo-details">
-                                        <h1>Developer</h1><br>
-                                        <p>On our Softdex website, developers can create a profile, which typically includes information about a software developer's background, skills, experience, and projects they have worked on.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#developer">read more...</a></li></ul>
+                                        
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-md-6 p-0">
+                                                                        <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');">
+                                                                            
+                                                                        </div>
+                                                                            
+                                                                    </div>
+                                                                    <div class="col-md-6 photo-details">
+                                                                        <h1>Software</h1><br>
+                                                                        <p>Embark on a seamless journey of discovering, downloading, and utilizing premium and free software that elevates your digital experience.</p>
+                                                                        <div class="photo-tags">
+                                                                            <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#sw">read more...</a></li></ul>
+                                                                        </div></div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6 p-0"><div class="photo-background-r" style="background-image: url('img/product-aeon-feature.jpg');"></div></div>
-                                                        </div>
-                                
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-6 p-0">
-                                                                <div class="photo-background-l" style="background-image: url('img/product-aeon-feature.jpg');">
-                                                                    
+                                        
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-md-6 photo-details  d-flex flex-column psd-right1">
+                                                                        <h1>Customized Software</h1><br>
+                                                                        <p>where we empower you with the unique ability to create fully customized software solutions that cater to your specific needs.</p>
+                                                                        <div class="photo-tags">
+                                                                            <ul>
+                                                                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#csw">read more...</a></li>
+                                                                            </ul>
+                                                                        </div></div>
+                                                                    <div class="col-md-6 p-0 d-flex flex-row intro-card-2"><div class="photo-background-r"><img class="howto-img photo-background-r" src="img/product-aeon-feature.jpg" width="100%" height="100%"></div></div>
                                                                 </div>
-                                                                    
-                                                            </div>
-                                                            <div class="col-md-6 photo-details">
-                                                                <h1>Software</h1><br>
-                                                                <p>Embark on a seamless journey of discovering, downloading, and utilizing premium and free software that elevates your digital experience.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul><li><a href="#" data-bs-toggle="modal" data-bs-target="#sw">read more...</a></li></ul>
-                                                                </div></div>
-                                                        </div>
-                                
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-6 photo-details  d-flex flex-column psd-right1">
-                                                                <h1>Customized Software</h1><br>
-                                                                <p>where we empower you with the unique ability to create fully customized software solutions that cater to your specific needs.</p>
-                                                                <div class="photo-tags">
-                                                                    <ul>
-                                                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#csw">read more...</a></li>
-                                                                    </ul>
-                                                                </div></div>
-                                                            <div class="col-md-6 p-0 d-flex flex-row intro-card-2"><div class="photo-background-r"><img class="howto-img photo-background-r" src="img/product-aeon-feature.jpg" width="100%" height="100%"></div></div>
-                                                        </div>
-                                                        
-                                                        
-                                -->
+                                                                
+                                                                
+                                        -->
 
-<!--                                <div class="row align-items-center">
-                                    <div class="hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
-                                        <img class="photo-background-l" src="img/product-aeon-feature.jpg" width="100%" height="100%"> -->
+                                        <!--                                <div class="row align-items-center">
+                                                                            <div class="hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
+                                                                                <img class="photo-background-l" src="img/product-aeon-feature.jpg" width="100%" height="100%"> -->
 
                                         <div class="hover-overlay"></div>
                                         <div class="hover-2-content px-5 py-4">
-                                            <a class="hover-2-title text-uppercase font-weight-bold mb-0" href="pages.php?page=Search.php"> <button type="button" class="btn btn-secondary" >Join Now</button></a>
+                                            <a class="hover-2-title text-uppercase font-weight-bold mb-0" href="index.php?mode=signup"> <button type="button" class="btn btn-secondary" >Join Now</button></a>
                                             <p class="hover-2-description text-uppercase mb-0">Collaborate with SoftDex by joining forces </p>
                                         </div>
                                     </div>
@@ -531,7 +576,7 @@ $rsCls = new Home();
                                         <img class = "photo-background-l" src = "img/home/sw.png" width = "100%" height = "100%">
                                         <div class = "hover-overlay"></div>
                                         <div class = "hover-2-content px-5 py-4">
-                                            <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Browse</button></a>
+                                            <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = "pages/Search.php"> <button type = "button" class = "btn btn-secondary" >Browse</button></a>
                                             <p class = "hover-2-description text-uppercase mb-0">Embark on a software exploration journey with SoftDex</p>
                                         </div>
                                     </div>
@@ -541,7 +586,7 @@ $rsCls = new Home();
                                         <div class = "photo-tags">
                                             <ul><li><a href = "#" data-bs-toggle = "modal" data-bs-target = "#sw">read more...</a></li></ul>
 
-                                
+
 
                                         </div>
                                     </div>
@@ -564,28 +609,12 @@ $rsCls = new Home();
                                         <div class = "hover-2-content px-5 py-4">
                                             <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Create Your own Software</button></a>
                                             <p class = "hover-2-description text-uppercase mb-0">Craft tailored software solutions with the expertise of SoftDex</p>
-
-<!--                                 <div class = "row align-items-center">
-                                    <div class = "hovere hover-2 text-white col-12 col-sm-6 d-flex flex-row intro-card-1 photo-background-l px-0">
-                                        <img class = "photo-background-l" src = "img/product-aeon-feature.jpg" width = "100%" height = "100%">
-                                        <div class = "hover-overlay"></div>
-                                        <div class = "hover-2-content px-5 py-4">
-                                            <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Browse</button></a>
-                                            <p class = "hover-2-description text-uppercase mb-0">Embark on a software exploration journey with SoftDex</p>
-                                        </div>
-                                    </div>
-                                    <div class = "col-12 col-sm-6 d-flex flex-column psd-left1 photo-details">
-                                        <h1>Software</h1><br>
-                                        <p>Embark on a seamless journey of discovering, downloading, and utilizing premium and free software that elevates your digital experience.</p>
-                                        <div class = "photo-tags">
-                                            <ul><li><a href = "#" data-bs-toggle = "modal" data-bs-target = "#sw">read more...</a></li></ul> -->
-
                                         </div>
                                     </div>
                                 </div>
 
 
-                                
+
                                 <br>
                             </div></div>
 

@@ -63,7 +63,19 @@ $star = [254, 20, 6, 15, 63, 150];
                     <table width="100%">
                         <tr valign="middle">
                             <td width="25%"><button class="btn p-0" style="margin-left: 5px;" type="submit">
-                                    <img class="mx-auto mb-1" src="../img/<?php echo $id; ?>/<?php echo $id; ?>.webp" height="130px" alt />
+                                    <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = '../img/sw/' . $sw->Sid . '/logo';
+
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break; 
+                                        }
+                                    }
+                                    ?>
 
                                 </button></td>
                             <td>
@@ -97,7 +109,7 @@ $star = [254, 20, 6, 15, 63, 150];
                         <?php
                     } else {
                         ?>  
-                    <button type="button" class="btn btn-success down">
+                        <button type="button" class="btn btn-success down">
                             <table width=100%>
                                 <tr>
                                     <td class="p-3 text-light" ><span><h3>Download</h3></span></td>
@@ -149,7 +161,7 @@ $star = [254, 20, 6, 15, 63, 150];
                         </tr>
 
                     </table>
-                    
+
                 </div>
 
                 <div class="col-md-4 p-3">

@@ -27,12 +27,12 @@
                             <tbody>
                                 <tr>
                                     <td align="center"><div class="remember-forgot">
-                            <label class="remember-label">
-                                <input type="checkbox" name="remember" id="remember" />
-                                Remember me
-                            </label>
-                            
-                        </div></td>
+                                            <label class="remember-label">
+                                                <input type="checkbox" name="remember" id="remember" />
+                                                Remember me
+                                            </label>
+
+                                        </div></td>
                                     <td align="center"><a href="#" class="forgot-link" align="right">Forgot Password?</a></td>
                                 </tr>
                             </tbody>
@@ -67,7 +67,7 @@
                     <div class="content">
                         <h3>Are You New Here?</h3>
                         <p>
-                           Unlock Limitless Possibilities: Join the Digital Revolution with SoftDex! Your Journey Starts Here.
+                            Unlock Limitless Possibilities: Join the Digital Revolution with SoftDex! Your Journey Starts Here.
                         </p>
                         <button class="btn transparent" id="sign-up-btn">
                             Sign up
@@ -89,8 +89,18 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const container = document.querySelector(".container");
+                const urlParams = new URLSearchParams(window.location.search);
+                const mode = urlParams.get("mode");
 
+                if (mode === "signup") {
+                    container.classList.add("sign-up-mode");
+                }
+            });
+        </script>
         <script src="js/reglog.js"></script>
-        
+
     </body>
 </html>
