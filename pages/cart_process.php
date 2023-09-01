@@ -98,13 +98,13 @@ if (isset($_POST['remove'])){
                                 echo "<h6>Price (0 items)</h6>";
                             }
                         ?>
-                        
+
                         <hr>
                         <h6>Amount Payable</h6>
                     </div>
                     <div class="col-md-6">
                         <h6>$<?php echo $total; ?></h6>
-                        
+
                         <hr>
                         <h6>$<?php
                             echo $total;
