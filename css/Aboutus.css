@@ -56,6 +56,7 @@ h2 {
 	border-radius: 1.2rem;
 	margin: 2rem;
 	transition: all 0.3s;
+        height: 600px;
 }
 
 .card:hover {
@@ -109,6 +110,9 @@ h2 {
 	.card {
 		width: 100%;
 		margin: 2rem 0;
+	}
+        .card img {
+		height: 100px; /* Further reduced image height for smaller screens */
 	}
 }
 
