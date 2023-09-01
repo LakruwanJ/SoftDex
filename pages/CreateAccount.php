@@ -120,6 +120,7 @@
                                             </div>
                                             <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
                                         </div>
+
                                     </div>
 
                                     <!-- Password Confirmation-->
@@ -134,6 +135,7 @@
                                             <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                                         </div>
                                     </div>
+
 
                                 </div>
                             </div>
@@ -185,8 +187,6 @@
                             </div>-->
                         </div>
 
-
-
                         <div id="developerFields" style="display: none;">
                             <h2>Update your profile as a developer</h2>
 
@@ -210,6 +210,7 @@
                                     <!--Last Name-->
                                     <div class="input-group col-lg-6 mb-4">
                                         <label for="lastname">Last Name</label>
+
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
@@ -240,6 +241,7 @@
                                 </div>
                             </div>
 
+
                             <!--password-->
                             <div class="form-group">
                                 <div class="row">
@@ -254,6 +256,7 @@
                                             <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
                                         </div>
                                     </div>
+
 
                                     <!-- Password Confirmation-->
                                     <div class="input-group col-lg-6 mb-4">

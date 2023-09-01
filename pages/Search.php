@@ -77,7 +77,7 @@ $star = [254, 20, 6, 15, 63, 150];
                         <!--with login-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="img/user (2).png" width="40" height="40" class="rounded-circle">
+                                <img src="../img/user (2).png" width="40" height="40" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu">
                                 <center><li><?php echo $user;?></li></center>
