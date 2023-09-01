@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace Classes;
 
@@ -14,9 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["searchbar"])) {
         setcookie(schWord, $_POST["searchbar"]);
         header("Location: pages.php?page=Search.php");
-    } else if (isset($_POST["Platforms"])) {
-        setcookie(schOpPl, $_POST["Platforms"]);
-        header("Location: pages.php");
     } else {
         header("Location: pages.php");
     }
