@@ -37,7 +37,7 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['coun
            
          
         } else {
-            echo "Error: " . $stmt->errorInfo()[2]; // Display the error message
+            echo "Error: " . $stmt->errorInfo()[2]; 
         }
     }
     else{
@@ -69,7 +69,7 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['coun
              echo 'Experience:'.$experience;
             echo 'Skills:'.$skills;
         } else {
-            echo "Error: " . $stmt->errorInfo()[2]; // Display the error message
+            echo "Error: " . $stmt->errorInfo()[2]; 
         }
     }
 }

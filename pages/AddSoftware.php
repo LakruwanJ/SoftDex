@@ -48,7 +48,7 @@
 
 
 
-            <form action="AddSoftwareProcess.php" method="post">
+            <form action="../Process/AddSoftwareProcess.php" method="post">
 
                 <div class="row">
 
