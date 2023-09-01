@@ -43,7 +43,7 @@ $softwares= admin::viewallsoftware($connection);
                 </li>
 
                 <li>
-                    <a  href="#">
+                    <a id="Dashboardbutton" href="#">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -118,7 +118,7 @@ $softwares= admin::viewallsoftware($connection);
             <div class="cardBox">
                 <div class="card">
                     <div>
-                        <div class="numbers">1,504</div>
+                        <div class="numbers">30</div>
                         <div class="cardName">Users</div>
                     </div>
 
@@ -129,7 +129,7 @@ $softwares= admin::viewallsoftware($connection);
 
                 <div class="card">
                     <div>
-                        <div class="numbers">80</div>
+                        <div class="numbers">11</div>
                         <div class="cardName">Devolpers</div>
                     </div>
 
@@ -140,7 +140,7 @@ $softwares= admin::viewallsoftware($connection);
 
                 <div class="card">
                     <div>
-                        <div class="numbers">284</div>
+                        <div class="numbers">59</div>
                         <div class="cardName">Softwares</div>
                     </div>
 
@@ -151,7 +151,7 @@ $softwares= admin::viewallsoftware($connection);
 
                 <div class="card">
                     <div>
-                        <div class="numbers">7,842</div>
+                        <div class="numbers">6</div>
                         <div class="cardName">Downlods</div>
                     </div>
 
@@ -316,7 +316,7 @@ $softwares= admin::viewallsoftware($connection);
         </div>
 
     <!-- =========== Scripts =========  -->
-    <script src="assets/js/main.js"></script>
+    <script src="../JS/admindashboard.js"></script>
 
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -336,7 +336,7 @@ $softwares= admin::viewallsoftware($connection);
         $("#sidebar").toggleClass("active");
       });
 
-      // Show the travelers table when the "User management" button is clicked
+      // Show the users table when the "User management" button is clicked
       $("#Usermanagementbutton").click(function () {
         $("#RecentCustomertable").show();
         $("#Softwaretable1").hide();
@@ -344,7 +344,7 @@ $softwares= admin::viewallsoftware($connection);
 
       });
 
-      // Show the agencies table when the "Software mangement" button is clicked
+      // Show the Software table when the "Software mangement" button is clicked
       $("#SoftwareManagementbutton").click(function () {
         $("#Softwaretable1").show();
         $("#Softwaretable2").show();
@@ -352,6 +352,14 @@ $softwares= admin::viewallsoftware($connection);
         
 
       });
+      // Show the dashboard table when the "Dashboard" button is clicked
+      $("#Dashboardbutton").click(function () {
+        $("#Softwaretable1").hide();
+        $("#Softwaretable2").hide();
+        $("#RecentCustomertable").hide();
+        
+       
+        });
 
       
     });
