@@ -166,5 +166,6 @@
         </script>
         <script src="js/reglog.js"></script>
         <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
     </body>
 </html>
