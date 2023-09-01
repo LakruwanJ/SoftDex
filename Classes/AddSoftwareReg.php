@@ -38,10 +38,10 @@ class AddSoftwareReg{
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
         
-        $queary="INSERT INTO software(name, version, platform, license ,category ,amount, language,tags ,systemreq ,shortdescription ,description) VALUES(?, ?, ?, ? ,? , ?, ? , ? , ?, ?, ? )";
+        $query="INSERT INTO software(name, version, platform, license ,category ,amount, language,tags ,systemreq ,shortdescription ,description) VALUES(?, ?, ?, ? ,? , ?, ? , ? , ?, ?, ? )";
         
         try{
-            $pstmt= $con->prepare($queary);
+            $pstmt= $con->prepare($query);
             $pstmt->bindValue(1, $this->softwareName);
             $pstmt->bindValue(2, $this->version);
             $pstmt->bindValue(3,  $this->platform);
@@ -62,7 +62,7 @@ class AddSoftwareReg{
                 echo 'Failure';
             }
         } catch (PDOException $e) {
-            die("Connection failed: ").$e->getMessage();
+            die("Failed to add your data : ").$e->getMessage();
 
         }
     }

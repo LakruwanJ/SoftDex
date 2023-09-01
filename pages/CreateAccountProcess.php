@@ -1,45 +1,80 @@
 <?php
+
 require '../Classes/DbConnector.php';
 
 use Classes\DbConnector;
 
-$dbcon = new DbConnector(); 
+$dbcon = new DbConnector();
+if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['country'], $_POST['password'], $_POST['experience'], $_POST['skills'], $_POST['user'])) {
+    $fname = $_POST['firstname'];
+    $lname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $country = $_POST['country'];
+    $password = $_POST['password'];
+    $experience = $_POST['experience'];
+    $skills = $_POST['skills'];
+    $category = $_POST['user'];
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['category'])) {
-        $category = $_POST['category'];
-        
 
-        // Common fields
-        $firstName = $_POST['firstname'];
-        $lastName = $_POST['lastname'];
-        $gender = $_POST['Gender'];
-        $country = $_POST['country'];
-        $phoneNumber = $_POST['phone'];
+    $con = $dbcon->getConnection();
 
-        // ... Validate common fields here ...
+    if ($category == 'user') {
+        $sql = "INSERT INTO user2 (fname, lname, email, country, password) VALUES (?,?,?,?,?)";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(1, $fname);
+        $stmt->bindParam(2, $lname);
+        $stmt->bindParam(3, $email);
+        $stmt->bindParam(4, $country);
+        $stmt->bindParam(5, $password);
+        $stmt->execute();
 
-        if ($category === 'user') {
-            // Process user account registration
-            $dbcon->execute("INSERT INTO user (fname, lname, country, ) VALUES (?, ?, ?, ?, ?)",
-                            [$firstName, $lastName, $gender, $country, $phoneNumber]);
-        } elseif ($category === 'developer') {
-            // Developer-specific fields
-            $skills = $_POST['skills'];
-            $experience = $_POST['experience'];
+        if (($stmt->rowCount()) > 0) {
 
-            // ... Validate developer-specific fields here ...
 
-            // Process developer account registration
-            $dbcon->execute("INSERT INTO developer (first_name, last_name, gender, country, phone, skills, experience) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                            [$firstName, $lastName, $gender, $country, $phoneNumber, $skills, $experience]);
+            echo 'firstname:'.$fname;
+              echo 'last name:'.$lname;
+           
+         
         } else {
-            // Handle unexpected category value
+            echo "Error: " . $stmt->errorInfo()[2]; // Display the error message
         }
+    }
+    else{
+        $sql = "INSERT INTO user2 (fname, lname, email, country, password) VALUES (?,?,?,?,?)";
+        $stmt1 = $con->prepare($sql);
+        $stmt1->bindParam(1, $fname);
+        $stmt1->bindParam(2, $lname);
+        $stmt1->bindParam(3, $email);
+        $stmt1->bindParam(4, $country);
+        $stmt1->bindParam(5, $password);
+        $stmt1->execute();
 
-        // ... Redirect to a success page or back to the form with messages ...
+
+        $uid = $con->lastInsertId();
+        $sql = "INSERT INTO developer (Uid,experience, education) VALUES (?,?,?) ";
+        $stmt2 = $con->prepare($sql);
+        $stmt2->bindParam(1, $uid);
+        $stmt2->bindParam(2, $experience);
+        $stmt2->bindParam(3, $skills);
+
+        $stmt2->execute();
+
+        if (($stmt1->rowCount()) > 0 || ($stmt2->rowCount()) > 0) {
+
+
+             echo 'firstname:'.$fname;
+            echo 'last name:'.$lname;
+            echo 'email:'.$email;
+             echo 'Experience:'.$experience;
+            echo 'Skills:'.$skills;
+        } else {
+            echo "Error: " . $stmt->errorInfo()[2]; // Display the error message
+        }
     }
 }
+    $con = null;
+    ?>
+
 
 
