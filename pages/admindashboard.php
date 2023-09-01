@@ -161,26 +161,25 @@ $softwares= admin::viewallsoftware($connection);
                 </div>
             </div>
 
-            <!-- ================ Order Details List ================= -->
-                <div class="details" >
-                    <div class="recentOrders" id="Softwaretable1" style="display: none;">
-                        <div class="cardHeader">
-                            <h2>Softwares</h2>
+             <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders" id="Softwaretable1" style="display: none;">
+                    <div class="cardHeader">
+                        <h2>Softwares</h2>
+                        
+                    </div>
 
-                        </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Price</td>
+                                <td>Payment</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Price</td>
-                                    <td>Devolper Name</td>
-                                    <td>license</td>
-                                    <td>platform<td>
-                                </tr>
-                            </thead>
-
-                            <tbody>
+                        <tbody>
                                 <?php 
                                 foreach ($softwares as $software){
                                 ?>
@@ -192,33 +191,33 @@ $softwares= admin::viewallsoftware($connection);
                                     <td><?=$software->getPlatform()?></td>
                                     
                                     
-                                    <td><button type="button" class="btn btn-primary">Remove</button></td>
+                                    <td><img src="../img/trash-solid (1).svg" alt=""  width="50px" height="50px"></td>
                                 </tr>
                                  <?php
                                 }
                                 ?>
                                
                             </tbody>
-                        </table>
+                    </table>
+                </div>
+
+                <!-- ================= User details ================ -->
+                <div class="recentCustomers" id="RecentCustomertable" style="display: none;">
+                    <div class="cardHeader">
+                        <h2>Users</h2>
                     </div>
 
-                <!-- ================= New Customers ================ -->
-                    <div class="recentCustomers" id="RecentCustomertable">
-                        <div class="cardHeader">
-                            <h2>Recent Customers</h2>
-                        </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Username</td>
+                               
+                            </tr>
+                        </thead>
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>Username</td>
-                                    <td>Country</td>
-                                </tr>
-                            </thead>
-
-                            <tbody>
+                       <tbody>
                                 <?php
                                 foreach ($users as $user) {
                                     ?>
@@ -227,6 +226,7 @@ $softwares= admin::viewallsoftware($connection);
                                         <td><?= $user->getEmail() ?></td>
                                         <td><?= $user->getUsername() ?></td>
                                         <td><?= $user->getCountry() ?></td>
+                                        <td><img src="../img/user-xmark-solid.svg" alt=""  width="50px" height="50px"></td>
                                     </tr>
                                     <?php
                                 }
@@ -234,86 +234,15 @@ $softwares= admin::viewallsoftware($connection);
 
 
                             </tbody>
-                        </table>
-                    </div>
-                 <!-- ================= Downloads ================ -->
-                    <div class="recentCustomers" id="Softwaretable2" style="display: none;">
-                        <div class="cardHeader">
-                            <h2>Downloads</h2>
-                        </div>
-
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>Software name</td>
-                                    <td>Devolper Name</td>
-                                    <td>Free/Paid</td>
-
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>Star Refrigerator</td>
-                                    <td>$1200</td>
-                                    <td>Paid</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Dell Laptop</td>
-                                    <td>$110</td>
-                                    <td>Due</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Apple Watch</td>
-                                    <td>$1200</td>
-                                    <td>Paid</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Addidas Shoes</td>
-                                    <td>$620</td>
-                                    <td>Due</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Star Refrigerator</td>
-                                    <td>$1200</td>
-                                    <td>Paid</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Dell Laptop</td>
-                                    <td>$110</td>
-                                    <td>Due</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Apple Watch</td>
-                                    <td>$1200</td>
-                                    <td>Paid</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Addidas Shoes</td>
-                                    <td>$620</td>
-                                    <td>Due</td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    </table>
                 </div>
-            </div>
+                 
+             
+            </div> 
+             
+                
         </div>
+    </div>
 
     <!-- =========== Scripts =========  -->
     <script src="../JS/admindashboard.js"></script>

@@ -261,8 +261,8 @@ body {
 /* ================== Order Details List ============== */
 .details {
   position: relative;
-  width: 100px;;
-  padding: 50px;
+  width: 50px;
+  padding: 20px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 30px;
@@ -272,8 +272,8 @@ body {
 .details .recentOrders {
   position: relative;
   display: grid;
-  height:600px;
-  width: 800px;
+  height: 600px;
+  width: 1150px;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -365,12 +365,14 @@ body {
 .recentCustomers {
   position: relative;
   display: grid;
-  width: 600px;
-  height: 600px;
+  height: 800px;
+  width: 1150px;
   padding: 20px;
   background: var(--white);
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
+  border-radius: 30px;
+  margin: 25px;
+  
 }
 .recentCustomers .imgBx {
   position: relative;
@@ -399,17 +401,25 @@ body {
   font-size: 14px;
   color: var(--black2);
 }
-.recentCustomers table tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
+
 .recentCustomers table tr:hover td h4 span {
   color: var(--white);
 }
+.recentCustomers table {
+border-collapse: collapse;
+}
+.recentCustomers table thead td {
+  font-weight: 600;
+}
+.recentCustomers table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+
 .btn {
-  background-color: blue; /* Green */
+  
   border: none;
-  color: white;
   padding: 5px 5px;
   text-align: center;
   text-decoration: none;
@@ -417,6 +427,9 @@ body {
   font-size: 16px;
   border-radius: 4px;
 }
+
+
+
 
 
 /* ====================== Responsive Design ========================== */
