@@ -20,7 +20,7 @@ $reglog_ = new reglog();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["signIn"])) {
-        
+
         if (!empty($_POST["username"]) && !empty($_POST["password"])) {
             $reglog_->reglog2($_POST["username"]);
             if ($_POST["password"] == $reglog_->login()) {
@@ -33,9 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             header("Location: ../index.php?e=2");
         }
-        
     } else if (isset($_POST["signUp"])) {
-        
+
         if (!empty($_POST["username"]) && !empty($_POST["email"]) && !empty($_POST["pWord"]) && !empty($_POST["pWord2"])) {
             $reglog_->reglog1($_POST["username"], $_POST["pWord"], $_POST["email"]);
             if ($_POST["pWord"] !== $_POST["pWord2"]) {
@@ -53,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             header("Location: ../index.php?e=8&mode=signup");
         }
-        
     } else {
         header("Location: ../index.php");
     }
@@ -125,10 +123,15 @@ class reglog {
             $lastid = $value->Uid;
         }
 
-        $prefix = substr($lastid, 0, 2); //sw
-        $number = (int) substr($lastid, 2);
-        $newNumber = $number + 1;
-        $output = $prefix . sprintf("%04d", $newNumber); // Combine
+        if ($lastid == NULL) {
+            $output = "sw0001";
+        } else {
+            $prefix = substr($lastid, 0, 2); //sw
+            $number = (int) substr($lastid, 2);
+            $newNumber = $number + 1;
+            $output = $prefix . sprintf("%04d", $newNumber); // Combine 
+        }
+
 
         return $output;
     }
