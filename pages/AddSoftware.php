@@ -26,30 +26,30 @@
 
 
     <body>
-        
-        
+
+
         <div class="header">
-            <h2> Unleash the Brilliance of Your Software to the World! </h2>
+
         </div>
-        
-                <!-- Display error message based on error code -->
-            
+
+        <!-- Display error message based on error code -->
+
         <?php
-if(isset($_GET['error'])){
-    if($_GET['error'] == 1){
-        echo  "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
-    } 
-}
-?>
-        
-        
+        if (isset($_GET['error'])) {
+            if ($_GET['error'] == 1) {
+                echo "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
+            }
+        }
+        ?>
+
+
         <div class="container">
-            
-    
-         
-            
-        <form action="AddSoftwareProcess.php" method="post">
-            
+
+
+
+
+            <form action="AddSoftwareProcess.php" method="post">
+
                 <div class="row">
 
                     <div class="col-md-4">
@@ -97,15 +97,14 @@ if(isset($_GET['error'])){
 
 
                     <div class="col-md-8">
-
+                        <br>
+                        <h3 style="text-align: center; color: darkslateblue"> Unleash the Brilliance of Your Software to the World! </h3>
+                        <br>
 
 
                         <!--software name-->
                         <div class="form-group">
                             <div class="row">
-
-                                <!-- Software name -->
-
                                 <div class="col-lg-12 mb-4">
                                     <label for="softwareName">Software Name</label>
                                     <div class="input-group">
@@ -147,12 +146,12 @@ if(isset($_GET['error'])){
                                             </span>
                                         </div>
                                         <select id="platform" name="platform" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                            <option value="">Windows</option>
-                                            <option value="paid">Linux</option>
-                                            <option value="">Android</option>
-                                            <option value="paid">Ubuntu</option>
-                                            <option value="paid">MacOS</option>
-                                            >
+                                            <option value="Windows">Windows</option>
+                                            <option value="Linux">Linux</option>
+                                            <option value="Android">Android</option>
+                                            <option value="Ubuntu">Ubuntu</option>
+                                            <option value="MacOS">MacOS</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -171,7 +170,8 @@ if(isset($_GET['error'])){
                                             </span>
                                         </div>
                                         <select id="license" name="license" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                            <option value="">Free</option>
+                                            <option value="Free">Free</option>
+                                            <option value="Trial" >Trial</option>
                                             <option value="paid">Paid</option>
                                         </select>
                                     </div>
@@ -207,24 +207,24 @@ if(isset($_GET['error'])){
                                             </span>
                                         </div>
                                         <select id="category" name="category" style="max-width: 670px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                            <option value="">Web Browser</option>
-                                            <option value="">Media Players and Editors</option>
-                                            <option value="">Operating System</option>
-                                            <option value="">Productivity Software</option>
-                                            <option value="">Graphic Design and Editing</option>
-                                            <option value="">Video Editing Software</option>
-                                            <option value="">Antivirus and Security Software</option>
-                                            <option value="">Web Development and Design Tools</option>
-                                            <option value="">Communication and Collaboration Tools</option>
-                                            <option value="">File Compression and Archiving</option>
-                                            <option value="">Utility Software</option>
-                                            <option value="">Virtualization Software</option>
-                                            <option value="">Gaming Software</option>
-                                            <option value="">Education and Learning Software</option>
-                                            <option value="">Financial and Accounting Software</option>
-                                            <option value="">Programming Tools</option>
-                                            <option value="">File Sharing and Cloud Storage</option>
-                                            <option value="">Entertainment and Content Creation</option>
+                                            <option value="Web Browser">Web Browser</option>
+                                            <option value="Media Players and Editors">Media Players and Editors</option>
+                                            <option value="Operating System">Operating System</option>
+                                            <option value="Productivity Software">Productivity Software</option>
+                                            <option value="Graphic Design and Editing">Graphic Design and Editing</option>
+                                            <option value="Video Editing Software">Video Editing Software</option>
+                                            <option value="Antivirus and Security Software">Antivirus and Security Software</option>
+                                            <option value="Web Development and Design Tools">Web Development and Design Tools</option>
+                                            <option value="Communication and Collaboration Tools">Communication and Collaboration Tools</option>
+                                            <option value="File Compression and Archiving">File Compression and Archiving</option>
+                                            <option value="Utility Software">Utility Software</option>
+                                            <option value="Virtualization Software">Virtualization Software</option>
+                                            <option value="Gaming Software">Gaming Software</option>
+                                            <option value="Education and Learning Software">Education and Learning Software</option>
+                                            <option value="Financial and Accounting Software">Financial and Accounting Software</option>
+                                            <option value="Programming Tools">Programming Tools</option>
+                                            <option value="File Sharing and Cloud Storage">File Sharing and Cloud Storage</option>
+                                            <option value="Entertainment and Content Creation">Entertainment and Content Creation</option>
                                         </select>
                                     </div>  
                                 </div>
@@ -238,14 +238,10 @@ if(isset($_GET['error'])){
                                             </span>
                                         </div>
                                         <select id="language" name="language" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                            <option value="">English</option>
-                                            <option value="paid">Russian</option>
-                                            <option value="">Japanese</option>
-                                            <option value="paid">Arabic</option>
-                                            <option value="">Spanish</option>
-                                            <option value="paid">German</option>
-                                            <option value="">French</option>
-                                            <option value="paid">Hindi</option>
+                                            <option value="English">English</option>
+                                            <option value="Russian">Russian</option>
+                                            <option value="Japanese">Japanese</option>
+                                            <option value="Arabic">Arabic</option>
                                         </select>
                                     </div>
                                 </div>
@@ -254,8 +250,8 @@ if(isset($_GET['error'])){
                             </div>
                         </div>
 
-
-
+                        <!--
+                        
                         <!--tags-->
                         <div class="form-group">
                             <div class="row">
@@ -297,8 +293,8 @@ if(isset($_GET['error'])){
 
                         </div>
 
-                        
-      
+
+
                         <!--Submit button-->
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary w-50" >Submit</button>
@@ -309,43 +305,40 @@ if(isset($_GET['error'])){
 
                 </div>
 
-       
-    </form>
-</div>
 
-<br>
-<br>
+            </form>
+        </div>
+
+        <br>
+        <br>
 
 
 
-<script>
-    var quill = new Quill('#editor-container', {
-        theme: 'snow'
-    });
-</script>
+        <script>
+            new Tagify(document.querySelector('input[name=tags]'), {
+            });
+        </script>
 
-<script>
-    var quill = new Quill('#editor-container1', {
-        theme: 'snow'
-    });
-</script>
+        <script>
+            var quillSystemReq = new Quill('#editor-container', {
+                theme: 'snow'
+            });
 
-<script>
-    new Tagify(document.querySelector('input[name=tags]'), {
-    });
-</script>
+            var quillLongDescription = new Quill('#editor-container1', {
+                theme: 'snow'
+            });
 
-<script>
-   var systemReqContent = quillSystemReq.root.innerHTML;
-var longDescriptionContent = quillLongDescription.root.innerHTML;
+            document.querySelector('form').addEventListener('submit', function () {
+                var systemReqContent = quillSystemReq.root.innerHTML;
+                var longDescriptionContent = quillLongDescription.root.innerHTML;
 
-document.getElementById("hiddenSystemReq").value = systemReqContent;
-document.getElementById("hiddenLongDescription").value = longDescriptionContent;
-
-</script>
+                document.getElementById("hiddenSystemReq").value = systemReqContent;
+                document.getElementById("hiddenLongDescription").value = longDescriptionContent;
+            });
+        </script>
 
 
 
 
-</body>
+    </body>
 </html>

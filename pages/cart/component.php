@@ -1,13 +1,15 @@
 <?php
 
-function component($productname, $productprice, $productimg, $productid, $description){
+function component($productname, $productprice,$productid, $description){
+
     $element = "
     
     <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
                 <form action=\"cart.php\" method=\"post\">
                     <div class=\"card shadow\">
                         <div>
-                            <img src=\"../$productimg\" alt=\"Image1\" class=\"img-fluid card-img-top\">
+                            <img src=\"../img/sw/$productid/logo.jpg \" alt=\"Image1\" class=\"img-fluid card-img-top\">
+
                         </div>
                         <div class=\"card-body\">
                             <h5 class=\"card-title\">$productname</h5>
@@ -36,18 +38,19 @@ function component($productname, $productprice, $productimg, $productid, $descri
     echo $element;
 }
 
-function cartElement($productimg, $productname, $productprice, $productid){
+function cartElement($productname, $productprice, $productid, $name){
+
     $element = "
     
     <form action=\"cart_process.php?action=remove&id=$productid\" method=\"post\" class=\"cart-items\">
                     <div class=\"border rounded\">
                         <div class=\"row bg-white\">
                             <div class=\"col-md-3 pl-0\">
-                                <img src=$productimg alt=\"Image1\" class=\"img-fluid\">
+                                <img src=\"../img/sw/$productid/logo.jpg\" alt=\"Image1\" class=\"img-fluid\">
                             </div>
                             <div class=\"col-md-6\">
                                 <h5 class=\"pt-2\">$productname</h5>
-                                <small class=\"text-secondary\">Seller: dailytuition</small>
+                                <small class=\"text-secondary\">Seller: $name</small>
                                 <h5 class=\"pt-2\">$$productprice</h5>
                                 <button type=\"submit\" class=\"btn btn-warning\">Save for Later</button>
                                 <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Remove</button>

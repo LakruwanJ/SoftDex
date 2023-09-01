@@ -50,7 +50,7 @@ $star = [254, 20, 6, 15, 63, 150];
         <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
         <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
             <div class="container">
-                <a class="navbar-brand logog" href="#"><img src="../img/logo.png" alt="logo" style="height:50px;"></a>
+                <a class="navbar-brand logog" href="#"><img src="img/logo.png" alt="logo" style="height:50px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
