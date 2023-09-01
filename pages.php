@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 if (empty($_GET['page'])) {
-    $page = "Search.php";
+    $page = "";
 } else {
     $page = $_GET['page'];
 }
@@ -132,6 +132,24 @@ if (empty($_GET['page'])) {
 
 
 
+        <!DOCTYPE html>
+
+    <button id="myButton" onclick="disableButton()">Click me</button>
+    <button id="enableButton" onclick="enableButton()">Enable Button</button>
+
+    <script>
+        // Function to disable the button
+        function disableButton() {
+            const myButton = document.getElementById('myButton');
+            myButton.disabled = true;
+        }
+
+        // Function to enable the button
+        function enableButton() {
+            const myButton = document.getElementById('myButton');
+            myButton.disabled = false;
+        }
+    </script>
 
 
         <footer id="myFooter">

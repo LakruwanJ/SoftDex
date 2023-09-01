@@ -52,7 +52,7 @@
                         <br><br>
                     </form>
 
-                    <form action="#" class="sign-up-form needs-validation" novalidate>
+                    <form action="Classes/reglog.php" class="sign-up-form needs-validation" method="POST">
                         <img src="img/logo3.png" alt="logo" style="height:60px;"><br><br>
                         <h2 class="title">Sign up</h2>
                         <div class="input-field">
@@ -76,6 +76,7 @@
                         <script>
                             const passwordInput = document.getElementById("pWord");
                             const passwordError = document.getElementById("password-error");
+
 
                             passwordInput.addEventListener("input", function () {
                                 const password = passwordInput.value;
@@ -101,26 +102,34 @@
                                 }
 
                                 const reenteredPasswordInput = document.getElementById("pWord2");
-                                const signUpButton = document.querySelector(".btn");
 
                                 function checkPasswordMatch() {
                                     const password = passwordInput.value;
                                     const reenteredPassword = reenteredPasswordInput.value;
 
                                     if (password === reenteredPassword) {
-                                        passwordError.textContent = ""; // Clear password match error
-                                        signUpButton.disabled = !validatePassword(); // Enable/disable based on password validity
+                                        passwordError.textContent = "";
                                     } else {
                                         passwordError.textContent = "Passwords do not match.";
-                                        signUpButton.disabled = true; // Disable the button if passwords don't match
                                     }
                                 }
-
+//
                                 reenteredPasswordInput.addEventListener("input", checkPasswordMatch);
 
+                                const signupButton = document.getElementById("signup-button");
 
+                                // Function to check and disable the button
+                                function checkAndDisableButton() {
+                                    if (passwordError.textContent.trim() !== "") {
+                                        signupButton.disabled = true;
+                                    } else if (passwordError.textContent.trim() === ""){
+                                        signupButton.disabled = false;
+                                    }
+                                }
                             });</script>
-                        <input type="submit" class="btn" value="Sign up" />
+
+                        <input type="submit" class="btn" value="Sign up" id="signup-button"/>
+
                         <br><br>
                     </form>
                 </div>
