@@ -68,10 +68,11 @@ if (isset($_POST['add'])) {
                 
                 if ($result->execute()) {
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        component($row['name'], $row['amount'], $row['sw_image'], $row['Sid'],$row['shortdescription']);
+                        component($row['name'], $row['amount'],$row['Sid'],$row['shortdescription']);
                     }
                 }
                 ?>
+                
             </div>
         </div>
 
