@@ -1,16 +1,32 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+require '../Classes/DbConnector.php';
 
-/**
- * Description of newPHPClass
- *
- * @author lakru
- */
-class newPHPClass {
-    //put your code here
+use Classes\DbConnector;
+use PDO;
+
+$dbcon = new DbConnector();
+$con = $dbcon->getConnection();
+
+if (isset($_POST['username'])) {
+    $username = $_POST['username'];
+
+
+    $query = "SELECT COUNT(*) FROM user WHERE username = ?";
+    $pstmt = $con->prepare($query);
+    $pstmt->bindValue(1, $username);
+    $pstmt->execute();
+    $count = $pstmt->fetchColumn();
+
+    if ($count > 0) {
+        // Username already taken
+        echo 'taken';
+    } else {
+        // Username is available
+        echo 'available';
+    }
+} else {
+    // Handle invalid requests or no POST data
+    echo 'invalid_request';
 }
+?>
