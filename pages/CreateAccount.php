@@ -116,7 +116,7 @@
                             <div class="form-group">
                                 <div class="row">
 
-                                    <div class="input-group col-lg-6 mb-4">
+<!--                                    <div class="input-group col-lg-6 mb-4">
                                         <label for="gender">Gender</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -131,7 +131,7 @@
 
 
                                         </div> 
-                                    </div>
+                                    </div>-->
 
                                     <!-- country -->
                                     <div class="input-group col-lg-6 mb-4">
@@ -528,11 +528,11 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group text-center">
+<!--                                                        <div class="form-group text-center">
                                                             <div class="d-flex justify-content-center">
                                                                 <button type="button" id="editProfileBtn" class="btn btn-secondary w-50" onclick="toggleEditMode()">Edit Profile</button>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
 
                                                         <div class="form-group text-center">
                                                             <div class="d-flex justify-content-center">
