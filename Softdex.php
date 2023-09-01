@@ -56,18 +56,18 @@ $rsCls = new Home();
                         <li class="nav-item">
                             <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
                         </li>
-                        <!--without login-->
+<!--                        without login
                         <li class="nav-item ">
                             <a class="nav-link " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
 
-                        </li>
+                        </li>-->
                         <!--with login-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                                <img src="img/user (2).png" width="40" height="40" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu">
                                 <center><li><?php echo $user;?></li></center>
