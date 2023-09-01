@@ -1,26 +1,10 @@
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : Jul 15, 2023, 1:13:17 AM
     Author     : lakru
 */
-body {
-    background: url("/images/home-background.png") center center / cover no-repeat fixed;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-}
-
-
-/* ===========================================================================*/
-
 
 /* navigation bar start */
 
@@ -58,6 +42,26 @@ body {
 }
 
 .nav-link_:hover::after {
+    opacity: 1;
+}
+
+.nav-link__ {
+    position: relative;
+}
+
+.nav-link__::after {
+    content: '';
+    opacity: 0;
+    transition: all 300ms;
+    height: 2px;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.nav-link__:hover::after {
     opacity: 1;
 }
 

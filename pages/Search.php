@@ -16,11 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $sword = null;
     }
-    $_SESSION["sword"] = $_POST["searchbar"];
-    echo $sword;
-    echo $_SESSION["sword"];
-} else {
+    $_SESSION["sword"] = $sword;
+} else if (isset($_SESSION["sword"])) {
     $sword = $_SESSION["sword"];
+} else {
+    $sword = null;
+    $_SESSION["sword"] = $sword;
 }
 $srt = isset($_GET['srt']) ? $_GET['srt'] : 'date ASC';
 $opP = isset($_GET['opP']) ? $_GET['opP'] : NULL;
@@ -49,7 +50,7 @@ $star = [254, 20, 6, 15, 63, 150];
         <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
         <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
             <div class="container">
-                <a class="navbar-brand logog" href="#"><img src="../img/logo.png" alt="logo" style="height:50px;"></a>
+                <a class="navbar-brand logog" href="#"><img src="img/logo.png" alt="logo" style="height:50px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -60,16 +61,32 @@ $star = [254, 20, 6, 15, 63, 150];
                                     class="fa-solid fa-house  icoon"></i>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-link_  active" href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
+                            <a class="nav-link nav-link_  " href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-link_  active" href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
+                            <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
+                        </li>
+<!--                        without login
+                        <li class="nav-item ">
+                            <a class="nav-link " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link active " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
+                            <a class="nav-link " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
+
+                        </li>-->
+                        <!--with login-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="img/user (2).png" width="40" height="40" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <center><li><?php echo $user;?></li></center>
+                                <hr class="p-0 m-0 mt-1">
+                                <li><a class="dropdown-item " href="#"><i class="fas fa-user mr-2 icoon"></i>Account</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
+                                <hr class="p-0 m-0 mt-1">
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
+                            </ul>
 
                         </li>
                     </ul>
@@ -156,7 +173,21 @@ $star = [254, 20, 6, 15, 63, 150];
                                     ?>
                                     <table width=100%>
                                         <tr>
-                                            <td class="me-1" width="180"><img class="p-0" src="../img/tempicon.png" alt="Generic placeholder image" width="150" /></td>
+                                            <td class="me-1" width="180">
+                                                <?php
+                                                $imageFormats = ['png', 'jpg']; // List of possible image formats
+                                                $imagePath = '../img/sw/' . $sw->Sid . '/logo'; // Base path without extension
+
+                                                foreach ($imageFormats as $format) {
+                                                    $imageUrl = $imagePath . '.' . $format;
+
+                                                    if (file_exists($imageUrl)) {
+                                                        echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="150px" alt="Logo Image" />';
+                                                        break; // Stop when the first valid image format is found
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
 
                                             <td class="ms-1">
                                                 <h2  class="mb-0"><?php echo $name; ?></h2>
