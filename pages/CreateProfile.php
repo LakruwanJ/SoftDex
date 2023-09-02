@@ -9,7 +9,7 @@ $select = new \Classes\Select();
 
 session_start();
 if (!isset($_SESSION["user"])) {
-    $user = "RoseD"; //$_SESSION["user"];
+    $user = $_SESSION["user"];
 
     foreach ($select->selectUser($user) as $u) {
         $uname = $u->username;
@@ -44,7 +44,6 @@ if (!isset($_SESSION["user"])) {
         </div>
 
         <div class="container">
-            <div class="row">
             <br>
             <?php
             if (isset($_GET['m'])) {
@@ -60,7 +59,6 @@ if (!isset($_SESSION["user"])) {
             }
             ?>
             <br>
-            </div>
             </div>
         <div class="container">
             <br>
