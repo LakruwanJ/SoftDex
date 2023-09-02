@@ -1,11 +1,10 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 
 namespace Classes;
 
@@ -26,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($_POST["user"]) && !empty($_POST["sw"])) {
 
             $wishObj->wishlistCls($_POST["user"], $_POST["sw"]);
-            $temp = $wishObj->getcart();
-            $wishObj->additemtocart($temp);
+            $temp = $wishObj->getwishlist();
+            $wishObj->additemtowishlist($temp);
         }
     }
 }
-//
+
 class wishlistCls {
 
     private $user;
@@ -60,9 +59,9 @@ class wishlistCls {
         $pstmt->execute();
 
         if ($pstmt->rowCount() > 0) {
-            return 1;
+            header("Location:../pages/Software.php");
         } else {
-            return 0;
+            header("Location:../pages/404.php");
         }
     }
 
@@ -81,4 +80,3 @@ class wishlistCls {
     }
 
 }
-
