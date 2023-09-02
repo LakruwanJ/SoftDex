@@ -366,12 +366,13 @@ body {
   position: relative;
   display: grid;
   height:100%;
-  width: 100%;
+  width: 750px;
   padding: 20px;
   background: var(--white);
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 30px;
   margin: 25px;
+  padding: 20px;
   
 }
 .recentCustomers .imgBx {
@@ -427,6 +428,17 @@ border-collapse: collapse;
   font-size: 16px;
   border-radius: 4px;
 }
+
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 
 
 
