@@ -52,9 +52,10 @@ function cartElement($productname, $productprice, $productid, $name){
                                 <h5 class=\"pt-2\">$productname</h5>
                                 <small class=\"text-secondary\">Seller: $name</small>
                                 <h5 class=\"pt-2\">$$productprice</h5>
-                                <button type=\"submit\" class=\"btn btn-warning\">Save for Later</button>
+                                <button type=\"submit\" class=\"btn btn-warning\">Buy</button>
                                 <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Remove</button>
                             </div>
+                            
                             <div class=\"col-md-3 py-5\">
                                 <div>
                                     <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-minus\"></i></button>

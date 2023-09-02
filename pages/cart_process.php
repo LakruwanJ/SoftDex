@@ -49,7 +49,7 @@ if (isset($_POST['remove'])){
 
 <div class="container-fluid">
     <div class="row px-5">
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="shopping-cart">
                 <h6>My Cart</h6>
                 <hr>
@@ -83,38 +83,52 @@ if (isset($_POST['remove'])){
 
             </div>
         </div>
-        <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
+        <div class="col-md-4" >
+            <div class="offset-md-1 border rounded mt-5 bg-white p-3" style="height: fit-content;">
+                <div class="pt-4">
+                    <h6 style="font-size: 1.3rem;"><b>PRICE DETAILS</b></h6>
+                    <hr>
+                    <div class="row price-details">
+                        <div class="col-md-6">
+                            <?php
+                                if (isset($_SESSION['cart'])){
+                                    $count  = count($_SESSION['cart']);
+                                    echo "<h6>Price ($count items)</h6>";
+                                }else{
+                                    echo "<h6>Price (0 items)</h6>";
+                                }
+                            ?>
 
-            <div class="pt-4">
-                <h6>PRICE DETAILS</h6>
-                <hr>
-                <div class="row price-details">
-                    <div class="col-md-6">
-                        <?php
-                            if (isset($_SESSION['cart'])){
-                                $count  = count($_SESSION['cart']);
-                                echo "<h6>Price ($count items)</h6>";
-                            }else{
-                                echo "<h6>Price (0 items)</h6>";
-                            }
-                        ?>
+                            <hr>
+                            <h6>Amount Payble</h6>
+                        </div>
+                        
+                        <div class="col-md-6" style="width: fit-content;">
+                            <h6>$<?php echo $total; ?></h6>
 
-                        <hr>
-                        <h6>Amount Payable</h6>
-                    </div>
-                    <div class="col-md-6">
-                        <h6>$<?php echo $total; ?></h6>
-
-                        <hr>
-                        <h6>$<?php
-                            echo $total;
-                            ?></h6>
+                            <hr>
+                            
+                            <h6>$<?php
+                                echo $total;
+                                ?></h6>
+                        </div>
+                    
+                        
                     </div>
                 </div>
-            </div>
-
+                <div class="my-2 mx-auto" style="width: fit-content;">
+                    <form method="post">
+                        <input type="hidden" name="checkout" value="true">
+                        <button type="submit" class="btn btn-success">Checkout</button>
+                    </form>
+                </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+            
         </div>
     </div>
+    
 </div>
 
 
