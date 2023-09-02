@@ -1,7 +1,9 @@
 <?php
 
 use Classes\admin;
+use Classes\Home;
 
+require_once '../Classes/Home.php';
 require_once '../Classes/DbConnector.php';
 require_once '../Classes/admin.php';
 
@@ -10,11 +12,12 @@ use Classes\DbConnector as MyDbConnector;
 $dbConnector = new MyDbConnector();
 $connection = $dbConnector->getConnection();
 
-
+//create admin class
 $users = admin::viewuserdetails($connection);
 $softwares = admin::viewallsoftware($connection);
 $downloads = admin::viewalldownloads($connection);
 $developers = admin::viewalldeveloper($connection);
+$home = new Home();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,15 +26,20 @@ $developers = admin::viewalldeveloper($connection);
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
         <title>Admin Dashboard</title>
         <!-- ======= Styles ====== -->
         <link rel="stylesheet" href="../css/dashboard.css">
     </head>
 
-    <body>
+    <body style="height: 100%; margin: 0;">
         <!-- =============== Navigation ================ -->
-        <div class="container">
+        <div class="container-fluid no-padding-container">
             <div class="navigation">
                 <ul>
                     <li>
@@ -108,7 +116,7 @@ $developers = admin::viewalldeveloper($connection);
                 <div class="cardBox">
                     <div class="card">
                         <div>
-                            <div class="numbers">30</div>
+                            <div class="numbers"><?php echo $home->countUser(); ?></div>
                             <div class="cardName">Users</div>
                         </div>
 
@@ -119,7 +127,7 @@ $developers = admin::viewalldeveloper($connection);
 
                     <div class="card">
                         <div>
-                            <div class="numbers">11</div>
+                            <div class="numbers"><?php echo $home->countDev(); ?></div>
                             <div class="cardName">Devolpers</div>
                         </div>
 
@@ -130,7 +138,7 @@ $developers = admin::viewalldeveloper($connection);
 
                     <div class="card">
                         <div>
-                            <div class="numbers">59</div>
+                            <div class="numbers"><?php echo $home->countSw(); ?></div>
                             <div class="cardName">Softwares</div>
                         </div>
 
@@ -166,9 +174,9 @@ $developers = admin::viewalldeveloper($connection);
                         </div>
 
 
-                       <!------- <div>
-                            <td><button type="button" class="btn btn-primary">Add Platform</button></td>
-                        </div>------>
+                        <!------- <div>
+                             <td><button type="button" class="btn btn-primary">Add Platform</button></td>
+                         </div>------>
 
 
 
@@ -186,7 +194,34 @@ $developers = admin::viewalldeveloper($connection);
                                         <td>Developer</td>
                                         <td>Status</td>
                                         <td>Platform</td>
-                                    </tr>
+                                        <!--- add modal---->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Platform</button>
+
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Add Platform</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="" method="POST">
+                                                    <div class="mb-3">
+                                                        <label for="Name" class="form-label">Name</label>
+                                                        <input type="text" class="form-control" id="platformName"  name="platformName" aria-describedby="emailHelp">
+
+
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                </tr>
                                 </thead>
 
                                 <tbody>
@@ -218,11 +253,11 @@ $developers = admin::viewalldeveloper($connection);
                             <h2>Users</h2>
                         </div>
 
-                       <!--------- <div class="card">
-                            <div>
-                                <div class="numbers">Add new Country</div>
-                            </div>
-                        </div>------>
+                        <!--------- <div class="card">
+                             <div>
+                                 <div class="numbers">Add new Country</div>
+                             </div>
+                         </div>------>
                         <div class="table-container">
                             <table>
                                 <thead>
@@ -286,7 +321,7 @@ $developers = admin::viewalldeveloper($connection);
                                         <td><?= $download->getDate() ?></td>
 
 
-                                        
+
                                     </tr>
                                     <?php
                                 }
@@ -314,22 +349,22 @@ $developers = admin::viewalldeveloper($connection);
                         </thead>
 
                         <tbody>
-                                <?php
-                                foreach ($developers as $developer) {
-                                    ?>
-                                    <tr>
-                                        <td><?= $developer->getDid() ?></td>
-                                        <td><?= $developer->getShortdes() ?></td>
-
-
-                                        <td><img src="../img/user-plus-solid.svg" alt=""  width="50px" height="50px"></td>
-                                    </tr>
-                                    <?php
-                                }
+                            <?php
+                            foreach ($developers as $developer) {
                                 ?>
+                                <tr>
+                                    <td><?= $developer->getDid() ?></td>
+                                    <td><?= $developer->getShortdes() ?></td>
 
 
-                            </tbody>
+
+                                </tr>
+                                <?php
+                            }
+                            ?>
+
+
+                        </tbody>
                     </table>
                 </div>
 
