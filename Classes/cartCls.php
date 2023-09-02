@@ -59,9 +59,9 @@ class cartCls {
         $pstmt->execute();
 
         if ($pstmt->rowCount() > 0) {
-            return 1;
+            header("Location:../pages/Software.php");
         } else {
-            return 0;
+            header("Location:../pages/404.php");
         }
     }
 

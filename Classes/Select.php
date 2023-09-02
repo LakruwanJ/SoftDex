@@ -25,6 +25,55 @@ class Select {
             echo $exc->getTraceAsString();
         }
     }
+    
+    public function CheckDeveloper($id) {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT d.Did FROM developer d JOIN  user u ON u.Uid = d.user WHERE u.Uid = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        
+        foreach ($rs as $value) {
+            $text = $value->wishlist;
+        }
+        return $text;
+    }
+    
+    public function selectDeveloper($id) {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM developer d JOIN  user u ON u.Uid = d.user WHERE u.Uid = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            return $rs;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function selectUser($id) {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM USER WHERE Uid=?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            return $rs;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 
     public function selectDev($id) {
         try {
@@ -42,5 +91,7 @@ class Select {
             echo $exc->getTraceAsString();
         }
     }
+    
+    
 
 }
