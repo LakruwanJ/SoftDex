@@ -124,9 +124,9 @@ class reglog {
         }
 
         if ($lastid == NULL) {
-            $output = "sw0001";
+            $output = "ur0001";
         } else {
-            $prefix = substr($lastid, 0, 2); //sw
+            $prefix = substr($lastid, 0, 2); //ur
             $number = (int) substr($lastid, 2);
             $newNumber = $number + 1;
             $output = $prefix . sprintf("%04d", $newNumber); // Combine 

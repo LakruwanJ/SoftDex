@@ -1,4 +1,30 @@
 <!DOCTYPE html>
+<?php
+require '../Classes/Select.php';
+
+use Classes\Select;
+
+$select = new \Classes\Select();
+
+
+session_start();
+if (!isset($_SESSION["user"])) {
+    $user = "MaduRJ";//$_SESSION["user"];
+
+    foreach ($select->selectUser($user) as $u) {
+        $uname = $u->username;
+        $fname = $u->fname;
+        $lname = $u->lname;
+        $email = $u->email;
+        $country = $u->country;
+    }
+    
+    echo $uname;
+}
+else{
+    header("Location: ../index.php");
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -51,7 +77,7 @@
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" required>
+                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" value="<?php echo $fname;?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" required>
 
                                         </div>
 
@@ -75,7 +101,7 @@
                                 <div class="row">
                                     <div class="input-group col-lg-6">
                                         <p id="firstNameError" style="color: red;"></p> 
-                            
+
                                     </div>
                                     <!--Last Name-->
                                     <div class="input-group col-lg-6">
@@ -83,7 +109,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <!--username-->
                             <div class="form-group">
@@ -201,7 +227,7 @@
                         <br>
                         <div class="form-group text-center">
                             <div class="d-flex justify-content-center">
-                                <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="createProfile">Create Profile</button>
+                                <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="createProfile">Edit Profile</button>
                             </div>
                         </div>
 

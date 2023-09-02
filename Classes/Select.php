@@ -64,7 +64,7 @@ class Select {
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT * FROM USER WHERE Uid=?";
+            $query = "SELECT * FROM user WHERE username=?";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $id);
             $pstmt->execute();
