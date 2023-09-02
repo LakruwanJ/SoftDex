@@ -35,6 +35,10 @@ foreach ($rs2 as $dev) {
     $ddate = $dev->datesince;
 }
 
+session_start();
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+}
 
 $star = [254, 20, 6, 15, 63, 150];
 ?>
@@ -153,14 +157,20 @@ $star = [254, 20, 6, 15, 63, 150];
                                 </tr>
                             </table>
                         </button>
-                        <button type="button" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
-                            <table width=100%>
-                                <tr>
-                                    <td class="p-1 text-light" ><span><h3>Add ro cart</h3></span></td>
-                                    <td align="right" class="p-3"><i class="fa-solid fa-cart-plus fa-shake fa-2xl" style="color: #ffffff;"></i></td>
-                                </tr>
-                            </table>
-                        </button> 
+                        <form method="POST" action="../Classes/cartCls.php">
+                            <input type="hidden" name="user" value="<?php echo $user?>" />
+                            <input type="hidden" name="sw" value="<?php echo $id;?>" />
+
+                            <button type="submit" name="addtocart" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
+                                <table width=100%>
+                                    <tr>
+                                        <td class="p-1 text-light" ><span><h3>Add ro cart</h3></span></td>
+                                        <td align="right" class="p-3"><i class="fa-solid fa-cart-plus fa-shake fa-2xl" style="color: #ffffff;"></i></td>
+                                    </tr>
+                                </table>
+                            </button>
+                        </form>
+                        </a>
                         <?php
                     } else {
                         ?>  
@@ -172,14 +182,14 @@ $star = [254, 20, 6, 15, 63, 150];
                                 </tr>
                             </table>
                         </button>
-                        <button type="button" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
-                            <table width=100%>
-                                <tr>
-                                    <td class="p-1 text-light" ><span><h3>Add ro wishlist</h3></span></td>
-                                    <td align="right" class="p-3"><i class="fa-regular fa-heart fa-2xl" style="color: #ffffff;"></i></td>
-                                </tr>
-                            </table>
-                        </button> 
+                        <a href="../Process/newPHPClass.php"><button type="button" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573;">
+                                <table width=100%>
+                                    <tr>
+                                        <td class="p-1 text-light" ><span><h3>Add ro wishlist</h3></span></td>
+                                        <td align="right" class="p-3"><i class="fa-regular fa-heart fa-2xl" style="color: #ffffff;"></i></td>
+                                    </tr>
+                                </table>
+                            </button></a>
                         <?php
                     }
                     ?>
