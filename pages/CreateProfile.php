@@ -9,7 +9,7 @@ $select = new \Classes\Select();
 
 session_start();
 if (!isset($_SESSION["user"])) {
-    $user = "MaduRJ";//$_SESSION["user"];
+    $user = "RoseD"; //$_SESSION["user"];
 
     foreach ($select->selectUser($user) as $u) {
         $uname = $u->username;
@@ -18,10 +18,7 @@ if (!isset($_SESSION["user"])) {
         $email = $u->email;
         $country = $u->country;
     }
-    
-    echo $uname;
-}
-else{
+} else {
     header("Location: ../index.php");
 }
 ?>
@@ -47,6 +44,26 @@ else{
         </div>
 
         <div class="container">
+            <div class="row">
+            <br>
+            <?php
+            if (isset($_GET['m'])) {
+                if ($_GET['m'] === "2") {
+                    ?>
+                    <div class="alert alert-danger " role="alert">Something went wrong. Try again</div>
+                    <?php
+                } else if ($_GET['m'] === "1") {
+                    ?>
+                    <div class="alert alert-success " role="alert">Sucessfully edit your profile</div>
+                <?php
+                }
+            }
+            ?>
+            <br>
+            </div>
+            </div>
+        <div class="container">
+            <br>
             <form action="../Process/CreateAccountProcess.php" class="needs-validation" method="post">
                 <div class="row">
                     <div class="left-side">
@@ -77,7 +94,7 @@ else{
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" value="<?php echo $fname;?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" required>
+                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" value="<?php echo $fname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" required>
 
                                         </div>
 
@@ -91,7 +108,7 @@ else{
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md" oninput="validateName('lastName')" required>
+                                            <input id="lastName" type="text" name="lastname" placeholder="Last Name" value="<?php echo $lname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('lastName')" required>
 
                                         </div>
                                     </div>
@@ -115,15 +132,15 @@ else{
                             <div class="form-group">
                                 <div class="row">
                                     <div class="input-group col-lg-6 mb-4">
-                                        <label for="firstname">Username</label>
+                                        <label for="username">Username</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="firstName" type="text" name="user" class="form-control bg-white border-left-0 border-md" disabled>
-                                            <p id="firstNameError" style="color: red;"></p>
+                                            <input id="firstName" type="text" name="user2" value="<?php echo $user; ?>" class="form-control bg-white border-left-0 border-md" disabled>
+                                            <input type="hidden" name="user" value="<?php echo $uname; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -140,42 +157,42 @@ else{
                                                     <i class="fa fa-envelope text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" required>
+                                            <input id="email" type="email" name="email" placeholder="Email Address" value="<?php echo $email; ?>" class="form-control bg-white border-left-0 border-md" required>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!--password-->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="input-group col-lg-6 mb-4">
-                                        <label for="password">Password</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                                    <i class="fa fa-lock text-muted"></i>
-                                                </span>
-                                            </div>
-                                            <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Password Confirmation-->
-                                    <div class="input-group col-lg-6 mb-4">
-                                        <label for="confirmpassword">Confirm Password</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                                    <i class="fa fa-lock text-muted"></i>
-                                                </span>
-                                            </div>
-                                            <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--                            password
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="input-group col-lg-6 mb-4">
+                                                                    <label for="password">Password</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                <i class="fa fa-lock text-muted"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                                                                    </div>
+                            
+                                                                </div>
+                            
+                                                                 Password Confirmation
+                                                                <div class="input-group col-lg-6 mb-4">
+                                                                    <label for="confirmpassword">Confirm Password</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                                                                <i class="fa fa-lock text-muted"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                        <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
 
                             <!-- country -->
                             <div class="form-group">
@@ -209,6 +226,7 @@ else{
                                                 <option value="India">India</option>
                                                 <option value="Austraila">Austraila</option>
                                                 <option value="Vietnam">Vietnam</option>
+                                                <option value="<?php echo $country; ?>" selected><?php echo $country; ?></option>
 
                                             </select>
                                         </div> 
@@ -227,7 +245,15 @@ else{
                         <br>
                         <div class="form-group text-center">
                             <div class="d-flex justify-content-center">
-                                <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="createProfile">Edit Profile</button>
+                                <?php if ($fname === null) { ?>
+                                    <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="createProfile">Create Profile</button>
+                                <?php } else {
+                                    ?>
+                                    <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="createProfile">Edit Profile</button>
+                                    <?php
+                                }
+                                ?>
+
                             </div>
                         </div>
 

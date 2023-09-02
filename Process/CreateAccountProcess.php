@@ -11,8 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["createProfile"])) {
         
         if (!empty($_POST['firstname']) || !empty($_POST['lastname']) || !empty($_POST['email']) || !empty($_POST['country']) || !empty($_POST['user'])) {//||  !empty($_POST['password']) )
-            
-            $uname = "cst20014";//$_POST['user'];
+            $uname = $_POST['user'];
             $fname = $_POST['firstname'];
             $lname = $_POST['lastname'];
             $email = $_POST['email'];
@@ -30,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pstmt->execute();
 
             if ($pstmt->rowCount() > 0) {
-                return 1;
+                header("Location: ../pages/CreateProfile.php?m=1");
             } else {
-                return 0;
+                header("Location: ../pages/CreateProfile.php?m=2");
             }
         }
     }
