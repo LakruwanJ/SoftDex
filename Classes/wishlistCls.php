@@ -16,36 +16,36 @@ require 'DbConnector.php';
 
 use Classes\DbConnector;
 
-$cartObj = new wishlist();
+$wishObj = new wishlistCls();
 $text = NULL;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (isset($_POST["addtocart"])) {
+    if (isset($_POST["addtowishlist"])) {
 
         if (!empty($_POST["user"]) && !empty($_POST["sw"])) {
 
-            $cartObj->cartCls($_POST["user"], $_POST["sw"]);
-            $temp = $cartObj->getcart();
-            $cartObj->additemtocart($temp);
+            $wishObj->wishlistCls($_POST["user"], $_POST["sw"]);
+            $temp = $wishObj->getcart();
+            $wishObj->additemtocart($temp);
         }
     }
 }
-
-class cartCls {
+//
+class wishlistCls {
 
     private $user;
     private $softwareid;
 
-    public function cartCls($user, $softwareid) {
+    public function wishlistCls($user, $softwareid) {
         $this->user = $user;
         $this->softwareid = $softwareid;
     }
 
-    public function additemtocart($text) {
+    public function additemtowishlist($text) {
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
-        $sql = "UPDATE user SET cart=? WHERE username=?";
+        $sql = "UPDATE user SET wishlist=? WHERE username=?";
         if ($text === null) {
             $newtext = $this->softwareid;
         } else {
@@ -66,16 +66,16 @@ class cartCls {
         }
     }
 
-    public function getcart() {
+    public function getwishlist() {
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
-        $query = "SELECT cart FROM user WHERE username=?";
+        $query = "SELECT wishlist FROM user WHERE username=?";
         $pstmt = $con->prepare($query);
         $pstmt->bindValue(1, $this->user);
         $pstmt->execute();
         $item = $pstmt->fetchAll(PDO::FETCH_OBJ);
         foreach ($item as $value) {
-            $text = $value->cart;
+            $text = $value->wishlist;
         }
         return $text;
     }
