@@ -267,6 +267,33 @@ $home = new Home();
                                         <td>Username</td>
                                         <td>Country</td>
                                         <td>Remove User</td>
+                                        <!--- add modal---->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Country</button>
+
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Add Country</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="" method="POST">
+                                                    <div class="mb-3">
+                                                        <label for="Country" class="form-label">Country</label>
+                                                        <input type="text" class="form-control" id="countryName"  name="countryName" aria-describedby="emailHelp">
+
+
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
 
                                     </tr>
                                 </thead>
