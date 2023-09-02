@@ -235,13 +235,43 @@ $softwares= admin::viewallsoftware($connection);
 
                             </tbody>
                     </table>
+                    
+                    
                 </div>
+                
                  
              
             </div> 
-             
+             <!-- ================= Downloads ================ -->
+            <div class="recentCustomers" id="Softwaretable2" style="display: none;">
+                <div class="cardHeader">
+                    <h2>Downloads</h2>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Software name</td>
+                            <td>Devolper Name</td>
+                            <td>Free/Paid</td>
+                            
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Star Refrigerator</td>
+                            <td>$1200</td>
+                            <td>Paid</td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
                 
         </div>
+        
     </div>
 
     <!-- =========== Scripts =========  -->
