@@ -168,7 +168,7 @@ $star = [254, 20, 6, 15, 63, 150];
                             <table width=100%>
                                 <tr>
                                     <td class="p-3 text-light" ><span><h3>Download</h3></span></td>
-                                    <td align="right" class="p-3"><i class="fa-solid fa-cart-plus fa-shake fa-2xl" style="color: #ffffff;"></i></td>
+                                    <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
                                 </tr>
                             </table>
                         </button>
