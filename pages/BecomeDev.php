@@ -1,4 +1,33 @@
 <!DOCTYPE html>
+<?php
+require '../Classes/Select.php';
+
+use Classes\Select;
+
+$select = new \Classes\Select();
+
+
+session_start();
+if (!isset($_SESSION["user"])) {
+    $user = "RoseD"; //$_SESSION["user"];
+ 
+    foreach ($select->selectDev($user) as $u) {
+        $uname = $u->username;
+        $fname = $u->fname;
+        $lname = $u->lname;
+        $email = $u->email;
+        $shortdes = $u->shortdes;
+        $education = $u->education;
+        $languages = $u->languages;
+        $prolang = $u->prolang;
+        $experience = $u->experience;
+        $description = $u->description;  
+              
+    }
+} else {
+    header("Location: ../index.php");
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -22,6 +51,25 @@
         <div class="header">
             <h1>Welcome to SoftDex!  </h1>
         </div>
+        
+        <div class="container">
+            <br>
+            <?php
+            echo $fname; 
+            if (isset($_GET['m'])) {
+                if ($_GET['m'] === "2") {
+                    ?>
+                    <div class="alert alert-danger " role="alert">Something went wrong. Try again</div>
+                    <?php
+                } else if ($_GET['m'] === "1") {
+                    ?>
+                    <div class="alert alert-success " role="alert">Sucessfully edit your profile</div>
+                <?php
+                }
+            }
+            ?>
+            <br>
+            </div>
 
         <div class="container">
             <form action="../Process/BecomeDevProcess.php" class="needs-validation" method="post">
@@ -56,7 +104,7 @@
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" >
+                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" value="<?php echo $fname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" >
 
                                         </div>
 
@@ -70,7 +118,7 @@
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md" oninput="validateName('lastName')" >
+                                            <input id="lastName" type="text" name="lastname" placeholder="Last Name" value="<?php echo $lname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('lastName')" >
 
                                         </div>
                                     </div>
@@ -101,7 +149,7 @@
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="firstName" type="text" name="user" class="form-control bg-white border-left-0 border-md" disabled>
+                                            <input id="firstName" type="text" name="user" value="<?php echo $uname; ?>" class="form-control bg-white border-left-0 border-md" disabled>
                                             <p id="firstNameError" style="color: red;"></p>
                                         </div>
                                     </div>
@@ -119,13 +167,13 @@
                                                     <i class="fa fa-envelope text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" >
+                                            <input id="email" type="email" name="email" value="<?php echo $email; ?>" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" >
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!--password-->
+<!--                            password
                             <div class="form-group">
                                 <div class="row">
                                     <div class="input-group col-lg-6 mb-4">
@@ -141,7 +189,7 @@
 
                                     </div>
 
-                                    <!-- Password Confirmation-->
+                                     Password Confirmation
                                     <div class="input-group col-lg-6 mb-4">
                                         <label for="confirmpassword">Confirm Password</label>
                                         <div class="input-group">
@@ -154,7 +202,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <!-- country -->
                             <div class="form-group">
@@ -188,6 +236,7 @@
                                                 <option value="India">India</option>
                                                 <option value="Austraila">Austraila</option>
                                                 <option value="Vietnam">Vietnam</option>
+                                                <option value="<?php echo $country; ?>" selected><?php echo $country; ?></option>
 
                                             </select>
                                         </div> 
@@ -207,7 +256,7 @@
                                                     <i class="fa fa-tag text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input name="lang" id="lang" placeholder="Languages"  class="form-control" >
+                                            <input name="lang" id="lang" placeholder="Languages" value="<?php echo $languages; ?> class="form-control" >
                                         </div>
 
                                     </div>
@@ -226,7 +275,7 @@
                                                     <i class="fa fa-tag text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input name="prolang" id="prolang" placeholder="Programing Languages"  class="form-control" >
+                                            <input name="prolang" id="prolang" placeholder="Programing Languages" value="<?php echo $prolang; ?> class="form-control" >
                                         </div>
 
                                     </div>
@@ -236,14 +285,14 @@
                             <!--ShortDescription-->
                             <div class="form-group">
                                 <label for="shortDescription">Short Description</label>
-                                <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" class="form-control"></textarea>
+                                <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" value="<?php echo $shortdes; ?> class="form-control"></textarea>
                             </div>
 
                             <!--Education-->
                             <div class="form-group">
                                 <label for="education">Education</label>
                                 <div id="editor-container" name="education" ></div>
-                                <input type="hidden" name="education" id="hiddenskills">
+                                <input type="hidden" name="education" value="aaa" id="hiddenskills">
 
                             </div>
 
@@ -275,7 +324,14 @@
                         <br>
                         <div class="form-group text-center">
                             <div class="d-flex justify-content-center">
-                                <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="BecomeaDeveloper">BECOME A DEVELOPER</button>
+                                <?php if ($fname === null) { ?>
+                                    <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="createProfile">Become a Developer</button>
+                                <?php } else {
+                                    ?>
+                                    <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="createProfile">Edit Profile</button>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
 
