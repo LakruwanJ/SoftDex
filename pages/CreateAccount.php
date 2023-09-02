@@ -164,25 +164,25 @@
                                                 </span>
                                             </div>
                                             <select id="country" name="country" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                                <option value="sl">Sri Lanka</option>
-                                                <option value="">America</option>
-                                                <option value="">Austraila</option>
-                                                <option value="">Bangladesh</option>
-                                                <option value="">Brazil</option>          
-                                                <option value="">Canada</option>
-                                                <option value="">China</option>
-                                                <option value="">Denmark</option>
-                                                <option value="">France</option>
-                                                <option value="">Germany</option>
-                                                <option value="">India</option>
-                                                <option value="">Iraq</option>
-                                                <option value="">Canada</option>
-                                                <option value="">Nepal</option>
-                                                <option value="">America</option>
-                                                <option value="">Japan</option>
-                                                <option value="">India</option>
-                                                <option value="">Austraila</option>
-                                                <option value="">Vietnam</option>
+                                                <option value="Sri Lanka">Sri Lanka</option>
+                                                <option value="Americ">America</option>
+                                                <option value="Austraila">Austraila</option>
+                                                <option value="Bangladesh">Bangladesh</option>
+                                                <option value="Brazil">Brazil</option>          
+                                                <option value="Canada">Canada</option>
+                                                <option value="China">China</option>
+                                                <option value="Denmark">Denmark</option>
+                                                <option value="France">France</option>
+                                                <option value="Germany">Germany</option>
+                                                <option value="India">India</option>
+                                                <option value="Iraq">Iraq</option>
+                                                <option value="Canada">Canada</option>
+                                                <option value="Nepal">Nepal</option>
+                                                <option value="America">America</option>
+                                                <option value="Japan">Japan</option>
+                                                <option value="India">India</option>
+                                                <option value="Austraila">Austraila</option>
+                                                <option value="Vietnam">Vietnam</option>
 
                                             </select>
                                         </div> 
