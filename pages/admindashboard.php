@@ -333,7 +333,7 @@ $home = new Home();
                                             <td><?= $user->getEmail() ?></td>
                                             <td><?= $user->getUsername() ?></td>
                                             <td><?= $user->getCountry() ?></td>
-                                            <td><img src="../img/user-xmark-solid.svg" alt=""  width="50px" height="50px"></td>
+                                            <td><a href="edit.php?username=<?= $user->getUsername() ?>"><img src="../img/user-xmark-solid.svg" alt="" width="50px" height="50px"></a></td>
                                         </tr>
                                         <?php
                                     }
