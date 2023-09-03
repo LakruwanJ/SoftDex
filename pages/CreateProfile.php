@@ -52,22 +52,41 @@ if (isset($_SESSION["user"])) {
                     <?php
                 } else if ($_GET['m'] === "1") {
                     ?>
-                    <div class="alert alert-success " role="alert">Sucessfully edit your profile</div>
-                <?php
+                    <div class="alert alert-success " role="alert">Sucessfully saved your data!</div>
+                    <?php
                 }
             }
             ?>
             <br>
-            </div>
+        </div>
         <div class="container">
             <br>
-            <form action="../Process/ProfileEdit.php" class="needs-validation" method="post">
+            <form action="../Process/ProfileEdit.php" class="needs-validation" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="left-side">
-
-                        <img src="../img/createProfile/registration-form.jpg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                        <br>
                         <h1>Create Your Profile </h1>
+                        <br>
+                        <div class="d-flex justify-content-center">
+                        <div class="profile-pic-container " >
+                            <img src="../img/user/<?php echo $user; ?>/<?php echo $user; ?>" >
+                            
+                            <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = '../img/user/' . $user . '/' . $user;
+
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                        </div>
+                        </div>
+                       
+
 
                         <div class="container">
                             <div class="form-group">
@@ -232,11 +251,11 @@ if (isset($_SESSION["user"])) {
                             </div>
 
 
-                            <!--Add a profile pic
+                            <!--Add a profile pic-->
                             <div class="form-group">
                                 <label for="profilepic">Profile Picture</label>
                                 <input type="file" id="profilepic" name="profilepic" class="form-control-file">
-                            </div>-->
+                            </div>
                         </div>
 
                         <br>
