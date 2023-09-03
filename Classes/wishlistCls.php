@@ -25,8 +25,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($_POST["user"]) && !empty($_POST["sw"])) {
 
             $wishObj->wishlistCls($_POST["user"], $_POST["sw"]);
-            $temp = $wishObj->getwishlist();
-            $wishObj->additemtowishlist($temp);
+            if (empty($wishObj->getwishlist())) {
+                $wishObj->additemtowishlist($wishObj->getwishlist());
+            }else{
+                $namesArray = explode("|", $wishObj->getwishlist());
+                foreach ($namesArray as $value) {
+                 if ($_POST["sw"]===$value){
+                     header("Location: ../pages/software.php?id=".$_POST["sw"]);
+                        break;
+                      }else {
+                        $wishObj->additemtowishlist($wishObj->getwishlist());
+                    }
+                    
+                }
+            }
+            
         }
     }
 }
