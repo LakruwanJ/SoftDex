@@ -87,8 +87,8 @@ require_once '../Classes/AddSoftwareReg.php';
         
         $date = date("Y-m-d");
         
-        $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
-        $addsoftwarereg->addsoftware();
+//        $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
+        $addsoftwarereg->addsoftware($softwareName,$version,$platform,$license,$amount,$category,$language,$tags,$systemreq,$shortDescription,$longDescription,$developer,$date,$Sid);
                 }
     }
     
