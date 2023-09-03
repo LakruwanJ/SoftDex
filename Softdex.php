@@ -56,29 +56,57 @@ $rsCls = new Home();
                         <li class="nav-item">
                             <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
                         </li>
-<!--                        without login
-                        <li class="nav-item ">
-                            <a class="nav-link " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
 
-                        </li>-->
-                        <!--with login-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="img/user (2).png" width="40" height="40" class="rounded-circle">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <center><li><?php echo $user;?></li></center>
-                                <hr class="p-0 m-0 mt-1">
-                                <li><a class="dropdown-item " href="#"><i class="fas fa-user mr-2 icoon"></i>Account</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
-                                <hr class="p-0 m-0 mt-1">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
-                            </ul>
+                        <?php
+                        if (isset($_SESSION["user"])) {
+                            ?>
+                            <!--with login-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="img/user (2).png" width="40" height="40" class="rounded-circle">
 
-                        </li>
+                                    <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = 'img/user/' . $user . '/' . $user;
+
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="rounded-circle" width="40" height="40" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <center><li><?php echo "Hello " . $user; ?></li></center>
+                                    <hr class="p-0 m-0 mt-1">
+                                    <li><a class="dropdown-item " href="pages/profile.php"><i class="fas fa-user mr-2 icoon"></i>Profile</a></li>
+                                    <?php
+                                    if ($home->CheckDeveloper($user) === null) {
+                                        ?>
+                                        <li><a class="dropdown-item" href="pages/BecomeDev.php"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
+                                    <?php }
+                                    ?>
+                                    <hr class="p-0 m-0 mt-1">
+                                    <li><a class="dropdown-item" href="Process/Logout.php"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
+                                </ul>
+                            </li>
+                        <?php } else {
+                            ?>
+                            <!--without login-->
+                            <li class="nav-item ">
+                                <a class="nav-link " href="index.php?mode=signin"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="index.php?mode=signup"><button class="btn btn-primary" type="button">Sign UP</button></a>
+
+                            </li>
+                            <?php
+                        }
+                        ?>
+
                     </ul>
                 </div>
             </div>
@@ -232,7 +260,7 @@ $rsCls = new Home();
                                         <a href="#">
                                             <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                1<?php // add here                             ?>
+                                                1<?php // add here                                ?>
                                             </span>
                                         </a>                                            
                                     </span>
@@ -327,7 +355,7 @@ $rsCls = new Home();
                                                                 <div class="card-body p-2 mt-1">
                                                                     <?php
                                                                     $imageFormats = ['png', 'jpg'];
-                                                                    $imagePath = 'img/sw/'.$sw->Sid.'/logo'; 
+                                                                    $imagePath = 'img/sw/' . $sw->Sid . '/logo';
 
                                                                     foreach ($imageFormats as $format) {
                                                                         $imageUrl = $imagePath . '.' . $format;
@@ -349,24 +377,24 @@ $rsCls = new Home();
                                                                     <h5><a class="text-dark" href="pages/Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
                                                                     <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
 
-                                                <!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
-                                                                                                                    <p class="small text-muted font-italic"><?php echo $sw->username; ?></p> -->
+                                                                                    <!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
+                                                                                                                                                        <p class="small text-muted font-italic"><?php echo $sw->username; ?></p> -->
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </div>
-        <?php } ?>
+                                                    <?php } ?>
                                                 </div>
                                                 <br><div class="text-center mb-2"><button class="btn btn-outline-secondary round px-5 py-1" type="button" align="right"><b>More</b></button></div>
                                             </div><!--Remove one Div need only 1-->
 
-    <?php } ?></div></div>
+                                        <?php } ?></div></div>
                                 <!------------------------------------------------------------- software area end ------------------------------------------------------------->
 
                             </div><br>
 
                             <!--------------------------------------------------------- title & contenct area end -------------------------------------------------------->   
-<?php } ?>
+                        <?php } ?>
                         </section><br>             
 
 
@@ -385,25 +413,25 @@ $rsCls = new Home();
                                                 <!--<a href="#"></a>-->
                                                 <td><button class="btn" style="margin-left: 5px;" type="submit"> 
                                                         <?php
-                                                                    $imageFormats = ['png', 'jpg'];
-                                                                    $imagePath = 'img/sw/'.$sw->Sid.'/logo'; 
+                                                        $imageFormats = ['png', 'jpg'];
+                                                        $imagePath = 'img/sw/' . $sw->Sid . '/logo';
 
-                                                                    foreach ($imageFormats as $format) {
-                                                                        $imageUrl = $imagePath . '.' . $format;
+                                                        foreach ($imageFormats as $format) {
+                                                            $imageUrl = $imagePath . '.' . $format;
 
-                                                                        if (file_exists($imageUrl)) {
-                                                                            echo '<img class="d-block mx-auto mb-1 mt-1" src="' . $imageUrl . '" height="75px" alt="Logo Image" />';
-                                                                            break;
-                                                                        }
-                                                                    }
-                                                                    ?>
+                                                            if (file_exists($imageUrl)) {
+                                                                echo '<img class="d-block mx-auto mb-1 mt-1" src="' . $imageUrl . '" height="75px" alt="Logo Image" />';
+                                                                break;
+                                                            }
+                                                        }
+                                                        ?>
                                                     </button></td>
                                                 <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
                                                 <td><?php echo $sw->license; ?></td>
                                                 <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
                                                 <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
                                             </tr>
-<?php } ?>
+                                        <?php } ?>
                                     </table>
                                 </div>
 
@@ -418,25 +446,25 @@ $rsCls = new Home();
                                                 <!--<a href="#"></a>-->
                                                 <td><button class="btn" style="margin-left: 5px;" type="submit">
                                                         <?php
-                                                                    $imageFormats = ['png', 'jpg'];
-                                                                    $imagePath = 'img/sw/'.$sw->Sid.'/logo'; 
+                                                        $imageFormats = ['png', 'jpg'];
+                                                        $imagePath = 'img/sw/' . $sw->Sid . '/logo';
 
-                                                                    foreach ($imageFormats as $format) {
-                                                                        $imageUrl = $imagePath . '.' . $format;
+                                                        foreach ($imageFormats as $format) {
+                                                            $imageUrl = $imagePath . '.' . $format;
 
-                                                                        if (file_exists($imageUrl)) {
-                                                                            echo '<img class="d-block mx-auto mb-1 mt-1" src="' . $imageUrl . '" height="75px" alt="Logo Image" />';
-                                                                            break;
-                                                                        }
-                                                                    }
-                                                                    ?>
+                                                            if (file_exists($imageUrl)) {
+                                                                echo '<img class="d-block mx-auto mb-1 mt-1" src="' . $imageUrl . '" height="75px" alt="Logo Image" />';
+                                                                break;
+                                                            }
+                                                        }
+                                                        ?>
                                                     </button></td>
                                                 <td><?php echo $sw->name; ?><br><i class="small text-muted font-italic">by <?php echo $sw->username; ?></i></td>
                                                 <td><?php echo $sw->license; ?></td>
                                                 <td><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
                                                 <td align="right"><button class="btn" style="margin-left: 5px;" type="submit"><i class="fa-solid fa-download fa-2xl"></i></button></td>
                                             </tr>
-<?php } ?>
+                                        <?php } ?>
                                     </table>
                                 </div>
                             </div><br>
@@ -701,6 +729,8 @@ $rsCls = new Home();
                     </section>
                     </main>
 
+        <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin = "anonymous"></script>
+
                     <footer id = "myFooter">
                         <div class = "container-fluid">
                             <div class = "row text-center">
@@ -750,10 +780,6 @@ $rsCls = new Home();
                             </div>
                         </div>
                     </footer>
-
-
-
-                    <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin = "anonymous"></script>
 
                     </body>
                     </html>
