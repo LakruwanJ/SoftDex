@@ -1,6 +1,7 @@
 <?php
 
 use Classes\AddSoftwareReg;
+use Classes\DbConnector;
 require_once '../Classes/AddSoftwareReg.php';
 
 
@@ -10,11 +11,17 @@ require_once '../Classes/AddSoftwareReg.php';
         exit;
         
         }else{
+         $userame = "RoseD";//$_POST["user"];
          $softwareName = $_POST["softwareName"];
         $version = $_POST["version"];
         $platform = $_POST["platform"];
         $license = $_POST["license"];
-        $amount = $_POST["amount"];
+        if (isset($_POST['amount'])){
+            $amount = $_POST["amount"];
+        }else{
+            $amount = "0";
+        }
+        
         $category = $_POST["category"];
         $language = $_POST["language"];
         $tags = $_POST["tags"];
@@ -35,7 +42,52 @@ require_once '../Classes/AddSoftwareReg.php';
         echo'shortdes:'.$shortDescription;"<br>";
         echo 'longdes:'.$longDescription;"<br>";
         
-        $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license,$amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription);
+        
+        echo $userame;
+        
+        $addsoftwarereg = new AddSoftwareReg();
+        
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+        $query = "SELECT Sid FROM software ORDER BY Sid DESC LIMIT 1;";
+        $pstmt = $con->prepare($query);
+        $pstmt->execute();
+        $uid = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($uid as $value) {
+            $lastid = $value->Sid;
+        }
+        if ($lastid == NULL) {
+            $output = "sw0001";
+        } else {
+            $prefix = substr($lastid, 0, 2); //sw
+            $number = (int) substr($lastid, 2);
+            $newNumber = $number + 1;
+            $output = $prefix . sprintf("%04d", $newNumber); // Combine 
+        }
+        $Sid = $output;
+        
+        
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT d.Did FROM developer d JOIN  user u ON u.Uid = d.user WHERE u.username = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $userame);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        
+        foreach ($rs as $value) {
+            $text = $value->Did;
+        }
+        $developer =  $text;
+        
+        
+        $date = date("Y-m-d");
+        
+        $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
         $addsoftwarereg->addsoftware();
                 }
     }
