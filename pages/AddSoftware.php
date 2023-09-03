@@ -48,7 +48,7 @@
 
 
 
-            <form action="../Process/AddSoftwareProcess.php" method="post">
+            <form action="../Process/AddSoftwareProcess.php" method="post" enctype="multipart/form-data">
 
                 <div class="row">
 
@@ -71,17 +71,19 @@
                         <!--upload images-->
                         <div class="form-group">
                             <label for="softwareImage">Upload Images</label>
-                            <input type="file" name="softwareImage[]" multiple class="form-control-file">
+                            <input type="file" name="softwareImage[]" multiple class="form-control-file"><br>
+                            <input type="file" name="softwareImage[]" multiple class="form-control-file"><br>
+                            <input type="file" name="softwareImage[]" multiple class="form-control-file"><br>
                         </div>
 
                         <br>
 
-                        <!--upload videos-->
+                        <!--upload videos
                         <div class="form-group">
                             <label for="video">Upload Video</label>
                             <input type="file" id="video" name="video" class="form-control-file">
                         </div>
-                        <br>
+                        <br>-->
 
 
                         <!--upload software-->
