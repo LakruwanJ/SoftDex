@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Form</title>
-  <link rel="stylesheet" href="contactus.css" />
+  <link rel="stylesheet" href="../css/ContactUs.css" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
         
     </head>
@@ -28,15 +28,15 @@ and open the template in the editor.
 
           <div class="info">
             <div class="information">
-              <img src="images/location.png" class="icon" alt="" />
+                <img src="../img/location.jpg" class="icon" alt="" />
               <p>No: 58, Passara Road, Badulla.</p>
             </div>
             <div class="information">
-              <img src="images/email.png" class="icon" alt="" />
-              <p>softdex@gmail.com</p>
+                <img src="../img/email.png" class="icon" alt="" />
+              <p>baduluparking@gmail.com</p>
             </div>
             <div class="information">
-              <img src="images/phone.png" class="icon" alt="" />
+                <img src="../img/phone.png" class="icon" alt="" />
               <p>011-1234567</p>
             </div>
           </div>
@@ -92,5 +92,6 @@ and open the template in the editor.
       </div>
     </div>
         <script src="../JS/ContactUs.js"></script>
+
     </body>
 </html>

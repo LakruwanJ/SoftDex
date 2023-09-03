@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 body {
@@ -14,7 +13,6 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  border: 2px solid black;
   padding: 0px;
   max-width: 800px;
 }
@@ -22,8 +20,8 @@ body {
 .tablinks {
   display: flex;
   justify-content: space-between;
-  background-color: #555;
-  color: white;
+  background-color: #b3b3b3;
+  color:black;
   border: none;
   outline: none;
   cursor: pointer;
@@ -33,8 +31,8 @@ body {
 }
 
 .tablink {
-  background-color: #555;
-  color: white;
+  background-color: #b3b3b3;
+  color:black;
   border: none;
   outline: none;
   cursor: pointer;
@@ -44,7 +42,7 @@ body {
 }
 
 .tablink:hover {
-  background-color: #777;
+  background-color: #0091ff;
 }
 
 /* Style the tab content */
@@ -53,26 +51,28 @@ body {
   display: none;
   padding: 50px;
   text-align: left;
+  border: 1px solid #000000;
+  
 }
 
 #About_me {
-  background-color: rgb(255, 255, 255);
+  background-color: #f2f2f2;
 }
 
 #Software {
-  background-color: rgb(46, 80, 101);
+  background-color: #f2f2f2;
 }
 
 #Customized {
-  background-color: rgb(46, 80, 101);
+  background-color: #f2f2f2;
 }
 
 #Tutorial {
-  background-color: rgb(46, 80, 101);
+  background-color: #f2f2f2;
 }
 
 #Timeline {
-  background-color: rgb(46, 80, 101);
+  background-color: #d4d4d4;
 }
 
 .checked {
@@ -426,6 +426,7 @@ a {
   padding: 30px 0;
   justify-content: space-between;
   flex-direction: column;
+  border: 1px solid #000000;
 }
 
 .header__wrapper .cols__container .right__col nav ul {
@@ -445,7 +446,7 @@ a {
 }
 
 .header__wrapper .cols__container .right__col nav button {
-  background: #0091ff;
+  background: #007bff;
   color: #fff;
   border: none;
   padding: 10px 25px;
