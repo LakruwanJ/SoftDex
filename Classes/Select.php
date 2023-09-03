@@ -92,6 +92,36 @@ class Select {
         }
     }
     
+    public function selectSware($id) {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT Sid, name, shortdescription FROM software WHERE developer =? ORDER BY DownCount LIMIT 3";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            return $rs;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function selectDesc($id) {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT Sid, name, shortdescription FROM software WHERE developer =?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            return $rs;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
     
 
 }
+
