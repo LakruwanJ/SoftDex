@@ -61,7 +61,7 @@ if (isset($_SESSION["user"])) {
             </div>
         <div class="container">
             <br>
-            <form action="../Process/CreateAccountProcess.php" class="needs-validation" method="post">
+            <form action="../Process/ProfileEdit.php" class="needs-validation" method="post">
                 <div class="row">
                     <div class="left-side">
 
