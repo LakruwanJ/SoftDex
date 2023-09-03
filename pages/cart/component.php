@@ -8,7 +8,7 @@ function component($productname, $productprice,$productid, $description){
                 <form action=\"cart.php\" method=\"post\">
                     <div class=\"card shadow\">
                         <div>
-                            <img src=\"../img/sw/$productid/logo.jpg \" alt=\"Image1\" class=\"img-fluid card-img-top\">
+                            <img src=\"../img/sw/$productid/logo.png \" alt=\"Image1\" class=\"img-fluid card-img-top\">
 
                         </div>
                         <div class=\"card-body\">
@@ -46,7 +46,7 @@ function cartElement($productname, $productprice, $productid, $name){
                     <div class=\"border rounded\">
                         <div class=\"row bg-white\">
                             <div class=\"col-md-3 pl-0\">
-                                <img src=\"../img/sw/$productid/logo.jpg\" alt=\"Image1\" class=\"img-fluid\">
+                                <img src=\"../img/sw/$productid/logo.png\" alt=\"Image1\" class=\"img-fluid\">
                             </div>
                             <div class=\"col-md-6\">
                                 <h5 class=\"pt-2\">$productname</h5>

@@ -18,15 +18,32 @@ use Classes\DbConnector;
 $cartObj = new cartCls();
 $text = NULL;
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["addtocart"])) {
 
         if (!empty($_POST["user"]) && !empty($_POST["sw"])) {
 
+
+
             $cartObj->cartCls($_POST["user"], $_POST["sw"]);
             $temp = $cartObj->getcart();
-            $cartObj->additemtocart($temp);
+            if (empty($text)) {
+                $cartObj->additemtocart($temp);
+            } else {
+                $namesArray = explode("|", $text);
+                foreach ($namesArray as $value) {
+                    if ($text===$value){
+                        header("Location: software.php?".$_POST["sw"]);
+                        break;
+                    } else {
+                        $cartObj->additemtocart($temp);
+                    }
+                }
+
+            }
         }
     }
 }
