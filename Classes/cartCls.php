@@ -26,20 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!empty($_POST["user"]) && !empty($_POST["sw"])) {
 
-
-
             $cartObj->cartCls($_POST["user"], $_POST["sw"]);
-            $temp = $cartObj->getcart();
-            if (empty($text)) {
-                $cartObj->additemtocart($temp);
+            
+            if (empty($cartObj->getcart())) {
+                $cartObj->additemtocart($cartObj->getcart());
             } else {
-                $namesArray = explode("|", $text);
+                $namesArray = explode("|", $cartObj->getcart());
                 foreach ($namesArray as $value) {
-                    if ($text===$value){
-                        header("Location: software.php?".$_POST["sw"]);
+                    if ($_POST["sw"]===$value){
+                        header("Location: ../pages/software.php?id=".$_POST["sw"]);
                         break;
                     } else {
-                        $cartObj->additemtocart($temp);
+                        $cartObj->additemtocart($cartObj->getcart());
                     }
                 }
 
