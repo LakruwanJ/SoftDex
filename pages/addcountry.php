@@ -30,7 +30,7 @@ and open the template in the editor.
         $connection = $dbConnector->getConnection();
 
         
-        $pstmt = $connection->prepare("INSERT INTO country (Name) VALUES ?");
+        $pstmt = $connection->prepare("INSERT INTO country (Name) VALUES (?)");
         $pstmt->bindValue(1, $name);
         $pstmt->execute();
 

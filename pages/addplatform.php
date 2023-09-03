@@ -28,13 +28,13 @@ and open the template in the editor.
         $connection = $dbConnector->getConnection();
 
         
-        $pstmt = $connection->prepare("INSERT INTO platforms (Name) VALUES ?");
+        $pstmt = $connection->prepare("INSERT INTO platforms (Name) VALUES (?)");
         $pstmt->bindValue(1, $name);
         $pstmt->execute();
 
         
         if ($pstmt->rowCount()>0) {
-            header("Location:admindashboard.php");
+            echo"Success";
         }
     } catch (PDOException $e) {
         die("Error  ". $e->getMessage());

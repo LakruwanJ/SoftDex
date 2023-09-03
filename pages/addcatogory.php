@@ -30,7 +30,7 @@ and open the template in the editor.
         $connection = $dbConnector->getConnection();
 
         
-        $pstmt = $connection->prepare("INSERT INTO category (Text) VALUES ?");
+        $pstmt = $connection->prepare("INSERT INTO category (Text) VALUES (?)");
         $pstmt->bindValue(1, $name);
         $pstmt->execute();
 

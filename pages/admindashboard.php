@@ -205,7 +205,7 @@ $home = new Home();
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="add" method="POST">
+                                                <form action="addplatform.php" method="POST">
                                                     <div class="mb-3">
                                                         <label for="Name" class="form-label">Name</label>
                                                         <input type="text" class="form-control" id="platformName"  name="platformName" aria-describedby="emailHelp">
