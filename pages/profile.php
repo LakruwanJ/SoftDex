@@ -1,3 +1,37 @@
+<?php 
+use Classes\DbConnector;
+use Classes\Select;
+
+
+require_once '../Classes/Select.php';
+
+$dbcon= new DbConnector();
+$con = $dbcon->getConnection();
+$rs = new Classes\Select();
+
+
+//session_start();
+//if (isset($_SESSION["user"])) {
+//    $user = $_SESSION["user"];
+//}
+$user = "RoseD";
+$rs = new Classes\Select();
+
+$rs2 = $rs->selectDev($user);
+foreach ($rs2 as $dev) {
+    $user = $dev->user;
+    $shortdes = $dev->shortdes;
+    $education = $dev->education;
+    $languages= $dev-> languages;
+    $prolang= $dev-> prolang;
+    $experience= $dev-> experience;
+    $description= $dev-> description;
+    $datesince= $dev-> datesince;
+    $country= $dev->country;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,20 +57,20 @@
         <div class="img__container">
             <img src="../img/img_dev.jpg" alt="K. L. Jayathissa" />
         </div>
-        <h2>K. L. Jayathissa</h2>
-        <p>UX/UI Designer</p>
+          <h2><?php echo $user;?></h2>
+       
         <div class="rating">
           <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
           <span class="fa fa-star"></span>
           <span>(349 Ratings)</span>
         </div>
         <button>Edit Profile</button>
         <hr>
         <div class="details">
-          <p><strong><i class="fas fa-map-marker-alt"></i> From:</strong> Colombo, Sri Lanka</p>
+          <p><strong><i class="fas fa-map-marker-alt"></i> From:</strong><?php echo $country; ?> </p>
           <p><strong><i class="far fa-calendar"></i> Member Since:</strong> January 2018</p>
           <p><strong><i class="fas fa-tasks"></i> Number of Projects:</strong> 57</p>
         </div>
