@@ -65,8 +65,7 @@ foreach ($rs2 as $dev) {
 
                     <div class="rating">
                         <span class="fa fa-star checked" ></span>
-                        <p><strong>5.0</strong></p>
-
+                        <span>(5.0)</span>
                     </div>
                     <a href="BecomeDev.php">
                         <button>Edit Profile</button>
@@ -80,8 +79,9 @@ foreach ($rs2 as $dev) {
                     </div>
                     <!-- Add the "Create Customized Software with Me" button -->
                     <button>To create a customized software</button>
-
+                    <br>
                     <div class="card-container">
+                        <br>
                         <div class="card">
                             <ul class="saliha">
                                 <li>40<br>Uploaded</li>
@@ -97,8 +97,9 @@ foreach ($rs2 as $dev) {
                                 <li>56<br>Tutorials</li>
                             </ul>
                         </div>
+                        <br><br>
                     </div>
-
+                    <br>
                     <div class="content">
                         <p>
                             <?php echo $shortdes; ?> 
@@ -131,7 +132,7 @@ foreach ($rs2 as $dev) {
                             <h2>Language Speaking</h2>
                             <ul style="display: flex;flex-direction: column;align-items: center;gap: 5px;">
                                 <li style="width: 90%;margin: 0;"> <?php echo $languages; ?> </li>
-
+<li style="width: 90%;margin: 0;">Sinhala</li>
                             </ul>
                         </div>
                         <br>
