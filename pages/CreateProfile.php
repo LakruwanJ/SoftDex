@@ -6,9 +6,8 @@ use Classes\Select;
 
 $select = new \Classes\Select();
 
-
 session_start();
-if (!isset($_SESSION["user"])) {
+if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 
     foreach ($select->selectUser($user) as $u) {
