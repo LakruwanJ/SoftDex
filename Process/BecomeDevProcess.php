@@ -1,7 +1,9 @@
 <?php
 
 require '../Classes/DbConnector.php';
+require '../Classes/Select.php';
 
+use Classes\DbConnector;
 use Classes\DbConnector;
 
 $dbcon = new DbConnector();
@@ -20,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $con = $dbcon->getConnection();
 
-            if ($x == 1) {
+            if () {
 
                 $sql = "INSERT INTO developer(Did,user ,shortdes,education ,languages ,prolang, experience,description,datasince ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $pstmt = $con->prepare($sql);
@@ -36,9 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $pstmt->execute();
             } else {
-                $sql2 = "UPDATE developer SET shortdes=? , education=?, language=?, prolang=?, experience=?, description=?, datasince=? WHERE Did=? "; 
-                $pstmt= $con->prepare($sql2);
-                $pstmt->bindValue(1, $shortdes)
+                $sql = "UPDATE developer SET shortdes=? , education=?, language=?, prolang=?, experience=?, description=? WHERE Did=? "; 
+                $pstmt= $con->prepare($sql);
+                $pstmt->bindValue(3, $shortdes);
+                $pstmt->bindValue(4, $education);
+                $pstmt->bindValue(5, $languages);
+                $pstmt->bindValue(6, $prolang);
+                $pstmt->bindValue(7, $experience);
+                $pstmt->bindValue(8, $description);
+                
+                $pstmt->execute(); 
                        
             }
 
