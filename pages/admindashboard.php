@@ -205,10 +205,36 @@ $home = new Home();
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="" method="POST">
+                                                <form action="addplatform.php" method="POST">
                                                     <div class="mb-3">
                                                         <label for="Name" class="form-label">Name</label>
                                                         <input type="text" class="form-control" id="platformName"  name="platformName" aria-describedby="emailHelp">
+
+
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary m-5" data-toggle="modal" data-target="#catogory">Add Catogory</button>
+
+                                <div class="modal" id="catogory">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Add Catogory</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="addcatogory.php" method="POST">
+                                                    <div class="mb-3">
+                                                        <label for="Country" class="form-label">Catogory</label>
+                                                        <input type="text" class="form-control" id="catogoryName"  name="catogoryName" aria-describedby="emailHelp">
 
 
                                                     </div>
@@ -268,9 +294,9 @@ $home = new Home();
                                         <td>Country</td>
                                         <td>Remove User</td>
                                         <!--- add modal---->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Country</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#country">Add Country</button>
 
-                                <div class="modal" id="myModal">
+                                <div class="modal" id="country">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -278,7 +304,7 @@ $home = new Home();
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="" method="POST">
+                                                <form action="addcountry.php" method="POST">
                                                     <div class="mb-3">
                                                         <label for="Country" class="form-label">Country</label>
                                                         <input type="text" class="form-control" id="countryName"  name="countryName" aria-describedby="emailHelp">

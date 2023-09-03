@@ -3,6 +3,8 @@
 require_once '../Classes/DbConnector.php';
 use Classes\DbConnector;
 ?>
+
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -18,7 +20,7 @@ and open the template in the editor.
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $name = $_POST['platformName'];
+    $name = $_POST['catogoryName'];
 
     
 
@@ -28,13 +30,13 @@ and open the template in the editor.
         $connection = $dbConnector->getConnection();
 
         
-        $pstmt = $connection->prepare("INSERT INTO platforms (Name) VALUES (?)");
+        $pstmt = $connection->prepare("INSERT INTO category (Text) VALUES (?)");
         $pstmt->bindValue(1, $name);
         $pstmt->execute();
 
         
         if ($pstmt->rowCount()>0) {
-            echo"Success";
+            echo "Success";
         }
     } catch (PDOException $e) {
         die("Error  ". $e->getMessage());
@@ -42,12 +44,6 @@ and open the template in the editor.
 
    
 }
-?>
         ?>
     </body>
 </html>
-
-
-
-
-
