@@ -1,23 +1,23 @@
 <?php
-require_once ('../Classes/cartCls.php');
+require_once ('../Classes/wishlistCls.php');
 require_once ('../Classes/DbConnector.php');
 
-use Classes\cartCls;
+use Classes\wishlistCls;
 use Classes\DbConnector;
 
-$cartObj = new cartCls();
+$wishObj = new wishlistCls();
 session_start();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 }
-$cartObj->cartCls1($user);
-$sw = explode("|", $cartObj->getcart());
+$wishObj->wishlistCls1($user);
+$sw = explode("|", $wishObj->getwishlist());
 
 // create connection
 $con_obj = new Classes\DbConnector();
 $con = $con_obj->getConnection();
 
-$cartProducts = array();
+$wishlistProducts = array();
 $total = 0;
 
 //if (isset($_POST['remove'])){
@@ -40,7 +40,7 @@ $total = 0;
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Cart</title>
+        <title>Wishlist</title>
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
@@ -56,24 +56,24 @@ $total = 0;
             <div class="row px-5">
                 <div class="col-md-6">
                     <div class="shopping-cart">
-                        <h6>My Cart</h6>
+                        <h6>My Wishlist</h6>
                         <hr>
 
                         <?php
                         $total = 0;
                         $count = 0;
                         if (empty($sw)) {
-                            echo "<h5>Cart is Empty</h5>";
+                            echo "<h5>Wishlist is Empty</h5>";
                         } else {
                             foreach ($sw as $value) {
                                 $value = rtrim($value);
-                                foreach ($cartObj->getcartsw($value) as $value2) {
+                                foreach ($wishObj->getwishlistsw($value) as $value2) {
                                     $total += (int)$value2->amount;
                                     $count++;
                                     ?>
 
 
-                                    <form action="cart_process.php?action=remove&id=$productid" method="post" class="cart-items">
+                        <form action="wishlist_process.php?action=remove&id=$productid" method="post" class="cart-items">
                                         <div class="border rounded">
                                             <div class="row bg-white p-3">
                                                 <div class="col-md-3 pl-0">
