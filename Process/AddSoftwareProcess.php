@@ -22,6 +22,19 @@ require_once '../Classes/AddSoftwareReg.php';
         $shortDescription = $_POST["shortDescription"];
         $longDescription = $_POST["longDescription"];
         
+         echo 'softwareName:'.$softwareName;"<br>";
+        echo 'version:'.$version;"<br>";
+        echo 'platform:'.$platform;"<br>";
+        echo 'li:'.$license;"<br>";
+        echo'amount:'.$amount;"<br>";
+         echo 'category:'.$category;"<br>";
+        echo 'language:'.$language;"<br>";
+        echo 'platform:'.$platform;"<br>";
+        echo 'tags:'.$tags;"<br>";
+        echo'systemrq:'.$systemreq;"<br>";
+        echo'shortdes:'.$shortDescription;"<br>";
+        echo 'longdes:'.$longDescription;"<br>";
+        
         $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license,$amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription);
         $addsoftwarereg->addsoftware();
                 }
