@@ -147,7 +147,7 @@ $star = [254, 20, 6, 15, 63, 150];
                 </div>            
                 <div class="col-md-4 text-center"><br><br>
                     <?php
-                    if ($license === "paid") {
+                    if ($license === "Paid") {
                         ?>
                         <button type="button" class="btn btn-warning down">
                             <table width=100%>
