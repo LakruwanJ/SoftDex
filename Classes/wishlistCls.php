@@ -48,6 +48,10 @@ class wishlistCls {
 
     private $user;
     private $softwareid;
+    
+    public function wishlistCls1($user) {
+        $this->user = $user;
+    }
 
     public function wishlistCls($user, $softwareid) {
         $this->user = $user;
@@ -90,6 +94,33 @@ class wishlistCls {
             $text = $value->wishlist;
         }
         return $text;
+    }
+    
+    public function getwishlistitems($user) {
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+        $query = "SELECT wishlist FROM user WHERE username=?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $user);
+        $pstmt->execute();
+        $item = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($item as $value) {
+            $text = $value->wishlist;
+        }
+        return $text;
+    }
+    
+    public function getwishlistsw($val) {
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+        $query = "SELECT Sid,name,shortdescription,u.username,amount "
+                    . "FROM software s JOIN developer d ON s.developer = d.Did JOIN user u ON d.user = u.Uid WHERE "
+                    . "Sid = ?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $val);
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        return $rs;
     }
 
 }
