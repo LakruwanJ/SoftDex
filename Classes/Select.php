@@ -40,7 +40,7 @@ class Select {
         }
         
         foreach ($rs as $value) {
-            $text = $value->wishlist;
+            $text = $value->Did;
         }
         return $text;
     }

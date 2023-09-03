@@ -155,6 +155,7 @@ if (!isset($_SESSION["user"])) {
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="user" value="<?php echo $uname; ?>">
 
                             <!--Email-->
                             <div class="form-group">
