@@ -74,6 +74,56 @@ if (isset($_POST['softwareName'], $_POST['version'], $_POST['platform'], $_POST[
         $addsoftwarereg->addsoftware($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
         
         
+
+//        $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
+       $addsoftwarereg->addsoftware($softwareName,$version,$platform,$license,$amount,$category,$language,$tags,$systemreq,$shortDescription,$longDescription,$developer,$date,$Sid);
+        
+  
+    $logoFile = $_FILES['softwareLogo'];
+    $imageFiles = $_FILES['softwareImage'];
+    
+    $softwareFile = $_FILES['software'];
+    
+   
+    
+    // User-specific folder based on user's ID or username
+    $userFolder = '../img/sw/' . $Sid;
+    // Replace $userId with the user's identifier
+
+    // Create the user folder if it doesn't exist
+    if (!file_exists($userFolder)) {
+        mkdir($userFolder, 0777, true);
+    }
+    //upload ss and logo
+        $logoExtension = pathinfo($logoFile['name'], PATHINFO_EXTENSION);
+        $newLogo = 'logo.' . $logoExtension;
+        $logoTargetPath = $userFolder . '/' . $newLogo;
+        move_uploaded_file($logoFile['tmp_name'], $logoTargetPath);
+
+      
+       
+        foreach ($imageFiles['tmp_name'] as $key => $tmpName) {
+            $imageExtension = pathinfo($imageFiles['name'][$key], PATHINFO_EXTENSION);
+            $newImage = 'ss' . ($key + 1) . '.' . $imageExtension;
+            $imageTargetPath = $userFolder . '/' . $newImage;
+            move_uploaded_file($tmpName, $imageTargetPath);
+        }
+
+      
+
+        // Handle the software file
+        $softwareExtension = pathinfo($softwareFile['name'], PATHINFO_EXTENSION);
+        $newSoftware = 'software.' . $softwareExtension;
+        $softwareTargetPath = $userFolder . '/' . $newSoftware;
+        move_uploaded_file($softwareFile['tmp_name'], $softwareTargetPath);
+
+
+   
+
+    // Redirect or display a success message
+    echo 'successfully uploaded files';
+                }
+
     }
 }
     
