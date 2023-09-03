@@ -18,8 +18,13 @@ class AddSoftwareReg{
     private $systemreq;
     private $shortDescription;
     private $longDescription;
+    private $developer;
+    private $date;
+    private $size;
+    private $rate;
+    private $downcount;
     
-    public function __construct($softwareName,$version,$platform,$license,$amount,$category,$language,$tags,$systemreq,$shortDescription,$longDescription) {
+    public function __construct($softwareName,$version,$platform,$license,$amount,$category,$language,$tags,$systemreq,$shortDescription,$longDescription,$developer,$date,$size,$rate,$downcount) {
         $this->softwareName=$softwareName;
         $this->version=$version;
         $this->platform=$platform;        
@@ -31,14 +36,18 @@ class AddSoftwareReg{
         $this->systemreq=$systemreq;
         $this->shortDescription=$shortDescription;
         $this->longDescription=$longDescription;
-               
+        $this->developer=$developer;
+        $this->date=$date;
+        $this->size=$size;
+        $this->rate=$rate;
+        $this->downcount=$downcount;
     }
     
     public function addsoftware() {
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
         
-        $query="INSERT INTO software(name, version, platform, license ,category ,amount, language,tags ,systemreq ,shortdescription ,description) VALUES(?, ?, ?, ? ,? , ?, ? , ? , ?, ?, ? )";
+        $query="INSERT INTO software(name, version, platform, license ,category ,amount, language,tags ,systemreq ,shortdescription ,description,developer,date,size,rate,DownCount) VALUES(?, ?, ?, ? ,? , ?, ? , ? , ?, ?, ?, ?, ?, ?, ?, ? )";
         
         try{
             $pstmt= $con->prepare($query);
@@ -53,6 +62,11 @@ class AddSoftwareReg{
             $pstmt->bindValue(9, $this->systemreq);
             $pstmt->bindValue(10, $this->shortDescription);
             $pstmt->bindValue(11,  $this->longDescription);
+            $pstmt->bindValue(12, $this->developer);
+            $pstmt->bindValue(13, $this->date);
+            $pstmt->bindValue(14, $this->size);
+            $pstmt->bindValue(15, $this->rate);
+            $pstmt->bindValue(16,  $this->downcount);
             
             $a=$pstmt->execute();
             
