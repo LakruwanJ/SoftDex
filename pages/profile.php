@@ -21,7 +21,7 @@
     <div class="cols__container">
       <div class="left__col">
         <div class="img__container">
-          <img src="img/img_dev.jpg" alt="K. L. Jayathissa" />
+            <img src="../img/img_dev.jpg" alt="K. L. Jayathissa" />
         </div>
         <h2>K. L. Jayathissa</h2>
         <p>UX/UI Designer</p>
@@ -124,12 +124,12 @@
       <div class="right__col">
         <div class="tab-container">
           <div class="tablinks">
-            <button class="tablink" onclick="openCity('About_me', this, 'rgb(46, 80, 101)')" id="defaultOpen">About
-              Me</button>
-            <button class="tablink" onclick="openCity('Software', this, 'rgb(46, 80, 101)')">Software</button>
-            <button class="tablink" onclick="openCity('Customized', this, 'rgb(46, 80, 101)')">Customized</button>
-            <button class="tablink" onclick="openCity('Tutorial', this, 'rgb(46, 80, 101)')">Tutorial</button>
-            <button class="tablink" onclick="openCity('Timeline', this, 'rgb(46, 80, 101)')">Timeline</button>
+            <button class="tablink" onclick="openCity('About_me', this, 'rgb(0, 155, 255)')" id="defaultOpen"><strong>About
+              Me</strong></button>
+            <button class="tablink" onclick="openCity('Software', this, 'rgb(0, 155, 255)')"><strong>Software</strong></button>
+            <button class="tablink" onclick="openCity('Customized', this, 'rgb(0, 155, 255)')"><strong>Customized</strong></button>
+            <button class="tablink" onclick="openCity('Tutorial', this, 'rgb(0, 155, 255)')"><strong>Tutorial</strong></button>
+            <button class="tablink" onclick="openCity('Timeline', this, 'rgb(0, 155, 255)')"><strong>Timeline</strong></button>
           </div>
 
           <div id="About_me" class="tabcontent">
@@ -159,19 +159,19 @@
 
               <!-- Software Item 1 -->
               <div class="software-item">
-                <img src="img/sw/sw0016/logo.png" alt="Software 1 Logo" class="software-logo">
+                <img src="../img/sw/sw0016/logo.png" alt="Software 1 Logo" class="software-logo">
                 <h2>Software 1</h2>
                 <p>Software 1 Description</p>
               </div>
               <!-- Software Item 2 -->
               <div class="software-item">
-                <img src="img/sw/sw0017/logo.jpg" alt="Software 2 Logo" class="software-logo">
+                <img src="../img/sw/sw0017/logo.jpg" alt="Software 2 Logo" class="software-logo">
                 <h2>Software 2</h2>
                 <p>Software 2 Description</p>
               </div>
               <!-- Software Item 3 -->
               <div class="software-item">
-                <img src="img/sw/sw0018/logo.png" alt="Software 3 Logo" class="software-logo">
+                <img src="../img/sw/sw0018/logo.png" alt="Software 3 Logo" class="software-logo">
                 <h2>Software 3</h2>
                 <p>Software 3 Description</p>
               </div>
@@ -224,19 +224,19 @@
 
               <!-- Software Item 1 -->
               <div class="software-item">
-                <img src="img/sw/sw0004/logo.png" Software 1 Logo" class="software-logo">
+                <img src="../img/sw/sw0004/logo.png" alt="Software 1 Logo" class="software-logo">
                 <h2>Software 1</h2>
                 <p>Software 1 Description</p>
               </div>
               <!-- Software Item 2 -->
               <div class="software-item">
-                <img src="img/sw/sw0005/logo.png" alt="Software 2 Logo" class="software-logo">
+                <img src="../img/sw/sw0005/logo.png" alt="Software 2 Logo" class="software-logo">
                 <h2>Software 2</h2>
                 <p>Software 2 Description</p>
               </div>
               <!-- Software Item 3 -->
               <div class="software-item">
-                <img src="img/sw/sw0006/logo.png" alt="Software 3 Logo" class="software-logo">
+                <img src="../img/sw/sw0006/logo.png" alt="Software 3 Logo" class="software-logo">
                 <h2>Software 3</h2>
                 <p>Software 3 Description</p>
               </div>
@@ -245,19 +245,19 @@
 
               <!-- Software Item 1 -->
               <div class="software-item">
-                <img src="img/sw/sw0007/logo.png" alt="Software 1 Logo" class="software-logo">
+                <img src="../img/sw/sw0007/logo.png" alt="Software 1 Logo" class="software-logo">
                 <h2>Software 1</h2>
                 <p>Software 1 Description</p>
               </div>
               <!-- Software Item 2 -->
               <div class="software-item">
-                <img src="img/sw/sw0008/logo.png" alt="Software 2 Logo" class="software-logo">
+                <img src="../img/sw/sw0008/logo.png" alt="Software 2 Logo" class="software-logo">
                 <h2>Software 2</h2>
                 <p>Software 2 Description</p>
               </div>
               <!-- Software Item 3 -->
               <div class="software-item">
-                <img src="img/sw/sw0009/logo.png" alt="Software 3 Logo" class="software-logo">
+                <img src="../img/sw/sw0009/logo.png" alt="Software 3 Logo" class="software-logo">
                 <h2>Software 3</h2>
                 <p>Software 3 Description</p>
               </div>
@@ -276,19 +276,19 @@
 
             <!-- Software Item 1 -->
             <div class="software-item">
-              <img src="img/img1.jpg" alt="Software 1 Logo" class="software-logo">
+              <img src="../img/img1.jpg" alt="Software 1 Logo" class="software-logo">
               <h2>Customized 1</h2>
               <p>An innovative travel task manager</p>
             </div>
             <!-- Software Item 2 -->
             <div class="software-item">
-              <img src="img/img2.jpg" alt="Software 2 Logo" class="software-logo">
+              <img src="../img/img2.jpg" alt="Software 2 Logo" class="software-logo">
               <h2>Customized 2</h2>
               <p>Master the art of digital photography with our comprehensive tutorial series.</p>
             </div>
             <!-- Software Item 3 -->
             <div class="software-item">
-              <img src="img/img3.jpg" alt="Software 3 Logo" class="software-logo">
+              <img src="../img/img3.jpg" alt="Software 3 Logo" class="software-logo">
               <h2>Customized 3</h2>
               <p>A cutting-edge video editing software with powerful tools for professionals.</p>
             </div>
@@ -298,19 +298,19 @@
 
             <!-- Software Item 1 -->
             <div class="software-item">
-              <img src="img/img4.jpg" alt="Software 1 Logo" class="software-logo">
+              <img src="../img/img4.jpg" alt="Software 1 Logo" class="software-logo">
               <h2>Customized 4</h2>
               <p>Learn how to create stunning websites with the latest web development technologies.</p>
             </div>
             <!-- Software Item 2 -->
             <div class="software-item">
-              <img src="img/img5.jpg" alt="Software 2 Logo" class="software-logo">
+              <img src="../img/img5.jpg" alt="Software 2 Logo" class="software-logo">
               <h2>Customized 5</h2>
               <p>A comprehensive language learning app for all levels. Explore interactive lessons.</p>
             </div>
             <!-- Software Item 3 -->
             <div class="software-item">
-              <img src="img/img6.jpg" alt="Software 3 Logo" class="software-logo">
+              <img src="../img/img6.jpg" alt="Software 3 Logo" class="software-logo">
               <h2>Customized 6</h2>
               <p>A user-friendly personal finance app for budgeting and tracking expenses.</p>
             </div>
@@ -326,20 +326,20 @@
           <div class="most-downloaded-software">
             <!-- Software Item 1 -->
             <div class="software-item">
-              <img src="img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
+              <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
               <h2>Tutorial 1</h2>
               <p>An innovative mobile task manager app that simplifies your daily routines, boosts productivity, and
                 enhances collaboration with intuitive features and seamless cloud synchronization. </p>
             </div>
             <!-- Software Item 2 -->
             <div class="software-item">
-              <img src="img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
+              <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
               <h2>Tutorial 2</h2>
               <p>Master the art of digital photography with our comprehensive tutorial series.</p>
             </div>
             <!-- Software Item 3 -->
             <div class="software-item">
-              <img src="img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
+              <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
               <h2>Tutorial 3</h2>
               <p>Master the art of digital photography with our comprehensive tutorial series. Explore camera
                 settings, composition, and post-processing techniques.</p>
@@ -349,7 +349,7 @@
 
             <!-- Software Item 1 -->
             <div class="software-item">
-              <img src="img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
+              <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
               <h2>Tutorial 4</h2>
               <p>A comprehensive language learning app for all levels. Explore interactive lessons, practice
                 pronunciation, and immerse yourself in real-world conversations, making language acquisition engaging
@@ -357,7 +357,7 @@
             </div>
             <!-- Software Item 2 -->
             <div class="software-item">
-              <img src="img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
+              <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
               <h2>Tutorial 5</h2>
               <p>A cutting-edge video editing software with powerful tools for professionals. Edit, enhance, and
                 create stunning videos effortlessly, with advanced effects and seamless sharing options for all your
@@ -365,7 +365,7 @@
             </div>
             <!-- Software Item 3 -->
             <div class="software-item">
-              <img src="img/tutorial.jpg" alt="Software 3 Logo" class="software-logo">
+              <img src="../img/tutorial.jpg" alt="Software 3 Logo" class="software-logo">
               <h2>Tutorial 6</h2>
               <p>Learn how to create stunning websites with the latest web development technologies. This tutorial
                 covers HTML, CSS, and JavaScript techniques.</p>
