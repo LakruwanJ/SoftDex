@@ -14,7 +14,7 @@ class AddSoftwareReg{
         
         $query="INSERT INTO software(name, version, platform, license ,category ,amount, language,tags ,systemreq ,shortdescription ,description,developer,date,size,rate,DownCount,Sid) VALUES(?, ?, ?, ? ,? , ?, ? , ? , ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
-        echo 'aaaaa';
+        
         try{
             $pstmt= $con->prepare($query);
             $pstmt->bindValue(1, $softwareName);

@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($_POST["sw"]===$value){
                         header("Location: ../pages/software.php?id=".$_POST["sw"]);
                         break;
-                    } else {
+                     } else {
                         $cartObj->additemtocart($cartObj->getcart());
                     }
                 }
@@ -51,6 +51,10 @@ class cartCls {
     private $user;
     private $softwareid;
 
+    public function cartCls1($user) {
+        $this->user = $user;
+    }
+    
     public function cartCls($user, $softwareid) {
         $this->user = $user;
         $this->softwareid = $softwareid;
@@ -93,5 +97,32 @@ class cartCls {
         }
         return $text;
     }
-
+    
+    public function getcartitems($user) {
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+        $query = "SELECT cart FROM user WHERE username=?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $user);
+        $pstmt->execute();
+        $item = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($item as $value) {
+            $text = $value->cart;
+        }
+        return $text;
+    }
+    
+    public function getcartsw($val) {
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+        $query = "SELECT Sid,name,shortdescription,u.username,amount "
+                    . "FROM software s JOIN developer d ON s.developer = d.Did JOIN user u ON d.user = u.Uid WHERE "
+                    . "Sid = ?";
+        $pstmt = $con->prepare($query);
+        $pstmt->bindValue(1, $val);
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        return $rs;
+    }
+    
 }

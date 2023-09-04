@@ -27,6 +27,7 @@ class Select {
     }
     
     public function CheckDeveloper($id) {
+        $text = null;
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();

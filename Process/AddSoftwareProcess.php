@@ -2,51 +2,35 @@
 
 use Classes\AddSoftwareReg;
 use Classes\DbConnector;
+
 require_once '../Classes/AddSoftwareReg.php';
 
 
-    if(isset($_POST['softwareName'] , $_POST['version'] , $_POST['platform'] , $_POST['license'] , $_POST['category'] , $_POST['language'] , $_POST['tags'] , $_POST['systemreq'] , $_POST['shortDescription'] , $_POST['longDescription'])){
-        if(empty($_POST['softwareName'] || $_POST['version']|| $_POST['platform'] || $_POST['license'] || $_POST['category'] || $_POST['language'] || $_POST['tags'] || $_POST['systemreq'] || $_POST['shortDescription'] || $_POST['longDescription'])) {
-        header("Location:AddSoftware.php?error=1"); 
+if (isset($_POST['softwareName'], $_POST['version'], $_POST['platform'], $_POST['license'], $_POST['category'], $_POST['language'], $_POST['tags'], $_POST['systemreq'], $_POST['shortDescription'], $_POST['longDescription'])) {
+    if (empty($_POST['softwareName'] || $_POST['version'] || $_POST['platform'] || $_POST['license'] || $_POST['category'] || $_POST['language'] || $_POST['tags'] || $_POST['systemreq'] || $_POST['shortDescription'] || $_POST['longDescription'])) {
+        header("Location:AddSoftware.php?error=1");
         exit;
-        
-        }else{
-         $userame = "RoseD";//$_POST["user"];
-         $softwareName = $_POST["softwareName"];
+    } else {
+        $userame = "RoseD"; //$_POST["user"];
+        $softwareName = $_POST["softwareName"];
         $version = $_POST["version"];
         $platform = $_POST["platform"];
         $license = $_POST["license"];
-        if (isset($_POST['amount'])){
+        if (isset($_POST['amount'])) {
             $amount = $_POST["amount"];
-        }else{
+        } else {
             $amount = "0";
         }
-        
+
         $category = $_POST["category"];
         $language = $_POST["language"];
         $tags = $_POST["tags"];
         $systemreq = $_POST["systemreq"];
         $shortDescription = $_POST["shortDescription"];
         $longDescription = $_POST["longDescription"];
-        
-         echo 'softwareName:'.$softwareName;"<br>";
-        echo 'version:'.$version;"<br>";
-        echo 'platform:'.$platform;"<br>";
-        echo 'li:'.$license;"<br>";
-        echo'amount:'.$amount;"<br>";
-         echo 'category:'.$category;"<br>";
-        echo 'language:'.$language;"<br>";
-        echo 'platform:'.$platform;"<br>";
-        echo 'tags:'.$tags;"<br>";
-        echo'systemrq:'.$systemreq;"<br>";
-        echo'shortdes:'.$shortDescription;"<br>";
-        echo 'longdes:'.$longDescription;"<br>";
-        
-        
-        echo $userame;
-        
+
         $addsoftwarereg = new AddSoftwareReg();
-        
+
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
         $query = "SELECT Sid FROM software ORDER BY Sid DESC LIMIT 1;";
@@ -65,8 +49,8 @@ require_once '../Classes/AddSoftwareReg.php';
             $output = $prefix . sprintf("%04d", $newNumber); // Combine 
         }
         $Sid = $output;
-        
-        
+
+
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
@@ -78,17 +62,68 @@ require_once '../Classes/AddSoftwareReg.php';
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-        
+
         foreach ($rs as $value) {
             $text = $value->Did;
         }
-        $developer =  $text;
-        
-        
+        $developer = $text;
+
+
         $date = date("Y-m-d");
+
+        $addsoftwarereg->addsoftware($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
         
+        
+
 //        $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
-        $addsoftwarereg->addsoftware($softwareName,$version,$platform,$license,$amount,$category,$language,$tags,$systemreq,$shortDescription,$longDescription,$developer,$date,$Sid);
-                }
+       $addsoftwarereg->addsoftware($softwareName,$version,$platform,$license,$amount,$category,$language,$tags,$systemreq,$shortDescription,$longDescription,$developer,$date,$Sid);
+        
+  
+    $logoFile = $_FILES['softwareLogo'];
+    $imageFiles = $_FILES['softwareImage'];
+    
+    $softwareFile = $_FILES['software'];
+    
+   
+    
+    // User-specific folder based on user's ID or username
+    $userFolder = '../img/sw/' . $Sid;
+    // Replace $userId with the user's identifier
+
+    // Create the user folder if it doesn't exist
+    if (!file_exists($userFolder)) {
+        mkdir($userFolder, 0777, true);
     }
+    //upload ss and logo
+        $logoExtension = pathinfo($logoFile['name'], PATHINFO_EXTENSION);
+        $newLogo = 'logo.' . $logoExtension;
+        $logoTargetPath = $userFolder . '/' . $newLogo;
+        move_uploaded_file($logoFile['tmp_name'], $logoTargetPath);
+
+      
+       
+        foreach ($imageFiles['tmp_name'] as $key => $tmpName) {
+            $imageExtension = pathinfo($imageFiles['name'][$key], PATHINFO_EXTENSION);
+            $newImage = 'ss' . ($key + 1) . '.' . $imageExtension;
+            $imageTargetPath = $userFolder . '/' . $newImage;
+            move_uploaded_file($tmpName, $imageTargetPath);
+        }
+
+      
+
+        // Handle the software file
+        $softwareExtension = pathinfo($softwareFile['name'], PATHINFO_EXTENSION);
+        $newSoftware = 'software.' . $softwareExtension;
+        $softwareTargetPath = $userFolder . '/' . $newSoftware;
+        move_uploaded_file($softwareFile['tmp_name'], $softwareTargetPath);
+
+
+   
+
+    // Redirect or display a success message
+    echo 'successfully uploaded files';
+                }
+
+    }
+}
     
