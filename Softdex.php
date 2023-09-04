@@ -63,8 +63,7 @@ $rsCls = new Home();
                             <!--with login-->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="img/user (2).png" width="40" height="40" class="rounded-circle">
-
+                                    
                                     <?php
                                     $imageFormats = ['png', 'jpg'];
                                     $imagePath = 'img/user/' . $user . '/' . $user;
@@ -593,7 +592,7 @@ $rsCls = new Home();
                                         <img class = "photo-background-r" src = "img/home/dev.jpg" width = "100%" height = "100%">
                                         <div class = "hover-overlay"></div>
                                         <div class = "hover-2-content px-5 py-4">
-                                            <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = ""> <button type = "button" class = "btn btn-secondary" >Become a developer</button></a>
+                                            <a class = "hover-2-title text-uppercase font-weight-bold mb-0" href = "pages/BecomeDev.php"> <button type = "button" class = "btn btn-secondary" >Become a developer</button></a>
                                             <p class = "hover-2-description text-uppercase mb-0">Become a developer at SoftDex by joining our team</p>
                                         </div>
                                     </div>
