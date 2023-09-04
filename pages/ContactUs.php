@@ -33,7 +33,7 @@ and open the template in the editor.
             </div>
             <div class="information">
                 <img src="../img/email.png" class="icon" alt="" />
-              <p>baduluparking@gmail.com</p>
+              <p>softdex@gmail.com</p>
             </div>
             <div class="information">
                 <img src="../img/phone.png" class="icon" alt="" />
