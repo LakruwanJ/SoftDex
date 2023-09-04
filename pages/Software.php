@@ -59,8 +59,8 @@ $star = [254, 20, 6, 15, 63, 150];
 
     </head>
     <body>
-        <br>
 
+        <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
         <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
             <div class="container">
                 <a class="navbar-brand logog" href="#"><img src="../img/logo.png" alt="logo" style="height:50px;"></a>
@@ -79,33 +79,64 @@ $star = [254, 20, 6, 15, 63, 150];
                         <li class="nav-item">
                             <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
                         </li>
-                        <!--                        without login
-                                                <li class="nav-item ">
-                                                    <a class="nav-link " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
-                                                </li>
-                                                <li class="nav-item ">
-                                                    <a class="nav-link " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
-                        
-                                                </li>-->
-                        <!--with login-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../img/user (2).png" width="40" height="40" class="rounded-circle">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <center><li><?php echo $user; ?></li></center>
-                                <hr class="p-0 m-0 mt-1">
-                                <li><a class="dropdown-item " href="#"><i class="fas fa-user mr-2 icoon"></i>Account</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
-                                <hr class="p-0 m-0 mt-1">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
-                            </ul>
 
-                        </li>
+                        <?php
+                        if (isset($_SESSION["user"])) {
+                            ?>
+                            <!--with login-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                    <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = '../img/user/' . $user . '/' . $user;
+
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="rounded-circle" width="40" height="40" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <center><li><?php echo "Hello " . $user; ?></li></center>
+                                    <hr class="p-0 m-0 mt-1">
+                                    <li><a class="dropdown-item " href="profile.php"><i class="fas fa-user mr-2 icoon"></i>Profile</a></li>
+                                    <?php
+                                    if ($rs->CheckDeveloper($user) === null) {
+                                        ?>
+                                        <li><a class="dropdown-item" href="BecomeDev.php"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
+                                    <?php }
+                                    ?>
+                                    <hr class="p-0 m-0 mt-1">
+                                    <li><a class="dropdown-item" href="../Process/Logout.php"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
+                                </ul>
+                            </li>
+                        <?php } else {
+                            ?>
+                            <!--without login-->
+                            <li class="nav-item ">
+                                <a class="nav-link " href="../index.php?mode=signin"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="../index.php?mode=signup"><button class="btn btn-primary" type="button">Sign UP</button></a>
+
+                            </li>
+                            <?php
+                        }
+                        ?>
+
                     </ul>
                 </div>
             </div>
-        </nav><br><br><br>
+        </nav>
+        <!------------------------------------------------------------ nav bar end ----------------------------------------------------------->
+
+
+        <br><br><br>
 
         <div class="container">
 
@@ -148,32 +179,72 @@ $star = [254, 20, 6, 15, 63, 150];
                 <div class="col-md-4 text-center"><br><br>
                     <?php
                     if ($license === "Paid") {
-                        ?>
-                        <button type="button" class="btn btn-warning down">
-                            <table width=100%>
-                                <tr>
-                                    <td class="p-3 text-light" ><span><h3>Download</h3></span></td>
-                                    <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
-                                </tr>
-                            </table>
-                        </button>
-                        <form method="POST" action="../Classes/cartCls.php">
-                            <input type="hidden" name="user" value="<?php echo $user?>" />
-                            <input type="hidden" name="sw" value="<?php echo $id;?>" />
+                        if (isset($_SESSION["user"])) {
+                            ?>
 
-                            <button type="submit" name="addtocart" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
+                            <!--with login-->
+                            <button type="button" class="btn btn-warning down">
                                 <table width=100%>
                                     <tr>
-                                        <td class="p-1 text-light" ><span><h3>Add to cart</h3></span></td>
-                                        <td align="right" class="p-3"><i class="fa-solid fa-cart-plus fa-shake fa-2xl" style="color: #ffffff;"></i></td>
+                                        <td class="p-3 text-light" ><span><h3>Buy Now</h3></span></td>
+                                        <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
                                     </tr>
                                 </table>
                             </button>
-                        </form>
+                            <form method="POST" action="../Classes/cartCls.php">
+                                <input type="hidden" name="user" value="<?php echo $user ?>" />
+                                <input type="hidden" name="sw" value="<?php echo $id; ?>" />
+
+                                <button type="submit" name="addtocart" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
+                                    <table width=100%>
+                                        <tr>
+                                            <td class="p-1 text-light" ><span><h3>Add to cart</h3></span></td>
+                                            <td align="right" class="p-3"><i class="fa-solid fa-cart-plus fa-shake fa-2xl" style="color: #ffffff;"></i></td>
+                                        </tr>
+                                    </table>
+                                </button>
+                            </form>
+                        <?php } else {
+                            ?>
+                            <!--without login-->
+                            <button type="button" class="btn btn-warning down">
+                                <table width=100%>
+                                    <tr>
+                                        <td class="p-3 text-light" ><span><h3>This is Premium Software You Haven't Access.</h3></span></td>
+                                    </tr>
+                                </table>
+                            </button>
+                            <?php
+                        }
+                        ?>
+
                         <?php
                     } else {
-                        ?>  
-                        <button type="button" class="btn btn-success down">
+                        if (isset($_SESSION["user"])) {
+                            ?>
+                            <!--with login-->
+
+                            <form method="POST" action="../Classes/wishlistCls.php">
+                                <input type="hidden" name="user" value="<?php echo $user ?>" />
+                                <input type="hidden" name="sw" value="<?php echo $id; ?>" />
+
+                                <button type="submit" name="addtowishlist" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573;">
+                                    <table width=100%>
+                                        <tr>
+                                            <td class="p-1 text-light" ><span><h3>Add to wishlist</h3></span></td>
+                                            <td align="right" class="p-3"><i class="fa-regular fa-heart fa-2xl" style="color: #ffffff;"></i></td>
+                                        </tr>
+                                    </table>
+                                </button>
+                            </form>
+                        <?php } else {
+                            ?>
+                            <!--without login-->
+                            <?php
+                        }
+                        ?>
+                        <!--<a href="../img/sw/sw0001/index.zip">-->
+                        <button type="button" class="btn btn-success down" data-bs-toggle="modal" data-bs-target="#downloadConfirmationModal">
                             <table width=100%>
                                 <tr>
                                     <td class="p-3 text-light" ><span><h3>Download</h3></span></td>
@@ -181,19 +252,31 @@ $star = [254, 20, 6, 15, 63, 150];
                                 </tr>
                             </table>
                         </button>
-                    <form method="POST" action="../Classes/wishlistCls.php">
-                            <input type="hidden" name="user" value="<?php echo $user?>" />
-                            <input type="hidden" name="sw" value="<?php echo $id;?>" />
 
-                        <button type="submit" name="addtowishlist" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573;">
-                                <table width=100%>
-                                    <tr>
-                                        <td class="p-1 text-light" ><span><h3>Add to wishlist</h3></span></td>
-                                        <td align="right" class="p-3"><i class="fa-regular fa-heart fa-2xl" style="color: #ffffff;"></i></td>
-                                    </tr>
-                                </table>
-                            </button>
-                            </form>
+                        <!-- Download Confirmation Modal -->
+                        <div class="modal" tabindex="-1" id="downloadConfirmationModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirm Download</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to download this software?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <a href="../img/sw/<?php echo $id; ?>/<?php echo $name; ?>.zip" class="btn btn-primary">Download Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
                         <?php
                     }
                     ?>

@@ -16,12 +16,14 @@ $languages = null;
 $prolang = null;
 $experience = null;
 $description = null;
+$did = null;
 
 session_start();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 
     foreach ($select->selectDeveloper($user) as $u) {
+        $did = $u->Did;
         $uname = $u->username;
         $fname = $u->fname;
         $lname = $u->lname;
@@ -36,6 +38,7 @@ if (isset($_SESSION["user"])) {
     }
     
     foreach ($select->selectUser($user) as $u) {
+        $uid = $u->Uid;
         $uname = $u->username;
         $fname = $u->fname;
         $lname = $u->lname;
@@ -173,6 +176,8 @@ if (isset($_SESSION["user"])) {
                                 </div>
                             </div>
                             <input type="hidden" name="user" value="<?php echo $uname; ?>">
+                            <input type="hidden" name="uid" value="<?php echo $uid; ?>">
+                            <input type="hidden" name="did" value="<?php echo $did; ?>">
 
                             <!--Email-->
                             <div class="form-group">
@@ -342,7 +347,7 @@ if (isset($_SESSION["user"])) {
                         <br>
                         <div class="form-group text-center">
                             <div class="d-flex justify-content-center">
-                                <?php if ($fname === null) { ?>
+                                <?php if ($shortdes === null) { ?>
                                     <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="BecomeaDeveloper">Become a Developer</button>
                                 <?php } else {
                                     ?>

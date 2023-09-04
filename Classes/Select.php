@@ -31,7 +31,7 @@ class Select {
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
-            $query = "SELECT d.Did FROM developer d JOIN  user u ON u.Uid = d.user WHERE u.Uid = ?";
+            $query = "SELECT d.Did FROM developer d JOIN  user u ON u.Uid = d.user WHERE u.username = ?";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $id);
             $pstmt->execute();
