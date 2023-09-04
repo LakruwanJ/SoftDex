@@ -193,7 +193,7 @@ foreach ($rs2 as $dev) {
                                         }
                                         ?>
                                         <h2><?php echo $value->name ?></h2>
-                                        <p>Software 1 Description</p>
+                                        <p><?php echo $value->shortdescription ?></p>
                                     </div>
                                 <?php } ?>
 
@@ -267,8 +267,8 @@ foreach ($rs2 as $dev) {
                                             }
                                         }
                                         ?>
-                                        <h2>Software 1</h2>
-                                        <p>Software 1 Description</p>
+                                        <h2><?php echo $value->name ?></h2>
+                                        <p><?php echo $value->shortdescription ?></p>
 
 
                                     </div>
