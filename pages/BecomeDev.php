@@ -89,14 +89,30 @@ if (isset($_SESSION["user"])) {
         </div>
 
         <div class="container">
-            <form action="../Process/BecomeDevProcess.php" class="needs-validation" method="post">
+            <form action="../Process/BecomeDevProcess.php" class="needs-validation" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="left-side">
 
-                        <img src="../img/createProfile/registration-form.jpg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                        <br>
                         <h1>Update Your Account as a Developer </h1>
+                        <div class="d-flex justify-content-center">
+                        <div class="profile-pic-container " >
+                            <img src="../img/developer/<?php echo $user; ?>/<?php echo $user; ?>" >
+                            
+                            <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = '../img/developer/' . $user . '/' . $user;
 
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                        </div>
+                        </div>
 
 
                         <div class="container">
@@ -332,11 +348,11 @@ if (isset($_SESSION["user"])) {
 
 
 
-                            <!--Add a profile pic
+                            <!--Add a profile pic-->
                             <div class="form-group">
                                 <label for="profilepic">Profile Picture</label>
                                 <input type="file" id="profilepic" name="profilepic" class="form-control-file">
-                            </div>-->
+                            </div>
                         </div>
 
                         <br>

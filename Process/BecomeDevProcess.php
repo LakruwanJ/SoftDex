@@ -53,7 +53,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
 
             if ($pstmt->rowCount() > 0) {
-                return 1;
+                
+                //add a profile picture
+                $file = $_FILES['profilepic'];
+
+
+
+                $userFolder = '../img/developer/' . $user; // 
+
+
+                if (!file_exists($userFolder)) {
+                    mkdir($userFolder, 0777, true);
+                }
+                $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+                $newFilename = $user . "." . $fileExtension;
+
+                $targetPath = $userFolder . '/' . $newFilename;
+                move_uploaded_file($file['tmp_name'], $targetPath);
+                if (file_exists($targetPath)) {
+
+                    echo '<div class="profile-pic-container">';
+                    echo '<img src="' . $targetPath . '" alt="Profile Picture">';
+                    echo '</div>';
+                }
+                //return 1;
 
                 echo 'Successfully added data';
             } else {
