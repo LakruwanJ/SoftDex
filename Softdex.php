@@ -255,8 +255,13 @@ $rsCls = new Home();
                                     <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" style="font-size: 17.5px" type="search" placeholder="Search Software or category" name="searchbar" />&nbsp;&nbsp;&nbsp;&nbsp;
                                     <button class="btn btn-lg" style="background-color: #001f8d; color: white" type="submit">Search</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <span class="position-relative">
-                                        <a href="#">
+                                    
+                                    <?php
+                        if (isset($_SESSION["user"])) {
+                            ?>
+                            <!--with login-->
+                            <span class="position-relative">
+                                        <a href="pages/cart_process.php">
                                             <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                 1<?php // add here                                ?>
@@ -264,9 +269,17 @@ $rsCls = new Home();
                                         </a>                                            
                                     </span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<h3>|</h3>&nbsp;
-                                    <a href="#">
+                                    <a href="pages/wishlist_process.php">
                                         <i class="fa-regular fa-heart fa-2xl icoon" style="color: #223f72;"></i>
                                     </a>
+                        <?php } else {
+                            ?>
+                            <!--without login-->
+
+                            <?php
+                        }
+                        ?>
+                                    
                                 </form>
                             </div>
                         </div>

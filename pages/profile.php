@@ -10,11 +10,12 @@ $con = $dbcon->getConnection();
 $rs = new Classes\Select();
 
 
-//session_start();
-//if (isset($_SESSION["user"])) {
-//    $user = $_SESSION["user"];
-//}
-$user = "Laka";
+session_start();
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+}else{
+    header("Location: ../softdex.php");
+}
 $rs = new Classes\Select();
 
 $rs2 = $rs->selectDeveloper($user);
@@ -59,7 +60,21 @@ foreach ($rs2 as $dev) {
             <div class="cols__container">
                 <div class="left__col">
                     <div class="img__container">
-                        <img src="../img/img_dev.jpg" alt="K. L. Jayathissa" />
+                        
+                        <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = '../img/user/' . $user . '/' . $user;
+
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                        
                     </div>
                     <h2><?php echo $user; ?></h2>
 
@@ -208,13 +223,12 @@ foreach ($rs2 as $dev) {
                                             <td><a href="#"><img class="rounded-circle" src="https://mdbootstrap.com/img/new/avatars/2.jpg"
                                                                  height="40" alt /></a></td>
                                             <td class="ps-3">
-                                                <?php echo $developer; ?>
+                                                By user
                                             </td>
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td class="ps-3"><i class="fa fa-star text-success"></i>&nbsp;
-                                                <?php echo $rate; ?>
+                                            <td class="ps-3"><i class="fa fa-star text-success"></i>&nbsp;5.0
                                                 &nbsp;&nbsp;&centerdot;&nbsp;&nbsp;
                                                 <?php echo "1 month ago"; ?>
                                             </td>

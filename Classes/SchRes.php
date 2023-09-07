@@ -42,7 +42,7 @@ class SchRes {
                     . "OR shortdescription LIKE '%" . $name . "%')"
                     . $filter1 . $filter2 . $filter3 .$filter0. ' '
                     . "LIMIT $previousRows, $rows";
-            echo $query;
+            
             $pstmt = $con->prepare($query);
             $pstmt->execute();
             $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);

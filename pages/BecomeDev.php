@@ -70,7 +70,7 @@ if (isset($_SESSION["user"])) {
     </head>
     <body>
         <div class="header">
-            <h1>Welcome to SoftDex!  </h1>
+            <h1>Edit Your Developer Profile  </h1>
         </div>
 
         <div class="container">
@@ -99,11 +99,10 @@ if (isset($_SESSION["user"])) {
                         <h1>Update Your Account as a Developer </h1>
                         <div class="d-flex justify-content-center">
                         <div class="profile-pic-container " >
-                            <img src="../img/developer/<?php echo $user; ?>/<?php echo $user; ?>" >
                             
                             <?php
                                     $imageFormats = ['png', 'jpg'];
-                                    $imagePath = '../img/developer/' . $user . '/' . $user;
+                                    $imagePath = '../img/user/' . $user . '/' . $user;
 
                                     foreach ($imageFormats as $format) {
                                         $imageUrl = $imagePath . '.' . $format;
@@ -413,21 +412,24 @@ if (isset($_SESSION["user"])) {
         </script>
 
         <script>
-            var defaultContent = [
-                {insert: '<?php echo $prolang; ?>'}
-            ];
+//            var defaultContenta = [
+//                {insert: '<?php //echo $education; ?>'}
+//            ];
+            
 
             var quillSkill = new Quill('#editor-container', {
                 theme: 'snow'
             });
+//            quillDescription.setContents(defaultContenta);
 
             var quillExperience = new Quill('#editor-container1', {
                 theme: 'snow'
             });
+//            quillDescription.setContents(defaultContentb);
             var quillDescription = new Quill('#editor-container2', {
                 theme: 'snow'
             });
-            quillDescription.setContents(defaultContent);
+//            quillDescription.setContents(defaultContentc);
 
             document.querySelector('form').addEventListener('submit', function () {
                 var skillContent = quillSkill.root.innerHTML;

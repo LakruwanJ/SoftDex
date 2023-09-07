@@ -76,11 +76,6 @@ and open the template in the editor.
               <label for="">Email</label>
               <span>Email</span>
             </div>
-            <div class="input-container">
-              <input type="tel" name="phone" class="input" />
-              <label for="">Phone</label>
-              <span>Phone</span>
-            </div>
             <div class="input-container textarea">
               <textarea name="message" class="input"></textarea>
               <label for="">Message</label>
