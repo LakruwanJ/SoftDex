@@ -47,53 +47,7 @@ $star = [254, 20, 6, 15, 63, 150];
 
     </head>
     <body>
-        <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
-            <div class="container">
-                <a class="navbar-brand logog" href="#"><img src="img/logo.png" alt="logo" style="height:50px;"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_ active" aria-current="page" href="#"><i
-                                    class="fa-solid fa-house  icoon"></i>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_  " href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
-                        </li>
-<!--                        without login
-                        <li class="nav-item ">
-                            <a class="nav-link " href="#"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="#"><button class="btn btn-primary" type="button">Sign UP</button></a>
-
-                        </li>-->
-                        <!--with login-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../img/user (2).png" width="40" height="40" class="rounded-circle">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <center><li><?php echo $user;?></li></center>
-                                <hr class="p-0 m-0 mt-1">
-                                <li><a class="dropdown-item " href="#"><i class="fas fa-user mr-2 icoon"></i>Account</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
-                                <hr class="p-0 m-0 mt-1">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
-                            </ul>
-
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav><br><br>
-        <!------------------------------------------------------------ nav bar end -----------------------------------------------------------><input type="submit" value="" />
+        
 
         <div class="container">
 
@@ -190,7 +144,7 @@ $star = [254, 20, 6, 15, 63, 150];
                                             </td>
 
                                             <td class="ms-1">
-                                                <h2  class="mb-0"><?php echo $name; ?></h2>
+                                                <h2  class="mb-0"><a class="text-dark" href="Software.php?id=<?php echo $sid; ?>"><?php echo $name; ?></a></h2>
                                                 <i class="text-muted font-italic"><h4><?php echo $shortdescription; ?></h4>
                                                     <?php echo " by " . $developer ?></i>
                                                 <p class="mt-2 mb-0 p-0"><?php echo 'for ' . $platform; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $language; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo $license; ?>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-star text-success"></i>&nbsp;5.0</p>
