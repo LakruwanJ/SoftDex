@@ -58,7 +58,7 @@ input {
     border: 1px solid #ccc;
 }
 input[type="radio"]{
-    margin: 0 25px 0 10px;
+    margin: 5px ;
   }
 
 button {
@@ -77,6 +77,59 @@ button:hover {
     text-align: center;
     padding-top: 0px;
 }
+
+
+    
+    .profile-pic-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        background-color: #f0f0f0;
+        border: 2px solid black;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .profile-pic-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+    }
+
+    /* Style the input element */
+    .profile-pic-container input[type="file"] {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+    /* Style the camera icon label */
+    .camera-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #555;
+        cursor: pointer;
+    }
+
+    /* Style the camera icon */
+    .camera-icon i {
+        font-size: 24px;
+    }
+
+
+    
+
+
 
 
 @media screen and (max-width: 768px) {

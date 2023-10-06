@@ -1,3 +1,13 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 3, 2023, 3:15:13 PM
+    Author     : Saliha
+*/
+
 img {
   vertical-align: middle;
 }
@@ -10,25 +20,6 @@ img {
 
 .img-rounded {
   border-radius: 3px;
-}
-
-.img-thumbnail {
-  background-color: #fff;
-  border: 1px solid #ededf0;
-  border-radius: 3px;
-  display: inline-block;
-  height: auto;
-  line-height: 1.428571429;
-  max-width: 100%;
-  moz-transition: all .2s ease-in-out;
-  o-transition: all .2s ease-in-out;
-  padding: 2px;
-  transition: all .2s ease-in-out;
-  webkit-transition: all .2s ease-in-out;
-}
-
-.img-circle {
-  border-radius: 50%;
 }
 
 .timeline-centered {
@@ -199,11 +190,6 @@ img {
   float: left;
 }
 
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon.bg-primary {
-  background-color: #303641;
-  color: #fff;
-}
-
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon.bg-secondary {
   background-color: #ee4749;
   color: #fff;
@@ -221,11 +207,6 @@ img {
 
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon.bg-warning {
   background-color: #fad839;
-  color: #fff;
-}
-
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon.bg-danger {
-  background-color: #cc2424;
   color: #fff;
 }
 
@@ -262,10 +243,6 @@ img {
   font-size: 12px;
   margin: 0;
   line-height: 1.428571429;
-}
-
-.timeline-centered .timeline-entry .timeline-entry-inner .timeline-label p + p {
-  margin-top: 15px;
 }
 
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 {

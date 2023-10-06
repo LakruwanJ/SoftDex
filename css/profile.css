@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
 body {
   width: 100%;
   margin: 0;
@@ -6,6 +7,76 @@ body {
   box-sizing: border-box;
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
+}
+
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0px;
+  max-width: 800px;
+}
+
+.tablinks {
+  display: flex;
+  justify-content: space-between;
+  background-color: #b3b3b3;
+  color:black;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  align-items: center;
+}
+
+.tablink {
+  background-color: #b3b3b3;
+  color:black;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #0091ff;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 50px;
+  text-align: left;
+  border: 1px solid #000000;
+  
+}
+
+#About_me {
+  background-color: #f2f2f2;
+}
+
+#Software {
+  background-color: #f2f2f2;
+}
+
+#Customized {
+  background-color: #f2f2f2;
+}
+
+#Tutorial {
+  background-color: #f2f2f2;
+}
+
+#Timeline {
+  background-color: #d4d4d4;
+}
+
+.checked {
+  color: orange;
 }
 
 ul {
@@ -22,61 +93,275 @@ a {
 
 .header__wrapper header {
   width: 100%;
-  background: url("../img/img_back3.jpg") no-repeat 50% 20% / cover;
-  min-height: calc(100px + 15vw);
+  background: no-repeat 50% 10% / cover;
+  min-height: calc(10px + 5vw);
 }
 
 .header__wrapper .cols__container .left__col {
   padding: 25px 20px;
   text-align: center;
-  max-width: 350px;
+  max-width: 380px;
   position: relative;
   margin: 0 auto;
+  border: 2px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.header__wrapper .cols__container .left__col .img__container {
-  position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translatex(-50%);
-}
-.header__wrapper .cols__container .left__col .img__container img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-  box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
-}
-.header__wrapper .cols__container .left__col .img__container span {
-  display:none;
-}
-.header__wrapper .cols__container .left__col h2 {
-  margin-top: 60px;
-  font-weight: 600;
-  font-size: 22px;
-  margin-bottom: 5px;
-}
 .header__wrapper .cols__container .left__col p {
   font-size: 0.9rem;
   color: #818181;
   margin: 0;
 }
+
+.header__wrapper .cols__container .content ul li {
+  border: 1px solid #000000;
+  border-radius: 12px;
+  padding: 5px;
+  margin: 5px;
+}
+
+/* Style for the Education section */
+.header__wrapper .cols__container .left__col .education {
+  margin-top: 20px;
+}
+
+/* Style for the education list */
+.header__wrapper .cols__container .left__col .education ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style for individual education items */
+.header__wrapper .cols__container .left__col .education li {
+  margin-bottom: 15px;
+  padding-left: 20px;
+  position: relative;
+}
+
+/* Style for education details */
+.header__wrapper .cols__container .left__col .education li p {
+  margin: 0;
+  color: #818181;
+  font-size: 0.9rem;
+}
+
+/* Style for education university name */
+.header__wrapper .cols__container .left__col .education li strong {
+  font-weight: 600;
+  color: #1d1d1d;
+}
+
+.header__wrapper .cols__container .left__col .img__container {
+  position: relative;
+  text-align: center;
+  margin-top: -90px;
+}
+
+.header__wrapper .cols__container .left__col .img__container img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+}
+
+.header__wrapper .cols__container .left__col h2 {
+  margin-top: 30px;
+  /* Adjusted margin */
+  font-weight: 600;
+  font-size: 24px;
+  /* Increased font size */
+  margin-bottom: 10px;
+  /* Adjusted margin */
+  color: #333;
+  /* Added color */
+}
+
 .header__wrapper .cols__container .left__col .about {
   justify-content: space-between;
   position: relative;
   margin: 35px 0;
 }
+
+.header__wrapper .cols__container .left__col button {
+  background-color: #0091ff;
+  /* Set the background color */
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  /* Adjust the margin as needed */
+  transition: background-color 0.3s ease;
+}
+
+.header__wrapper .cols__container .left__col button:hover {
+  background-color: #333;
+  /* Set the hover background color */
+  opacity: 0.8
+}
+
+/* Style the container */
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the individual cards */
+.card {
+  /*flex: 0 0 calc(33.33% - 10px); /* Adjust the width as needed */
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the skills container */
+.header__wrapper .cols__container .left__col .skills-container {
+  margin-top: 20px;
+}
+
+.header__wrapper .cols__container .left__col .skills {
+  display: block;
+  /* Change to display: block; */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style for individual skill items */
+.header__wrapper .cols__container .left__col .skills li {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 5px 15px;
+  margin: 5px;
+  flex-basis: calc(20% - 12px);
+}
+
+/* Style for individual skill items */
+.language_skills ul li {
+  margin-bottom: 10px;
+  /* Add space between skills */
+  /* Display skills as block elements */
+  display: block;
+}
+
+/* Style for the "details" section */
+.header__wrapper .cols__container .left__col .details {
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsiveness */
+@media (max-width: 767px) {
+  #previous-projects .project {
+    flex: 0 0 calc(50% - 20px); /* Adjust the width for two cards in a row on smaller screens */
+  }
+}
+
+@media (max-width: 479px) {
+  #previous-projects .project {
+    flex: 0 0 100%; /* Display one card per row on even smaller screens */
+  }
+}
+
+/* Style for individual details items (e.g., "From", "Member Since", "Number of Projects") */
+.header__wrapper .cols__container .left__col .details p {
+  font-size: 1rem;
+  color: #1d1d1d;
+  margin: 0;
+  padding: 2px 0;
+}
+
+/* Style for the strong text within details items */
+.header__wrapper .cols__container .left__col .details p strong {
+  color: #007bff;
+  /* Change the color of strong text */
+}
+
+/* Style for the icons within details items */
+.header__wrapper .cols__container .left__col .details p i {
+  margin-right: 10px;
+  /* Add space between icon and text */
+  color: #555;
+  /* Change the color of icons */
+}
+
+.header__wrapper .cols__container .left__col .about {
+
+  justify-content: space-between;
+  position: relative;
+  margin: 30px 0;
+  background-color: #f5f5f5;
+  /* Add a background color to the section */
+  padding: 20px;
+  /* Add padding to create space within the section */
+  border-radius: 5px;
+  /* Add rounded corners to the section */
+}
+
+.header__wrapper .cols__container .left__col .about ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* Limit the width to 100% */
+  max-width: 280px;
+  /* Adjust the max-width as needed */
+  margin: 0 auto;
+  /* Center the list horizontally */
+}
+
 .header__wrapper .cols__container .left__col .about li {
   display: flex;
   flex-direction: column;
   color: #818181;
   font-size: 0.9rem;
 }
+
+/* Add space between list items and style each item */
+.header__wrapper .cols__container .left__col .about li {
+  margin: 10px 20px;
+  /* Add space between list items */
+  text-align: center;
+  /* Center-align text */
+  padding: 10px;
+  /* Add padding to list items */
+  background-color: #fff;
+  /* Background color for list items */
+  border-radius: 5px;
+  /* Add rounded corners to list items */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add a subtle box shadow */
+}
+
 .header__wrapper .cols__container .left__col .about li span {
   color: #1d1d1d;
   font-weight: 600;
 }
+
 .header__wrapper .cols__container .left__col .about:after {
   position: absolute;
   content: "";
@@ -86,45 +371,82 @@ a {
   height: 1px;
   width: 100%;
 }
+
+/* Add hover effect to list items */
+.header__wrapper .cols__container .left__col .about li:hover {
+  background-color: #007bff;
+  /* Change background color on hover */
+  color: #fff;
+  /* Change text color on hover */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  /* Smooth transition on hover */
+}
+
 .header__wrapper .cols__container .content p {
   font-size: 1rem;
   color: #1d1d1d;
   line-height: 1.8em;
+  margin-bottom: 15px;
+  /* Add some space below paragraphs */
 }
+
+/* List styling */
 .header__wrapper .cols__container .content ul {
   gap: 30px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  /* Align list items to the top */
   margin-top: 25px;
+  list-style: none;
+  /* Remove default list bullets */
+  padding: 0;
+  /* Remove default list padding */
 }
-.header__wrapper .cols__container .content ul li {
-  display: flex;
-}
+
 .header__wrapper .cols__container .content ul i {
   font-size: 1.3rem;
+  margin-right: 10px;
+  /* Add space between icon and text */
+  color: #007bff;
+  /* Change the color of the icon */
 }
+
+.header__wrapper .cols__container .content ul li:hover {
+  background-color: #f5f5f5;
+  /* Change the background color on hover */
+  border-radius: 5px;
+  /* Add rounded corners */
+  transition: background-color 0.3s ease-in-out;
+  /* Smooth transition on hover */
+}
+
 .header__wrapper .cols__container .right__col nav {
   display: flex;
   align-items: center;
   padding: 30px 0;
   justify-content: space-between;
   flex-direction: column;
+  border: 1px solid #000000;
 }
+
 .header__wrapper .cols__container .right__col nav ul {
   display: flex;
   gap: 20px;
   flex-direction: column;
 }
+
 .header__wrapper .cols__container .right__col nav ul li a {
   text-transform: uppercase;
   color: #818181;
 }
+
 .header__wrapper .cols__container .right__col nav ul li:nth-child(1) a {
   color: #1d1d1d;
   font-weight: 600;
 }
+
 .header__wrapper .cols__container .right__col nav button {
-  background: #0091ff;
+  background: #007bff;
   color: #fff;
   border: none;
   padding: 10px 25px;
@@ -132,14 +454,63 @@ a {
   cursor: pointer;
   margin-top: 20px;
 }
+
 .header__wrapper .cols__container .right__col nav button:hover {
   opacity: 0.8;
 }
+
+.most-downloaded-software {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.software-item {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  /* Adjust the width as needed */
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.software-item:hover {
+  transform: translateY(-5px);
+}
+
+.software-logo {
+  max-width: 100px;
+  /* Adjust the max-width as needed */
+  height: auto;
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.software-item h2 {
+  font-size: 18px;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.software-item p {
+  font-size: 16px;
+  color: #777;
+  line-height: 1.5;
+  margin: 0;
+}
+
 .header__wrapper .cols__container .right__col .photos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 20px;
 }
+
 .header__wrapper .cols__container .right__col .photos img {
   max-width: 100%;
   display: block;
@@ -147,8 +518,27 @@ a {
   object-fit: cover;
 }
 
-/* Responsiveness */
+#sw-button {
+  display: block;
+  margin: 40px auto;
+  padding: 12px 30px;
+  background-color: #0091ff;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
 
+#sw-button:hover {
+  background-color: #333;
+  opacity: 0.8;
+}
+
+/* Responsiveness */
 @media (min-width: 868px) {
   .header__wrapper .cols__container {
     max-width: 1200px;
@@ -159,18 +549,28 @@ a {
     grid-template-columns: 1fr 2fr;
     gap: 50px;
   }
+
   .header__wrapper .cols__container .left__col {
     padding: 25px 0px;
   }
+
   .header__wrapper .cols__container .right__col nav ul {
     flex-direction: row;
     gap: 30px;
   }
+
   .header__wrapper .cols__container .right__col .photos {
     height: 365px;
     overflow: auto;
     padding: 0 0 30px;
   }
+}
+.header__wrapper .cols__container .right__col nav {
+  flex-direction: row;
+}
+
+.header__wrapper .cols__container .right__col nav button {
+  margin-top: 0;
 }
 
 @media (min-width: 1017px) {
@@ -178,11 +578,6 @@ a {
     margin: 0;
     margin-right: auto;
   }
-  .header__wrapper .cols__container .right__col nav {
-    flex-direction: row;
-  }
-  .header__wrapper .cols__container .right__col nav button {
-    margin-top: 0;
-  }
-}
 
+ 
+}
