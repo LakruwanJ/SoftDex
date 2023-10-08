@@ -12,7 +12,15 @@
   border: 1px solid #ccc;
   border-radius: 5px;
    margin-bottom: 20px;
+  /* color: darkslateblue; */
   
+}
+.section1{
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+/*color: darkslateblue;  */
 }
 
 .col-md-4 {
@@ -27,6 +35,7 @@ col-md-8 {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 20px;
+  
 
 }
 form label {

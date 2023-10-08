@@ -23,25 +23,14 @@ if (isset($_SESSION["user"])) {
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+       <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/createAccount.css" />
-        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/b0ede3d087.js" crossorigin="anonymous"></script>
 
-        
-        <link rel="stylesheet" href="../css/navbar.css">
-
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-        
-        
-        
-        
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -305,7 +294,7 @@ if (isset($_SESSION["user"])) {
                 }
             }
         </script>
-
+  
 
     </body>
 </html>
