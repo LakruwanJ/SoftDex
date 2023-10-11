@@ -88,13 +88,23 @@ $home = new Home();
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="../index.php">
                             <span class="icon">
                                 <ion-icon name="log-out-outline"></ion-icon>
                             </span>
                             <span class="title">Sign Out</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="reviews.php">
+                            <span class="icon">
+                                
+                                <ion-icon name="star"></ion-icon>
+                            </span>
+                            <span class="title">Reviews</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
 
@@ -321,7 +331,7 @@ $home = new Home();
                                     </div>
                                 </div>
 
-                                    </tr>
+                                </tr>
                                 </thead>
 
                                 <tbody>
