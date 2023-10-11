@@ -4,10 +4,11 @@ use Classes\AddSoftwareReg;
 use Classes\DbConnector;
 require_once '../Classes/AddSoftwareReg.php';
 
-
-    if(isset($_POST['softwareName'] , $_POST['version'] , $_POST['platform'] , $_POST['license'] , $_POST['category'] , $_POST['language'] , $_POST['tags'] , $_POST['systemreq'] , $_POST['shortDescription'] , $_POST['longDescription'])){
-        if(empty($_POST['softwareName'] || $_POST['version']|| $_POST['platform'] || $_POST['license'] || $_POST['category'] || $_POST['language'] || $_POST['tags'] || $_POST['systemreq'] || $_POST['shortDescription'] || $_POST['longDescription'])) {
-        header("Location:AddSoftware.php?error=1"); 
+    if($_SERVER['REQUEST_METHOD']==='POST'){
+        if(isset($_POST['submit'])){
+   
+        if(empty($_POST['softwareName']) || empty($_POST['version'])|| empty($_POST['platform']) || empty($_POST['license']) || empty($_POST['category']) ||empty( $_POST['language']) || empty($_POST['tags']) || empty($_POST['systemreq'] )|| empty($_POST['shortDescription'] )||empty( $_POST['longDescription'])) {
+        header("Location:../pages/AddSoftware.php?error=2"); 
         exit;
         
         }else{
@@ -116,7 +117,13 @@ require_once '../Classes/AddSoftwareReg.php';
    
 
     
-    echo 'successfully Added your data';
+     header("Location:../pages/AddSoftware.php?success = 1");
                 }
+    
+        } else{
+         header("Location:../pages/AddSoftware.php?error = 1");
     }
     
+    } else{
+    header("Location:../pages/AddSoftware.php?error = 0");
+}
