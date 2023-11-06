@@ -272,7 +272,7 @@ $home = new Home();
                                             <td><?= $software->getPlatform() ?></td>
 
 
-                                            <td><a href="remove.php?name=<?= $software->getSoftware() ?>"><img src="../img/trash-solid (1).svg" alt=""  width="25px" height="25px"></a></td>
+                                            <td><img src="../img/trash-solid (1).svg" alt=""  width="25px" height="25px"></td>
                                         </tr>
                                         <?php
                                     }

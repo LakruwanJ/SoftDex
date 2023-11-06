@@ -261,7 +261,8 @@ $rsCls = new Home();
                             ?>
                             <!--with login-->
                             <span class="position-relative">
-                                        <a href="pages/cart_process.php">
+                                        <!--<a href="pages/cart_process.php">-->
+                                        <a href="pages/cart_process_New.php">
                                             <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                 1<?php // add here                                ?>
@@ -269,7 +270,8 @@ $rsCls = new Home();
                                         </a>                                            
                                     </span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;<h3>|</h3>&nbsp;
-                                    <a href="pages/wishlist_process.php">
+                                    <!--<a href="pages/wishlist_process.php">-->
+                                    <a href="pages/wishlist_process_New.php">
                                         <i class="fa-regular fa-heart fa-2xl icoon" style="color: #223f72;"></i>
                                     </a>
                         <?php } else {
@@ -386,7 +388,8 @@ $rsCls = new Home();
                                                                             <td style="text-align: right"><i class="fa fa-star text-success"></i>&nbsp;<?php echo $sw->rate; ?></td>
                                                                         </tr>
                                                                     </table><p></p>
-                                                                    <h5><a class="text-dark" href="pages/Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
+                                                                    <!--<h5><a class="text-dark" href="pages/Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>-->
+                                                                    <h5><a class="text-dark" href="pages/Software_New.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
                                                                     <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
 
                                                                                     <!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
