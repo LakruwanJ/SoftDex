@@ -45,7 +45,7 @@ if (isset($_SESSION["user"])) {
         if (isset($_GET["error"])) {
 
             if ($_GET["error"] == 0) {
-                echo "<p style='color:red; text-align:center;'> Pllease Try Again!</p>";
+                echo "<p style='color:red; text-align:center;'> Please Try Again!</p>";
             } elseif ($_GET["error"] == 1) {
                 echo "<p style='color:red; text-align:center;'> Please Click Submit Button</p>";
             } elseif ($_GET["error"] == 2) {
