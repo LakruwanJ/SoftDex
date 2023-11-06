@@ -1,7 +1,31 @@
 
 
 
+<?php
 
+require '../Classes/DbConnector.php';
+
+use Classes\DbConnector;
+
+$dbcon = new DbConnector();
+
+
+
+$rs="";
+
+$con = $dbcon ->getConnection();
+
+$sql = "SELECT * FROM feedback";
+$pstmt = $con->prepare($sql);
+$pstmt->execute();
+
+if ($pstmt->rowCount()>0){
+    $rs=$pstmt->fetchAll(PDO::FETCH_OBJ);
+}else{
+    echo 'Query is incorrect!';
+}
+
+?>
 
 
 
@@ -10,7 +34,17 @@
     <head>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="../css/Reviews.css">
-        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <style>
+    .review p {
+        overflow: hidden; /* Hide any overflowing content */
+        white-space: nowrap; /* Prevent text from wrapping */
+        text-overflow: ellipsis; /* Display an ellipsis (...) for truncated text */
+    }
+</style>
+
     </head>
     <body>
         
@@ -25,56 +59,38 @@
                 <div class="review-button">
         <a href="feedbackform.php">Add Your Review</a>
     </div>
-                <div class="row">
-                    
-                    <div class="col">
-                        <div class="review">
-                            <img src="../img/p1.png" alt="Person 1">
-                            <div class="name">John smith</div>
-                            <div class="rating">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
+              <div class="container">  
+    <div class="row">
+        <?php foreach ($rs as $user) {
+            $imagefile = "";
 
+            $imageFormats = ['png', 'jpg']; // List of possible image formats
+            $imagePath = '../img/user/' . $user->username . "/" . $user->username; // Base path without extension
 
-                            <p>"As a software developer, SoftDex has been a game-changer for me. I uploaded my custom software, and it gained visibility among a large user base. The feedback system is helpful, and I can easily engage with my users. It's an excellent platform for showcasing and promoting software products!"</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="review">
-                            <img src="../img/p2.png" alt="Person 2">
-                            <div class="name">jane robinson</div>
-                            <div class="rating">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <p>"I stumbled upon SoftDex while looking for premium software, and I'm thrilled with my discovery! The quality and variety of software available here are top-notch. The payment process was secure, and I received instant access to my premium software. Kudos to the SoftDex team for creating such a reliable platform!"</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="review">
-                            <img src="../img/p3.png" alt="Person 3">
-                            <div class="name">Jennifer Carter</div>
-                            <div class="rating">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <p>"SoftDex is a valuable resource for software enthusiasts like me. The ability to compare different software products, read user reviews, and get detailed descriptions is incredibly helpful. The only suggestion I have is to add more open-source software to the collection.It's a must-visit for software seekers!" "</p>
-                        </div>
-                    </div>
-                    
-                    </div>
+            foreach ($imageFormats as $format) {
+                $imageUrl = $imagePath . '.' . $format;
+
+                if (file_exists($imageUrl)) {
+                    $imagefile = $imageUrl;
+                    break; // Stop when the first valid image format is found
+                }
+            }
+        ?>
+            <div class="col-md-4 mb-4">
+                <div class="review">
+                    <img src="<?php echo $imagefile; ?>" alt="Person 1">
+                    <div class="name"><?php echo $user->username; ?></div>
+                    <p>"<?php echo $user->feedback; ?>"</p>
                 </div>
             </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+            </div>
+        </div>
+
         <script>
         function scrollToFeedbackForm() {
             const feedbackForm = document.querySelector(".feedback-form");

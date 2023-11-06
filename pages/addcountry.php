@@ -1,4 +1,4 @@
-<?php
+<<?php
 
 require_once '../Classes/DbConnector.php';
 use Classes\DbConnector;
