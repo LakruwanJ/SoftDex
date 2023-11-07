@@ -27,8 +27,8 @@ p{
 
 /* Style the container div */
 .div {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   align-items: center;
   justify-content: center;
   display: flex;

@@ -9,14 +9,17 @@ class Comingsoonsw {
 
     private $devname;
     private $swname;
+    private $category;
     private $details;
     private $dateofrelease;
 
-    public function __construct($devname, $swname, $details, $dateofrelease) {
+    public function __construct($devname, $swname,$category, $details, $dateofrelease) {
         $this->devname = $devname;
         $this->swname = $swname;
+         $this->category = $category;
         $this->details = $details;
         $this->dateofrelease = $dateofrelease;
+       
     }
 
     public function getDevname() {
@@ -25,6 +28,10 @@ class Comingsoonsw {
 
     public function getSwname() {
         return $this->swname;
+    }
+
+    public function getCategory() {
+        return $this->category;
     }
 
     public function getDetails() {
@@ -42,6 +49,9 @@ class Comingsoonsw {
     public function setSwname($swname) {
         $this->swname = $swname;
     }
+    public function setCategory($category){
+        $this->category = $category;
+    }
 
     public function setDetails($details) {
         $this->details = $details;
@@ -57,12 +67,13 @@ class Comingsoonsw {
 
         try {
             $con = $dbcon->getConnection();
-            $query = "INSERT INTO comingsoon (devname, swname, details, dateofrelease) VALUES(?, ?, ?, ?)";
+            $query = "INSERT INTO comingsoon (devname, swname, category ,  details, dateofrelease) VALUES(?, ?, ?, ?,?)";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $this->devname);
             $pstmt->bindValue(2, $this->swname);
-            $pstmt->bindValue(3, $this->details);
-            $pstmt->bindValue(4, $this->dateofrelease);
+            $pstmt->bindValue(3, $this->category);
+            $pstmt->bindValue(4, $this->details);
+            $pstmt->bindValue(5, $this->dateofrelease);
             $pstmt->execute();
 
             if ($pstmt->rowCount() > 0) {
@@ -84,7 +95,7 @@ class Comingsoonsw {
             $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
             if (!empty($rs)) {
                 foreach ($rs as $row) {
-                    $comingsoonsw = new Comingsoonsw($row->devname, $row->swname, $row->details, $row->dateofrelease);
+                    $comingsoonsw = new Comingsoonsw($row->devname, $row->swname, $row->category, $row->details, $row->dateofrelease);
                     $comingsoonsws[] = $comingsoonsw;
                 }
             }

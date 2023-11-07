@@ -1,15 +1,15 @@
 <?php
-        $message = null;
-        if (isset($_GET['error'])) {
-            if ($_GET['error'] == 1) {
-                $message = "<h6 class='text-danger'>Please submit form through post method</h6>";
-            } else if ($_GET['error'] == 2) {
-                $message = "<h6 class='text-danger'>Please submit the form through the submit button</h6>";
-            } else if ($_GET['error'] == 3) {
-                $message = "<h6 class='text-danger'>Please fill all feilds</h6>";
-            }
-        }
-        ?>
+$message = null;
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == 1) {
+        $message = "<h6 class='text-danger'>Please submit form through post method</h6>";
+    } else if ($_GET['error'] == 2) {
+        $message = "<h6 class='text-danger'>Please submit the form through the submit button</h6>";
+    } else if ($_GET['error'] == 3) {
+        $message = "<h6 class='text-danger'>Please fill all feilds</h6>";
+    }
+}
+?>
 
 
 <!DOCTYPE html>
@@ -27,17 +27,17 @@
     </head>
 
     <body>
-        
+
 
 
         <p class="text-center fs-1 text-primary">Coming Soon Softwares</p>
-        <p class="text-center text-success fs-5" > <b>Submit your upcoming software details</b> </p>
-      
-        <div class="div border-4 ">
 
-               
+
+        <div class="div border-4">
+
+
             <form action="comingswregister.php" method="POST">
-             
+                <p class="text-center text-danger fs-5" id="para2" > <b> Submit your upcoming software details </b></p>
 
                 <div class="mb-3">
                     <?= $message ?>
@@ -47,6 +47,11 @@
                 <div class="mb-3">
                     <label for="nameofsoftware" class="form-label">Name of the Software</label>
                     <input type="text" class="form-control" id="nameofsoftware" name="swname" value="">
+                </div>
+                <div class="mb-3">
+                    <label for="nameofsoftware" class="form-label">Category (Social media/Education/Multimedia)</label>
+                    <input type="text" class="form-control" id="namedevelpoer" name="category" value="">
+
                 </div>
                 <div class="mb-3">
                     <label for="detailsoftware" class="form-label">Details about software</label>
