@@ -1,19 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of ChatCls
- *
- * @author lakru
- */
 include_once "../Classes/DbConnector.php";
-
-
 
 class ChatCls {
 
@@ -29,7 +16,7 @@ class ChatCls {
         $pstmt->bindValue(1, $user);
         $pstmt->execute();
     }
-    
+
     public function changeStatustoOff($user) {
         $con = new Classes\DbConnector();
         $dbcon = $con->getConnection();
@@ -37,6 +24,54 @@ class ChatCls {
         $pstmt = $dbcon->prepare($query);
         $pstmt->bindValue(1, $user);
         $pstmt->execute();
+    }
+
+    public function getChat($user) {
+        $con = new Classes\DbConnector();
+        $dbcon = $con->getConnection();
+        $query = "SELECT * FROM chatusers WHERE username = ?;";
+        $pstmt = $dbcon->prepare($query);
+        $pstmt->bindValue(1, $user);
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        return $rs;
+    }
+
+    public function myChat($user) {
+        $con = new Classes\DbConnector();
+        $dbcon = $con->getConnection();
+        $query = "SELECT * FROM chatusers WHERE username = ? ORDER BY chatId DESC";
+        $pstmt = $dbcon->prepare($query);
+        $pstmt->bindValue(1, $user);
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        return $rs;
+    }
+    
+    public function myChatX($user,$patner) {
+        $con = new Classes\DbConnector();
+        $dbcon = $con->getConnection();
+        $query = "SELECT * FROM chatusers WHERE username = ? AND Did = ? ORDER BY chatId DESC";
+        $pstmt = $dbcon->prepare($query);
+        $pstmt->bindValue(1, $user);
+        $pstmt->bindValue(2, $patner);
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        return $rs;
+    }
+
+    public function lastMsj($user, $patner) {
+        $con = new Classes\DbConnector();
+        $dbcon = $con->getConnection();
+        $query = "SELECT * FROM messages WHERE (sender = ? AND receiver = ?) OR (receiver = ? AND sender = ?) ORDER BY Msjid DESC LIMIT 1";
+        $pstmt = $dbcon->prepare($query);
+        $pstmt->bindValue(1, $user);
+        $pstmt->bindValue(2, $patner);
+        $pstmt->bindValue(3, $user);
+        $pstmt->bindValue(4, $patner);
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        return $rs;
     }
 
 }

@@ -24,19 +24,15 @@ if (!isset($_SESSION["user"])) {
                 <header>
                     <div class="content">
                         <?php
-                        $query = "SELECT * FROM chatusers WHERE username = ?;";
-                        $pstmt = $dbcon->prepare($query);
-                        $pstmt->bindValue(1, $_SESSION["user"]);
-                        $pstmt->execute();           
-                        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-                        foreach ($rs as $cuser) {
+                        foreach ($clsChat->getChat($_SESSION["user"]) as $cuser) {
                             $username = $cuser->username;
+                            $dev = $cuser->Did;
                             $status = $cuser->Status;
                         }
                         ?>
                         <img src="php/images/<?php echo $row['img']; ?>" alt="">
                         <div class="details">
-                            <span><?php echo $username;?></span>
+                            <span><?php echo $username; ?></span>
                             <p><?php echo $status; ?></p>
                         </div>
                     </div>
@@ -48,6 +44,43 @@ if (!isset($_SESSION["user"])) {
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="users-list">
+
+                    <?php
+                    $mychat = $clsChat->myChat($_SESSION["user"]);
+                    if (count($mychat) > 0) {
+                        //Available chats
+                        $output = "";
+                        foreach ($mychat as $chat) {
+                            $msg = $clsChat->lastMsj($chat->username, $chat->Did);
+                            foreach ($msg as $value) {
+                                $text = $value->msj;
+                                $sender = $value->sender;
+                                $receiver = $value->receiver;
+                            }
+                            (!empty($text)) ? $result = $text : $result = "No message available";
+                            (strlen($result) > 30) ? $result2 = substr($result, 0, 30) . '...' : $result2 = $result;
+
+                            //last msj sender
+                            if (isset($receiver)) {
+                                ($chat->Did == $receiver) ? $you = "You: " : $you = "";
+                            } else {
+                                $you = "";
+                            }
+
+                            //status
+                            $offline = "";
+
+                            //chat tab
+                            $output .= '<a href="chat.php?sender='.$chat->username.'&reciver='. $chat->Did. '"><div class="content">
+                    <img src="php/images/a.png" alt=""><div class="details"><span>' . $chat->Did . '</span><p>' . $you . $result2 . '</p></div>
+                    </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
+
+                        }
+                    } elseif (count($mychat) == 0) {
+                        $output .= "No users are available to chat";
+                    }
+                    echo $output;
+                    ?>
 
                 </div>
             </section>
