@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,13 +12,14 @@
             <h2>Review</h2>
             <p class="caption">We value your feedback. Please share your thoughts with us.</p>
             <form action="../Process/reviewprocess.php" method="POST">
+                
                 <div class="input-group">
-                    <label for="name">Username:</label>
-                    <input type="text" name="username"placeholder="Enter your name" required>
+                    <label for="username">username:</label>
+                    <input type="username" name="username" placeholder="Enter your username" required>
                 </div>
                 <div class="input-group">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" placeholder="Enter your email address" required>
+                    <label for="username">email:</label>
+                    <input type="username" name="username" placeholder="Enter your email" required>
                 </div>
                 <div class="input-group">
                     <label for="feedback">Your Feedback:</label>

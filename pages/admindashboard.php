@@ -277,10 +277,7 @@ $home = new Home();
                                             <td><?= $software->getDeveloper() ?></td>
                                             <td><?= $software->getLicense() ?></td>
                                             <td><?= $software->getPlatform() ?></td>
-
-
                                             <td><a href="remove.php?name=<?= $software->getSoftware() ?>"><img src="../img/trash-solid (1).svg" alt=""  width="25px" height="25px"></a></td>
-
                                         </tr>
                                         <?php
                                     }
