@@ -73,5 +73,35 @@ class ChatCls {
         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
         return $rs;
     }
+    
+    public function allMsj($user, $patner) {
+        $con = new Classes\DbConnector();
+        $dbcon = $con->getConnection();
+        $query = "SELECT * FROM messages LEFT JOIN chatusers ON chatusers.username = messages.sender AND chatusers.Did = messages.receiver WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?) ORDER BY Msjid";
+        echo $query;
+        $pstmt = $dbcon->prepare($query);
+        $pstmt->bindValue(1, $user);
+        $pstmt->bindValue(2, $patner);
+        $pstmt->bindValue(3, $patner);
+        $pstmt->bindValue(4, $user);
+        $pstmt->execute();
+        $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        return $rs;
+    }
+    
+    public function sendMsj($sender,$reciver,$msj) {
+        $con = new Classes\DbConnector();
+        $dbcon = $con->getConnection();
+        $query = "INSERT INTO messages(sender, receiver, msj, dateTime) VALUES (?,?,?,?)";
+        $pstmt = $dbcon->prepare($query);
+        $pstmt->bindValue(1, $sender);
+        $pstmt->bindValue(2, $reciver);
+        $pstmt->bindValue(3, $msj);
+        $pstmt->bindValue(4, date("Y-m-d h:i:s"));
+        echo $query;
+        echo date("Y-m-d h:i:s");
+        $pstmt->execute();
+        return ($pstmt->rowCount() > 0);
+    }
 
 }

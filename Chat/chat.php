@@ -7,7 +7,9 @@ if ((!isset($_GET['sender'])) && (!isset($_GET['reciver']))) {
     header("location: Chome.php?e=1");
 } else {
     $sender = $_GET['sender'];
+    $_SESSION["sender"] = $sender;
     $reciver = $_GET['reciver'];
+    $_SESSION["reciver"] = $reciver;
 }
 ?>
 
@@ -24,7 +26,7 @@ if ((!isset($_GET['sender'])) && (!isset($_GET['reciver']))) {
                 <header>
                     <?php
                     $chat = $clsChat->myChatX($sender, $reciver);
-                    if (count($chat) > 0 ) {
+                    if (count($chat) > 0) {
                         foreach ($chat as $value) {
                             $did = $value->Did;
                             $status = $value->Status;
@@ -44,7 +46,7 @@ if ((!isset($_GET['sender'])) && (!isset($_GET['reciver']))) {
 
                 </div>
                 <form action="#" class="typing-area">
-                    <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+                    <input type="text" class="sender" name="sender" value="<?php echo $user; ?>" hidden>
                     <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
                     <button><i class="fab fa-telegram-plane"></i></button>
                 </form>
