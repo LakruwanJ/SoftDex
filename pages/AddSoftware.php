@@ -72,7 +72,7 @@ if (isset($_SESSION["user"])) {
                         <!--  upload sections -->
 
                         <br>
-                        <img src="../img/addsoftwareimg.avif" alt="" class="img-fluid mb-3 d-none d-md-block">
+                        <img src="../img/Addsoftware/software-development-gif.gif" alt="" class="img-fluid mb-3 d-none d-md-block">
                         <br>
 
                         <!-- Software Logo -->
