@@ -24,16 +24,34 @@ if (!isset($_SESSION["user"])) {
                 <header>
                     <div class="content">
                         <?php
-                        foreach ($clsChat->getChat($_SESSION["user"]) as $cuser) {
-                            $username = $cuser->username;
-                            $dev = $cuser->Did;
-                            $status = $cuser->Status;
+                        if ($clsChat->CheckDev($_SESSION["user"])) {
+                            foreach ($clsChat->getChatd($_SESSION["user"]) as $cuser) {
+                                $sender = $cuser->Did;
+                                $reciver = $cuser->username;
+                                $status = $cuser->Status;
+                            }
+                        } else {
+                            foreach ($clsChat->getChatu($_SESSION["user"]) as $cuser) {
+                                $sender = $cuser->username;
+                                $reciver = $cuser->Did;
+                                $status = $cuser->Status;
+                            }
                         }
                         ?>
                         <img src="php/images/<?php echo $row['img']; ?>" alt="">
                         <div class="details">
-                            <span><?php echo $username; ?></span>
-                            <p><?php echo $status; ?></p>
+                            <?php if ($clsChat->CheckDev($_SESSION["user"])) { ?>
+                                <span><?php echo $sender; ?></span>
+                                <p><?php echo $status; ?></p>
+                                <?php
+                            } else {
+                                ?>
+                                <span><?php echo $reciver; ?></span>
+                                <p><?php echo $status; ?></p>
+                                <?php
+                            }
+                            ?>
+
                         </div>
                     </div>
                     <a href="CloseCht.php" class="logout">Leave Chat</a>
@@ -51,18 +69,34 @@ if (!isset($_SESSION["user"])) {
                         //Available chats
                         $output = "";
                         foreach ($mychat as $chat) {
-                            $msg = $clsChat->lastMsj($chat->username, $chat->Did);
+
+                            if ($clsChat->CheckDev($_SESSION["user"])) {
+                                $msg = $clsChat->lastMsj($chat->username, $chat->Did);
+                            } else {
+                                $msg = $clsChat->lastMsj($chat->Did, $chat->udername);
+                            }
+                            $text = NUll;
                             foreach ($msg as $value) {
                                 $text = $value->msj;
-                                $sender = $value->sender;
-                                $receiver = $value->receiver;
+                                if ($clsChat->CheckDev($_SESSION["user"])) {
+                                    $sender = $value->receiver;
+                                    $receiver = $value->sender;
+                                } else {
+
+                                    $sender = $value->sender;
+                                    $receiver = $value->receiver;
+                                }
                             }
                             (!empty($text)) ? $result = $text : $result = "No message available";
                             (strlen($result) > 30) ? $result2 = substr($result, 0, 30) . '...' : $result2 = $result;
 
                             //last msj sender
-                            if (isset($receiver)) {
-                                ($chat->Did == $receiver) ? $you = "You: " : $you = "";
+                            if (isset($receiver)) {                                
+                                if ($_SESSION["user"] == $chat->username) {
+                                    ($chat->username == $receiver) ? $you = "You: " : $you = "";
+                                } else {
+                                    ($chat->Did == $receiver) ? $you = "You:" : $you = "";
+                                }                                
                             } else {
                                 $you = "";
                             }
@@ -71,10 +105,15 @@ if (!isset($_SESSION["user"])) {
                             $offline = "";
 
                             //chat tab
-                            $output .= '<a href="chat.php?sender='.$chat->username.'&reciver='. $chat->Did. '"><div class="content">
+                            if ($_SESSION["user"] == $chat->username) {
+                                $output .= '<a href="chat.php?sender=' . $chat->username . '&reciver=' . $chat->Did . '"><div class="content">
                     <img src="php/images/a.png" alt=""><div class="details"><span>' . $chat->Did . '</span><p>' . $you . $result2 . '</p></div>
                     </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
-
+                            } else {
+                                $output .= '<a href="chat.php?sender=' . $chat->Did . '&reciver=' . $chat->username . '"><div class="content">
+                    <img src="php/images/a.png" alt=""><div class="details"><span>' . $chat->username . '</span><p>' . $you . $result2 . '</p></div>
+                    </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
+                            }
                         }
                     } elseif (count($mychat) == 0) {
                         $output .= "No users are available to chat";

@@ -28,7 +28,11 @@ if ((!isset($_GET['sender'])) && (!isset($_GET['reciver']))) {
                     $chat = $clsChat->myChatX($sender, $reciver);
                     if (count($chat) > 0) {
                         foreach ($chat as $value) {
-                            $did = $value->Did;
+                            if ($value->Did == $reciver) {
+                                $patner = $value->Did;
+                            } else {
+                                $patner = $value->username;
+                            }
                             $status = $value->Status;
                         }
                     } else {
@@ -38,7 +42,7 @@ if ((!isset($_GET['sender'])) && (!isset($_GET['reciver']))) {
                     <a href="Chome.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
                     <img src="php/images/a.png; ?>" alt="">
                     <div class="details">
-                        <span><?php echo $did ?></span>
+                        <span><?php echo $patner ?></span>
                         <p><?php echo $status; ?></p>
                     </div>
                 </header>
