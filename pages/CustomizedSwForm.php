@@ -1,11 +1,15 @@
-
 <!DOCTYPE html>
 <?php
+require '../Classes/customizedsoftware.php';
+
+use Classes\cusomizedsw;
+
 session_start();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
-
- 
+} else {
+    header("Location: ../index.php");
+}
 ?>
 <html>
     <head>
@@ -22,9 +26,6 @@ if (isset($_SESSION["user"])) {
 
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.3.1/dist/tagify.css">
-        <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.3.1/dist/tagify.min.js"></script>
-
         <script src="../JS/Addsoftware.js"></script>
 
 
@@ -33,24 +34,28 @@ if (isset($_SESSION["user"])) {
 
 
     <body>
-        <!-- Display error message based on error code -->
-        <?php
-        if (isset($_GET["error"])) {
 
-            if ($_GET["error"] == 0) {
-                echo "<p style='color:red; text-align:center;'> Please Try Again!</p>";
-            } elseif ($_GET["error"] == 1) {
-                echo "<p style='color:red; text-align:center;'> Please Click Submit Button</p>";
-            } elseif ($_GET["error"] == 2) {
-                echo "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
-            }
-        }
-        ?>
 
         <div class="container">
+       <!-- Display error message based on error code -->
+<?php
+if (isset($_GET["error"])) {
 
+    if ($_GET["error"] == 0) {
+        echo "<p style='color:red; text-align:center;'> Please Try Again!</p>";
+    } elseif ($_GET["error"] == 1) {
+        echo "<p style='color:red; text-align:center;'> Please Click Submit Button</p>";
+    } elseif ($_GET["error"] == 2) {
+        echo "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
+    }} elseif (isset($_GET["success"])) {
+            if ($_GET["success"] == 0) {
+                echo "<p style='color:green; text-align:center;'> Successfully sent your request!</p>";
+            }
+        }
 
-            <form action="../Process/UploadTutorialsProcess.php" method="post" enctype="multipart/form-data">
+?>
+
+            <form action="../Process/customizedSwProcess.php" method="post" enctype="multipart/form-data">
 
                 <div class="row">
 
@@ -58,28 +63,29 @@ if (isset($_SESSION["user"])) {
 
                         <!--  upload sections -->
                         <br>
-                        <img src="../img/UploadTutorials/tuteform.jpg" alt="" class="img-fluid mb-3 d-none d-md-block">
+                        <img src="../img/customizedSW/customizeSW.gif" alt="" class="img-fluid mb-3 d-none d-md-block">
                         <br>
 
                         <!-- Upload Tutorials -->
-                        <div class="section1">
+                       <!-- <div class="section1">
 
-                            <div class="form-group">
-                                <label for="uploadtutorials">Upload Tutorials</label>
-                                <input type="file" name="uploadtutorials" id="uploadtutorials" required>
+                           <!-- <div class="form-group">
+                                <label for="customizezSwForm">If you have any document, Upload here</label>
+                                <input type="file" name="customizezSwForm" id="customizezSwForm" >
                             </div>
-                        </div>
+                        </div>-->
 
 
                     </div>
 
                     <div class="col-md-8">
                         <br>
-                        <h3 style="text-align: center; color: darkslateblue"><b> Upload Your Tutorials Here! </b></h3>
+                        <h3 style="text-align: center; color: darkslateblue"><b> Request Your Cutomized Software Here! </b></h3>
                         <br>
 
 
-                         <!--username-->
+
+                        <!--username-->
                         <div class="form-group">
                             <div class="row">
                                 <div class="input-group col-lg-6 mb-4">
@@ -96,30 +102,43 @@ if (isset($_SESSION["user"])) {
                                 </div>
                             </div>
                         </div>
-                         
-                         <!--Software ID-->
+
+                        <!--Developer-->
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-12 mb-4">
-                                    <label for="SoftwareName">Software Name</label>
+                                    <label for="developer">Developer</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                                <i class="fa fa-book text-muted"></i>
+                                                <i class="fa fa-user text-muted"></i>
                                             </span>
                                         </div>
+                                        <select id="language" name="developer" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted" required>
+                                           <option value="choosethedeveoper">Choose the developer</option>
+                                            <option value="Rose">Rose</option>
+                                            <option value="SulaK">SulaK</option>
+                                            <option value="Christ">Christ</option>
+                                            <option value="Jack">Jack</option>
+                                            <option value="PGeo">PGeo</option>
+                                            <option value="Carol">Carol</option>
+                                            <option value="Lifranchi">Lifranchi</option>
+                                         
 
-                                        <input id="SoftwareName" type="text" name="SoftwareName" placeholder=" Software Name" class="form-control bg-white border-left-0 border-md" required>
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!--Tutorial Title-->
+
+
+                        <!--project Title-->
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-12 mb-4">
-                                    <label for="title">Title</label>
+                                    <label for="title">Project Title</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-white px-4 border-md border-right-0">
@@ -133,34 +152,23 @@ if (isset($_SESSION["user"])) {
                             </div>
                         </div>
 
-                        <!--Author-->
-                        <!--<div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-12 mb-4">
-                                    <label for="author">Author</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                                <i class="fa fa-user text-muted"></i>
-                                            </span>
-                                        </div>
-
-                                        <input id="author" type="text" name="author" placeholder=" Author" class="form-control bg-white border-left-0 border-md" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-
-
 
 
 
                         <!--short description-->
                         <div class="form-group">
-                            <label for="shortDescription">Description</label>
-                            <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" class="form-control" required></textarea>
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" placeholder="Description" class="form-control" required></textarea>
                         </div>
 
+
+                        <!--Special requirements-->
+                        <div class="form-group">
+                            <label for="systemreq">Special Requirements</label>
+                            <div id="editor-container" ></div>
+                            <input type="hidden" name="specialReq" id="hiddenSystemReq" >
+
+                        </div>
 
                         <!--Submit button-->
                         <div class="form-group text-center">
@@ -179,9 +187,20 @@ if (isset($_SESSION["user"])) {
         <br>
         <br>
 
+        <script>
+            var quillSystemReq = new Quill('#editor-container', {
+                theme: 'snow'
+            });
+
+
+
+            document.querySelector('form').addEventListener('submit', function () {
+                var systemReqContent = quillSystemReq.root.innerHTML;
+
+
+                document.getElementById("hiddenSystemReq").value = systemReqContent;
+
+            });
+        </script>
     </body>
 </html>
-<?php
-}
- 
-?>
