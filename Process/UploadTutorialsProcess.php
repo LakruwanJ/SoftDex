@@ -10,7 +10,7 @@ require_once '../Classes/DbConnector.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
-        if (empty($_POST['title']) || empty($_POST['author']) || empty($_POST['category']) || empty($_POST['shortDescription'])) {
+        if (empty($_POST['SoftwareName']) || empty($_POST['title']) || empty($_POST['shortDescription'])) {
             header("Location:../pages/UploadTutorials.php?error = 2");
             exit;
         } else {
