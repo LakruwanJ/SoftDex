@@ -91,12 +91,12 @@ if (!isset($_SESSION["user"])) {
                             (strlen($result) > 30) ? $result2 = substr($result, 0, 30) . '...' : $result2 = $result;
 
                             //last msj sender
-                            if (isset($receiver)) {                                
+                            if (isset($receiver)) {
                                 if ($_SESSION["user"] == $chat->username) {
                                     ($chat->username == $receiver) ? $you = "You: " : $you = "";
                                 } else {
                                     ($chat->Did == $receiver) ? $you = "You:" : $you = "";
-                                }                                
+                                }
                             } else {
                                 $you = "";
                             }
