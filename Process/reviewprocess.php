@@ -10,19 +10,26 @@
 require '../Classes/DbConnector.php';
 
 use Classes\DbConnector;
-
+session_start();
 $dbcon = new DbConnector();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = "";
+    if(isset( $_SESSION["user"])){
+        
+        $username=$_SESSION["user"];
+    } else {
+       $username="Anonymous" ;
+    }
     
-            $username = $_POST['username'];
+            
             $email = $_POST['email'];
             $feedback = $_POST['feedback'];
             
             
              $con = $dbcon->getConnection();
 
-            $sql = "INSERT INTO review (username,email,feedback) VALUES (?,?,?)";
+            $sql = "INSERT INTO feedback (username,email,feedback) VALUES (?,?,?)";
             $pstmt = $con->prepare($sql);
             $pstmt->bindValue(1, $username);
             $pstmt->bindValue(2, $email);

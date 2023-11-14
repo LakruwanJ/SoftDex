@@ -16,12 +16,14 @@ $languages = null;
 $prolang = null;
 $experience = null;
 $description = null;
+$did = null;
 
 session_start();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 
     foreach ($select->selectDeveloper($user) as $u) {
+        $did = $u->Did;
         $uname = $u->username;
         $fname = $u->fname;
         $lname = $u->lname;
@@ -36,6 +38,7 @@ if (isset($_SESSION["user"])) {
     }
     
     foreach ($select->selectUser($user) as $u) {
+        $uid = $u->Uid;
         $uname = $u->username;
         $fname = $u->fname;
         $lname = $u->lname;
@@ -67,11 +70,25 @@ if (isset($_SESSION["user"])) {
     </head>
     <body>
         <div class="header">
-            <h1>Welcome to SoftDex!  </h1>
+            <h1>Edit Your Developer Profile  </h1>
         </div>
 
         <div class="container">
             <br>
+            <!--
+         
+        if (isset($_GET["error"])) {
+
+            if ($_GET["error"] == 0) {
+                echo "<p style='color:red; text-align:center;'> Please Try Again!</p>";
+            } elseif ($_GET["error"] == 1) {
+                echo "<p style='color:red; text-align:center;'> Please Click Submit Button</p>";
+            } elseif ($_GET["error"] == 2) {
+                echo "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
+            }
+        
+        }
+        -->
             <?php
             if (isset($_GET['m'])) {
                 if ($_GET['m'] === "2") {
@@ -89,14 +106,29 @@ if (isset($_SESSION["user"])) {
         </div>
 
         <div class="container">
-            <form action="../Process/BecomeDevProcess.php" class="needs-validation" method="post">
+            <form action="../Process/BecomeDevProcess.php" class="needs-validation" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="left-side">
 
-                        <img src="../img/createProfile/registration-form.jpg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                        <br>
                         <h1>Update Your Account as a Developer </h1>
+                        <div class="d-flex justify-content-center">
+                        <div class="profile-pic-container " >
+                            
+                            <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = '../img/user/' . $user . '/' . $user;
 
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                        </div>
+                        </div>
 
 
                         <div class="container">
@@ -121,7 +153,7 @@ if (isset($_SESSION["user"])) {
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" value="<?php echo $fname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" >
+                                            <input id="firstName" type="text" name="firstname" placeholder="First Name" value="<?php echo $fname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('firstName')" required>
 
                                         </div>
 
@@ -135,7 +167,7 @@ if (isset($_SESSION["user"])) {
                                                     <i class="fa fa-user text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="lastName" type="text" name="lastname" placeholder="Last Name" value="<?php echo $lname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('lastName')" >
+                                            <input id="lastName" type="text" name="lastname" placeholder="Last Name" value="<?php echo $lname; ?>" class="form-control bg-white border-left-0 border-md" oninput="validateName('lastName')" required >
 
                                         </div>
                                     </div>
@@ -173,6 +205,8 @@ if (isset($_SESSION["user"])) {
                                 </div>
                             </div>
                             <input type="hidden" name="user" value="<?php echo $uname; ?>">
+                            <input type="hidden" name="uid" value="<?php echo $uid; ?>">
+                            <input type="hidden" name="did" value="<?php echo $did; ?>">
 
                             <!--Email-->
                             <div class="form-group">
@@ -185,7 +219,7 @@ if (isset($_SESSION["user"])) {
                                                     <i class="fa fa-envelope text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input id="email" type="email" name="email" value="<?php echo $email; ?>" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" >
+                                            <input id="email" type="email" name="email" value="<?php echo $email; ?>" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" required>
                                         </div>
                                     </div>
                                 </div>
@@ -274,7 +308,7 @@ if (isset($_SESSION["user"])) {
                                                     <i class="fa fa-tag text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input name="lang" id="lang" placeholder="Languages" value="<?php echo $languages; ?>" class="form-control" >
+                                            <input name="lang" id="lang" placeholder="Languages" value="<?php echo $languages; ?>" class="form-control" required >
                                         </div>
 
                                     </div>
@@ -293,7 +327,7 @@ if (isset($_SESSION["user"])) {
                                                     <i class="fa fa-tag text-muted"></i>
                                                 </span>
                                             </div>
-                                            <input name="prolang" id="prolang" placeholder="Programing Languages" value="<?php echo $prolang; ?>" class="form-control" >
+                                            <input name="prolang" id="prolang" placeholder="Programing Languages" value="<?php echo $prolang; ?>" class="form-control" required>
                                         </div>
 
                                     </div>
@@ -303,14 +337,14 @@ if (isset($_SESSION["user"])) {
                             <!--ShortDescription-->
                             <div class="form-group">
                                 <label for="shortDescription">Short Description</label>
-                                <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" value="<?php echo $shortdes; ?>" class="form-control"></textarea>
+                                <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" value="<?php echo $shortdes; ?>" class="form-control" required></textarea>
                             </div>
 
                             <!--Education-->
                             <div class="form-group">
                                 <label for="education">Education</label>
                                 <div id="editor-container" name="education" ></div>
-                                <input type="hidden" name="education" value="aaa" id="hiddenskills">
+                                <input type="hidden" name="education" value="aaa" id="hiddenskills" required>
 
                             </div>
 
@@ -318,7 +352,7 @@ if (isset($_SESSION["user"])) {
                             <div class="form-group">
                                 <label for="experience">Experience</label>
                                 <div id="editor-container1" name="experience" ></div>
-                                <input type="hidden" name="experience" id="hiddenexperience">
+                                <input type="hidden" name="experience" id="hiddenexperience"  required>
 
                             </div>
 
@@ -326,23 +360,23 @@ if (isset($_SESSION["user"])) {
                             <div class="form-group">
                                 <label for="Description">Description</label>
                                 <div id="editor-container2" ></div>
-                                <input type="hidden" name="Description" id="hiddenDescription">
+                                <input type="hidden" name="Description" id="hiddenDescription" required>
 
                             </div>
 
 
 
-                            <!--Add a profile pic
+                            <!--Add a profile pic-->
                             <div class="form-group">
                                 <label for="profilepic">Profile Picture</label>
-                                <input type="file" id="profilepic" name="profilepic" class="form-control-file">
-                            </div>-->
+                                <input type="file" id="profilepic" name="profilepic" class="form-control-file" required>
+                            </div>
                         </div>
 
                         <br>
                         <div class="form-group text-center">
                             <div class="d-flex justify-content-center">
-                                <?php if ($fname === null) { ?>
+                                <?php if ($shortdes === null) { ?>
                                     <button type="submit" id="createAccountBtn" class="btn btn-primary w-50" name="BecomeaDeveloper">Become a Developer</button>
                                 <?php } else {
                                     ?>
@@ -392,21 +426,24 @@ if (isset($_SESSION["user"])) {
         </script>
 
         <script>
-            var defaultContent = [
-                {insert: '<?php echo $prolang; ?>'}
-            ];
+//            var defaultContenta = [
+//                {insert: '<?php //echo $education; ?>'}
+//            ];
+            
 
             var quillSkill = new Quill('#editor-container', {
                 theme: 'snow'
             });
+//            quillDescription.setContents(defaultContenta);
 
             var quillExperience = new Quill('#editor-container1', {
                 theme: 'snow'
             });
+//            quillDescription.setContents(defaultContentb);
             var quillDescription = new Quill('#editor-container2', {
                 theme: 'snow'
             });
-            quillDescription.setContents(defaultContent);
+//            quillDescription.setContents(defaultContentc);
 
             document.querySelector('form').addEventListener('submit', function () {
                 var skillContent = quillSkill.root.innerHTML;

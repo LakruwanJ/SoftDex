@@ -2,35 +2,39 @@
 
 use Classes\AddSoftwareReg;
 use Classes\DbConnector;
-
 require_once '../Classes/AddSoftwareReg.php';
 
-
-if (isset($_POST['softwareName'], $_POST['version'], $_POST['platform'], $_POST['license'], $_POST['category'], $_POST['language'], $_POST['tags'], $_POST['systemreq'], $_POST['shortDescription'], $_POST['longDescription'])) {
-    if (empty($_POST['softwareName'] || $_POST['version'] || $_POST['platform'] || $_POST['license'] || $_POST['category'] || $_POST['language'] || $_POST['tags'] || $_POST['systemreq'] || $_POST['shortDescription'] || $_POST['longDescription'])) {
-        header("Location:AddSoftware.php?error=1");
+    if($_SERVER['REQUEST_METHOD']==='POST'){
+        if(isset($_POST['submit'])){
+   
+        if(empty($_POST['softwareName']) || empty($_POST['version'])|| empty($_POST['platform']) || empty($_POST['license']) || empty($_POST['category']) ||empty( $_POST['language']) || empty($_POST['tags']) || empty($_POST['systemreq'] )|| empty($_POST['shortDescription'] )||empty( $_POST['longDescription'])) {
+        header("Location:../pages/AddSoftware.php?error=2"); 
         exit;
-    } else {
-        $userame = "RoseD"; //$_POST["user"];
-        $softwareName = $_POST["softwareName"];
+        
+        }else{
+         $userame = "RoseD";//$_POST["user"];
+         $softwareName = $_POST["softwareName"];
         $version = $_POST["version"];
         $platform = $_POST["platform"];
         $license = $_POST["license"];
-        if (isset($_POST['amount'])) {
+        if (isset($_POST['amount'])){
             $amount = $_POST["amount"];
-        } else {
+        }else{
             $amount = "0";
         }
-
+        
         $category = $_POST["category"];
         $language = $_POST["language"];
         $tags = $_POST["tags"];
         $systemreq = $_POST["systemreq"];
         $shortDescription = $_POST["shortDescription"];
         $longDescription = $_POST["longDescription"];
-
+        
+    
+        
+        
         $addsoftwarereg = new AddSoftwareReg();
-
+        
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
         $query = "SELECT Sid FROM software ORDER BY Sid DESC LIMIT 1;";
@@ -49,8 +53,8 @@ if (isset($_POST['softwareName'], $_POST['version'], $_POST['platform'], $_POST[
             $output = $prefix . sprintf("%04d", $newNumber); // Combine 
         }
         $Sid = $output;
-
-
+        
+        
         try {
             $dbcon = new DbConnector();
             $con = $dbcon->getConnection();
@@ -62,35 +66,27 @@ if (isset($_POST['softwareName'], $_POST['version'], $_POST['platform'], $_POST[
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-
+        
         foreach ($rs as $value) {
             $text = $value->Did;
         }
-        $developer = $text;
-
-
+        $developer =  $text;
+        
+        
         $date = date("Y-m-d");
-
-        $addsoftwarereg->addsoftware($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
         
-        
-
 //        $addsoftwarereg = new AddSoftwareReg($softwareName, $version, $platform, $license, $amount, $category, $language, $tags, $systemreq, $shortDescription, $longDescription, $developer, $date, $Sid);
        $addsoftwarereg->addsoftware($softwareName,$version,$platform,$license,$amount,$category,$language,$tags,$systemreq,$shortDescription,$longDescription,$developer,$date,$Sid);
         
   
     $logoFile = $_FILES['softwareLogo'];
-    $imageFiles = $_FILES['softwareImage'];
-    
+    $imageFiles = $_FILES['softwareImage']; 
     $softwareFile = $_FILES['software'];
-    
    
-    
-    // User-specific folder based on user's ID or username
     $userFolder = '../img/sw/' . $Sid;
-    // Replace $userId with the user's identifier
+    
 
-    // Create the user folder if it doesn't exist
+    
     if (!file_exists($userFolder)) {
         mkdir($userFolder, 0777, true);
     }
@@ -111,7 +107,7 @@ if (isset($_POST['softwareName'], $_POST['version'], $_POST['platform'], $_POST[
 
       
 
-        // Handle the software file
+        //upload software
         $softwareExtension = pathinfo($softwareFile['name'], PATHINFO_EXTENSION);
         $newSoftware = 'software.' . $softwareExtension;
         $softwareTargetPath = $userFolder . '/' . $newSoftware;
@@ -120,10 +116,14 @@ if (isset($_POST['softwareName'], $_POST['version'], $_POST['platform'], $_POST[
 
    
 
-    // Redirect or display a success message
-    echo 'successfully uploaded files';
-                }
-
-    }
-}
     
+     header("Location:../pages/AddSoftware.php?success = 1");
+                }
+    
+        } else{
+         header("Location:../pages/AddSoftware.php?error = 1");
+    }
+    
+    } else{
+    header("Location:../pages/AddSoftware.php?error = 0");
+}

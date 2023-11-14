@@ -10,11 +10,12 @@ $con = $dbcon->getConnection();
 $rs = new Classes\Select();
 
 
-//session_start();
-//if (isset($_SESSION["user"])) {
-//    $user = $_SESSION["user"];
-//}
-$user = "Laka";
+session_start();
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+}else{
+    header("Location: ../softdex.php");
+}
 $rs = new Classes\Select();
 
 $rs2 = $rs->selectDeveloper($user);
@@ -59,7 +60,21 @@ foreach ($rs2 as $dev) {
             <div class="cols__container">
                 <div class="left__col">
                     <div class="img__container">
-                        <img src="../img/img_dev.jpg" alt="K. L. Jayathissa" />
+                        
+                        <?php
+                                    $imageFormats = ['png', 'jpg'];
+                                    $imagePath = '../img/user/' . $user . '/' . $user;
+
+                                    foreach ($imageFormats as $format) {
+                                        $imageUrl = $imagePath . '.' . $format;
+
+                                        if (file_exists($imageUrl)) {
+                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                        
                     </div>
                     <h2><?php echo $user; ?></h2>
 
@@ -105,14 +120,34 @@ foreach ($rs2 as $dev) {
                             <?php echo $shortdes; ?> 
                         </p>
                         <hr>
-                        
+                        <!-- New Education section -->
+                        <div class="education">
+                            <h2>Education</h2>
+                            <ol>
+                                <li>
+                                    <?php echo $education; ?> 
+                                </li>
+
+                            </ol>
+                        </div>
+                        <hr>
+                        <!-- New Experience section -->
+                        <div class="education">
+                            <h2>Experience</h2>
+                            <ol>
+                                <li>
+                                    <?php echo $experience; ?> 
+                                </li>
+                            </ol>
+                        </div>
+                        <hr>
 
                         <!-- New Language Skills section -->
                         <div class="language_skills">
                             <h2>Language Speaking</h2>
                             <ul style="display: flex;flex-direction: column;align-items: center;gap: 5px;">
                                 <li style="width: 90%;margin: 0;"> <?php echo $languages; ?> </li>
-                                <li style="width: 90%;margin: 0;">Sinhala</li>
+<li style="width: 90%;margin: 0;">Sinhala</li>
                             </ul>
                         </div>
                         <br>
@@ -146,31 +181,38 @@ foreach ($rs2 as $dev) {
 
                         <div id="About_me" class="tabcontent">
                             <h1>About Me</h1>
-                            <br>
                             <p><?php echo $description; ?></p><br>
 
-                            <hr>
-                             <div class="education">
-                            <h2>Education</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $education; ?> 
-                                </li>
+                            <u>
+                                <h1>Most downloaded software</h1>
+                            </u>
 
-                            </ol>
-                        </div>
-                        <hr>
-                        <!-- New Experience section -->
-                        <div class="education">
-                            <h2>Experience</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $experience; ?> 
-                                </li>
-                            </ol>
-                        </div>
-                      
-                        
+                            <!-- Most Downloaded Software Section -->
+                            <div class="most-downloaded-software">
+                                <?php
+                                foreach ($rs->selectSware($did) as $value) {
+                                    ?>
+                                    <!-- Software Item 1 -->
+                                    <div class="software-item">
+                                        <?php
+                                        $imageFormats = ['png', 'jpg']; // List of possible image formats
+                                        $imagePath = '../img/sw/' . $value->Sid . '/logo'; // Base path without extension
+
+                                        foreach ($imageFormats as $format) {
+                                            $imageUrl = $imagePath . '.' . $format;
+
+                                            if (file_exists($imageUrl)) {
+                                                echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="150px" alt="Logo Image" />';
+                                                break; // Stop when the first valid image format is found
+                                            }
+                                        }
+                                        ?>
+                                        <h2><?php echo $value->name ?></h2>
+                                        <p><?php echo $value->shortdescription ?></p>
+                                    </div>
+                                <?php } ?>
+
+                            </div>
                             <u>
                                 <h1>Reviews</h1>
                             </u>
@@ -181,29 +223,26 @@ foreach ($rs2 as $dev) {
                                             <td><a href="#"><img class="rounded-circle" src="https://mdbootstrap.com/img/new/avatars/2.jpg"
                                                                  height="40" alt /></a></td>
                                             <td class="ps-3">
-
+                                                By user
                                             </td>
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td class="ps-3">&nbsp;
-                                                <h3>Shane</h3>
-                                                <div class="rating">
-
-                                                    <span class="fa fa-star checked" ></span>
-                                                    <span>(5.0)</span>
-                                                </div>
-
+                                            <td class="ps-3"><i class="fa fa-star text-success"></i>&nbsp;5.0
+                                                &nbsp;&nbsp;&centerdot;&nbsp;&nbsp;
+                                                <?php echo "1 month ago"; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td class="ps-3">
-                                                <p>Laka is easy to communicate with, he responds fast. Just tell him how you want the output to
-                                                    be and hewill revise it based from your feedback. I like how he worked on the software
-                                                    design.I'd say it was not their strong suite, but he still welcomed my
+                                                <p>Janvi is easy to communicate with, she responds fast. Just tell her how you want the output to
+                                                    be and her team will revise it based from your feedback. I like how they worked on the logo
+                                                    design for my brand. They also did my social media kit but I did not expect it to be just the
+                                                    logo with a white background. I'd say it was not their strong suite, but Janvi still welcomed my
                                                     suggestions and applied it on the design. I appreciate their work and their effort. Overall, I
-                                                    am quite satisfied. I'd say, great service.</p>
+                                                    am quite satisfied because Janvi welcomed my suggestions and revision requests. I'd say, great
+                                                    customer service.</p>
                                             </td>
                                         </tr>
                                     </table>
@@ -215,9 +254,9 @@ foreach ($rs2 as $dev) {
                         <div id="Software" class="tabcontent">
                             <h1>Software</h1>
                             <a href="AddSoftware.php">
-                                <button id="sw-button">Add Software</button>
-                            </a>
-
+                        <button id="sw-button">Add Software</button>
+                    </a>
+                            
                             <p>From here, you can find software which has been developed by me.</p>
                             <!-- Most Downloaded Software Section -->
 
@@ -260,7 +299,6 @@ foreach ($rs2 as $dev) {
                     <div id="Customized" class="tabcontent">
                         <h1>Customized</h1>
                         <button id="sw-button">Ongoing Projects</button>
-                        <button id="sw-button">New Requests</button>
                         <p>From here, you can find customized software which has been developed by me according to user
                             requirements.</p>
 
@@ -320,7 +358,8 @@ foreach ($rs2 as $dev) {
                             <div class="software-item">
                                 <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
                                 <h2>Tutorial 1</h2>
-                                <p>An innovative mobile task manager app that simplifies your daily routines, boosts productivity. </p>
+                                <p>An innovative mobile task manager app that simplifies your daily routines, boosts productivity, and
+                                    enhances collaboration with intuitive features and seamless cloud synchronization. </p>
                             </div>
                             <!-- Software Item 2 -->
                             <div class="software-item">
@@ -332,7 +371,8 @@ foreach ($rs2 as $dev) {
                             <div class="software-item">
                                 <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
                                 <h2>Tutorial 3</h2>
-                                <p>Master the art of digital photography with our comprehensive tutorial series.</p>
+                                <p>Master the art of digital photography with our comprehensive tutorial series. Explore camera
+                                    settings, composition, and post-processing techniques.</p>
                             </div>
                         </div>
                         <div class="most-downloaded-software">
@@ -342,14 +382,16 @@ foreach ($rs2 as $dev) {
                                 <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
                                 <h2>Tutorial 4</h2>
                                 <p>A comprehensive language learning app for all levels. Explore interactive lessons, practice
-                                    pronunciation.</p>
+                                    pronunciation, and immerse yourself in real-world conversations, making language acquisition engaging
+                                    and effective.</p>
                             </div>
                             <!-- Software Item 2 -->
                             <div class="software-item">
                                 <img src="../img/tutorial.jpg" alt="Software 1 Logo" class="software-logo">
                                 <h2>Tutorial 5</h2>
                                 <p>A cutting-edge video editing software with powerful tools for professionals. Edit, enhance, and
-                                    create stunning videos.</p>
+                                    create stunning videos effortlessly, with advanced effects and seamless sharing options for all your
+                                    projects.</p>
                             </div>
                             <!-- Software Item 3 -->
                             <div class="software-item">
@@ -380,8 +422,10 @@ foreach ($rs2 as $dev) {
                                             </div>
 
                                             <div class="timeline-label">
-                                                <h2><a href="#">User</a> <span>Registration and Account Management</span></h2>
-                                                <p> initially explore the download page to gather information about the software, its features, and its purpose.Creating a user account<br> Registration and Account Management:</p>
+                                                <h2><a href="#">Art Ramadani</a> <span>posted a status update</span></h2>
+                                                <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare
+                                                    how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put.
+                                                    Added forth chief trees but rooms think may.</p>
                                             </div>
                                         </div>
 
@@ -398,8 +442,8 @@ foreach ($rs2 as $dev) {
                                             </div>
 
                                             <div class="timeline-label">
-                                                <h2><a href="#">Discussing Requirements</a></h2>
-                                                <p>communicate software requirements to the developer <strong>This involves detailed discussions about features, user interfaces, platforms, and technical specifications.</strong> Today.</p>
+                                                <h2><a href="#">Job Meeting</a></h2>
+                                                <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>
                                             </div>
                                         </div>
 
@@ -416,8 +460,8 @@ foreach ($rs2 as $dev) {
                                             </div>
 
                                             <div class="timeline-label">
-                                                <h2><a href="#">Arlind Nushi</a> <span>cBrowsing and Exploration</span> <a href="#">Browsing through search results or recommendations</a></h2>
-                                                <blockquote>Navigating to the website's homepage. Exploring categories of content.</blockquote>
+                                                <h2><a href="#">Arlind Nushi</a> <span>checked in at</span> <a href="#">Laborator</a></h2>
+                                                <blockquote>Great place, feeling like in home.</blockquote>
                                             </div>
                                         </div>
 
@@ -436,7 +480,7 @@ foreach ($rs2 as $dev) {
                                             <div class="timeline-label">
                                                 <h2><a href="#">Arber Nushi</a> <span>changed his</span> <a href="#">Profile Picture</a></h2>
 
-                                                <blockquote>Selecting another image, save the changes to set the new profile picture.
+                                                <blockquote>Pianoforte principles our unaffected not for astonished travelling are particular.
                                                 </blockquote>
 
                                                 <img src="http://themes.laborator.co/neon/assets/images/timeline-image-3.png"

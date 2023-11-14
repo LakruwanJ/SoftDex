@@ -23,7 +23,7 @@ if (isset($_SESSION["user"])) {
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+       <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/createAccount.css" />
@@ -68,7 +68,6 @@ if (isset($_SESSION["user"])) {
                         <br>
                         <div class="d-flex justify-content-center">
                         <div class="profile-pic-container " >
-                            <img src="../img/user/<?php echo $user; ?>/<?php echo $user; ?>" >
                             
                             <?php
                                     $imageFormats = ['png', 'jpg'];
@@ -295,7 +294,7 @@ if (isset($_SESSION["user"])) {
                 }
             }
         </script>
-
+  
 
     </body>
 </html>

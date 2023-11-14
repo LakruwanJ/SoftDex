@@ -1,14 +1,49 @@
 <?php
-require '../Classes/Select.php';
+session_start();
+require_once '../Classes/Select.php';
+require_once '../Classes/CartNew.php';
+require_once '../Classes/WishListNew.php';
 
+use Classes\CartNew;
+use Classes\WishListNew;
 use Classes\Select;
 
 $rs = new Classes\Select();
+//create cart object
+$cartObj = new Classes\CartNew();
+//create wishlist object
+$wishListObj = new Classes\WishListNew();
+
+// define variabele
+$name = "";
+$version = "";
+$shortdescription = "";
+$platform = "";
+$developer = "";
+$license = "";
+$amount = "";
+$date = "";
+$size = "";
+$language = "";
+$category = "";
+$tags = "";
+$systemreq = "";
+$description = "";
+$rate = "";
+$DownCount = "";
+$dname = "";
+$ddate ="";
+
+//set user and id
+$user = $id = $sw = "";
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-} else {
-    header("Location: ../Softdex.php");
+    $user = $_SESSION["user"];  
 }
+
+
+
+
 $rs1 = $rs->selectSw($id);
 foreach ($rs1 as $sw) {
     $name = $sw->name;
@@ -35,10 +70,67 @@ foreach ($rs2 as $dev) {
     $ddate = $dev->datesince;
 }
 
-session_start();
-if (isset($_SESSION["user"])) {
-    $user = $_SESSION["user"];
-}
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    /*------------------- Add to cart -------------------------------------------------------------*/
+    if (isset($_POST['addtocart'])) {
+        $set_user = $_POST['user'];
+        $set_id = $_POST['softId'];
+        $cartObj->setUser($set_user);
+        $cartObj->setSoftwareid($set_id);
+        $text = $cartObj->getCartItems();
+
+        //add item
+        if (empty($text)) {
+            $cartObj->addItemToCart($text);
+        } else {
+            // check item is already added
+            $checkArray = explode(" | ", $text);
+            foreach ($checkArray as $item) {
+                if ($item == $set_id) {
+                    $check = false;
+                    break;
+                }
+            }
+            if($check){
+                $cartObj->addItemToCart($text);
+            }else {
+                    header("Location:../pages/Software_New.php?id=".$set_id."&status=ItemAlreadyAdded");
+                }
+            }
+            
+        }
+    
+    
+    /*----------------------- wishlist -------------------------------------------------------------------*/
+    if (isset($_POST['addtowishlist'])) {
+       $set_user = $_POST['user'];
+       $set_id = $_POST['softId'];
+       $wishListObj->setUser($set_user);
+       $wishListObj->setSoftwareid($set_id);
+       $text = $wishListObj->getWishListItems();
+       
+       // add item
+       if (empty($text)) {
+           $wishListObj->addItemToWishList($text);
+       } else {
+           // check item is already added
+            $checkArray = explode(" | ", $text);
+            foreach ($checkArray as $item) {
+                if ($item == $set_id) {
+                    $check = false;
+                    break;
+                }
+            }
+            if($check){
+                 $wishListObj->addItemToWishList($text);
+            }else{
+                    header("Location:../pages/Software_New.php?id=".$id."&status=ItemAlreadyAdded");
+                }
+            }
+           
+       }
+    }
+
 
 $star = [254, 20, 6, 15, 63, 150];
 ?>
@@ -147,7 +239,7 @@ $star = [254, 20, 6, 15, 63, 150];
                             <td width="25%"><button class="btn p-0" style="margin-left: 5px;" type="submit">
                                     <?php
                                     $imageFormats = ['png', 'jpg'];
-                                    $imagePath = '../img/sw/' . $sw->Sid . '/logo';
+                                    $imagePath = '../img/sw/' . $id . '/logo';
 
                                     foreach ($imageFormats as $format) {
                                         $imageUrl = $imagePath . '.' . $format;
@@ -177,11 +269,7 @@ $star = [254, 20, 6, 15, 63, 150];
                     </table>
                 </div>            
                 <div class="col-md-4 text-center"><br><br>
-                    <?php
-                    if ($license === "Paid") {
-                        if (isset($_SESSION["user"])) {
-                            ?>
-
+                    <?php if ($license === "Paid" && isset($_SESSION["user"])) {?>
                             <!--with login-->
                             <button type="button" class="btn btn-warning down">
                                 <table width=100%>
@@ -191,10 +279,9 @@ $star = [254, 20, 6, 15, 63, 150];
                                     </tr>
                                 </table>
                             </button>
-                            <form method="POST" action="../Classes/cartCls.php">
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <input type="hidden" name="user" value="<?php echo $user ?>" />
-                                <input type="hidden" name="sw" value="<?php echo $id; ?>" />
-
+                                <input type="hidden" name="softId" value="<?php echo $id ?>" />
                                 <button type="submit" name="addtocart" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
                                     <table width=100%>
                                         <tr>
@@ -204,30 +291,13 @@ $star = [254, 20, 6, 15, 63, 150];
                                     </table>
                                 </button>
                             </form>
-                        <?php } else {
-                            ?>
-                            <!--without login-->
-                            <button type="button" class="btn btn-warning down">
-                                <table width=100%>
-                                    <tr>
-                                        <td class="p-3 text-light" ><span><h3>This is Premium Software You Haven't Access.</h3></span></td>
-                                    </tr>
-                                </table>
-                            </button>
-                            <?php
-                        }
-                        ?>
-
-                        <?php
-                    } else {
-                        if (isset($_SESSION["user"])) {
-                            ?>
+                        <?php }
+                    if ($license === "Free" && isset($_SESSION["user"])){ ?>
                             <!--with login-->
 
-                            <form method="POST" action="../Classes/wishlistCls.php">
+                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <input type="hidden" name="user" value="<?php echo $user ?>" />
-                                <input type="hidden" name="sw" value="<?php echo $id; ?>" />
-
+                                <input type="hidden" name="softId" value="<?php echo $id ?>" />
                                 <button type="submit" name="addtowishlist" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573;">
                                     <table width=100%>
                                         <tr>
@@ -237,12 +307,6 @@ $star = [254, 20, 6, 15, 63, 150];
                                     </table>
                                 </button>
                             </form>
-                        <?php } else {
-                            ?>
-                            <!--without login-->
-                            <?php
-                        }
-                        ?>
                         <!--<a href="../img/sw/sw0001/index.zip">-->
                         <button type="button" class="btn btn-success down" data-bs-toggle="modal" data-bs-target="#downloadConfirmationModal">
                             <table width=100%>
@@ -271,17 +335,8 @@ $star = [254, 20, 6, 15, 63, 150];
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-                        <?php
-                    }
-                    ?>
-
-
+              <?php } ?>
+                        
                 </div>
             </div>
 
