@@ -105,27 +105,7 @@ foreach ($rs2 as $dev) {
                             <?php echo $shortdes; ?> 
                         </p>
                         <hr>
-                        <!-- New Education section -->
-                        <div class="education">
-                            <h2>Education</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $education; ?> 
-                                </li>
-
-                            </ol>
-                        </div>
-                        <hr>
-                        <!-- New Experience section -->
-                        <div class="education">
-                            <h2>Experience</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $experience; ?> 
-                                </li>
-                            </ol>
-                        </div>
-                        <hr>
+                        
 
                         <!-- New Language Skills section -->
                         <div class="language_skills">
@@ -169,36 +149,28 @@ foreach ($rs2 as $dev) {
                             <br>
                             <p><?php echo $description; ?></p><br>
 
-                            <u>
-                                <h1>Most downloaded software</h1>
-                            </u>
+                            <hr>
+                             <div class="education">
+                            <h2>Education</h2>
+                            <ol>
+                                <li>
+                                    <?php echo $education; ?> 
+                                </li>
 
-                            <!-- Most Downloaded Software Section -->
-                            <div class="most-downloaded-software">
-                                <?php
-                                foreach ($rs->selectSware($did) as $value) {
-                                    ?>
-                                    <!-- Software Item 1 -->
-                                    <div class="software-item">
-                                        <?php
-                                        $imageFormats = ['png', 'jpg']; // List of possible image formats
-                                        $imagePath = '../img/sw/' . $value->Sid . '/logo'; // Base path without extension
-
-                                        foreach ($imageFormats as $format) {
-                                            $imageUrl = $imagePath . '.' . $format;
-
-                                            if (file_exists($imageUrl)) {
-                                                echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="150px" alt="Logo Image" />';
-                                                break; // Stop when the first valid image format is found
-                                            }
-                                        }
-                                        ?>
-                                        <h2><?php echo $value->name ?></h2>
-                                        <p><?php echo $value->shortdescription ?></p>
-                                    </div>
-                                <?php } ?>
-
-                            </div>
+                            </ol>
+                        </div>
+                        <hr>
+                        <!-- New Experience section -->
+                        <div class="education">
+                            <h2>Experience</h2>
+                            <ol>
+                                <li>
+                                    <?php echo $experience; ?> 
+                                </li>
+                            </ol>
+                        </div>
+                      
+                        
                             <u>
                                 <h1>Reviews</h1>
                             </u>
@@ -288,6 +260,7 @@ foreach ($rs2 as $dev) {
                     <div id="Customized" class="tabcontent">
                         <h1>Customized</h1>
                         <button id="sw-button">Ongoing Projects</button>
+                        <button id="sw-button">New Requests</button>
                         <p>From here, you can find customized software which has been developed by me according to user
                             requirements.</p>
 
