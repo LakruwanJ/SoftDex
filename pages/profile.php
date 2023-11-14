@@ -119,28 +119,7 @@ foreach ($rs2 as $dev) {
                         <p>
                             <?php echo $shortdes; ?> 
                         </p>
-                        <hr>
-                        <!-- New Education section -->
-                        <div class="education">
-                            <h2>Education</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $education; ?> 
-                                </li>
-
-                            </ol>
-                        </div>
-                        <hr>
-                        <!-- New Experience section -->
-                        <div class="education">
-                            <h2>Experience</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $experience; ?> 
-                                </li>
-                            </ol>
-                        </div>
-                        <hr>
+                       
 
                         <!-- New Language Skills section -->
                         <div class="language_skills">
@@ -182,37 +161,29 @@ foreach ($rs2 as $dev) {
                         <div id="About_me" class="tabcontent">
                             <h1>About Me</h1>
                             <p><?php echo $description; ?></p><br>
+ <hr>
+                        <!-- New Education section -->
+                        <div class="education">
+                            <h2>Education</h2>
+                            <ol>
+                                <li>
+                                    <?php echo $education; ?> 
+                                </li>
 
-                            <u>
-                                <h1>Most downloaded software</h1>
-                            </u>
-
-                            <!-- Most Downloaded Software Section -->
-                            <div class="most-downloaded-software">
-                                <?php
-                                foreach ($rs->selectSware($did) as $value) {
-                                    ?>
-                                    <!-- Software Item 1 -->
-                                    <div class="software-item">
-                                        <?php
-                                        $imageFormats = ['png', 'jpg']; // List of possible image formats
-                                        $imagePath = '../img/sw/' . $value->Sid . '/logo'; // Base path without extension
-
-                                        foreach ($imageFormats as $format) {
-                                            $imageUrl = $imagePath . '.' . $format;
-
-                                            if (file_exists($imageUrl)) {
-                                                echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="150px" alt="Logo Image" />';
-                                                break; // Stop when the first valid image format is found
-                                            }
-                                        }
-                                        ?>
-                                        <h2><?php echo $value->name ?></h2>
-                                        <p><?php echo $value->shortdescription ?></p>
-                                    </div>
-                                <?php } ?>
-
-                            </div>
+                            </ol>
+                        </div>
+                        <hr>
+                        <!-- New Experience section -->
+                        <div class="education">
+                            <h2>Experience</h2>
+                            <ol>
+                                <li>
+                                    <?php echo $experience; ?> 
+                                </li>
+                            </ol>
+                        </div>
+                        <hr>
+                          
                             <u>
                                 <h1>Reviews</h1>
                             </u>
