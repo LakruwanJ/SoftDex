@@ -37,8 +37,19 @@ if (!isset($_SESSION["user"])) {
                                 $status = $cuser->Status;
                             }
                         }
+                        $imageFormats = ['png', 'jpg'];
+                        $imagePath = '../img/user/' . $sender . '/' . $sender;
+
+                        foreach ($imageFormats as $format) {
+                            $imageUrl = $imagePath . '.' . $format;
+
+                            if (file_exists($imageUrl)) {
+                                echo '<img src="' . $imageUrl . '"/>';
+                                break;
+                            }
+                        }
                         ?>
-                        <img src="php/images/<?php echo $row['img']; ?>" alt="">
+
                         <div class="details">
                             <?php if ($clsChat->CheckDev($_SESSION["user"])) { ?>
                                 <span><?php echo $sender; ?></span>
@@ -106,13 +117,39 @@ if (!isset($_SESSION["user"])) {
 
                             //chat tab
                             if ($_SESSION["user"] == $chat->username) {
+                                echo 'a';
+                                $imageFormats = ['png', 'jpg'];
+                                $imagePath = '../img/user/' . $chat->Did . '/' . $chat->Did;
+
+                                foreach ($imageFormats as $format) {
+                                    $imageUrl = $imagePath . '.' . $format;
+
+                                    if (file_exists($imageUrl)) {
+                                        $imageUrl = $imageUrl;
+                                    } else {
+                                        $imageUrl = "../img/user (2).png";
+                                    }
+                                }
                                 $output .= '<a href="chat.php?sender=' . $chat->username . '&reciver=' . $chat->Did . '"><div class="content">
-                    <img src="php/images/a.png" alt=""><div class="details"><span>' . $chat->Did . '</span><p>' . $you . $result2 . '</p></div>
-                    </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
+                            <img src="' . $imageUrl . '" alt=""><div class="details"><span>' . $chat->Did . '</span><p>' . $you . $result2 . '</p></div>
+                        </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
                             } else {
+                                echo 'b';
+                                $imageFormats = ['png', 'jpg'];
+                                $imagePath = '../img/user/' . $chat->username . '/' . $chat->username;
+
+                                foreach ($imageFormats as $format) {
+                                    $imageUrl = $imagePath . '.' . $format;
+
+                                    if (file_exists($imageUrl)) {
+                                        $imageUrl = $imageUrl;
+                                    } else {
+                                        $imageUrl = "../img/user (2).png";
+                                    }
+                                }
                                 $output .= '<a href="chat.php?sender=' . $chat->Did . '&reciver=' . $chat->username . '"><div class="content">
-                    <img src="php/images/a.png" alt=""><div class="details"><span>' . $chat->username . '</span><p>' . $you . $result2 . '</p></div>
-                    </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
+                            <img src="' . $imageUrl . '" alt=""><div class="details"><span>' . $chat->username . '</span><p>' . $you . $result2 . '</p></div>
+                        </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
                             }
                         }
                     } elseif (count($mychat) == 0) {

@@ -40,7 +40,22 @@ if ((!isset($_GET['sender'])) && (!isset($_GET['reciver']))) {
                     }
                     ?>
                     <a href="Chome.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-                    <img src="php/images/a.png; ?>" alt="">
+                    <?php
+                    $imageFormats = ['png', 'jpg'];
+                    $imagePath = '../img/user/' . $patner . '/' . $patner;
+
+                    foreach ($imageFormats as $format) {
+                        $imageUrl = $imagePath . '.' . $format;
+
+                        if (file_exists($imageUrl)) {
+                            $imageUrl = $imageUrl;
+                        } else {
+                            $imageUrl = "../img/user (2).png";
+                        }
+                    }
+                    ?>
+
+                    <img src="<?php echo $imageUrl ?>" alt="">
                     <div class="details">
                         <span><?php echo $patner ?></span>
                         <p><?php echo $status; ?></p>
