@@ -61,7 +61,20 @@ class Tutorial{
     }
 
  
- 
+ public function selectSw($id) {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT name FROM software";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            return $rs;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
   public function upload() {
       $dbcon = new DbConnector();
       $con = $dbcon->getConnection();

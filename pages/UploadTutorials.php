@@ -1,11 +1,21 @@
 
 <!DOCTYPE html>
+
 <?php
+
+/*require '../Classes/Select.php';
+
+use Classes\Select;
+
+$id = null;
+$slct = new Select();
+$slct->selectSw($id); */
+
 session_start();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 
- 
+
 ?>
 <html>
     <head>
@@ -60,6 +70,15 @@ if (isset($_SESSION["user"])) {
                         <br>
                         <img src="../img/UploadTutorials/tuteform.jpg" alt="" class="img-fluid mb-3 d-none d-md-block">
                         <br>
+                        
+                          <!-- Upload Background image -->
+                        <div class="section1">
+
+                            <div class="form-group">
+                                <label for="backimg">Background Image</label>
+                                <input type="file" name="backimg" id="backimg" required>
+                            </div>
+                        </div>
 
                         <!-- Upload Tutorials -->
                         <div class="section1">
@@ -108,8 +127,27 @@ if (isset($_SESSION["user"])) {
                                                 <i class="fa fa-book text-muted"></i>
                                             </span>
                                         </div>
+                                        <!--<option value='?php $slct->selectSw($id) ?>">?php $slct->selectSw($id) ?></option>-->
+                                        <select id="SoftwareName" name="SoftwareName" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                                             <option value="Chrome">Chrome</option>
+                                        <option value="Google Class Room">Google Class Room</option>
+                                        <option value="Capcut">Capcut</option>
+                                        <option value="Mozilla Firefox">Mozilla Firefox</option>
+                                          <option value="Microsoft Word">Microsoft Word</option>
+                                        <option value="iTunes">iTunes</option>
+                                        <option value="KMPlayer">KMPlayer</option>
+                                        <option value="Visual Studio Code">Visual Studio Code</option>
+                                        <option value="Netflix">Netflix</option>
+                                        <option value="VinMate">VinMate</option>
+                                        <option value="iTunes">iTunes</option>
+                                        <option value="KMPlayer">KMPlayer</option>
+                                        <option value="Code::Blocks">Code::Blocks</option>
+                                        <option value="uTorrent">uTorrent</option>
+                                        
 
-                                        <input id="SoftwareName" type="text" name="SoftwareName" placeholder=" Software Name" class="form-control bg-white border-left-0 border-md" required>
+                                        </select>
+                                       
+                                       <!-- <input id="SoftwareName" type="text" name="SoftwareName" placeholder=" Software Name" class="form-control bg-white border-left-0 border-md" required>-->
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +199,10 @@ if (isset($_SESSION["user"])) {
                             <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" class="form-control" required></textarea>
                         </div>
 
-
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                         <!--Submit button-->
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary w-50" name="submit">Submit</button>

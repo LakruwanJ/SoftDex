@@ -33,10 +33,14 @@ $tute = Tutorial::displayTutorials();
             <section class="tutorials">
 
                 <?php
+                
+                                 
                 foreach ($tute as $tutes) {
                     ?>
+                
+                
                     <div class="tutorial-card">
-                        <img src="../img/UploadTutorials/backimg.jfif" >
+                        <img src="../img/Tutorials/<?= $tutes->getTitle() ?>/<?= $tutes->getTitle()?>'.'png " >
                         <h3 class="tutorial-title"><?= $tutes->getTitle() ?></h3>
                         <p class="tutorial-description"><?= $tutes->getText() ?></p>
 
@@ -56,7 +60,7 @@ $tute = Tutorial::displayTutorials();
         </main>
 
         <footer>
-            <!-- Footer content -->
+            
         </footer>
 
 
