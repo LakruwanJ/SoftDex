@@ -69,12 +69,12 @@ if (isset($_GET["error"])) {
                         <br>
                         <br>
                     
-                        <!-- Upload Tutorials -->
+                        <!-- Upload Documents -->
                      <div class="section1">
 
                           <div class="form-group">
                                 <label for="customizezSwForm">If you have any document, Upload here</label>
-                                <input type="file" name="customizezSwForm" id="customizezSwForm" >
+                                <input type="file" name="customizedSwDoc" id="customizezSwForm" >
                             </div>
                         </div>
 
