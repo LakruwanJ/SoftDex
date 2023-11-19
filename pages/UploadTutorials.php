@@ -28,15 +28,8 @@ if (isset($_SESSION["user"])) {
         <link rel="stylesheet" href="path/to/bootstrap.min.css">
         <script src="https://kit.fontawesome.com/b0ede3d087.js" crossorigin="anonymous"></script>
 
-        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
-        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.3.1/dist/tagify.css">
-        <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.3.1/dist/tagify.min.js"></script>
-
+       
         <script src="../JS/Addsoftware.js"></script>
-
 
 
     </head>
