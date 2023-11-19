@@ -65,15 +65,18 @@ if (isset($_GET["error"])) {
                         <br>
                         <img src="../img/customizedSW/customizeSW.gif" alt="" class="img-fluid mb-3 d-none d-md-block">
                         <br>
-
+                        <br>
+                        <br>
+                        <br>
+                    
                         <!-- Upload Tutorials -->
-                       <!-- <div class="section1">
+                     <div class="section1">
 
-                           <!-- <div class="form-group">
+                          <div class="form-group">
                                 <label for="customizezSwForm">If you have any document, Upload here</label>
                                 <input type="file" name="customizezSwForm" id="customizezSwForm" >
                             </div>
-                        </div>-->
+                        </div>
 
 
                     </div>
