@@ -42,7 +42,7 @@ $tute = Tutorial::displayTutorials();
                     <div class="tutorial-card">
                         <img src="../img/Tutorials/<?= $tutes->getTitle() ?>/<?= $tutes->getTitle()?>'.'png " >
                         <h3 class="tutorial-title"><?= $tutes->getTitle() ?></h3>
-                        <p class="tutorial-description"><?= $tutes->getText() ?></p>
+                        <p class="tutorial-description"><i><?= $tutes->getText() ?></i></p>
 
                         <div class="buttons">
                             <button class="download-button">
@@ -58,11 +58,6 @@ $tute = Tutorial::displayTutorials();
 
             </section>
         </main>
-
-        <footer>
-            
-        </footer>
-
 
 
     </body>
