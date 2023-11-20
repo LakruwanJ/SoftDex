@@ -767,7 +767,7 @@ $rsCls = new Home();
                                     <ul>
                                         <li><a href = "#">About Us</a></li>
                                         <li><a href = "#">Company Information<br /></a></li>
-                                        <li><a href = "#">Reviews</a></li>
+                                        <li><a href = "pages/reviews.php">Reviews</a></li>
                                         <li><a href = "#">Contacts</a></li>
                                     </ul>
                                 </div>
