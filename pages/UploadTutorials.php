@@ -53,7 +53,7 @@ if (isset($_SESSION["user"])) {
         <div class="container">
 
 
-            <form action="../Process/UploadTutorialsProcess.php" method="post" enctype="multipart/form-data">
+            <form id="myForm" action="../Process/UploadTutorialsProcess.php" method="post" enctype="multipart/form-data">
 
                 <div class="row">
 
@@ -69,7 +69,7 @@ if (isset($_SESSION["user"])) {
 
                             <div class="form-group">
                                 <label for="backimg">Background Image</label>
-                                <input type="file" name="backimg" id="backimg" required>
+                                <input type="file" name="backimg" id="backimg" required >
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@ if (isset($_SESSION["user"])) {
 
                             <div class="form-group">
                                 <label for="uploadtutorials">Upload Tutorials</label>
-                                <input type="file" name="uploadtutorials" id="uploadtutorials" required>
+                                <input type="file" name="uploadtutorials" id="uploadtutorials" required >
                             </div>
                         </div>
 
@@ -121,8 +121,9 @@ if (isset($_SESSION["user"])) {
                                             </span>
                                         </div>
                                         <!--<option value='?php $slct->selectSw($id) ?>">?php $slct->selectSw($id) ?></option>-->
-                                        <select id="SoftwareName" name="SoftwareName" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                             <option value="Chrome">Chrome</option>
+                                        <select id="SoftwareName" name="SoftwareName" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted" required>
+                                            <option value="">Choose the Software</option>
+                                            <option value="Chrome">Chrome</option>
                                         <option value="Google Class Room">Google Class Room</option>
                                         <option value="Capcut">Capcut</option>
                                         <option value="Mozilla Firefox">Mozilla Firefox</option>
@@ -212,7 +213,16 @@ if (isset($_SESSION["user"])) {
 
         <br>
         <br>
+ <script>
+            document.getElementById('myForm').addEventListener('submit', function (event) {
+                var SoftwareName = document.getElementById('SoftwareName');
 
+                if (SoftwareName.value === '') {
+                    alert('Please select an option.');
+                    event.preventDefault();
+                }
+            });
+        </script>
     </body>
 </html>
 <?php
