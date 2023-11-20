@@ -57,55 +57,7 @@ $rsCls = new Home();
                             <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
                         </li>
 
-                        <?php
-                        if (isset($_SESSION["user"])) {
-                            ?>
-                            <!--with login-->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    
-                                    <?php
-                                    $imageFormats = ['png', 'jpg'];
-                                    $imagePath = 'img/user/' . $user . '/' . $user;
-
-                                    foreach ($imageFormats as $format) {
-                                        $imageUrl = $imagePath . '.' . $format;
-
-                                        if (file_exists($imageUrl)) {
-                                            echo '<img class="rounded-circle" width="40" height="40" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
-                                            break;
-                                        }
-                                    }
-                                    ?>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <center><li><?php echo "Hello " . $user; ?></li></center>
-                                    <hr class="p-0 m-0 mt-1">
-                                    <li><a class="dropdown-item " href="pages/profile.php"><i class="fas fa-user mr-2 icoon"></i>Profile</a></li>
-                                    <?php
-                                    if ($home->CheckDeveloper($user) === null) {
-                                        ?>
-                                        <li><a class="dropdown-item" href="pages/BecomeDev.php"><i class="fa-solid fa-arrow-trend-up icoon"></i>Become a Developer</a></li>
-                                    <?php }
-                                    ?>
-                                    <hr class="p-0 m-0 mt-1">
-                                    <li><a class="dropdown-item" href="Process/Logout.php"><i class="fa-solid fa-right-from-bracket icoon"></i>Logout</a></li>
-                                </ul>
-                            </li>
-                        <?php } else {
-                            ?>
-                            <!--without login-->
-                            <li class="nav-item ">
-                                <a class="nav-link " href="index.php?mode=signin"><i class="fa-solid fa-right-to-bracket icoon"></i>Login</a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link " href="index.php?mode=signup"><button class="btn btn-primary" type="button">Sign UP</button></a>
-
-                            </li>
-                            <?php
-                        }
-                        ?>
-
+                        <?php include_once "./pages/Headers/MainHeader.php"; ?>
                     </ul>
                 </div>
             </div>
@@ -255,33 +207,33 @@ $rsCls = new Home();
                                     <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" style="font-size: 17.5px" type="search" placeholder="Search Software or category" name="searchbar" />&nbsp;&nbsp;&nbsp;&nbsp;
                                     <button class="btn btn-lg" style="background-color: #001f8d; color: white" type="submit">Search</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    
-                                    <?php
-                        if (isset($_SESSION["user"])) {
-                            ?>
-                            <!--with login-->
-                            <span class="position-relative">
-                                        <!--<a href="pages/cart_process.php">-->
-                                        <a href="pages/cart_process_New.php">
-                                            <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                1<?php // add here                                ?>
-                                            </span>
-                                        </a>                                            
-                                    </span>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<h3>|</h3>&nbsp;
-                                    <!--<a href="pages/wishlist_process.php">-->
-                                    <a href="pages/wishlist_process_New.php">
-                                        <i class="fa-regular fa-heart fa-2xl icoon" style="color: #223f72;"></i>
-                                    </a>
-                        <?php } else {
-                            ?>
-                            <!--without login-->
 
-                            <?php
-                        }
-                        ?>
-                                    
+                                    <?php
+                                    if (isset($_SESSION["user"])) {
+                                        ?>
+                                        <!--with login-->
+                                        <span class="position-relative">
+                                            <!--<a href="pages/cart_process.php">-->
+                                            <a href="pages/cart_process_New.php">
+                                                <i class="fa-solid fa-cart-shopping fa-2xl icoon" style="color: #223f72;"></i>
+                                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                    1<?php // add here                                 ?>
+                                                </span>
+                                            </a>                                            
+                                        </span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<h3>|</h3>&nbsp;
+                                        <!--<a href="pages/wishlist_process.php">-->
+                                        <a href="pages/wishlist_process_New.php">
+                                            <i class="fa-regular fa-heart fa-2xl icoon" style="color: #223f72;"></i>
+                                        </a>
+                                    <?php } else {
+                                        ?>
+                                        <!--without login-->
+
+                                        <?php
+                                    }
+                                    ?>
+
                                 </form>
                             </div>
                         </div>
@@ -392,8 +344,8 @@ $rsCls = new Home();
                                                                     <h5><a class="text-dark" href="pages/Software_New.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
                                                                     <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
 
-                                                                                    <!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
-                                                                                                                                                        <p class="small text-muted font-italic"><?php echo $sw->username; ?></p> -->
+                                                                                                <!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
+                                                                                                                                                                    <p class="small text-muted font-italic"><?php echo $sw->username; ?></p> -->
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -744,7 +696,7 @@ $rsCls = new Home();
                     </section>
                     </main>
 
-        <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin = "anonymous"></script>
+                    <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity = "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin = "anonymous"></script>
 
                     <footer id = "myFooter">
                         <div class = "container-fluid">
