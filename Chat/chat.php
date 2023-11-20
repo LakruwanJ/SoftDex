@@ -53,6 +53,7 @@ if ((!isset($_GET['sender'])) && (!isset($_GET['reciver']))) {
                             $imageUrl = "../img/user (2).png";
                         }
                     }
+                    
                     ?>
 
                     <img src="<?php echo $imageUrl ?>" alt="">

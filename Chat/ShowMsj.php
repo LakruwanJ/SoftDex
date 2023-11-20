@@ -15,7 +15,20 @@ if (count($msgs) > 0) {
         if ($msj->sender === $sender) {
             $output .= '<div class="chat outgoing"><div class="details"><p>' . $msj->msj . '</p></div></div>';
         } else {
-            $output .= '<div class="chat incoming"><img src="php/images/' . $msj->msj . '" alt=""><div class="details"><p>' . $msj->msj . '</p></div></div>';
+            $imageFormats = ['png', 'jpg'];
+            $imagePath = '../img/user/' . $msj->sender . '/' . $msj->sender;
+
+            foreach ($imageFormats as $format) {
+                $imageUrl = $imagePath . '.' . $format;
+
+                if (file_exists($imageUrl)) {
+                    $imageUrl = $imageUrl;
+                } else {
+                    $imageUrl = "../img/user (2).png";
+                }
+            }
+
+            $output .= '<div class="chat incoming"><img src="' . $imageUrl . '" alt=""><div class="details"><p>' . $msj->msj . '</p></div></div>';
         }
     }
 } else {

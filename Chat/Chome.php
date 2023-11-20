@@ -26,15 +26,27 @@ if (!isset($_SESSION["user"])) {
                         <?php
                         if ($clsChat->CheckDev($_SESSION["user"])) {
                             foreach ($clsChat->getChatd($_SESSION["user"]) as $cuser) {
-                                $sender = $cuser->Did;
-                                $reciver = $cuser->username;
-                                $status = $cuser->Status;
+                                if (strval($_SESSION["user"]) == strval($cuser->username)) {
+                                    $sender = $cuser->username;
+                                    $reciver = $cuser->Did;
+                                    $status = $cuser->Status;
+                                } else {
+                                    $sender = $cuser->Did;
+                                    $reciver = $cuser->username;
+                                    $status = $cuser->Status;
+                                }
                             }
                         } else {
                             foreach ($clsChat->getChatu($_SESSION["user"]) as $cuser) {
-                                $sender = $cuser->username;
-                                $reciver = $cuser->Did;
-                                $status = $cuser->Status;
+                                if ($_SESSION["user"] == $cuser->username) {
+                                    $sender = $cuser->username;
+                                    $reciver = $cuser->Did;
+                                    $status = $cuser->Status;
+                                } else {
+                                    $sender = $cuser->Did;
+                                    $reciver = $cuser->username;
+                                    $status = $cuser->Status;
+                                }
                             }
                         }
                         $imageFormats = ['png', 'jpg'];
@@ -44,25 +56,17 @@ if (!isset($_SESSION["user"])) {
                             $imageUrl = $imagePath . '.' . $format;
 
                             if (file_exists($imageUrl)) {
-                                echo '<img src="' . $imageUrl . '"/>';
-                                break;
+                                $imageUrl = $imageUrl;
+                            } else {
+                                $imageUrl = "../img/user (2).png";
                             }
                         }
+                        echo '<img src="' . $imageUrl . '"/>';
                         ?>
 
                         <div class="details">
-                            <?php if ($clsChat->CheckDev($_SESSION["user"])) { ?>
-                                <span><?php echo $sender; ?></span>
-                                <p><?php echo $status; ?></p>
-                                <?php
-                            } else {
-                                ?>
-                                <span><?php echo $reciver; ?></span>
-                                <p><?php echo $status; ?></p>
-                                <?php
-                            }
-                            ?>
-
+                            <span><?php echo $sender; ?></span>
+                            <p><?php echo $status; ?></p>
                         </div>
                     </div>
                     <a href="CloseCht.php" class="logout">Leave Chat</a>
@@ -84,7 +88,7 @@ if (!isset($_SESSION["user"])) {
                             if ($clsChat->CheckDev($_SESSION["user"])) {
                                 $msg = $clsChat->lastMsj($chat->username, $chat->Did);
                             } else {
-                                $msg = $clsChat->lastMsj($chat->Did, $chat->udername);
+                                $msg = $clsChat->lastMsj($chat->Did, $chat->username);
                             }
                             $text = NUll;
                             foreach ($msg as $value) {
@@ -93,9 +97,13 @@ if (!isset($_SESSION["user"])) {
                                     $sender = $value->receiver;
                                     $receiver = $value->sender;
                                 } else {
-
-                                    $sender = $value->sender;
-                                    $receiver = $value->receiver;
+                                    if ($_SESSION["user"] == $cuser->username) {
+                                        $sender = $value->receiver;
+                                        $receiver = $value->sender;
+                                    } else {
+                                        $sender = $value->sender;
+                                        $receiver = $value->receiver;
+                                    }
                                 }
                             }
                             (!empty($text)) ? $result = $text : $result = "No message available";
@@ -117,7 +125,6 @@ if (!isset($_SESSION["user"])) {
 
                             //chat tab
                             if ($_SESSION["user"] == $chat->username) {
-                                echo 'a';
                                 $imageFormats = ['png', 'jpg'];
                                 $imagePath = '../img/user/' . $chat->Did . '/' . $chat->Did;
 
@@ -134,7 +141,6 @@ if (!isset($_SESSION["user"])) {
                             <img src="' . $imageUrl . '" alt=""><div class="details"><span>' . $chat->Did . '</span><p>' . $you . $result2 . '</p></div>
                         </div><div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div></a>';
                             } else {
-                                echo 'b';
                                 $imageFormats = ['png', 'jpg'];
                                 $imagePath = '../img/user/' . $chat->username . '/' . $chat->username;
 
