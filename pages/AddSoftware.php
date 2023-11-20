@@ -2,7 +2,7 @@
 <?php
 session_start();
 if (isset($_SESSION["user"])) {
-    $user = $_SESSION["user"];              
+    $user = $_SESSION["user"];
 } else {
     header("Location: ../index.php");
 }
@@ -41,11 +41,19 @@ if (isset($_SESSION["user"])) {
         </div>
 
         <!-- Display error message based on error code -->
-
         <?php
-        if (isset($_GET['error'])) {
-            if ($_GET['error'] == 1) {
+        if (isset($_GET["error"])) {
+
+            if ($_GET["error"] == 0) {
+                echo "<p style='color:red; text-align:center;'> Please Try Again!</p>";
+            } elseif ($_GET["error"] == 1) {
+                echo "<p style='color:red; text-align:center;'> Please Click Submit Button</p>";
+            } elseif ($_GET["error"] == 2) {
                 echo "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
+            }
+        } elseif (isset($_GET["success"])) {
+            if ($_GET["success"] == 1) {
+                echo "<p style='color:green; text-align:center;'> Successfully added your data</p>";
             }
         }
         ?>
@@ -64,27 +72,32 @@ if (isset($_SESSION["user"])) {
                         <!--  upload sections -->
 
                         <br>
-                        <img src="../img/addsoftwareimg.avif" alt="" class="img-fluid mb-3 d-none d-md-block">
+                        <img src="../img/Addsoftware/software-development-gif.gif" alt="" class="img-fluid mb-3 d-none d-md-block">
                         <br>
-
-
 
                         <!-- Software Logo -->
-                        <div class="form-group">
-                            <label for="softwareLogo">Software Logo</label>
-                            <input type="file" name="softwareLogo" id="softwareLogo" accept="image/*">
+                        <div class="section1">
+
+                            <div class="form-group">
+                                <label for="softwareLogo">Software Logo</label>
+                                <input type="file" name="softwareLogo" id="softwareLogo" accept="image/*" required>
+                            </div>
                         </div>
 
-                        <br>
+
+
                         <!--upload images-->
-                        <div class="form-group">
-                            <label for="softwareImage">Upload Images</label>
-                            <input type="file" name="softwareImage[]" multiple class="form-control-file"><br>
-                            <input type="file" name="softwareImage[]" multiple class="form-control-file"><br>
-                            <input type="file" name="softwareImage[]" multiple class="form-control-file"><br>
+                        <div class="section1">
+
+                            <div class="form-group">
+                                <label for="softwareImage">Upload Images</label>
+                                <input type="file" name="softwareImage[]" multiple class="form-control-file" required><br>
+                                <input type="file" name="softwareImage[]" multiple class="form-control-file" required><br>
+                                <input type="file" name="softwareImage[]" multiple class="form-control-file" required><br>
+                            </div>
                         </div>
 
-                        <br>
+
 
                         <!--upload videos
                         <div class="form-group">
@@ -95,9 +108,11 @@ if (isset($_SESSION["user"])) {
 
 
                         <!--upload software-->
-                        <div class="form-group">
-                            <label for="software">Upload Software</label>
-                            <input type="file" id="software" name="software" class="form-control-file">
+                        <div class="section1">
+                            <div class="form-group">
+                                <label for="software">Upload Software</label>
+                                <input type="file" id="software" name="software" class="form-control-file" required>
+                            </div>
                         </div>
 
 
@@ -108,7 +123,7 @@ if (isset($_SESSION["user"])) {
 
                     <div class="col-md-8">
                         <br>
-                        <h3 style="text-align: center; color: darkslateblue"> Unleash the Brilliance of Your Software to the World! </h3>
+                        <h3 style="text-align: center; color: darkslateblue"><b> Unleash the Brilliance of Your Software to the World! </b></h3>
                         <br>
 
 
@@ -124,7 +139,7 @@ if (isset($_SESSION["user"])) {
                                             </span>
                                         </div>
 
-                                        <input id="softwareName" type="text" name="softwareName" placeholder="Software Name" class="form-control bg-white border-left-0 border-md">
+                                        <input id="softwareName" type="text" name="softwareName" placeholder="Software Name" class="form-control bg-white border-left-0 border-md" required>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +157,7 @@ if (isset($_SESSION["user"])) {
                                                 <i class="fa fa-code-compare text-muted"></i>
                                             </span>
                                         </div>
-                                        <input id="version" type="text" name="version" placeholder="Version" class="form-control bg-white border-left-0 border-md">
+                                        <input id="version" type="text" name="version" placeholder="Version" class="form-control bg-white border-left-0 border-md" required>
                                     </div>
                                 </div>
 
@@ -274,7 +289,7 @@ if (isset($_SESSION["user"])) {
                                                 <i class="fa fa-tag text-muted"></i>
                                             </span>
                                         </div>
-                                        <input name="tags" id="tags" placeholder="Tags"  class="form-control" >
+                                        <input name="tags" id="tags" placeholder="Tags"  class="form-control"  >
                                     </div>
 
                                 </div>
@@ -285,14 +300,14 @@ if (isset($_SESSION["user"])) {
                         <div class="form-group">
                             <label for="systemreq">System Requirements</label>
                             <div id="editor-container" ></div>
-                            <input type="hidden" name="systemreq" id="hiddenSystemReq">
+                            <input type="hidden" name="systemreq" id="hiddenSystemReq" >
 
                         </div>
 
                         <!--short description-->
                         <div class="form-group">
                             <label for="shortDescription">Short Description</label>
-                            <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" class="form-control"></textarea>
+                            <textarea id="shortDescription" name="shortDescription" placeholder="Add a short description here" class="form-control" required></textarea>
                         </div>
 
                         <!--long description-->
@@ -307,7 +322,7 @@ if (isset($_SESSION["user"])) {
 
                         <!--Submit button-->
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary w-50" >Submit</button>
+                            <button type="submit" class="btn btn-primary w-50" name="submit">Submit</button>
                         </div>
 
 
