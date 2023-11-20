@@ -125,7 +125,12 @@ class ChatCls {
         $pstmt->bindValue(1, $user);
         $pstmt->execute();
         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
-        if (count($rs) > 0) {
+        
+        foreach ($rs as $value) {
+            $temp = $value->Did;
+        }
+        
+        if ($temp != NULL) {
             return 1;
         } else {
             return 0;
