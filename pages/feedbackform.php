@@ -1,4 +1,9 @@
 
+
+
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,12 +19,8 @@
             <form action="../Process/reviewprocess.php" method="POST">
                 
                 <div class="input-group">
-                    <label for="username">username:</label>
-                    <input type="username" name="username" placeholder="Enter your username" required>
-                </div>
-                <div class="input-group">
-                    <label for="username">email:</label>
-                    <input type="username" name="username" placeholder="Enter your email" required>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" placeholder="Enter your email address" required>
                 </div>
                 <div class="input-group">
                     <label for="feedback">Your Feedback:</label>
