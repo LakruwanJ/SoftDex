@@ -277,11 +277,43 @@ $home = new Home();
                                             <td><?= $software->getDeveloper() ?></td>
                                             <td><?= $software->getLicense() ?></td>
                                             <td><?= $software->getPlatform() ?></td>
-                                            <td><a href="remove.php?name=<?= $software->getSoftware() ?>"><img src="../img/trash-solid (1).svg" alt=""  width="25px" height="25px"></a></td>
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
+
+
+
+
+                                            <td>
+                                                <a href="remove.php" class="delete-link" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-name="<?= $software->getSoftware() ?>">
+                                                    <img src="../img/trash-solid (1).svg" alt="" width="25px" height="25px">
+                                                </a>
+                                            </td>
+
+                                            <!-- Delete Confirmation Modal -->
+                                    <div class="modal" id="deleteConfirmationModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Delete Confirmation</h4>
+                                                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this category?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <!-- Replace the text button with an image button -->
+                                                    <a id="deleteButton" href="remove.php" class="btn btn-danger">
+                                                        <img src="../img/trash-solid (1).svg" alt="" width="25px" height="25px">
+                                                    </a>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
 
                                 </tbody>
                             </table>
