@@ -99,13 +99,6 @@ if (isset($_SESSION["user"])) {
 
 
 
-                        <!--upload videos
-                        <div class="form-group">
-                            <label for="video">Upload Video</label>
-                            <input type="file" id="video" name="video" class="form-control-file">
-                        </div>
-                        <br>-->
-
 
                         <!--upload software-->
                         <div class="section1">

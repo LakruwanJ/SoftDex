@@ -24,6 +24,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            $request = new cusomizedsw($title, $description, $specialReq);
            $request->request();
            
+            $DocFile = $_FILES['customizedSwDoc'];
+            
+
+            $DocFolder = '../img/CustomizedSWDoc/' . $title;
+
+
+
+            if (!file_exists($DocFolder)) {
+                mkdir($DocFolder, 0777, true);
+            }
+
+
+            //upload Docs
+            $DocExtension = pathinfo($DocFile['name'], PATHINFO_EXTENSION);
+            $newDoc =$title .'.'. $DocExtension;
+            $DocTargetPath = $DocFolder . '/' . $newDoc;
+            move_uploaded_file($DocFile['tmp_name'], $DocTargetPath);
+
 
             header("Location:../pages/CustomizedSwForm.php?success = 0");
         }

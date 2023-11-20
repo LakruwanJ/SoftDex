@@ -37,25 +37,25 @@ if (isset($_SESSION["user"])) {
 
 
         <div class="container">
-       <!-- Display error message based on error code -->
-<?php
-if (isset($_GET["error"])) {
+            <!-- Display error message based on error code -->
+            <?php
+            if (isset($_GET["error"])) {
 
-    if ($_GET["error"] == 0) {
-        echo "<p style='color:red; text-align:center;'> Please Try Again!</p>";
-    } elseif ($_GET["error"] == 1) {
-        echo "<p style='color:red; text-align:center;'> Please Click Submit Button</p>";
-    } elseif ($_GET["error"] == 2) {
-        echo "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
-    }} elseif (isset($_GET["success"])) {
-            if ($_GET["success"] == 0) {
-                echo "<p style='color:green; text-align:center;'> Successfully sent your request!</p>";
+                if ($_GET["error"] == 0) {
+                    echo "<p style='color:red; text-align:center;'> Please Try Again!</p>";
+                } elseif ($_GET["error"] == 1) {
+                    echo "<p style='color:red; text-align:center;'> Please Click Submit Button</p>";
+                } elseif ($_GET["error"] == 2) {
+                    echo "<p style='color:red; text-align:center;'> Please fill all the fields</p>";
+                }
+            } elseif (isset($_GET["success"])) {
+                if ($_GET["success"] == 0) {
+                    echo "<p style='color:green; text-align:center;'> Successfully sent your request!</p>";
+                }
             }
-        }
+            ?>
 
-?>
-
-            <form action="../Process/customizedSwProcess.php" method="post" enctype="multipart/form-data">
+            <form id="myForm"action="../Process/customizedSwProcess.php" method="post" enctype="multipart/form-data">
 
                 <div class="row">
 
@@ -65,15 +65,18 @@ if (isset($_GET["error"])) {
                         <br>
                         <img src="../img/customizedSW/customizeSW.gif" alt="" class="img-fluid mb-3 d-none d-md-block">
                         <br>
+                        <br>
+                        <br>
+                        <br>
 
-                        <!-- Upload Tutorials -->
-                       <!-- <div class="section1">
+                        <!-- Upload Documents -->
+                        <div class="section1">
 
-                           <!-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="customizezSwForm">If you have any document, Upload here</label>
-                                <input type="file" name="customizezSwForm" id="customizezSwForm" >
+                                <input type="file" name="customizedSwDoc" id="customizezSwForm" >
                             </div>
-                        </div>-->
+                        </div>
 
 
                     </div>
@@ -114,8 +117,8 @@ if (isset($_GET["error"])) {
                                                 <i class="fa fa-user text-muted"></i>
                                             </span>
                                         </div>
-                                        <select id="language" name="developer" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted" required>
-                                           <option value="choosethedeveoper">Choose the developer</option>
+                                        <select id="developer" name="developer" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted" required>
+                                            <option value="">Choose the developer</option>
                                             <option value="Rose">Rose</option>
                                             <option value="SulaK">SulaK</option>
                                             <option value="Christ">Christ</option>
@@ -123,7 +126,7 @@ if (isset($_GET["error"])) {
                                             <option value="PGeo">PGeo</option>
                                             <option value="Carol">Carol</option>
                                             <option value="Lifranchi">Lifranchi</option>
-                                         
+
 
                                         </select>
 
@@ -200,6 +203,17 @@ if (isset($_GET["error"])) {
 
                 document.getElementById("hiddenSystemReq").value = systemReqContent;
 
+            });
+        </script>
+
+        <script>
+            document.getElementById('myForm').addEventListener('submit', function (event) {
+                var developer = document.getElementById('developer');
+
+                if (developer.value === '') {
+                    alert('Please select an option.');
+                    event.preventDefault();
+                }
             });
         </script>
     </body>

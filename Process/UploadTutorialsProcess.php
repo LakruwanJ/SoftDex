@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $upload->upload();
 
             $TutorialFile = $_FILES['uploadtutorials'];
-           
+            $imgFle = $_FILES['backimg'];
 
             $TuteFolder = '../img/Tutorials/' . $title;
 
@@ -32,7 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!file_exists($TuteFolder)) {
                 mkdir($TuteFolder, 0777, true);
             }
-            
+
+            /* Background image */
+            $imgExtension = pathinfo($imgFle['name'], PATHINFO_EXTENSION);
+            $newimg = $title .'.'. $imgExtension;
+            $imgTargetPath = $TuteFolder . '/' . $newimg;
+            move_uploaded_file($imgFle['tmp_name'], $imgTargetPath);
+
 
             //upload Tutorials
             $TutorialExtension = pathinfo($TutorialFile['name'], PATHINFO_EXTENSION);
