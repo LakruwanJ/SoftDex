@@ -35,8 +35,33 @@ $rsCls = new Home();
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+        <style>
+
+#myBtn {
+  position: fixed;
+  width:80px;
+  bottom: 15px;
+  right: 25px;
+  z-index: 99;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+    
+  bottom: 10px;
+  right: 20px;
+  width:90px;
+}
+</style>
+
     </head>
     <body>
+        
+        <a href="Chat/Chome.php"><img src="img/chat.png" id="myBtn" class="fa-beat"></a>
+        
         <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
         <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
             <div class="container">
@@ -70,7 +95,7 @@ $rsCls = new Home();
             <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="bg-light border rounded border-light pulse animated hero-technology carousel-hero jumbotron py-5 px-4">
+                        <div class="bg-light border rounded border-light pulse animated hero-technology carousel-hero a jumbotron py-5 px-4">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -131,7 +156,7 @@ $rsCls = new Home();
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="bg-light border rounded border-light pulse animated hero-nature carousel-hero jumbotron py-5 px-4">
+                        <div class="bg-light border rounded border-light pulse animated hero-nature carousel-hero b jumbotron py-5 px-4">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -147,7 +172,7 @@ $rsCls = new Home();
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="bg-light border rounded border-light pulse animated hero-nature carousel-hero jumbotron py-5 px-4">
+                        <div class="bg-light border rounded border-light pulse animated hero-nature carousel-hero jumbotron c py-5 px-4">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -163,7 +188,7 @@ $rsCls = new Home();
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="bg-light border rounded border-light pulse animated hero-photography carousel-hero jumbotron py-5 px-4">
+                        <div class="bg-light border rounded border-light pulse animated hero-photography carousel-hero jumbotron d py-5 px-4">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -747,6 +772,5 @@ $rsCls = new Home();
                             </div>
                         </div>
                     </footer>
-
-                    </body>
+    </body>
                     </html>
