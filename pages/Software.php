@@ -266,17 +266,18 @@ $star = [254, 20, 6, 15, 63, 150];
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <a href="../img/sw/<?php echo $id; ?>/<?php echo $name; ?>.zip" class="btn btn-primary">Download Now</a>
+                                        <form method="POST" action="../Classes/Downloads.php">
+                                            <input type="hidden" name="user" value="<?php echo $user; ?>" />
+                                            <input type="hidden" name="sw" value="<?php echo $id; ?>" />
+                                            <input type="hidden" name="dc" value="<?php echo $DownCount; ?>" />
+                                            <input type="hidden" name="name" value="<?php echo $name; ?>" />
+                                            <input type="submit" class="btn btn-primary" value="Download Now" />
+                                            </form>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
                         <?php
                     }
                     ?>
