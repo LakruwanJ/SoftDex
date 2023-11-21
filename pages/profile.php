@@ -16,6 +16,8 @@ if (isset($_SESSION["user"])) {
 }else{
     header("Location: ../softdex.php");
 }
+ $user = "Laka";
+
 $rs = new Classes\Select();
 
 $rs2 = $rs->selectDeveloper($user);
