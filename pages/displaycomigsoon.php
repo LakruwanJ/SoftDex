@@ -27,7 +27,7 @@ $comingsoonsws = Comingsoonsw::displaycomingsoonsw($connection);
                 ?>
                 <div class="col-md-3 mb-4">
                     <div class="card border border-black" style="width: 18rem; margin: 15px; padding: 5px;">
-                        <img src="https://media.istockphoto.com/id/835644534/photo/new-release.jpg?s=612x612&w=0&k=20&c=IS3jkr0f-phJHkaV_7vcZ0bLYx_iWqYoihVYjtMayKk="
+                        <img src="../img/comigsoon.jpg"
                              class="card-img-top border border-dark" alt="...">
                         <div class="card-body">
                             <p class="card-text" id="para1">Developer Name:<b> <?= $comingsoonsw->getDevname() ?></b></p>
