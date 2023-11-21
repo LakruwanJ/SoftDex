@@ -72,7 +72,7 @@ if (isset($_SESSION["user"])) {
                         <!--  upload sections -->
 
                         <br>
-                        <img src="../img/addsoftwareimg.avif" alt="" class="img-fluid mb-3 d-none d-md-block">
+                        <img src="../img/Addsoftware/software-development-gif.gif" alt="" class="img-fluid mb-3 d-none d-md-block">
                         <br>
 
                         <!-- Software Logo -->
@@ -98,13 +98,6 @@ if (isset($_SESSION["user"])) {
                         </div>
 
 
-
-                        <!--upload videos
-                        <div class="form-group">
-                            <label for="video">Upload Video</label>
-                            <input type="file" id="video" name="video" class="form-control-file">
-                        </div>
-                        <br>-->
 
 
                         <!--upload software-->

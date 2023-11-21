@@ -17,7 +17,7 @@ $wish_list = explode(" | ", $wishListObj->getWishListItems());
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['remove'])) {
         $wishListObj->setSoftwareid($_POST['sofw_id']);
-        if ($wishListObj->removeItem($wish_list)) {
+        if ($wishListObj->removeWishListItem($wish_list)) {
             header("Location:../pages/wishlist_process_New.php?status=RemoveSuccess");
         } else {
             header("Location:../pages/wishlist_process_New.php?status=RemoveFail");

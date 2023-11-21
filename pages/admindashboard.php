@@ -87,21 +87,22 @@ $home = new Home();
                         </a>
                     </li>
 
+
+                    <li>
+                        <a href="reviews.php">
+                            <span class="icon">
+
+                                <ion-icon name="star"></ion-icon>
+                            </span>
+                            <span class="title">Reviews</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="../index.php">
                             <span class="icon">
                                 <ion-icon name="log-out-outline"></ion-icon>
                             </span>
                             <span class="title">Sign Out</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="reviews.php">
-                            <span class="icon">
-                                
-                                <ion-icon name="star"></ion-icon>
-                            </span>
-                            <span class="title">Reviews</span>
                         </a>
                     </li>
 
@@ -204,60 +205,66 @@ $home = new Home();
                                         <td>Developer</td>
                                         <td>Status</td>
                                         <td>Platform</td>
-                                        <!--- add modal---->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Platform</button>
+                                        <td>   <!--- add modal---->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Platform</button>
 
-                                <div class="modal" id="myModal">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Add Platform</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="addplatform.php" method="POST">
-                                                    <div class="mb-3">
-                                                        <label for="Name" class="form-label">Name</label>
-                                                        <input type="text" class="form-control" id="platformName"  name="platformName" aria-describedby="emailHelp">
+                                            <div class="modal" id="myModal">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Add Platform</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="addplatform.php" method="POST">
+                                                                <div class="mb-3">
+                                                                    <label for="Name" class="form-label">Name</label>
+                                                                    <input type="text" class="form-control" id="platformName"  name="platformName" aria-describedby="emailHelp">
 
 
-                                                    </div>
+                                                                </div>
 
-                                                    <button type="submit" class="btn btn-primary">Add</button>
-                                                </form>
+                                                                <button type="submit" class="btn btn-primary">Add</button>
+                                                            </form>
 
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-primary m-5" data-toggle="modal" data-target="#catogory">Add Catogory</button>
-
-                                <div class="modal" id="catogory">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Add Catogory</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="addcatogory.php" method="POST">
-                                                    <div class="mb-3">
-                                                        <label for="Country" class="form-label">Catogory</label>
-                                                        <input type="text" class="form-control" id="catogoryName"  name="catogoryName" aria-describedby="emailHelp">
-
+                                                        </div>
 
                                                     </div>
-
-                                                    <button type="submit" class="btn btn-primary">Add</button>
-                                                </form>
-
+                                                </div>
                                             </div>
+                                        </td>
+                                        <td></td>
+                                        <td> <button type="button" class="btn btn-primary m-5" data-toggle="modal" data-target="#catogory">Add Catogory</button>
 
-                                        </div>
-                                    </div>
-                                </div>
-                                </tr>
+                                            <div class="modal" id="catogory">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Add Catogory</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="addcatogory.php" method="POST">
+                                                                <div class="mb-3">
+                                                                    <label for="Country" class="form-label">Catogory</label>
+                                                                    <input type="text" class="form-control" id="catogoryName"  name="catogoryName" aria-describedby="emailHelp">
+
+
+                                                                </div>
+
+                                                                <button type="submit" class="btn btn-primary">Add</button>
+                                                            </form>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                        </td>
+
+
+
+
+                                    </tr>
                                 </thead>
 
                                 <tbody>
@@ -272,11 +279,41 @@ $home = new Home();
                                             <td><?= $software->getPlatform() ?></td>
 
 
-                                            <td><img src="../img/trash-solid (1).svg" alt=""  width="25px" height="25px"></td>
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
+
+
+                                            <td>
+                                                <a href="remove.php" class="delete-link" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-name="<?= $software->getSoftware() ?>">
+                                                    <img src="../img/trash-solid (1).svg" alt="" width="25px" height="25px">
+                                                </a>
+                                            </td>
+
+                                            <!-- Delete Confirmation Modal -->
+                                    <div class="modal" id="deleteConfirmationModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Delete Confirmation</h4>
+                                                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this category?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <!-- Replace the text button with an image button -->
+                                                    <a id="deleteButton" href="remove.php" class="btn btn-danger">
+                                                        <img src="../img/trash-solid (1).svg" alt="" width="25px" height="25px">
+                                                    </a>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
 
                                 </tbody>
                             </table>
@@ -303,35 +340,37 @@ $home = new Home();
                                         <td>Username</td>
                                         <td>Country</td>
                                         <td>Remove User</td>
-                                        <!--- add modal---->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#country">Add Country</button>
+                                        <td>
+                                            <!--- add modal---->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#country">Add Country</button>
 
-                                <div class="modal" id="country">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Add Country</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="addcountry.php" method="POST">
-                                                    <div class="mb-3">
-                                                        <label for="Country" class="form-label">Country</label>
-                                                        <input type="text" class="form-control" id="countryName"  name="countryName" aria-describedby="emailHelp">
+                                            <div class="modal" id="country">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Add Country</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="addcountry.php" method="POST">
+                                                                <div class="mb-3">
+                                                                    <label for="Country" class="form-label">Country</label>
+                                                                    <input type="text" class="form-control" id="countryName"  name="countryName" aria-describedby="emailHelp">
 
+
+                                                                </div>
+
+                                                                <button type="submit" class="btn btn-primary">Add</button>
+                                                            </form>
+
+                                                        </div>
 
                                                     </div>
-
-                                                    <button type="submit" class="btn btn-primary">Add</button>
-                                                </form>
-
+                                                </div>
                                             </div>
+                                        </td>
 
-                                        </div>
-                                    </div>
-                                </div>
-
-                                </tr>
+                                    </tr>
                                 </thead>
 
                                 <tbody>

@@ -269,7 +269,7 @@ if (isset($_SESSION["user"])) {
                                                 </span>
                                             </div>
                                             <select id="country" name="country" style="max-width: 300px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                                <option value="Sri Lanka">Sri Lanka</option>
+                                               <option value="Sri Lanka">Sri Lanka</option>
                                                 <option value="Americ">America</option>
                                                 <option value="Austraila">Austraila</option>
                                                 <option value="Bangladesh">Bangladesh</option>

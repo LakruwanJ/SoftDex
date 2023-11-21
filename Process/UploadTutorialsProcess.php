@@ -10,7 +10,7 @@ require_once '../Classes/DbConnector.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
-        if (empty($_POST['title']) || empty($_POST['author']) || empty($_POST['category']) || empty($_POST['shortDescription'])) {
+        if (empty($_POST['SoftwareName']) || empty($_POST['title']) || empty($_POST['shortDescription'])) {
             header("Location:../pages/UploadTutorials.php?error = 2");
             exit;
         } else {
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $upload->upload();
 
             $TutorialFile = $_FILES['uploadtutorials'];
-           
+            $imgFle = $_FILES['backimg'];
 
             $TuteFolder = '../img/Tutorials/' . $title;
 
@@ -32,7 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!file_exists($TuteFolder)) {
                 mkdir($TuteFolder, 0777, true);
             }
-            
+
+            /* Background image */
+            $imgExtension = pathinfo($imgFle['name'], PATHINFO_EXTENSION);
+            $newimg = $title .'.'. $imgExtension;
+            $imgTargetPath = $TuteFolder . '/' . $newimg;
+            move_uploaded_file($imgFle['tmp_name'], $imgTargetPath);
+
 
             //upload Tutorials
             $TutorialExtension = pathinfo($TutorialFile['name'], PATHINFO_EXTENSION);
