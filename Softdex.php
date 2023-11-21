@@ -54,7 +54,7 @@ $rsCls = new Home();
                             <a class="nav-link nav-link_  " href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
+                            <a class="nav-link nav-link_  " href="pages/displaycomigsoon.php"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
                         </li>
 
                         <?php
