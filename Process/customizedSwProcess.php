@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             move_uploaded_file($DocFile['tmp_name'], $DocTargetPath);
 
 
-            header("Location:../pages/CustomizedSwForm.php?success = 0");
+            header("Location:../pages/DisplayCusSWDetails.php?success = 0");
         }
     } else {
         header("Location:../pages/CustomizedSwForm.php?error = 1");
