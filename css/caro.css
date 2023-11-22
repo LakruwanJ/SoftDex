@@ -43,16 +43,20 @@ div.jumbotron.carousel-hero {
   margin-bottom: 0;
 }
 
-div.jumbotron.hero-nature {
-  background-image: url('1.jpg');
+div.jumbotron.a {
+  background-image: url('1.png');
 }
 
-div.jumbotron.hero-photography {
+div.jumbotron.b {
   background-image: url('2.jpg');
 }
 
-div.jumbotron.hero-technology {
+div.jumbotron.c {
   background-image: url('3.jpg');
+}
+
+div.jumbotron.d {
+  background-image: url('4.jpg');
 }
 
 h1.hero-title, h2.hero-title, h3.hero-title {

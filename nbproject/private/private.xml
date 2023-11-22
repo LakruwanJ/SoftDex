@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/SoftDex/index.php</file>
-            <file>file:/C:/xampp/htdocs/SoftDex/pages/admindashboard.php</file>
-            <file>file:/C:/xampp/htdocs/SoftDex/thankyou.php</file>
-            <file>file:/C:/xampp/htdocs/SoftDex/pages/addcatogory.php</file>
-            <file>file:/C:/xampp/htdocs/SoftDex/pages/addplatform.php</file>
-            <file>file:/C:/xampp/htdocs/SoftDex/pages/addcountry.php</file>
+            <file>file:/C:/xampp/htdocs/SoftDex/pages/BecomeDev.php</file>
+            <file>file:/C:/xampp/htdocs/SoftDex/pages/Software.php</file>
+            <file>file:/C:/xampp/htdocs/SoftDex/Classes/Downloads.php</file>
         </group>
     </open-files>
 </project-private>
