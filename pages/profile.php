@@ -186,13 +186,22 @@ foreach ($rs2 as $dev) {
 
                             foreach ($imageFormats as $format) {
                                 $imageUrl = $imagePath . '.' . $format;
-
                                 if (file_exists($imageUrl)) {
                                     echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
                                     break;
                                 }
                             }
                             ?>
+
+                        <!-- New Language Skills section -->
+                        <div class="language_skills">
+                            <h2>Language Skills</h2>
+                            <ul style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <?php
+                                // Display Programming Languages
+                                displayDetails($prolang);
+                                ?>
+                            </ul>
 
                         </div>
                         <h2><?php echo $user; ?></h2>
@@ -240,6 +249,7 @@ foreach ($rs2 as $dev) {
 
 
                             <hr>
+
                             <!-- New Language Skills section -->
                             <div class="language_skills">
                                 <h2>Language Speaking</h2>
@@ -259,9 +269,11 @@ foreach ($rs2 as $dev) {
                                     displayDetails($languages);
                                     ?>
                                 </ul>
+
                             </div>
                             <br>
                             <hr>
+
 
                             <!-- New Language Skills section -->
                             <div class="language_skills">
@@ -285,6 +297,7 @@ foreach ($rs2 as $dev) {
                                 <button class="tablink" onclick="openCity('Software', this, 'rgb(0, 155, 255)')"><strong>Software</strong></button>
                                 <button class="tablink" onclick="openCity('Customized', this, 'rgb(0, 155, 255)')"><strong>Customized</strong></button>
                                 <button class="tablink" onclick="openCity('Tutorial', this, 'rgb(0, 155, 255)')"><strong>Tutorial</strong></button>
+
                             </div>
 
                             <div id="About_me" class="tabcontent">
@@ -310,6 +323,7 @@ foreach ($rs2 as $dev) {
                                             <?php echo $experience; ?> 
                                         </li>
                                     </ol>
+
                                 </div>
                                 <hr>
 
@@ -381,6 +395,7 @@ foreach ($rs2 as $dev) {
                                 </div>-->
                             </div>
 
+
                             <div id="Software" class="tabcontent">
 
                                 <h1>Software</h1>
@@ -404,6 +419,7 @@ foreach ($rs2 as $dev) {
                                 </div>
 
 
+
                                 <p>From here, you can find software which has been developed by me.</p>
                                 <!-- Most Downloaded Software Section -->
 
@@ -411,21 +427,22 @@ foreach ($rs2 as $dev) {
                                 <div class="row">
 
 
-                                    <?php
-                                    foreach ($rs->selectDesc($did) as $value) {
-                                        ?>
-                                        <div class="col-lg-4 col-md-4 col-sm-6 software-item">
-                                            <?php
-                                            $imageFormats = ['png', 'jpg']; // List of possible image formats
-                                            $imagePath = '../img/sw/' . $value->Sid . '/logo'; // Base path without extension
 
-                                            foreach ($imageFormats as $format) {
-                                                $imageUrl = $imagePath . '.' . $format;
+                                <?php
+                                foreach ($rs->selectDesc($did) as $value) {
+                                    ?>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 software-item">
+                                        <?php
+                                        $imageFormats = ['png', 'jpg']; // List of possible image formats
+                                        $imagePath = '../img/sw/' . $value->Sid . '/logo'; // Base path without extension
 
-                                                if (file_exists($imageUrl)) {
-                                                    echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="150px" alt="Logo Image" />';
-                                                    break; // Stop when the first valid image format is found
-                                                }
+                                        foreach ($imageFormats as $format) {
+                                            $imageUrl = $imagePath . '.' . $format;
+
+                                            if (file_exists($imageUrl)) {
+                                                echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="150px" alt="Logo Image" />';
+                                                break; // Stop when the first valid image format is found
+
                                             }
                                             ?>
                                             <h2><?php echo $value->name ?></h2>
@@ -434,7 +451,9 @@ foreach ($rs2 as $dev) {
 
                                         </div>
 
+
                                     <?php } ?>
+
 
                                 </div>
                             </div>
@@ -450,9 +469,48 @@ foreach ($rs2 as $dev) {
                                     <button id="sw-button">Request</button>
                                 </a>
 
+
                                 <a href="../pages/comingsoon.php">
                                     <button id="sw-button">Ongoing Projects</button>
                                 </a>
+
+
+                    <div id="Customized" class="tabcontent">
+                        <h1>Customized</h1>
+                        <div id="sw-buttons-container">
+                            <a href="AddSoftware.php">
+                                <button id="sw-button">Request</button>
+                            </a>
+
+                            <a href="../pages/comingsoon.php">
+                                <button id="sw-button">Ongoing Projects</button>
+                            </a>
+
+                        </div>
+
+
+                        <p>From here, you can find customized software which has been developed by me according to user
+                            requirements.</p>
+
+                        <div class="most-downloaded-software">
+
+                            <!-- Software Item 1 -->
+                            <div class="software-item">
+                                <img src="../img/img1.jpg" alt="Software 1 Logo" class="software-logo">
+                                <h2>Customized 1</h2>
+                                <p>An innovative travel task manager</p>
+                            </div>
+                            <!-- Software Item 2 -->
+                            <div class="software-item">
+                                <img src="../img/img2.jpg" alt="Software 2 Logo" class="software-logo">
+                                <h2>Customized 2</h2>
+                                <p>Master the art of digital photography with our comprehensive tutorial series.</p>
+                            </div>
+                            <!-- Software Item 3 -->
+                            <div class="software-item">
+                                <img src="../img/img3.jpg" alt="Software 3 Logo" class="software-logo">
+                                <h2>Customized 3</h2>
+                                <p>A cutting-edge video editing software with powerful tools for professionals.</p>
 
                             </div>
 
