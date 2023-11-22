@@ -13,10 +13,10 @@ $rs = new Classes\Select();
 session_start();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
-}else{
+} else {
     header("Location: ../softdex.php");
 }
- 
+
 
 $rs = new Classes\Select();
 
@@ -33,63 +33,6 @@ foreach ($rs2 as $dev) {
     $datesince = $dev->datesince;
     $country = $dev->country;
 }
-
-/*
-if (isset($_SESSION["user"])) {
-    $user = $_SESSION["user"];
-} else {
-    header("Location: ../softdex.php");
-}
-
-if (isset($user->Uid)) {
- $uid = $user->Uid;
-   
-    $rs = new Classes\Select();
-   $rs3 = $rs->selectUser($user);
-foreach ($rs3 as $us) {
-    $uid = $us->Uid;
-    $user = $us->username;
-    $country = $us->country;
-}
-
-} elseif (isset($user->DID)) {
-    
-    $did = $user->DID;
-   $rs = new Classes\Select();
-
-$rs2 = $rs->selectDeveloper($user);
-foreach ($rs2 as $dev) {
-    $did = $dev->Did;
-    $user = $dev->username;
-    $shortdes = $dev->shortdes;
-    $education = $dev->education;
-    $languages = $dev->languages;
-    $prolang = $dev->prolang;
-    $experience = $dev->experience;
-    $description = $dev->description;
-    $datesince = $dev->datesince;
-    $country = $dev->country;
-}
-} elseif (isset($user->Aid)) {
-    
-    $aid = $user->Aid;
-  
-    $rs = new Classes\Select();
-   $rs4 = $rs->selectAdmin($user);
-foreach ($rs4 as $us) {
-    $uid = $us->Uid;
-    $user = $us->username;
-}
-
-}
-
-/*$rs3 = $rs->selectUser($user);
-foreach ($rs2 as $user) {
-    $uid = $user->Uid;
-    $user = $user->username;
-    $country = $dev->country;
-}
-*/
 ?>
 
 
@@ -119,21 +62,21 @@ foreach ($rs2 as $user) {
             <div class="cols__container">
                 <div class="left__col">
                     <div class="img__container">
-                        
+
                         <?php
-                                    $imageFormats = ['png', 'jpg'];
-                                    $imagePath = '../img/user/' . $user . '/' . $user;
+                        $imageFormats = ['png', 'jpg'];
+                        $imagePath = '../img/user/' . $user . '/' . $user;
 
-                                    foreach ($imageFormats as $format) {
-                                        $imageUrl = $imagePath . '.' . $format;
+                        foreach ($imageFormats as $format) {
+                            $imageUrl = $imagePath . '.' . $format;
 
-                                        if (file_exists($imageUrl)) {
-                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
-                                            break;
-                                        }
-                                    }
-                                    ?>
-                        
+                            if (file_exists($imageUrl)) {
+                                echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
+                                break;
+                            }
+                        }
+                        ?>
+
                     </div>
                     <h2><?php echo $user; ?></h2>
 
@@ -155,7 +98,7 @@ foreach ($rs2 as $user) {
                     <a href="../pages/CustomizedSwForm.php">
                         <button>To create a customized software</button>
                     </a>
-                    
+
                     <br>
                     <div class="card-container">
                         <br>
@@ -181,14 +124,24 @@ foreach ($rs2 as $user) {
                         <p>
                             <?php echo $shortdes; ?> 
                         </p>
-                       
-
                         <!-- New Language Skills section -->
                         <div class="language_skills">
                             <h2>Language Speaking</h2>
+
                             <ul style="display: flex;flex-direction: column;align-items: center;gap: 5px;">
-                                <li style="width: 90%;margin: 0;"> <?php echo $languages; ?> </li>
-<li style="width: 90%;margin: 0;">Sinhala</li>
+                                <?php
+
+                                function displayDetails($data) {
+                                    $detailsArray = explode('|', $data);
+
+                                    foreach ($detailsArray as $detail) {
+                                        echo "<li style='width: 90%; margin: 0;'>$detail</li>";
+                                    }
+                                }
+
+                                // Display Programming Languages
+                                displayDetails($languages);
+                                ?>
                             </ul>
                         </div>
                         <br>
@@ -197,15 +150,15 @@ foreach ($rs2 as $user) {
                         <!-- New Language Skills section -->
                         <div class="language_skills">
                             <h2>Language Skills</h2>
-                            <ul style="display: flex;flex-direction: column;align-items: center;gap: 5px;">
-                                <li style="width: 90%;margin: 0;"><?php echo $prolang; ?></li>
-                                <li style="width: 90%;margin: 0;">JavaScript</li>
-                                <li style="width: 90%;margin: 0;">Python</li>
-                                <li style="width: 90%;margin: 0;">HTML</li>
-                                <li style="width: 90%;margin: 0;">CSS</li>
-                                <li style="width: 90%;margin: 0;">Java</li>
+                            <ul style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <?php
+
+                                // Display Programming Languages
+                                displayDetails($prolang);
+                                ?>
                             </ul>
                         </div>
+
                     </div>
                 </div>
 
@@ -223,29 +176,29 @@ foreach ($rs2 as $user) {
                         <div id="About_me" class="tabcontent">
                             <h1>About Me</h1>
                             <p><?php echo $description; ?></p><br>
- <hr>
-                        <!-- New Education section -->
-                        <div class="education">
-                            <h2>Education</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $education; ?> 
-                                </li>
+                            <hr>
+                            <!-- New Education section -->
+                            <div class="education">
+                                <h2>Education</h2>
+                                <ol>
+                                    <li>
+<?php echo $education; ?> 
+                                    </li>
 
-                            </ol>
-                        </div>
-                        <hr>
-                        <!-- New Experience section -->
-                        <div class="education">
-                            <h2>Experience</h2>
-                            <ol>
-                                <li>
-                                    <?php echo $experience; ?> 
-                                </li>
-                            </ol>
-                        </div>
-                        <hr>
-                          
+                                </ol>
+                            </div>
+                            <hr>
+                            <!-- New Experience section -->
+                            <div class="education">
+                                <h2>Experience</h2>
+                                <ol>
+                                    <li>
+<?php echo $experience; ?> 
+                                    </li>
+                                </ol>
+                            </div>
+                            <hr>
+
                             <u>
                                 <h1>Reviews</h1>
                             </u>
@@ -263,7 +216,7 @@ foreach ($rs2 as $user) {
                                             <td></td>
                                             <td class="ps-3"><i class="fa fa-star text-success"></i>&nbsp;5.0
                                                 &nbsp;&nbsp;&centerdot;&nbsp;&nbsp;
-                                                <?php echo "1 month ago"; ?>
+<?php echo "1 month ago"; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -285,11 +238,28 @@ foreach ($rs2 as $user) {
                         </div>
 
                         <div id="Software" class="tabcontent">
-                            <h1>Software</h1>
-                            <a href="AddSoftware.php">
-                        <button id="sw-button">Add Software</button>
-                    </a>
                             
+                            <h1>Software</h1>
+                            <style>
+        #sw-buttons-container {
+            display: flex;
+        }
+
+        #sw-button {
+            margin-right: 150px; /* Adjust the margin as needed */
+        }
+    </style>
+                            <div id="sw-buttons-container">
+        <a href="AddSoftware.php">
+            <button id="sw-button">Add Software</button>
+        </a>
+                                <a href="../pages/comingsoon.php">
+            <button id="sw-button">Coming Soon</button>
+        </a>
+                               
+    </div>
+                           
+
                             <p>From here, you can find software which has been developed by me.</p>
                             <!-- Most Downloaded Software Section -->
 
@@ -297,9 +267,9 @@ foreach ($rs2 as $user) {
                             <div class="row">
 
 
-                                <?php
-                                foreach ($rs->selectDesc($did) as $value) {
-                                    ?>
+                                    <?php
+                                    foreach ($rs->selectDesc($did) as $value) {
+                                        ?>
                                     <div class="col-lg-4 col-md-4 col-sm-6 software-item">
                                         <?php
                                         $imageFormats = ['png', 'jpg']; // List of possible image formats
@@ -320,7 +290,7 @@ foreach ($rs2 as $user) {
 
                                     </div>
 
-                                <?php } ?>
+<?php } ?>
 
                             </div>
                         </div>
@@ -331,7 +301,17 @@ foreach ($rs2 as $user) {
 
                     <div id="Customized" class="tabcontent">
                         <h1>Customized</h1>
-                        <button id="sw-button">Ongoing Projects</button>
+                             <div id="sw-buttons-container">
+        <a href="AddSoftware.php">
+            <button id="sw-button">Approval</button>
+        </a>
+                                <a href="../pages/comingsoon.php">
+             <button id="sw-button">Ongoing Projects</button>
+        </a>
+                               
+    </div>
+                           
+                       
                         <p>From here, you can find customized software which has been developed by me according to user
                             requirements.</p>
 
@@ -383,11 +363,11 @@ foreach ($rs2 as $user) {
 
                     <div id="Tutorial" class="tabcontent">
                         <h1>Tutorial</h1>
-                        
+
                         <a href="../pages/UploadTutorials.php">
-                        <button id="sw-button">Add Tutorial</button>
-                    </a>
-                       
+                            <button id="sw-button">Add Tutorial</button>
+                        </a>
+
                         <p>From here, you can find tutorials related to software developed by me according to user requirements.</p>
 
                         <div class="most-downloaded-software">
