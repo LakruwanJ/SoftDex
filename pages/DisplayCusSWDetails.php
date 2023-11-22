@@ -44,13 +44,13 @@ $customizedsws = cusomizedsw::displayCusSWDetails()
                     ?>
                 
                 
-                    <div class="tutorial-card">
+                    <div class="tutorial-card mb-2">
                       
                         
                    
-                        <h3 class="tutorial-title"><b>Title:</b> <?= $customizedsw->getTitle() ?></h3>
-                        <p class="tutorial-description"><b>Description:</b> <i><?= $customizedsw->getDescription() ?></i></p>
-                        <p class="tutorial-description"><b>Special Requirements:</b> <?= $customizedsw->getSpecialReq() ?></p>
+                        <h3 class="tutorial-title"><b>Title:</b> <?= $customizedsw->getTitle() ?></h3><br>
+                        <p class="tutorial-description"><b>Description:</b> <i><?= $customizedsw->getDescription() ?></i></p><br>
+                        <p class="tutorial-description"><b>Special Requirements:</b> <?= $customizedsw->getSpecialReq() ?></p><br>
 
                         <!--<div class="buttons">
                             <button class="download-button">
