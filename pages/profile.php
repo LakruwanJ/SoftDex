@@ -303,8 +303,9 @@ foreach ($rs2 as $dev) {
                         <h1>Customized</h1>
                              <div id="sw-buttons-container">
         <a href="AddSoftware.php">
-            <button id="sw-button">Approval</button>
+            <button id="sw-button">Request</button>
         </a>
+                                 
                                 <a href="../pages/comingsoon.php">
              <button id="sw-button">Ongoing Projects</button>
         </a>
