@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             try {
 
                 $a = $down->addDown($sw, $user);
-                $b = $down->countDown($software, $dc);
+                $b = $down->countDown($sw, $dc);
                 if ($a > 0 && $b > 0) {
-                    header("Location: ../img/sw/<?php echo $id; ?>/<?php echo $sname; ?>.zip");
+                    header("Location: ../img/sw/".$sw."/".$sname.".zip");
                 }
             } catch (PDOException $exc) {
             }
@@ -57,7 +57,7 @@ class Downloads {
         try {
             $con = $dbcon->getConnection();
             
-            $query = "INSERT INTO downloads (software, user, date) VALUES(?, ?, ?)";
+            $query = "INSERT INTO downloads (software, username, date) VALUES(?, ?, ?)";
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $software);
             $pstmt->bindValue(2, $user);
@@ -79,10 +79,12 @@ class Downloads {
 
         try {
             $con = $dbcon->getConnection();
+            echo $software;
+            echo $dc +1;
             
-            $query = "UPDATE downloads SET DownCount = ? WHERE Sid = ?";
+            $query = "UPDATE software SET DownCount = ? WHERE Sid = ?";
             $pstmt = $con->prepare($query);
-            $pstmt->bindValue(1, int($dc+1));
+            $pstmt->bindValue(1, $dc + 1);
             $pstmt->bindValue(2, $software);
             $pstmt->execute();
 
