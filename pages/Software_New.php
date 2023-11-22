@@ -143,15 +143,16 @@ $star = [254, 20, 6, 15, 63, 150];
         <link rel="stylesheet" href="../css/pages.css">
         <link rel="stylesheet" href="../css/software.css">
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        
     </head>
     <body>
 
@@ -165,15 +166,18 @@ $star = [254, 20, 6, 15, 63, 150];
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link nav-link_ active" aria-current="page" href="#"><i
-                                    class="fa-solid fa-house  icoon"></i>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_  " href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_  " href="#"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
-                        </li>
+                        <a class="nav-link nav-link_ active" aria-current="page" href="../Softdex.php"><i
+                                class="fa-solid fa-house  icoon"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link_  " href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link_  " href="DisplayTutorials.php"><i class="fa-brands fa-leanpub icoon"></i>Tutorials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link_  " href="displaycomigsoon.php"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
+                    </li>
 
                         <?php
                         if (isset($_SESSION["user"])) {
@@ -228,6 +232,8 @@ $star = [254, 20, 6, 15, 63, 150];
                 </div>
             </div>
         </nav>
+        
+        
         <!------------------------------------------------------------ nav bar end ----------------------------------------------------------->
 
 
@@ -289,14 +295,6 @@ $star = [254, 20, 6, 15, 63, 150];
                 <div class="col-md-4 text-center"><br><br>
                     <?php if ($license === "Paid" && isset($_SESSION["user"])) { ?>
                         <!--with login-->
-                        <button type="button" class="btn btn-warning down">
-                            <table width=100%>
-                                <tr>
-                                    <td class="p-3 text-light" ><span><h3>Buy Now</h3></span></td>
-                                    <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
-                                </tr>
-                            </table>
-                        </button>
                         <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <input type="hidden" name="user" value="<?php echo $user ?>" />
                             <input type="hidden" name="softId" value="<?php echo $id ?>" />
@@ -473,7 +471,7 @@ $star = [254, 20, 6, 15, 63, 150];
 
 
             <div  class="row">
-                <h1 class="mt-5 mb-5">Review & Rating System in Softwares</h1>
+                <h1 class="mt-5 mb-5">What is your impression on the software?</h1>
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -604,6 +602,7 @@ $star = [254, 20, 6, 15, 63, 150];
         </div><!--container end-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+        <?php include_once "./Headers/footer_1.php"; ?>
     </body>
 </html>
 

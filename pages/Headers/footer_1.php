@@ -2,13 +2,13 @@
     <div class = "container-fluid">
         <div class = "row text-center">
             <div class = "col-12 col-sm-6 col-md-3">
-                <a href = "../Softdex.php"> <img src = "img/logo2.png" alt = "logo" style = "height:150px;"> </a>
+                <a href = "../Softdex.php"> <img src = "../img/logo2.png" alt = "logo" style = "height:150px;"> </a>
                 <h5>Software Solution</h5>
             </div>
             <div class = "col-12 col-sm-6 col-md-2">
                 <h5>Get started</h5>
                 <ul>
-                    <li><a href = "#">Home</a></li>
+                    <li><a href = "../Softdex.php">Home</a></li>
                     <li><a href = "#">Downloads<br /></a></li>
                     <li><a href = "#">Sign Up</a></li>
                     <li><a href = "#">Other Links</a></li>
@@ -19,7 +19,7 @@
                 <ul>
                     <li><a href = "#">About Us</a></li>
                     <li><a href = "#">Company Information<br /></a></li>
-                    <li><a href = "pages/reviews.php">Reviews</a></li>
+                    <li><a href = "reviews.php">Reviews</a></li>
                     <li><a href = "#">Contacts</a></li>
                 </ul>
             </div>
