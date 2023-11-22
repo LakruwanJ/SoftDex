@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>About Us</title>
+
     <link rel="stylesheet" type="text/css" href="../css/Aboutus.css">
+    
 </head>
 <body>
     <div class="container">
