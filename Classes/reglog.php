@@ -12,10 +12,13 @@ use PDOException;
 use PDO;
 
 require 'DbConnector.php';
+require '../Classes/admin.php';
 
 use Classes\DbConnector;
+use Classes\admin;
 
 $reglog_ = new reglog();
+$admin = new admin(null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -26,7 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_POST["password"] == $reglog_->login()) {
                 session_start();
                 $_SESSION["user"] = $_POST["username"];
+                if($admin->checkadmin($_POST["username"])){
+                    header("Location: ../pages/admindashboard.php"); 
+                }else{
+                    
                 header("Location: ../Softdex.php");
+                }
             } else {
                 header("Location: ../index.php?e=1");
             }

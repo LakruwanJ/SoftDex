@@ -92,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 <small class="text-secondary">by <?php echo $item_arr->username; ?></small>
                                                 <p>by <?php echo $item_arr->shortdescription; ?></p>
                                                 <h5 class="pt-2"><?php echo $item_arr->amount; ?></h5><br>
-                                                <button type="submit" class="btn btn-warning">Buy</button>
                                                 <button type="submit" class="btn btn-danger mx-2" name="remove">Remove</button>
                                                 <input type="hidden" name="sofw_id" value="<?php echo $item_arr->Sid ?>" >
                                             </div>

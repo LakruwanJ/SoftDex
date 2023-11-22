@@ -45,6 +45,10 @@ $star = [254, 20, 6, 15, 63, 150];
 <html>
     <head>
         <meta charset="UTF-8">
+        
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title></title>
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/caro.css">
@@ -183,14 +187,6 @@ $star = [254, 20, 6, 15, 63, 150];
                             ?>
 
                             <!--with login-->
-                            <button type="button" class="btn btn-warning down">
-                                <table width=100%>
-                                    <tr>
-                                        <td class="p-3 text-light" ><span><h3>Buy Now</h3></span></td>
-                                        <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
-                                    </tr>
-                                </table>
-                            </button>
                             <form method="POST" action="../Classes/cartCls.php">
                                 <input type="hidden" name="user" value="<?php echo $user ?>" />
                                 <input type="hidden" name="sw" value="<?php echo $id; ?>" />
