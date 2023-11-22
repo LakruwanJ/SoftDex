@@ -14,7 +14,7 @@ if (!isset($_SESSION["user"])) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Chat| SoftDex</title>
+        <title>Chat | SoftDex</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     </head>

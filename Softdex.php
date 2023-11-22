@@ -343,7 +343,7 @@ $rsCls = new Home();
                                                                         </tr>
                                                                     </table><p></p>
                                                                     <!--<h5><a class="text-dark" href="pages/Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>-->
-                                                                    <h5><a class="text-dark" href="pages/Software.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
+                                                                    <h5><a class="text-dark" href="pages/Software_new.php?id=<?php echo $sw->Sid; ?>"><?php echo $sw->name; ?></a></h5>
                                                                     <p class="small text-muted font-italic">by <?php echo $sw->username; ?></p>
 
                                                                                                 <!--                                                                     <h5><a class="text-dark" href="pages.php?page=Software.php&id="><?php echo $sw->name; ?></a></h5>
