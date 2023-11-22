@@ -48,13 +48,12 @@ $home = new Home();
                                 <img src="../img/logo3.png" alt=""  width="50px" height="50px">
                             </span>
                             <span class="title">Softdex</span>
-                        </a>
                     </li>
 
                     <li>
                         <a id="Dashboardbutton" href="#">
                             <span class="icon">
-                                <ion-icon name="home-outline"></ion-icon>
+                                <ion-icon name="apps"></ion-icon>
                             </span>
                             <span class="title">Dashboard</span>
                         </a>
@@ -92,9 +91,18 @@ $home = new Home();
                         <a href="review_dev.php">
                             <span class="icon">
 
-                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star-outline"></ion-icon>
                             </span>
                             <span class="title">Reviews</span>
+                        </a>
+                    </li>
+                     <li>
+                         <a href="../Softdex.php">
+                            <span class="icon">
+
+                                <ion-icon name="home-outline"></ion-icon>
+                            </span>
+                            <span class="title">Home</span>
                         </a>
                     </li>
                     <li>
@@ -205,7 +213,8 @@ $home = new Home();
                                         <td>Developer</td>
                                         <td>Status</td>
                                         <td>Platform</td>
-                                        <td>   <!--- add modal---->
+                                        
+                                        <td><!--- add modal---->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Platform</button>
 
                                             <div class="modal" id="myModal">
