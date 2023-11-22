@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row px-5">
                 <div class="col-md-6">
                     <div class="shopping-cart">
-                        <h6>My Wishlist</h6>
+                        <h2>My Wishlist</h2>
                         <hr>
 
                         <?php
@@ -91,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                     <small class="text-secondary">by <?php echo $item_arr->username; ?></small>
                                                     <p>by <?php echo $item_arr->shortdescription; ?></p>
                                                     <h5 class="pt-2"><?php echo $item_arr->amount; ?></h5><br>
-                                                    <button type="submit" class="btn btn-warning">Buy</button>
                                                     <button type="submit" class="btn btn-danger mx-2" name="remove">Remove</button>
                                                     <input type="hidden" name="sofw_id" value="<?php echo $item_arr->Sid ?>" >
                                                 </div>
@@ -112,14 +111,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-4" >
                     <div class="offset-md-1 border rounded mt-5 bg-white p-3" style="height: fit-content;">
                         <div class="pt-4">
-                            <h6 style="font-size: 1.3rem;"><b>PRICE DETAILS</b></h6>
+                            <h6 style="font-size: 1.3rem;"><b>SOFTWARE DETAILS</b></h6>
                             <hr>
                             <div class="row price-details">
                                 <div class="col-md-6">
                                     <p>Total Count of Softwares : </p>
 
                                     <hr>
-                                    <h6>Amount Payble</h6>
+                                   
                                 </div>
 
                                 <div class="col-md-6" style="width: fit-content;">
@@ -127,17 +126,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                                     <hr>
 
-                                    <h6>$<?php echo $total;?></h6>
+                                    
                                 </div>
 
 
                             </div>
-                        </div>
-                        <div class="my-2 mx-auto" style="width: fit-content;">
-                            <form method="post">
-                                <input type="hidden" name="checkout" value="true">
-                                <button type="submit" class="btn btn-success">Checkout</button>
-                            </form>
                         </div>
                     </div>
                 </div>
