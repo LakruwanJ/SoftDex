@@ -57,10 +57,11 @@ class Downloads {
             $con = $dbcon->getConnection();
             
             $query = "INSERT INTO downloads (software, username, date) VALUES(?, ?, ?)";
+            
             $pstmt = $con->prepare($query);
             $pstmt->bindValue(1, $software);
             $pstmt->bindValue(2, $user);
-            $pstmt->bindValue(3, date('Y/m/d'));
+            $pstmt->bindValue(3, date('Y-m-d'));
             $pstmt->execute();
 
             if ($pstmt->rowCount() > 0) {

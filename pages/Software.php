@@ -130,11 +130,32 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             {
                 color: #e9ecef;
             }
-        </style>
+
+
+#myBtn {
+  position: fixed;
+  width:95px;
+  bottom: 15px;
+  right: 25px;
+  z-index: 99;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+    
+  bottom: 10px;
+  right: 20px;
+  width:110px;
+}
+</style>
 
     </head>
     <body>
 
+        <a href="Chat/Chome.php"><img src="../img/chat.png" id="myBtn" class="fa-beat"></a>
         <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
         <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
             <div class="container">
