@@ -24,7 +24,7 @@ $rsCls = new Home();
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>SD</title>
+        <title>SoftDex</title>
 
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/caro.css">
@@ -63,30 +63,7 @@ $rsCls = new Home();
         <a href="Chat/Chome.php"><img src="img/chat.png" id="myBtn" class="fa-beat"></a>
         
         <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
-            <div class="container">
-                <a class="navbar-brand logog" href="#"><img src="img/logo.png" alt="logo" style="height:50px;"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_ active" aria-current="page" href="#"><i
-                                    class="fa-solid fa-house  icoon"></i>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_  " href="#"><i class="fa-solid fa-book icoon"></i>Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link_  " href="pages/displaycomigsoon.php"><i class="fa-regular fa-clock icoon"></i>Comming soon</a>
-                        </li>
-
-                        <?php include_once "./pages/Headers/MainHeader.php"; ?>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+            <?php include_once "./pages/Headers/MainHeader.php"; ?>
         <!------------------------------------------------------------ nav bar end ----------------------------------------------------------->
 
         <div style="margin-top: 70px;margin-right: 0px;margin-left: 0px;"></div>
