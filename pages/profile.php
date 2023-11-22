@@ -16,7 +16,7 @@ if (isset($_SESSION["user"])) {
 }else{
     header("Location: ../softdex.php");
 }
- 
+
 
 $rs = new Classes\Select();
 

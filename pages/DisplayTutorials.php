@@ -40,7 +40,22 @@ $tute = Tutorial::displayTutorials();
                 
                 
                     <div class="tutorial-card">
-                        <img src="../img/Tutorials/<?= $tutes->getTitle() ?>/<?= $tutes->getTitle()?>'.'png " >
+                        <?php
+                        $imageFormats = ['png', 'jpg'];
+                        $imagePath = '../img/Tutorials/' . $tutes->getTitle() . '/' . $tutes->getTitle();
+
+                        foreach ($imageFormats as $format) {
+                            $imageUrl = $imagePath . '.' . $format;
+
+                            if (file_exists($imageUrl)) {
+                                $imageUrl = $imageUrl;
+                            } else {
+                                $imageUrl = "../img/tutorial.jng";
+                            }
+                        }
+                        ?>
+                        
+                        <img src="<?= $imageUrl?>" width="300">
                         <h3 class="tutorial-title"><?= $tutes->getTitle() ?></h3>
                         <p class="tutorial-description"><i><?= $tutes->getText() ?></i></p>
 
