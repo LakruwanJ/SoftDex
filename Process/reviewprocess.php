@@ -256,4 +256,81 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo $ex->getMessage();
         }
     }
+    
+    // get dev re
+    if (isset($_POST["action_dev"])) {
+         $dev_name = $_POST['dev_name'];
+        $average_rating = 0;
+        $total_review = 0;
+        $five_star_review = 0;
+        $four_star_review = 0;
+        $three_star_review = 0;
+        $two_star_review = 0;
+        $one_star_review = 0;
+        $total_user_rating = 0;
+        $review_content = array();
+
+        $query = "SELECT * FROM ratedev WHERE ratedev.dev_name = (SELECT developer.Did FROM developer WHERE developer.user =(SELECT user.Uid FROM user WHERE user.username = '".$dev_name."')) ORDER BY id DESC";
+        $statement = $con->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        /* $sql = "SELECT * FROM user WHERE Uid ='".$row["username"]."'";
+          $stmt = $con->prepare($sql);
+          $statement->execute();
+          $set = $stmt->fetch(PDO::FETCH_OBJ); */
+
+
+        foreach ($result as $row) {
+            $sql = "SELECT * FROM user WHERE Uid ='" . $row["username"] . "'";
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+            $set = $stmt->fetch(PDO::FETCH_ASSOC);
+            $review_content[] = array(
+                'user_name' => $set['username'],
+                'user_review' => $row["user_review"],
+                'rating' => $row["user_rating"],
+                'datetime' => date('l jS, F Y h:i:s A', $row["datetime"])
+            );
+
+            if ($row["user_rating"] == '5') {
+                $five_star_review++;
+            }
+
+            if ($row["user_rating"] == '4') {
+                $four_star_review++;
+            }
+
+            if ($row["user_rating"] == '3') {
+                $three_star_review++;
+            }
+
+            if ($row["user_rating"] == '2') {
+                $two_star_review++;
+            }
+
+            if ($row["user_rating"] == '1') {
+                $one_star_review++;
+            }
+
+            $total_review++;
+
+            $total_user_rating = $total_user_rating + $row["user_rating"];
+        }
+
+        $average_rating = $total_user_rating / $total_review;
+
+        $output = array(
+            'average_rating' => number_format($average_rating, 1),
+            'total_review' => $total_review,
+            'five_star_review' => $five_star_review,
+            'four_star_review' => $four_star_review,
+            'three_star_review' => $three_star_review,
+            'two_star_review' => $two_star_review,
+            'one_star_review' => $one_star_review,
+            'review_data' => $review_content
+        );
+
+        echo json_encode($output);
+    }
 }
