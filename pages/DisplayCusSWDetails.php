@@ -51,7 +51,7 @@ $customizedsws = cusomizedsw::displayCusSWDetails()
                         <h3 class="tutorial-title"><b>Title:</b> <?= $customizedsw->getTitle() ?></h3><br>
                         <p class="tutorial-description"><b>Description:</b> <i><?= $customizedsw->getDescription() ?></i></p><br>
                         <p class="tutorial-description"><b>Special Requirements:</b> <?= $customizedsw->getSpecialReq() ?></p><br>
-
+                        <p class="tutorial-description"><b>Budget Range:</b> <?= $customizedsw->getprice() ?></p><br>
                         <!--<div class="buttons">
                             <button class="download-button">
                                 <a href="">Reject</a>
