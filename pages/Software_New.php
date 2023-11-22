@@ -37,13 +37,13 @@ $description = "";
 $rate = "";
 $DownCount = "";
 $dname = "";
-$ddate ="";
+$ddate = "";
 
 //set user and id
 $user = $id = $sw = "";
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    $user = $_SESSION["user"];  
+    $user = $_SESSION["user"];
 }
 
 
@@ -76,7 +76,7 @@ foreach ($rs2 as $dev) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    /*------------------- Add to cart -------------------------------------------------------------*/
+    /* ------------------- Add to cart ------------------------------------------------------------- */
     if (isset($_POST['addtocart'])) {
         $set_user = $_POST['user'];
         $set_id = $_POST['softId'];
@@ -93,39 +93,39 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $checkArray = explode(" | ", $text);
             foreach ($checkArray as $item) {
                 if ($item == $set_id) {
-                    $check = false;  
+                    $check = false;
                     break;
                 }
             }
             if ($check) {
                 $cartObj->addItemToCart($text);
             } else {
-                header("Location:../pages/Software_New.php?id=".$set_id."&status=ItemAlreadyAdded");
-            }        
+                header("Location:../pages/Software_New.php?id=" . $set_id . "&status=ItemAlreadyAdded");
+            }
         }
     }
-    
-    /*----------------------- wishlist -------------------------------------------------------------------*/
+
+    /* ----------------------- wishlist ------------------------------------------------------------------- */
     if (isset($_POST['addtowishlist'])) {
-       $set_user = $_POST['user'];
-       $set_id = $_POST['softId'];
-       $wishListObj->setUser($set_user);
-       $wishListObj->setSoftwareid($set_id);
-       $text = $wishListObj->getWishListItems();
-       
-       // add item
-       if (empty($text)) {
-           $wishListObj->addItemToWishList($text);
-       } else {
-           // check item is already added
+        $set_user = $_POST['user'];
+        $set_id = $_POST['softId'];
+        $wishListObj->setUser($set_user);
+        $wishListObj->setSoftwareid($set_id);
+        $text = $wishListObj->getWishListItems();
+
+        // add item
+        if (empty($text)) {
+            $wishListObj->addItemToWishList($text);
+        } else {
+            // check item is already added
             $checkArray = explode(" | ", $text);
             foreach ($checkArray as $item) {
                 if ($item === $id) {
-                    header("Location:../pages/Software_New.php?id=".$id."&status=ItemAlreadyAdded");
+                    header("Location:../pages/Software_New.php?id=" . $id . "&status=ItemAlreadyAdded");
                 }
             }
             $wishListObj->addItemToWishList($text);
-       }
+        }
     }
 }
 
@@ -258,52 +258,69 @@ $star = [254, 20, 6, 15, 63, 150];
                         <tr valign="middle">
                             <td colspan="2" class="ms-3">
                                 <i class="text-muted font-italic">Developed by</i><br>
-                                <a href="#"><img class="rounded-circle mt-2" src="https://mdbootstrap.com/img/new/avatars/2.jpg" height="40" alt /></a>
 
-                                <?php echo $dname . "<b> &CenterDot; </b>"; ?> since <?php echo $ddate ?><br>
+                                <?php
+                                $imageFormats = ['png', 'jpg'];
+                                $imagePath = '../img/user/' . $dname . '/' . $dname;
+
+                                foreach ($imageFormats as $format) {
+                                    $imageUrl = $imagePath . '.' . $format;
+
+                                    if (file_exists($imageUrl)) {
+                                        $imageUrl = $imageUrl;
+                                    } else {
+                                        $imageUrl = "../img/user (2).png";
+                                    }
+                                }
+                                echo '<img class="rounded-circle mt-2" height="40" src="' . $imageUrl . '"/>';
+                                ?>
+
+                                <?php echo $dname; ?><br>
                             </td>
                         </tr>
                     </table>
                 </div>            
                 <div class="col-md-4 text-center"><br><br>
-                    <?php if ($license === "Paid" && isset($_SESSION["user"])) {?>
-                            <!--with login-->
-                            <button type="button" class="btn btn-warning down">
+                    <?php if ($license === "Paid" && isset($_SESSION["user"])) { ?>
+                        <!--with login-->
+                        <button type="button" class="btn btn-warning down">
+                            <table width=100%>
+                                <tr>
+                                    <td class="p-3 text-light" ><span><h3>Buy Now</h3></span></td>
+                                    <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
+                                </tr>
+                            </table>
+                        </button>
+                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <input type="hidden" name="user" value="<?php echo $user ?>" />
+                            <input type="hidden" name="softId" value="<?php echo $id ?>" />
+                            <button type="submit" name="addtocart" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
                                 <table width=100%>
                                     <tr>
-                                        <td class="p-3 text-light" ><span><h3>Buy Now</h3></span></td>
-                                        <td align="right" class="p-3"><i class="fa-solid fa-download fa-beat-fade fa-2xl" style="color: #ffffff;"></i></td>
+                                        <td class="p-1 text-light" ><span><h3>Add to cart</h3></span></td>
+                                        <td align="right" class="p-3"><i class="fa-solid fa-cart-plus fa-shake fa-2xl" style="color: #ffffff;"></i></td>
                                     </tr>
                                 </table>
                             </button>
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                <input type="hidden" name="user" value="<?php echo $user ?>" />
-                                <input type="hidden" name="softId" value="<?php echo $id ?>" />
-                                <button type="submit" name="addtocart" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573; ">
-                                    <table width=100%>
-                                        <tr>
-                                            <td class="p-1 text-light" ><span><h3>Add to cart</h3></span></td>
-                                            <td align="right" class="p-3"><i class="fa-solid fa-cart-plus fa-shake fa-2xl" style="color: #ffffff;"></i></td>
-                                        </tr>
-                                    </table>
-                                </button>
-                            </form>
-                        <?php }
-                    if ($license === "Free" && isset($_SESSION["user"])){ ?>
-                            <!--with login-->
+                        </form>
+                    <?php
+                    }
+                    if ($license === "Free" && isset($_SESSION["user"])) {
+                        ?>
+                        <!--with login-->
 
-                            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                <input type="hidden" name="user" value="<?php echo $user ?>" />
-                                <input type="hidden" name="softId" value="<?php echo $id ?>" />
-                                <button type="submit" name="addtowishlist" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573;">
-                                    <table width=100%>
-                                        <tr>
-                                            <td class="p-1 text-light" ><span><h3>Add to wishlist</h3></span></td>
-                                            <td align="right" class="p-3"><i class="fa-regular fa-heart fa-2xl" style="color: #ffffff;"></i></td>
-                                        </tr>
-                                    </table>
-                                </button>
-                            </form>
+                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <input type="hidden" name="user" value="<?php echo $user ?>" />
+                            <input type="hidden" name="softId" value="<?php echo $id ?>" />
+                            <button type="submit" name="addtowishlist" class="btn btn-outline-success border-3 down rounded-pill m-2 px-4" style="background-color: #37A573;">
+                                <table width=100%>
+                                    <tr>
+                                        <td class="p-1 text-light" ><span><h3>Add to wishlist</h3></span></td>
+                                        <td align="right" class="p-3"><i class="fa-regular fa-heart fa-2xl" style="color: #ffffff;"></i></td>
+                                    </tr>
+                                </table>
+                            </button>
+                        </form>
                         <!--<a href="../img/sw/sw0001/index.zip">-->
                         <button type="button" class="btn btn-success down" data-bs-toggle="modal" data-bs-target="#downloadConfirmationModal">
                             <table width=100%>
@@ -332,8 +349,8 @@ $star = [254, 20, 6, 15, 63, 150];
                                 </div>
                             </div>
                         </div>
-              <?php } ?>
-                        
+<?php } ?>
+
                 </div>
             </div>
 
@@ -454,121 +471,121 @@ $star = [254, 20, 6, 15, 63, 150];
             </div>
             <!----------------------------------------------------------comment and *review area*----------------------------------------------->
             <hr>
-           
+
 
 
 
             <!------------------------------------------------------------comments area------------------------------------------------->
             <hr>
             <!DOCTYPE HTML>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="container">
-            <h1 class="mt-5 mb-5">Review & Rating System in Softwares</h1>
-            <div class="card">
-                <div class="card-header"><?=$name ?></div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-4 text-center">
-                            <h1 class="text-warning mt-4 mb-4">
-                                <b><span id="average_rating">0.0</span> / 5</b>
-                            </h1>
-                            <div class="mb-3">
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
+            <html>
+                <head>
+                    <meta charset="utf-8" />
+
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1 class="mt-5 mb-5">Review & Rating System in Softwares</h1>
+                        <div class="card">
+                            <div class="card-header"><?= $name ?></div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4 text-center">
+                                        <h1 class="text-warning mt-4 mb-4">
+                                            <b><span id="average_rating">0.0</span> / 5</b>
+                                        </h1>
+                                        <div class="mb-3">
+                                            <i class="fas fa-star star-light mr-1 main_star"></i>
+                                            <i class="fas fa-star star-light mr-1 main_star"></i>
+                                            <i class="fas fa-star star-light mr-1 main_star"></i>
+                                            <i class="fas fa-star star-light mr-1 main_star"></i>
+                                            <i class="fas fa-star star-light mr-1 main_star"></i>
+                                        </div>
+                                        <h3><span id="total_review">0</span> Review</h3>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                        <div class="progress-label-left"><b>5</b> <i class="fas fa-star text-warning"></i></div>
+
+                                        <div class="progress-label-right">(<span id="total_five_star_review">0</span>)</div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="five_star_progress"></div>
+                                        </div>
+                                        </p>
+                                        <p>
+                                        <div class="progress-label-left"><b>4</b> <i class="fas fa-star text-warning"></i></div>
+
+                                        <div class="progress-label-right">(<span id="total_four_star_review">0</span>)</div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="four_star_progress"></div>
+                                        </div>               
+                                        </p>
+                                        <p>
+                                        <div class="progress-label-left"><b>3</b> <i class="fas fa-star text-warning"></i></div>
+
+                                        <div class="progress-label-right">(<span id="total_three_star_review">0</span>)</div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="three_star_progress"></div>
+                                        </div>               
+                                        </p>
+                                        <p>
+                                        <div class="progress-label-left"><b>2</b> <i class="fas fa-star text-warning"></i></div>
+
+                                        <div class="progress-label-right">(<span id="total_two_star_review">0</span>)</div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="two_star_progress"></div>
+                                        </div>               
+                                        </p>
+                                        <p>
+                                        <div class="progress-label-left"><b>1</b> <i class="fas fa-star text-warning"></i></div>
+
+                                        <div class="progress-label-right">(<span id="total_one_star_review">0</span>)</div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="one_star_progress"></div>
+                                        </div>               
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-4 text-center">
+                                        <h3 class="mt-4 mb-3">Write Review Here</h3>
+                                        <button type="button" name="review_sw" id="review_sw" class="btn btn-primary">Review Software</button>
+                                        <a href="review_dev.php?username=<?= $username ?>&devname=<?= $dname ?>">
+                                            <button type="button" name="review_sw" id="review_dev" class="btn btn-primary">Review Developer</button>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <h3><span id="total_review">0</span> Review</h3>
                         </div>
-                        <div class="col-sm-4">
-                            <p>
-                            <div class="progress-label-left"><b>5</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_five_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="five_star_progress"></div>
-                            </div>
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>4</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_four_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="four_star_progress"></div>
-                            </div>               
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>3</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_three_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="three_star_progress"></div>
-                            </div>               
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>2</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_two_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="two_star_progress"></div>
-                            </div>               
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>1</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_one_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="one_star_progress"></div>
-                            </div>               
-                            </p>
-                        </div>
-                        <div class="col-sm-4 text-center">
-                            <h3 class="mt-4 mb-3">Write Review Here</h3>
-                            <button type="button" name="review_sw" id="review_sw" class="btn btn-primary">Review Software</button>
-                            <a href="review_dev.php?username=<?=$username ?>&devname=<?=$dname ?>">
-                            <button type="button" name="review_sw" id="review_dev" class="btn btn-primary">Review Developer</button>
-                            </a>
-                        </div>
+                        <div class="mt-5" id="review_content"></div>
                     </div>
-                </div>
-            </div>
-            <div class="mt-5" id="review_content"></div>
-        </div>
-    </body>
-</html>
+                </body>
+            </html>
 
-<style>
-    .progress-label-left
-    {
-        float: left;
-        margin-right: 0.5em;
-        line-height: 1em;
-    }
-    .progress-label-right
-    {
-        float: left;
-        margin-left: 0.3em;
-        line-height: 1em;
-    }
-    .star-light
-    {
-        color: #e9ecef;
-    }
-</style>
+            <style>
+                .progress-label-left
+                {
+                    float: left;
+                    margin-right: 0.5em;
+                    line-height: 1em;
+                }
+                .progress-label-right
+                {
+                    float: left;
+                    margin-left: 0.3em;
+                    line-height: 1em;
+                }
+                .star-light
+                {
+                    color: #e9ecef;
+                }
+            </style>
 
-<!------------------------------------------------------------------------------------------------------------------------------------------------- -->
+            <!------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 
             <section id="title area">
@@ -599,7 +616,7 @@ $star = [254, 20, 6, 15, 63, 150];
                         ?>
 
                     </div><br><br>
-                <?php } ?>
+<?php } ?>
                 <!--------------------------------------------------------- title & contenct area end -------------------------------------------------------->   
             </section><br>
 
@@ -628,8 +645,8 @@ $star = [254, 20, 6, 15, 63, 150];
                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
                 </h4>
                 <div class="form-group">
-                    <input type="text" name="set_name" id="set_name" class="form-control" placeholder="Enter software Name" value="<?=$name ?>"/>
-                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" value="<?=$username ?>"/>
+                    <input type="text" name="set_name" id="set_name" class="form-control" placeholder="Enter software Name" value="<?= $name ?>"/>
+                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" value="<?= $username ?>"/>
                 </div>
                 <div class="form-group">
                     <textarea name="user_review" id="user_review" class="form-control" placeholder="Type Review Here"></textarea>
@@ -642,14 +659,14 @@ $star = [254, 20, 6, 15, 63, 150];
     </div>
 </div>
 
-<script>  
+<script>
     $(document).ready(function () {
         var rating_data = 0;
         $('#review_sw').click(function () {
             $('#review_modal_sw').modal('show');
         });
-        
-        $('#colse').click(function(){
+
+        $('#colse').click(function () {
             $('#review_modal_sw').modal('hide');
         });
 
@@ -692,7 +709,7 @@ $star = [254, 20, 6, 15, 63, 150];
                     url: "../Process/reviewprocess.php",
                     method: "POST",
                     data: {
-                        software:"",
+                        software: "",
                         web_rating_data: rating_data,
                         user_name: user_name,
                         set_name: set_name,
@@ -718,9 +735,9 @@ $star = [254, 20, 6, 15, 63, 150];
                 url: "../Process/reviewprocess.php",
                 method: "POST",
                 data: {
-                    action_sw: 'load_data', 
-                    sw_name: "<?=$name ?>",
-                    u_name :"<?=$username ?>"
+                    action_sw: 'load_data',
+                    sw_name: "<?= $name ?>",
+                    u_name: "<?= $username ?>"
                 },
                 dataType: "JSON",
                 success: function (data)
@@ -812,9 +829,9 @@ $star = [254, 20, 6, 15, 63, 150];
                     }
                 },
                 error: function (xhr, status, errorThrown) {
-                        console.log("Error",xhr.status, xhr.statusText);
-                        console.log( "Error msg",xhr.responseText);
-                    }
+                    console.log("Error", xhr.status, xhr.statusText);
+                    console.log("Error msg", xhr.responseText);
+                }
             });
         }
 

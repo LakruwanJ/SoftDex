@@ -40,12 +40,64 @@ if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
 }
 
-$star = [254, 20, 6, 15, 63, 150];
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    /* ------------------- Add to cart ------------------------------------------------------------- */
+    if (isset($_POST['addtocart'])) {
+        $set_user = $_POST['user'];
+        $set_id = $_POST['softId'];
+        $cartObj->setUser($set_user);
+        $cartObj->setSoftwareid($set_id);
+        $text = $cartObj->getCartItems();
+
+        //add item
+        if (empty($text)) {
+            $cartObj->addItemToCart($text);
+        } else {
+            $check = true;
+            // check item is already added
+            $checkArray = explode(" | ", $text);
+            foreach ($checkArray as $item) {
+                if ($item == $set_id) {
+                    $check = false;
+                    break;
+                }
+            }
+            if ($check) {
+                $cartObj->addItemToCart($text);
+            } else {
+                header("Location:../pages/Software_New.php?id=" . $set_id . "&status=ItemAlreadyAdded");
+            }
+        }
+    }
+
+    /* ----------------------- wishlist ------------------------------------------------------------------- */
+    if (isset($_POST['addtowishlist'])) {
+        $set_user = $_POST['user'];
+        $set_id = $_POST['softId'];
+        $wishListObj->setUser($set_user);
+        $wishListObj->setSoftwareid($set_id);
+        $text = $wishListObj->getWishListItems();
+
+        // add item
+        if (empty($text)) {
+            $wishListObj->addItemToWishList($text);
+        } else {
+            // check item is already added
+            $checkArray = explode(" | ", $text);
+            foreach ($checkArray as $item) {
+                if ($item === $id) {
+                    header("Location:../pages/Software_New.php?id=" . $id . "&status=ItemAlreadyAdded");
+                }
+            }
+            $wishListObj->addItemToWishList($text);
+        }
+    }
+}
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        
+
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -60,6 +112,25 @@ $star = [254, 20, 6, 15, 63, 150];
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <style>
+            .progress-label-left
+            {
+                float: left;
+                margin-right: 0.5em;
+                line-height: 1em;
+            }
+            .progress-label-right
+            {
+                float: left;
+                margin-left: 0.3em;
+                line-height: 1em;
+            }
+            .star-light
+            {
+                color: #e9ecef;
+            }
+        </style>
 
     </head>
     <body>
@@ -157,10 +228,13 @@ $star = [254, 20, 6, 15, 63, 150];
                                         $imageUrl = $imagePath . '.' . $format;
 
                                         if (file_exists($imageUrl)) {
-                                            echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
-                                            break;
+                                            $imageUrl = $imageUrl;
+                                        } else {
+
+                                            $imageUrl = '../img/tempicon.png';
                                         }
                                     }
+                                    echo '<img class="d-block mx-auto mb-3 mt-3" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';
                                     ?>
 
                                 </button></td>
@@ -398,103 +472,83 @@ $star = [254, 20, 6, 15, 63, 150];
 
             </div>
             <!----------------------------------------------------------comment and *review area*----------------------------------------------->
-            <hr>
-            <div class="row">
-                <div class="col-md-5 px-5 pt-3 pb-1">
-                    <h3 class="p-0">Customer Reviews (<?php echo $star[0]; ?>)</h3><br>
-                    <h1><i class="fa fa-star text-success"></i>
-                        <?php
-                        $avg = 0;
-                        for ($i = 5; $i > 0; $i--) {
-                            $avg += $star[$i] * $i;
-                        }
-                        $rate = round($avg / $star[0], 1);
-                        echo $rate;
-                        ?>
-                    </h1>
-                    <p>All reviews come from Registed users those who downloaded the application</p>
-                </div>
-                <div class="col-md-7 px-5 pt-3 pb-1">
-                    <?php
-                    for ($i = 5; $i > 0; $i--) {
-                        echo '<div class="side"><div>' . $i . ' star</div></div>
-                            <div class="middle"><div class="bar-container">
-                            <div style="width: ' . ($star[$i] / $star[0]) * 100 . '%; height: 18px; background-color: #04AA6D;">
-                            </div></div></div>
-                            <div class="side right"><div>' . $star[$i] . '</div></div>';
-                    }
-                    ?>
+
+
+
+        <div>
+            <h1 class="mt-5 mb-5">Review & Rating System in Softwares</h1>
+            <div class="card">
+                <div class="card-header"><?=$name ?></div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <h1 class="text-warning mt-4 mb-4">
+                                <b><span id="average_rating">0.0</span> / 5</b>
+                            </h1>
+                            <div class="mb-3">
+                                <i class="fas fa-star star-light mr-1 main_star"></i>
+                                <i class="fas fa-star star-light mr-1 main_star"></i>
+                                <i class="fas fa-star star-light mr-1 main_star"></i>
+                                <i class="fas fa-star star-light mr-1 main_star"></i>
+                                <i class="fas fa-star star-light mr-1 main_star"></i>
+                            </div>
+                            <h3><span id="total_review">0</span> Review</h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>
+                            <div class="progress-label-left"><b>5</b> <i class="fas fa-star text-warning"></i></div>
+
+                            <div class="progress-label-right">(<span id="total_five_star_review">0</span>)</div>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="five_star_progress"></div>
+                            </div>
+                            </p>
+                            <p>
+                            <div class="progress-label-left"><b>4</b> <i class="fas fa-star text-warning"></i></div>
+
+                            <div class="progress-label-right">(<span id="total_four_star_review">0</span>)</div>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="four_star_progress"></div>
+                            </div>               
+                            </p>
+                            <p>
+                            <div class="progress-label-left"><b>3</b> <i class="fas fa-star text-warning"></i></div>
+
+                            <div class="progress-label-right">(<span id="total_three_star_review">0</span>)</div>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="three_star_progress"></div>
+                            </div>               
+                            </p>
+                            <p>
+                            <div class="progress-label-left"><b>2</b> <i class="fas fa-star text-warning"></i></div>
+
+                            <div class="progress-label-right">(<span id="total_two_star_review">0</span>)</div>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="two_star_progress"></div>
+                            </div>               
+                            </p>
+                            <p>
+                            <div class="progress-label-left"><b>1</b> <i class="fas fa-star text-warning"></i></div>
+
+                            <div class="progress-label-right">(<span id="total_one_star_review">0</span>)</div>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="one_star_progress"></div>
+                            </div>               
+                            </p>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <h3 class="mt-4 mb-3">Write Review Here</h3>
+                            <button type="button" name="review_sw" id="review_sw" class="btn btn-primary">Review Software</button>
+                            <a href="review_dev.php?username=<?=$username ?>&devname=<?=$dname ?>">
+                            <button type="button" name="review_sw" id="review_dev" class="btn btn-primary">Review Developer</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
-
-
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-outline-secondary round" type="button">All<?php echo " (" . $star[0] . ")" ?></button>
-                    <?php
-                    for ($J = 5; $J > 1; $J--) {
-                        echo'<button class="btn btn-outline-secondary round m-2" type="button">
-                        ' . $J . ' Stars (' . $star[$J] . ')
-                        </button>';
-                    }
-                    ?>
-                    <button class="btn btn-outline-secondary round" type="button">1 star<?php echo " (" . $star[1] . ")" ?></button>
-                    <hr>     
-                </div>
-
-
-
-            </div>
-
-
-
-            <!------------------------------------------------------------comments area------------------------------------------------->
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <table>
-                        <tr>
-                            <td><a href="#"><img class="rounded-circle" src="https://mdbootstrap.com/img/new/avatars/2.jpg" height="40" alt /></a></td>
-                            <td class="ps-3"><?php echo $developer; ?></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="ps-3"><i class="fa fa-star text-success"></i>&nbsp;<?php echo $rate; ?>
-                                &nbsp;&nbsp;&centerdot;&nbsp;&nbsp;<?php echo "1 month ago"; ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="ps-3"><p>Janvi is easy to communicate with, she responds fast. Just tell her how you want the output to be and her team will revise it based from your feedback. I like how they worked on the logo design for my brand. They also did my social media kit but I did not expect it to be just the logo with a white background. I'd say it was not their strong suite, but Janvi still welcomed my suggestions and applied it on the design. I appreciate their work and their effort. Overall, I am quite satisfied because Janvi welcomed my suggestions and revision requests. I'd say, great customer service.</p></td>
-                        </tr>
-                    </table><hr>     
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <table>
-                        <tr>
-                            <td><a href="#"><img class="rounded-circle" src="https://mdbootstrap.com/img/new/avatars/2.jpg" height="40" alt /></a></td>
-                            <td class="ps-3"><?php echo $developer; ?></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="ps-3"><i class="fa fa-star text-success"></i>&nbsp;<?php echo $rate; ?>
-                                &nbsp;&nbsp;&centerdot;&nbsp;&nbsp;<?php echo "1 month ago"; ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="ps-3"><p>The team delivered great work, I received a lot of initial designs to choose from. Revisions took a lot longer than I liked, even with the time difference. I did not receive the revision on the logo exactly as I asked but I still like the final product and would recommend their service to others.</p></td>
-                        </tr>
-                    </table><hr>
-                </div>
-            </div><br>
-
+            <div class="mt-5" id="review_content"></div>
+        </div>
+           
 
             <section id="title area">
                 <p class="small text-muted font-italic"></p>
@@ -534,3 +588,214 @@ $star = [254, 20, 6, 15, 63, 150];
 
     </body>
 </html>
+
+<div id="review_modal_sw" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Submit Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="colse">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center mt-2 mb-4">
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+                </h4>
+                <div class="form-group">
+                    <input type="text" name="set_name" id="set_name" class="form-control" placeholder="Enter software Name" value="<?=$name ?>"/>
+                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" value="<?=$username ?>"/>
+                </div>
+                <div class="form-group">
+                    <textarea name="user_review" id="user_review" class="form-control" placeholder="Type Review Here"></textarea>
+                </div>
+                <div class="form-group text-center mt-4">
+                    <button type="button" class="btn btn-primary" id="save_review">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>  
+    $(document).ready(function () {
+        var rating_data = 0;
+        $('#review_sw').click(function () {
+            $('#review_modal_sw').modal('show');
+        });
+        
+        $('#colse').click(function(){
+            $('#review_modal_sw').modal('hide');
+        });
+
+        $(document).on('mouseenter', '.submit_star', function () {
+            var rating = $(this).data('rating');
+            reset_background();
+            for (var count = 1; count <= rating; count++) {
+                $('#submit_star_' + count).addClass('text-warning');
+            }
+        });
+
+        function reset_background() {
+            for (var count = 1; count <= 5; count++) {
+                $('#submit_star_' + count).addClass('star-light');
+                $('#submit_star_' + count).removeClass('text-warning');
+            }
+        }
+
+        $(document).on('mouseleave', '.submit_star', function () {
+            reset_background();
+            for (var count = 1; count <= rating_data; count++) {
+                $('#submit_star_' + count).removeClass('star-light');
+                $('#submit_star_' + count).addClass('text-warning');
+            }
+        });
+
+        $(document).on('click', '.submit_star', function () {
+            rating_data = $(this).data('rating');
+        });
+
+        $('#save_review').click(function () {
+            var set_name = $('#set_name').val();
+            var user_name = $('#user_name').val();
+            var user_review = $('#user_review').val();
+            if (user_name == '' || user_review == '') {
+                alert("Please Fill Both Fields");
+                return false;
+            } else {
+                $.ajax({
+                    url: "../Process/reviewprocess.php",
+                    method: "POST",
+                    data: {
+                        software:"",
+                        web_rating_data: rating_data,
+                        user_name: user_name,
+                        set_name: set_name,
+                        user_review: user_review
+                    },
+                    success: function (data) {
+                        alert(data);
+                        load_rating_data_sw();
+                        $('#review_modal_sw').modal('hide');
+                    },
+                    error: function () {
+                        alert("ajax_1 Error");
+                    }
+                });
+            }
+        });
+
+        load_rating_data_sw();
+        // sw data
+        function load_rating_data_sw()
+        {
+            $.ajax({
+                url: "../Process/reviewprocess.php",
+                method: "POST",
+                data: {
+                    action_sw: 'load_data', 
+                    sw_name: "<?=$name ?>",
+                    u_name :"<?=$username ?>"
+                },
+                dataType: "JSON",
+                success: function (data)
+                {
+                    //console.log(data);
+                    $('#average_rating').text(data.average_rating);
+                    $('#total_review').text(data.total_review);
+
+                    var count_star = 0;
+
+                    $('.main_star').each(function () {
+                        count_star++;
+                        if (Math.ceil(data.average_rating) >= count_star)
+                        {
+                            $(this).addClass('text-warning');
+                            $(this).addClass('star-light');
+                        }
+                    });
+
+                    $('#total_five_star_review').text(data.five_star_review);
+
+                    $('#total_four_star_review').text(data.four_star_review);
+
+                    $('#total_three_star_review').text(data.three_star_review);
+
+                    $('#total_two_star_review').text(data.two_star_review);
+
+                    $('#total_one_star_review').text(data.one_star_review);
+
+                    $('#five_star_progress').css('width', (data.five_star_review / data.total_review) * 100 + '%');
+
+                    $('#four_star_progress').css('width', (data.four_star_review / data.total_review) * 100 + '%');
+
+                    $('#three_star_progress').css('width', (data.three_star_review / data.total_review) * 100 + '%');
+
+                    $('#two_star_progress').css('width', (data.two_star_review / data.total_review) * 100 + '%');
+
+                    $('#one_star_progress').css('width', (data.one_star_review / data.total_review) * 100 + '%');
+
+                    if (data.review_data.length > 0)
+                    {
+                        var html = '';
+
+                        for (var count = 0; count < data.review_data.length; count++)
+                        {
+                            html += '<div class="row mb-3">';
+
+                            html += '<div class="col-sm-1"><div class="rounded-circle bg-danger text-white pt-2 pb-2"><h3 class="text-center">' + data.review_data[count].user_name.charAt(0) + '</h3></div></div>';
+
+                            html += '<div class="col-sm-11">';
+
+                            html += '<div class="card">';
+
+                            html += '<div class="card-header"><b>' + data.review_data[count].user_name + '</b></div>';
+
+                            html += '<div class="card-body">';
+
+                            for (var star = 1; star <= 5; star++)
+                            {
+                                var class_name = '';
+
+                                if (data.review_data[count].rating >= star)
+                                {
+                                    class_name = 'text-warning';
+                                } else
+                                {
+                                    class_name = 'star-light';
+                                }
+
+                                html += '<i class="fas fa-star ' + class_name + ' mr-1"></i>';
+                            }
+
+                            html += '<br />';
+
+                            html += data.review_data[count].user_review;
+
+                            html += '</div>';
+
+                            html += '<div class="card-footer text-right">On ' + data.review_data[count].datetime + '</div>';
+
+                            html += '</div>';
+
+                            html += '</div>';
+
+                            html += '</div>';
+                        }
+
+                        $('#review_content').html(html);
+                    }
+                },
+                error: function (xhr, status, errorThrown) {
+                        console.log("Error",xhr.status, xhr.statusText);
+                        console.log( "Error msg",xhr.responseText);
+                    }
+            });
+        }
+
+    });
+</script>
