@@ -10,7 +10,7 @@ require_once '../Classes/DbConnector.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
-         if (empty($_POST['developer']) || empty($_POST['title']) || empty($_POST['description'])||empty($_POST['specialReq'])) {
+         if (empty($_POST['developer']) || empty($_POST['title']) || empty($_POST['description'])||empty($_POST['specialReq'])|| empty($_POST['Price'])) {
             header("Location:../pages/CustomizedSwForm.php?error=2");
             exit;
         } else {
@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['title'];
             $description = $_POST['description'];
             $specialReq = $_POST['specialReq'];
-            
+            $Price = $_POST['Price'];
 
-           $request = new cusomizedsw($title, $description, $specialReq);
+           $request = new cusomizedsw($title, $description, $specialReq, $Price);
            $request->request();
            
             $DocFile = $_FILES['customizedSwDoc'];

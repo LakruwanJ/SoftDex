@@ -44,14 +44,14 @@ $customizedsws = cusomizedsw::displayCusSWDetails()
                     ?>
                 
                 
-                    <div class="tutorial-card">
+                    <div class="tutorial-card mb-2">
                       
                         
                    
-                        <h3 class="tutorial-title"><b>Title:</b> <?= $customizedsw->getTitle() ?></h3>
-                        <p class="tutorial-description"><b>Description:</b> <i><?= $customizedsw->getDescription() ?></i></p>
-                        <p class="tutorial-description"><b>Special Requirements:</b> <?= $customizedsw->getSpecialReq() ?></p>
-
+                        <h3 class="tutorial-title"><b>Title:</b> <?= $customizedsw->getTitle() ?></h3><br>
+                        <p class="tutorial-description"><b>Description:</b> <i><?= $customizedsw->getDescription() ?></i></p><br>
+                        <p class="tutorial-description"><b>Special Requirements:</b> <?= $customizedsw->getSpecialReq() ?></p><br>
+                        <p class="tutorial-description"><b>Budget Range:</b> <?= $customizedsw->getprice() ?></p><br>
                         <!--<div class="buttons">
                             <button class="download-button">
                                 <a href="">Reject</a>
@@ -63,7 +63,7 @@ $customizedsws = cusomizedsw::displayCusSWDetails()
                         <div class="col-sm-2">
                             <p class="text-muted mb-0">
                                 <a href="" class="btn-primary">Approve</a>
-                                <br><br>
+                                <br>
                                      <a href="" class="btn-danger">Reject</a>
                             </p>
                         </div>
