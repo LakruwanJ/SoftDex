@@ -117,7 +117,7 @@ require_once '../Classes/AddSoftwareReg.php';
    
 
     
-     header("Location:../pages/AddSoftware.php?success = 1");
+     header("Location:../pages/Software.php?id=".$Sid);
                 }
     
         } else{
