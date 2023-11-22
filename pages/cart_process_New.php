@@ -45,12 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <link rel="stylesheet" href="../css/cart.css">
+        
+
     </head>
     <body class="bg-light">
-        
-       <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
-        
-        <!------------------------------------------------------------ nav bar end ----------------------------------------------------------->
 
         <div class="container-fluid">
             <div class="row px-5">

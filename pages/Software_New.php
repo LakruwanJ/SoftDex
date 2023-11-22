@@ -176,6 +176,8 @@ $star = [254, 20, 6, 15, 63, 150];
     </head>
     <body>
 
+        
+        <a href="../Chat/Chome.php"><img src="../img/chat.png" id="myBtn" class="fa-beat"></a>
         <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
         <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
             <div class="container">

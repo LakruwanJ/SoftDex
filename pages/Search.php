@@ -51,10 +51,32 @@ $star = [254, 20, 6, 15, 63, 150];
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+                <style>
+
+#myBtn {
+  position: fixed;
+  width:95px;
+  bottom: 15px;
+  right: 25px;
+  z-index: 99;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+    
+  bottom: 10px;
+  right: 20px;
+  width:110px;
+}
+</style>
     </head>
     <body>
         
 
+        <a href="../Chat/Chome.php"><img src="../img/chat.png" id="myBtn" class="fa-beat"></a>
         <div class="container">
 
             <br><br>
