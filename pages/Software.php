@@ -272,8 +272,8 @@ $star = [254, 20, 6, 15, 63, 150];
                                             <input type="hidden" name="dc" value="<?php echo $DownCount; ?>" />
                                             <input type="hidden" name="name" value="<?php echo $name; ?>" />
                                             <input type="submit" class="btn btn-primary" value="Download Now" />
-                                            </form>
-                                        
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
