@@ -68,6 +68,10 @@ if (isset($_SESSION["user"])) {
                         <br>
                         <br>
                         <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
 
                         <!-- Upload Documents -->
                         <div class="section1">
@@ -173,6 +177,23 @@ if (isset($_SESSION["user"])) {
 
                         </div>
 
+                             <!--project price-->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <label for="Price">Budget Range</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                                <i class="fa fa-sack-dollar text-muted"></i>
+                                            </span>
+                                        </div>
+
+                                        <input id="Price" type="text" name="Price" placeholder=" Budget Range" class="form-control bg-white border-left-0 border-md" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!--Submit button-->
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary w-50" name="submit">Submit</button>

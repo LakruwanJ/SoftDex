@@ -63,7 +63,7 @@ $customizedsws = cusomizedsw::displayCusSWDetails()
                         <div class="col-sm-2">
                             <p class="text-muted mb-0">
                                 <a href="" class="btn-primary">Approve</a>
-                                <br><br>
+                                <br>
                                      <a href="" class="btn-danger">Reject</a>
                             </p>
                         </div>
