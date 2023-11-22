@@ -16,7 +16,7 @@ if (isset($_SESSION["user"])) {
 }else{
     header("Location: ../softdex.php");
 }
- $user = "Laka";
+ 
 
 $rs = new Classes\Select();
 
@@ -33,6 +33,63 @@ foreach ($rs2 as $dev) {
     $datesince = $dev->datesince;
     $country = $dev->country;
 }
+
+/*
+if (isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+} else {
+    header("Location: ../softdex.php");
+}
+
+if (isset($user->Uid)) {
+ $uid = $user->Uid;
+   
+    $rs = new Classes\Select();
+   $rs3 = $rs->selectUser($user);
+foreach ($rs3 as $us) {
+    $uid = $us->Uid;
+    $user = $us->username;
+    $country = $us->country;
+}
+
+} elseif (isset($user->DID)) {
+    
+    $did = $user->DID;
+   $rs = new Classes\Select();
+
+$rs2 = $rs->selectDeveloper($user);
+foreach ($rs2 as $dev) {
+    $did = $dev->Did;
+    $user = $dev->username;
+    $shortdes = $dev->shortdes;
+    $education = $dev->education;
+    $languages = $dev->languages;
+    $prolang = $dev->prolang;
+    $experience = $dev->experience;
+    $description = $dev->description;
+    $datesince = $dev->datesince;
+    $country = $dev->country;
+}
+} elseif (isset($user->Aid)) {
+    
+    $aid = $user->Aid;
+  
+    $rs = new Classes\Select();
+   $rs4 = $rs->selectAdmin($user);
+foreach ($rs4 as $us) {
+    $uid = $us->Uid;
+    $user = $us->username;
+}
+
+}
+
+/*$rs3 = $rs->selectUser($user);
+foreach ($rs2 as $user) {
+    $uid = $user->Uid;
+    $user = $user->username;
+    $country = $dev->country;
+}
+*/
 ?>
 
 
@@ -95,7 +152,10 @@ foreach ($rs2 as $dev) {
                         <p><strong><i class="fas fa-tasks"></i> Number of Projects:</strong> 57</p>
                     </div>
                     <!-- Add the "Create Customized Software with Me" button -->
-                    <button>To create a customized software</button>
+                    <a href="../pages/CustomizedSwForm.php">
+                        <button>To create a customized software</button>
+                    </a>
+                    
                     <br>
                     <div class="card-container">
                         <br>
@@ -323,7 +383,11 @@ foreach ($rs2 as $dev) {
 
                     <div id="Tutorial" class="tabcontent">
                         <h1>Tutorial</h1>
+                        
+                        <a href="../pages/UploadTutorials.php">
                         <button id="sw-button">Add Tutorial</button>
+                    </a>
+                       
                         <p>From here, you can find tutorials related to software developed by me according to user requirements.</p>
 
                         <div class="most-downloaded-software">

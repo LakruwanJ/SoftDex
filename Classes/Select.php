@@ -76,6 +76,21 @@ class Select {
         }
     }
 
+     public function selectAdmin($id) {
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT * FROM admin d JOIN user u ON u.Uid = d.Uid WHERE u.username = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+            return $rs;
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public function selectDev($id) {
         try {
             $dbcon = new DbConnector();
