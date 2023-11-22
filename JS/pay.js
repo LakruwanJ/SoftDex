@@ -67,7 +67,7 @@ $(document).ready(function () {
             data: {total: price},
             method: 'POST',
             success: function (data) {
-                alert(data);
+                //alert(data);
                 
             },
             error: function (jqXHR, textStatus, errorThrown) {

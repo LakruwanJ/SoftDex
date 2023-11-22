@@ -158,14 +158,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
-
+                var price = "<?=$total ?>";
+                console.log(price);
                 $('#checkout').click(function () {
-                    let price = $('#total_price').val();
                     $.ajax({
                         url: "payhere.php",
+                        data : {total: price},
                         method: 'POST',
                         success: function (data) {
-                            alert(data);
+                            //alert(data);
                             var obj = $.parseJSON(data);
                             // Put the payment variables here
                             var payment = {

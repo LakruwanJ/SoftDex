@@ -212,10 +212,14 @@ $(document).ready(function() {
         $.ajax({
             url:"../process/reviewprocess.php",
             method:"POST",
-            data:{action:'load_data'},
+            data:{
+                action_dev:'re_get_dev',
+                dev_name:"<?=$devname ?>"
+            },
             dataType:"JSON",
             success:function(data)
             {
+                console.log(data);
                 $('#average_rating').text(data.average_rating);
                 $('#total_review').text(data.total_review);
 
@@ -302,6 +306,7 @@ $(document).ready(function() {
                     $('#review_content').html(html);
                 }
             }
+            
         });
     }
     
