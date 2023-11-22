@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $dc = $_POST["dc"];
             $sname = $_POST["name"];
             try {
-
                 $a = $down->addDown($sw, $user);
                 $b = $down->countDown($sw, $dc);
                 if ($a > 0 && $b > 0) {

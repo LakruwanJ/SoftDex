@@ -1,17 +1,25 @@
 <?php
+
+require '../Classes/Home.php';
+
+use Classes\Home;
+$home = new Home();
 if (isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
     ?>
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
             <div class="container">
-                <a class="navbar-brand logog" href="Softdex.php"><img src="img/logo.png" alt="logo" style="height:50px;"></a>
+                <a class="navbar-brand logog" href="../Softdex.php"><img src="../img/logo.png" alt="logo" style="height:50px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link nav-link_ active" aria-current="page" href="Softdex.php"><i
+                            <a class="nav-link nav-link_ active" aria-current="page" href="../Softdex.php"><i
                                     class="fa-solid fa-house  icoon"></i>Home</a>
                         </li>
                         <li class="nav-item">
@@ -29,7 +37,7 @@ if (isset($_SESSION["user"])) {
 
             <?php
             $imageFormats = ['png', 'jpg'];
-            $imagePath = 'img/user/' . $user . '/' . $user;
+            $imagePath = '../img/user/' . $user . '/' . $user;
 
             foreach ($imageFormats as $format) {
                 $imageUrl = $imagePath . '.' . $format;
@@ -37,7 +45,7 @@ if (isset($_SESSION["user"])) {
                 if (file_exists($imageUrl)) {
                     $imageUrl = $imageUrl;                 
                 }else{
-                    $imageUrl = "../../img/user(2)";
+                    $imageUrl = "../../../img/user(2)";
                 }  
             }
             echo '<img class="rounded-circle" width="40" height="40" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';   

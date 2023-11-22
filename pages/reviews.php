@@ -4,7 +4,6 @@ $username = "";
 if (isset($_SESSION["user"])) {
     $username = $_SESSION["user"];
 }
-
 ?>
 
 <!DOCTYPE HTML>
@@ -13,6 +12,16 @@ if (isset($_SESSION["user"])) {
         <meta charset="utf-8" />
         <title>Review & Rating System in PHP & Mysql using Ajax</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="stylesheet" href="../css/navbar.css">
+        <link rel="stylesheet" href="../css/caro.css">
+        <link rel="stylesheet" href="../css/Footer.css">
+        <link rel="stylesheet" href="../css/CardImage.css">
+        <link rel="stylesheet" href="../css/img-h.css">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -20,8 +29,10 @@ if (isset($_SESSION["user"])) {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
+        <?php include_once "./Headers/MainHeader_1.php"; ?>
+        <br><br><br>
         <div class="container">
-            <h1 class="mt-5 mb-5">Review & Rating System in PHP & Mysql using Ajax</h1>
+            <h1 class="mt-5 mb-5">The Software Explorer's Journal</h1>
             <div class="card">
                 <div class="card-header">Sample Product</div>
                 <div class="card-body">
@@ -111,11 +122,10 @@ if (isset($_SESSION["user"])) {
                     <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
                 </h4>
                 <div class="form-group">
-                    <?php
-                    if (!empty($username)){?>
-                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" value="<?=$username ?>"/>
+                    <?php if (!empty($username)) { ?>
+                        <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" value="<?= $username ?>"/>
                     <?php } else { ?>
-                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" />
+                        <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" />
                     <?php } ?>
                 </div>
                 <div class="form-group">
