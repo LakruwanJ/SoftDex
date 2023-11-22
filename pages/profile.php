@@ -152,7 +152,6 @@ foreach ($rs2 as $dev) {
                             <h2>Language Skills</h2>
                             <ul style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
                                 <?php
-
                                 // Display Programming Languages
                                 displayDetails($prolang);
                                 ?>
@@ -182,7 +181,7 @@ foreach ($rs2 as $dev) {
                                 <h2>Education</h2>
                                 <ol>
                                     <li>
-<?php echo $education; ?> 
+                                        <?php echo $education; ?> 
                                     </li>
 
                                 </ol>
@@ -193,7 +192,7 @@ foreach ($rs2 as $dev) {
                                 <h2>Experience</h2>
                                 <ol>
                                     <li>
-<?php echo $experience; ?> 
+                                        <?php echo $experience; ?> 
                                     </li>
                                 </ol>
                             </div>
@@ -216,7 +215,7 @@ foreach ($rs2 as $dev) {
                                             <td></td>
                                             <td class="ps-3"><i class="fa fa-star text-success"></i>&nbsp;5.0
                                                 &nbsp;&nbsp;&centerdot;&nbsp;&nbsp;
-<?php echo "1 month ago"; ?>
+                                                <?php echo "1 month ago"; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -238,27 +237,27 @@ foreach ($rs2 as $dev) {
                         </div>
 
                         <div id="Software" class="tabcontent">
-                            
+
                             <h1>Software</h1>
                             <style>
-        #sw-buttons-container {
-            display: flex;
-        }
+                                #sw-buttons-container {
+                                    display: flex;
+                                }
 
-        #sw-button {
-            margin-right: 150px; /* Adjust the margin as needed */
-        }
-    </style>
+                                #sw-button {
+                                    margin-right: 150px; /* Adjust the margin as needed */
+                                }
+                            </style>
                             <div id="sw-buttons-container">
-        <a href="AddSoftware.php">
-            <button id="sw-button">Add Software</button>
-        </a>
+                                <a href="AddSoftware.php">
+                                    <button id="sw-button">Add Software</button>
+                                </a>
                                 <a href="../pages/comingsoon.php">
-            <button id="sw-button">Coming Soon</button>
-        </a>
-                               
-    </div>
-                           
+                                    <button id="sw-button">Coming Soon</button>
+                                </a>
+
+                            </div>
+
 
                             <p>From here, you can find software which has been developed by me.</p>
                             <!-- Most Downloaded Software Section -->
@@ -267,9 +266,9 @@ foreach ($rs2 as $dev) {
                             <div class="row">
 
 
-                                    <?php
-                                    foreach ($rs->selectDesc($did) as $value) {
-                                        ?>
+                                <?php
+                                foreach ($rs->selectDesc($did) as $value) {
+                                    ?>
                                     <div class="col-lg-4 col-md-4 col-sm-6 software-item">
                                         <?php
                                         $imageFormats = ['png', 'jpg']; // List of possible image formats
@@ -290,7 +289,7 @@ foreach ($rs2 as $dev) {
 
                                     </div>
 
-<?php } ?>
+                                <?php } ?>
 
                             </div>
                         </div>
@@ -301,18 +300,18 @@ foreach ($rs2 as $dev) {
 
                     <div id="Customized" class="tabcontent">
                         <h1>Customized</h1>
-                             <div id="sw-buttons-container">
-        <a href="AddSoftware.php">
-            <button id="sw-button">Request</button>
-        </a>
-                                 
-                                <a href="../pages/comingsoon.php">
-             <button id="sw-button">Ongoing Projects</button>
-        </a>
-                               
-    </div>
-                           
-                       
+                        <div id="sw-buttons-container">
+                            <a href="AddSoftware.php">
+                                <button id="sw-button">Request</button>
+                            </a>
+
+                            <a href="../pages/comingsoon.php">
+                                <button id="sw-button">Ongoing Projects</button>
+                            </a>
+
+                        </div>
+
+
                         <p>From here, you can find customized software which has been developed by me according to user
                             requirements.</p>
 
