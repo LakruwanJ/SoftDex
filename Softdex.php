@@ -39,7 +39,7 @@ $rsCls = new Home();
 
 #myBtn {
   position: fixed;
-  width:80px;
+  width:95px;
   bottom: 15px;
   right: 25px;
   z-index: 99;
@@ -53,7 +53,7 @@ $rsCls = new Home();
     
   bottom: 10px;
   right: 20px;
-  width:90px;
+  width:110px;
 }
 </style>
 
@@ -141,7 +141,7 @@ $rsCls = new Home();
 
                                         <h1 class="hero-title">Unleash the Ultimate Downloading Experience</h1>
                                         <p class="hero-subtitle">Find, Download, and Enjoy Top Software with SoftDex.</p>
-                                        <p><a class="btn btn-primary hero-button plat" role="button" href="#">Search Now</a></p>
+                                        <p><a class="btn btn-primary hero-button plat" role="button" href="pages/Search.php">Search Now</a></p>
                                     </div>
                                     <div class="col-md-1"></div>
                                 </div>

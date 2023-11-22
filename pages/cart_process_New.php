@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Cart</title>
 
+        
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
@@ -46,12 +47,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="stylesheet" href="../css/cart.css">
     </head>
     <body class="bg-light">
-        <
+        
+       <!----------------------------------------------------------- nav bar start ---------------------------------------------------------->
+        
+        <!------------------------------------------------------------ nav bar end ----------------------------------------------------------->
+
         <div class="container-fluid">
             <div class="row px-5">
                 <div class="col-md-6">
                     <div class="shopping-cart">
-                        <h6>My Cart</h6>
+                        <h2>My Cart</h2>
                         <hr>
 
                         <?php
