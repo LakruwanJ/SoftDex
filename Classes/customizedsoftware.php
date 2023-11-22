@@ -21,6 +21,39 @@ class cusomizedsw{
         $this->specialReq = $specialReq;
     }
 
+    function getDid() {
+        return $this->Did;
+    }
+
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getDescription() {
+        return $this->description;
+    }
+
+    function getSpecialReq() {
+        return $this->specialReq;
+    }
+
+    function setDid($Did) {
+        $this->Did = $Did;
+    }
+
+    function setTitle($title) {
+        $this->title = $title;
+    }
+
+    function setDescription($description) {
+        $this->description = $description;
+    }
+
+    function setSpecialReq($specialReq) {
+        $this->specialReq = $specialReq;
+    }
+
+        
     public function selecDev() {
         try {
             $dbcon = new DbConnector();
@@ -54,5 +87,28 @@ class cusomizedsw{
             die("Error in Customized Software: " . $exc->getMessage());
         }
     }
-
+    
+    public static function displayCusSWDetails() {
+         $dbcon = new DbConnector();
+      $con = $dbcon->getConnection();
+      $customizedsws = array();
+     try {
+         $query = "SELECT * FROM customizedsw";
+         $pstmt = $con->prepare($query);
+         $pstmt->execute();
+         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+         if(!empty($rs)){
+             foreach ($rs as $row) {
+                  $customizedsw = new cusomizedsw($row->Title, $row->Description , $row->SpecialReq);
+                
+                 $customizedsws[] = $customizedsw;
+             }
+         }
+     } catch (PDOException $exc) {
+         die("Error in display CuztomizedSW Details: ".$exc->getMessage()) ;
+     }
+     return $customizedsws;
+  }
 }
+
+
