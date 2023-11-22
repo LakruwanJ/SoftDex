@@ -89,7 +89,7 @@ $home = new Home();
 
 
                     <li>
-                        <a href="reviews.php">
+                        <a href="review_dev.php">
                             <span class="icon">
 
                                 <ion-icon name="star"></ion-icon>
