@@ -18,6 +18,7 @@ use PDO;
 $down = new Downloads();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    header("Location: a.php");
             $user = $_POST["user"];
             $sw = $_POST["sw"];
             $dc = $_POST["dc"];
