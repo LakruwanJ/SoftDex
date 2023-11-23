@@ -70,20 +70,6 @@
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Password" name="password" required/>
                         </div><br>
-                        <table border="0" class="sign-in-form" width="80%">
-                            <tbody>
-                                <tr>
-                                    <td align="center"><div class="remember-forgot">
-                                            <label class="remember-label">
-                                                <input type="checkbox" name="remember" id="remember" />
-                                                Remember me
-                                            </label>
-
-                                        </div></td>
-                                    <td align="center"><a href="#" class="forgot-link" align="right">Forgot Password?</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
 
                         <input type="submit" value="Login" class="btn solid" name="signIn"/>
                         <br><br>
