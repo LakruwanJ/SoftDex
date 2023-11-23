@@ -37,7 +37,7 @@ if (isset($_SESSION["user"])) {
                 if (file_exists($imageUrl)) {
                     $imageUrl = $imageUrl;                 
                 }else{
-                    $imageUrl = "../../img/user(2)";
+                    $imageUrl = "img/user(2)";
                 }  
             }
             echo '<img class="rounded-circle" width="40" height="40" src="' . $imageUrl . '" height="130px" alt="Logo Image" />';   
