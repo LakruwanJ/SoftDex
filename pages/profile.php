@@ -419,11 +419,11 @@ foreach ($rs2 as $dev) {
                     <div id="Customized" class="tabcontent">
                         <h1>Customized</h1>
                         <div id="sw-buttons-container">
-                            <a href="AddSoftware.php">
-                                <button id="sw-button">Request</button>
+                            <a href="../pages/DisplayCusSWDetails.php">
+                                <button id="sw-button">View Requests</button>
                             </a>
 
-                            <a href="../pages/comingsoon.php">
+                            <a>
                                 <button id="sw-button">Ongoing Projects</button>
                             </a>
 
