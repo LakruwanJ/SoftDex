@@ -137,6 +137,11 @@ if (isset($_SESSION["user"])) {
                                         <option value="KMPlayer">KMPlayer</option>
                                         <option value="Code::Blocks">Code::Blocks</option>
                                         <option value="uTorrent">uTorrent</option>
+                                        <option value="minitabt">Minitab</option>
+                                        <option value="lightroom">Adobe Lightroom</option>
+                                        <option value="netbeans">Netbeans</option>
+                                        <option value="netbeans">Avast Antivirus</option>
+                                       
                                         
 
                                         </select>
