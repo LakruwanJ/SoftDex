@@ -8,8 +8,8 @@
 
 namespace Classes;
 
-
 require 'DbConnector.php';
+
 //require './Classes/DbConnector.php';
 
 
@@ -57,6 +57,7 @@ class Home {
         $count = $pstmt->fetchColumn();
         echo $count;
     }
+
 //$dbcon = new DbConnector();
 
     public function selectPlat() {
@@ -81,7 +82,6 @@ class Home {
         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
         return $rs;
     }
-
 
     public function selectPlatSwM($plat) {
         $dbcon = new DbConnector();
@@ -110,7 +110,7 @@ class Home {
         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
         return $rs;
     }
-    
+
     public function selectTrendG() {
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
@@ -125,7 +125,7 @@ class Home {
         $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
         return $rs;
     }
-    
+
     public function CheckDeveloper($id) {
         $text = null;
         try {
@@ -139,11 +139,35 @@ class Home {
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-        
+
         foreach ($rs as $value) {
             $text = $value->Did;
         }
         return $text;
+    }
+
+    public function CheckUser($id) {
+        $text = null;
+        try {
+            $dbcon = new DbConnector();
+            $con = $dbcon->getConnection();
+            $query = "SELECT fname FROM user WHERE username = ?";
+            $pstmt = $con->prepare($query);
+            $pstmt->bindValue(1, $id);
+            $pstmt->execute();
+            $rs = $pstmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+        foreach ($rs as $value) {
+            $text = $value->fname;
+        }
+        if(empty($text) or $text==NULL) {
+            return 0;
+        }else{
+            return 1;
+        }
     }
 
 }
