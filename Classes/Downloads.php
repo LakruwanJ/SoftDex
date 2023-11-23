@@ -18,7 +18,6 @@ use PDO;
 $down = new Downloads();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    header("Location: a.php");
             $user = $_POST["user"];
             $sw = $_POST["sw"];
             $dc = $_POST["dc"];
@@ -80,8 +79,6 @@ class Downloads {
 
         try {
             $con = $dbcon->getConnection();
-            echo $software;
-            echo $dc +1;
             
             $query = "UPDATE software SET DownCount = ? WHERE Sid = ?";
             $pstmt = $con->prepare($query);
